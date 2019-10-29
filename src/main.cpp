@@ -23,10 +23,47 @@ void on_center_button() {
  * to keep execution time for this mode under a few seconds.
  */
 void initialize() {
-	pros::lcd::initialize();
-	pros::lcd::set_text(1, "Hello PROS User!");
 
-	pros::lcd::register_btn1_cb(on_center_button);
+	//motor port definitions
+
+	//angler motor port
+	int anglerPort = 15;
+
+	//drive motor points
+	int frontLeftPort = 11;
+	int backLeftPort = 12;
+	int frontRightPort = -13;
+	int backRightPort = -14;
+
+	//intake motor ports
+	int intakeRightPort = 16;
+	int intakeLeftPort = -19;
+
+	//lift motor port
+	int liftPort = 20;
+
+
+	//motors for the drivetrain
+	//could be incorrect
+	pros::Motor frontLeftMotor(frontLeftPort);
+	pros::Motor backLeftMotor(backLeftPort);
+	pros::Motor frontRightMotor(frontRightPort);
+	pros::Motor backRightMotor(backRightPort);
+
+	//motors for the intake. (looking from the front)
+	pros::Motor intakeRightMotor(intakeRightPort);
+	pros::Motor intakeLeftMotor(intakeLeftPort);
+
+	//angler motor is not sure
+	pros::Motor anglerMotor(anglerPort);
+	pros::Motor liftMotor(liftPort);
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
 }
 
 /**
