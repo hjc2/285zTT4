@@ -1,17 +1,12 @@
 #include "main.h"
 
-/**
- * A callback function for LLEMU's center button.
- *
- * When this callback is fired, it will toggle line 2 of the LCD text between
- * "I was pressed!" and nothing.
- */
+ //button definitions
  okapi::ControllerButton intakeButton = okapi::ControllerDigital::R2;
- okapi::ControllerButton trayButton = okapi::ControllerDigital::L1;
+ okapi::ControllerButton trayUp = okapi::ControllerDigital::L1;
  okapi::ControllerButton outtakeButton = okapi::ControllerDigital::R1;
- okapi::ControllerButton liftButton = okapi::ControllerDigital::L2;
- okapi::ControllerButton	driverDan = okapi::ControllerDigital::B;
-/**
+ okapi::ControllerButton liftUp = okapi::ControllerDigital::A;
+ okapi::ControllerButton LiftDown = okapi::ControllerDigital::B;
+	/**
  * Runs initialization code. This occurs as soon as the program is started.
  *
  * All other competition modes are blocked by initialize; it is recommended
