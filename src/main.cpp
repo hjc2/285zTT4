@@ -6,55 +6,54 @@
  okapi::ControllerButton outtakeButton = okapi::ControllerDigital::R1;
  okapi::ControllerButton liftUp = okapi::ControllerDigital::A;
  okapi::ControllerButton LiftDown = okapi::ControllerDigital::B;
+
+ 	//motor port definitions
+
+ 	//angler motor port
+ 	int anglerPort = 15;
+
+ 	//drive motor points
+ 	int frontLeftPort = 11;
+ 	int backLeftPort = 12;
+ 	int frontRightPort = -13;
+ 	int backRightPort = -14;
+
+ 	//intake motor ports
+ 	int intakeRightPort = 16;
+ 	int intakeLeftPort = -19;
+
+ 	//lift motor port
+ 	int liftPort = 20;
+
+
+ 	//motors for the drivetrain
+ 	//could be incorrect
+ 	pros::Motor frontLeftMotor(frontLeftPort);
+ 	pros::Motor backLeftMotor(backLeftPort);
+ 	pros::Motor frontRightMotor(frontRightPort);
+ 	pros::Motor backRightMotor(backRightPort);
+
+ 	//motors for the intake. (looking from the front)
+ 	pros::Motor intakeRightMotor(intakeRightPort);
+ 	pros::Motor intakeLeftMotor(intakeLeftPort);
+
+ 	//angler motor is not sure
+ 	pros::Motor anglerMotor(anglerPort);
+ 	pros::Motor liftMotor(liftPort);
+
+ //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
 	/**
  * Runs initialization code. This occurs as soon as the program is started.
  *
  * All other competition modes are blocked by initialize; it is recommended
  * to keep execution time for this mode under a few seconds.
  */
-void initialize() {
-
-	//motor port definitions
-
-	//angler motor port
-	int anglerPort = 15;
-
-	//drive motor points
-	int frontLeftPort = 11;
-	int backLeftPort = 12;
-	int frontRightPort = -13;
-	int backRightPort = -14;
-
-	//intake motor ports
-	int intakeRightPort = 16;
-	int intakeLeftPort = -19;
-
-	//lift motor port
-	int liftPort = 20;
-
-
-	//motors for the drivetrain
-	//could be incorrect
-	pros::Motor frontLeftMotor(frontLeftPort);
-	pros::Motor backLeftMotor(backLeftPort);
-	pros::Motor frontRightMotor(frontRightPort);
-	pros::Motor backRightMotor(backRightPort);
-
-	//motors for the intake. (looking from the front)
-	pros::Motor intakeRightMotor(intakeRightPort);
-	pros::Motor intakeLeftMotor(intakeLeftPort);
-
-	//angler motor is not sure
-	pros::Motor anglerMotor(anglerPort);
-	pros::Motor liftMotor(liftPort);
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-
-}
+void initialize() {}
 
 /**
  * Runs while the robot is in the disabled state of Field Management System or
