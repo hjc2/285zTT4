@@ -3,7 +3,7 @@
 
 //Controller Buttons
 extern ControllerButton intakeButton;
-extern ControllerButton trayUpButton;
+extern ControllerButton trayButton;
 extern ControllerButton outtakeButton;
 extern ControllerButton liftUpButton;
 extern ControllerButton liftDownButton;

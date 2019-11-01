@@ -1,5 +1,5 @@
 #include "285z/initrobot.hpp"
-
+#include "285z/functions.hpp"
  /** Runs initialization code. This occurs as soon as the program is started.
  *
  * All other competition modes are blocked by initialize; it is recommended
@@ -52,5 +52,5 @@ void autonomous() {}
  * task, not resume it from where it left off.
  */
 void opcontrol() {
-
+  anglerToggle();
 }

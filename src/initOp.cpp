@@ -6,22 +6,46 @@ bool anglerPositionBool = false;
 void toggleIntake(){
   intake.moveVelocity(200);
 }
+
 void liftUp(){
-  anglerMotor.moveVelocity(200);
+  liftMotor.moveVelocity(100);
 }
 
 void liftDown(){
-  anglerMotor.moveVelocity(-200);
+  liftMotor.moveVelocity(-100);
 }
 
+void trayFlat(){
+  //does nothing
+}
+
+void trayVert(){
+  //does nothing
+}
+
+void checkLiftUp(){
+  if(liftUpButton.isPressed()){
+    liftUp();
+  } else {
+    liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
+  }
+}
+
+void checkLiftDown(){
+  if(liftDownButton.isPressed()){
+    liftDown();
+  } else {
+    liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
+  }
+}
 
 void anglerToggle(){
-  if(liftUpButton.changedToPressed()){
+  if(trayButton.changedToPressed()){
     if(anglerPositionBool == true){
-      liftDown();
+      trayFlat();
       anglerPositionBool = !anglerPositionBool;
     } else {
-      liftUp();
+      trayVert();
       anglerPositionBool = !anglerPositionBool;
     }
   }

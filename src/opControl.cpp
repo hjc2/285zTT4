@@ -2,7 +2,7 @@
 
 //button definitions
 okapi::ControllerButton intakeButton = okapi::ControllerDigital::R2;
-okapi::ControllerButton trayUpButton = okapi::ControllerDigital::L1;
+okapi::ControllerButton trayButton = okapi::ControllerDigital::L1;
 okapi::ControllerButton outtakeButton = okapi::ControllerDigital::R1;
 okapi::ControllerButton liftUpButton = okapi::ControllerDigital::A;
 okapi::ControllerButton liftDownButton = okapi::ControllerDigital::B;
