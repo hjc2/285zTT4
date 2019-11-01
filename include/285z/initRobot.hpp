@@ -1,12 +1,12 @@
 #pragma once
-#include "../main.h"
+#include "main.h"
 
 //Controller Buttons
 extern ControllerButton intakeButton;
-extern ControllerButton trayUp;
+extern ControllerButton trayUpButton;
 extern ControllerButton outtakeButton;
-extern ControllerButton liftUp;
-extern ControllerButton liftDown;
+extern ControllerButton liftUpButton;
+extern ControllerButton liftDownButton;
 
 //  MOTORS  //
 

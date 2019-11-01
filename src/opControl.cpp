@@ -2,10 +2,10 @@
 
 //button definitions
 okapi::ControllerButton intakeButton = okapi::ControllerDigital::R2;
-okapi::ControllerButton trayUp = okapi::ControllerDigital::L1;
+okapi::ControllerButton trayUpButton = okapi::ControllerDigital::L1;
 okapi::ControllerButton outtakeButton = okapi::ControllerDigital::R1;
-okapi::ControllerButton liftUp = okapi::ControllerDigital::A;
-okapi::ControllerButton LiftDown = okapi::ControllerDigital::B;
+okapi::ControllerButton liftUpButton = okapi::ControllerDigital::A;
+okapi::ControllerButton liftDownButton = okapi::ControllerDigital::B;
 
  //motor port definitions
 
@@ -24,6 +24,9 @@ okapi::ControllerButton LiftDown = okapi::ControllerDigital::B;
 
  //lift motor port
  int liftPort = 20;
+
+//false is down
+//true is up
 
 
  //motors for the drivetrain

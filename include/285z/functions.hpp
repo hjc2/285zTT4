@@ -12,6 +12,6 @@ void trayFlat();
 //Lift
 void liftUp();
 void liftDown();
-
+void anglerToggle();
 
 //   **AUTON FUNCTIONS**    //
