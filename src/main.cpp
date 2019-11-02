@@ -1,4 +1,4 @@
-#include "285z/initrobot.hpp"
+#include "285z/initRobot.hpp"
 #include "285z/functions.hpp"
  /** Runs initialization code. This occurs as soon as the program is started.
  *
@@ -53,4 +53,6 @@ void autonomous() {}
  */
 void opcontrol() {
   anglerToggle();
+  checkLiftDown();
+  checkLiftUp();
 }

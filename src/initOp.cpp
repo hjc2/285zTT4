@@ -38,7 +38,8 @@ void checkLiftDown(){
     liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
   }
 }
-
+//kachow
+//angler toggle function that is able to be button checked
 void anglerToggle(){
   if(trayButton.changedToPressed()){
     if(anglerPositionBool == true){
