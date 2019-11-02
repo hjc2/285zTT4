@@ -1,5 +1,7 @@
 #include "285z/initRobot.hpp"
 
+okapi::Controller controller;
+
 //button definitions
 okapi::ControllerButton intakeButton = okapi::ControllerDigital::R2;
 okapi::ControllerButton trayButton = okapi::ControllerDigital::L1;
@@ -19,11 +21,11 @@ okapi::ControllerButton liftDownButton = okapi::ControllerDigital::B;
  int backRightPort = -14;
 
  //intake motor ports
- int intakeRightPort = 16;
- int intakeLeftPort = -19;
+ int intakeRightPort = 17;
+ int intakeLeftPort = -18;
 
  //lift motor port
- int liftPort = 20;
+ int liftPort = 15;
 
 //false is down
 //true is up
@@ -55,11 +57,11 @@ okapi::ChassisScales scales
  imev5GreenTPR
 };
 
-auto chassis = okapi::ChassisControllerBuilder()
+auto drive = okapi::ChassisControllerBuilder()
                   .withMotors({ 11, 12 }, { -13, -14 })
                   .withGearset(okapi::AbstractMotor::gearset::green)
                   .withDimensions(scales)
                   .withMaxVelocity(200)
                   .withOdometry(okapi::StateMode::FRAME_TRANSFORMATION, 0_mm, 0_deg, 0.00001_mps)
                   .buildOdometry();
-std::shared_ptr<okapi::ChassisModel> model = std::dynamic_pointer_cast<okapi::ChassisModel>(chassis->getModel());
+std::shared_ptr<okapi::ChassisModel> model = std::dynamic_pointer_cast<okapi::ChassisModel>(drive->getModel());

@@ -36,23 +36,72 @@ void competition_initialize() {}
  * will be stopped. Re-enabling the robot will restart the task, not re-start it
  * from where it left off.
  */
-void autonomous() {}
+void autonomous() {
 
-/*
- * Runs the operator control code. This function will be started in its own task
- * with the default priority and stack size whenever the robot is enabled via
- * the Field Management System or the VEX Competition Switch in the operator
- * control mode.
- *
- * If no competition control is connected, this function will run immediately
- * following initialize().
- *
- * If the robot is disabled or communications is lost, the
- * operator control task will be stopped. Re-enabling the robot will restart the
- * task, not resume it from where it left off.
- */
+  bool redAlliance = false;
+  std::shared_ptr<okapi::OdomChassisController> chassis = okapi::ChassisControllerBuilder()
+                    .withMotors({ 11, 12 }, { -13, -14 })
+                    .withGearset(okapi::AbstractMotor::gearset::green)
+                    .withDimensions(scales)
+                    .withMaxVelocity(60)
+                    .withOdometry(okapi::StateMode::FRAME_TRANSFORMATION, 0_mm, 0_deg, 0.00001_mps)
+                    .buildOdometry();
+  std::shared_ptr<okapi::ChassisModel> model = std::dynamic_pointer_cast<okapi::ChassisModel>(chassis->getModel());
+
+	if(redAlliance)
+	{
+    //Intake On
+    intake.moveVelocity(80);
+    //Move to blocks
+    chassis->setState({0_ft,9.9_ft,0_deg});
+    chassis->driveToPoint({4_ft, 9.9_ft});
+    chassis->waitUntilSettled();
+    //need to work out deceleration program
+    //sqiggle backwards to line up with second row
+    chassis->moveDistance({-3_ft});
+    intake.moveVelocity(5);
+    //back up
+
+    //need to work out deceleration program
+    //sqiggle backwards to line up with second row
+    pros::Task::delay(200);
+
+    chassis->turnToAngle(270_deg);
+    intake.moveVelocity(-5);
+    chassis->setState({0_ft,0_ft,0_deg});
+    chassis->driveToPoint({4_ft,0_ft});
+
+    anglerMotor.moveAbsolute(1690, 50);
+    pros::Task::delay(2000);
+
+    chassis->moveDistance(-1_ft);
+	}
+	else{}
+}
+
+
 void opcontrol() {
-  anglerToggle();
-  checkLiftDown();
-  checkLiftUp();
+  std::shared_ptr<okapi::OdomChassisController> chassis = okapi::ChassisControllerBuilder()
+										.withMotors({ 11, 12 }, { -13, -14 })
+										.withGearset(okapi::AbstractMotor::gearset::green)
+										.withDimensions(scales)
+										.withOdometry(okapi::StateMode::FRAME_TRANSFORMATION, 0_mm, 0_deg, 0.0001_mps)
+										.buildOdometry();
+	std::shared_ptr<okapi::ChassisModel> model = std::dynamic_pointer_cast<okapi::ChassisModel>(chassis->getModel());
+
+  while(true){
+
+    // TANK DRIVE CODE //
+    model->tank(controller.getAnalog(okapi::ControllerAnalog::rightY),
+          controller.getAnalog(okapi::ControllerAnalog::leftY));
+
+    //  INTAKE TOGGLE CODE  //
+    toggleIntake();
+    anglerToggle();
+    //checkLiftDown();
+    //checkLiftUp();
+
+    pros::delay(10);
+  }
+
 }

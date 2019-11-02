@@ -2,6 +2,9 @@
 
 //  **TELEOP FUNCTIONS**   //
 
+//Drive
+void tankDrive();
+
 //Intake
 void toggleIntake();
 
@@ -16,4 +19,9 @@ void anglerToggle();
 
 void checkLiftUp();
 void checkLiftDown();
+
 //   **AUTON FUNCTIONS**    //
+
+void turn();
+void red();
+void blue();
