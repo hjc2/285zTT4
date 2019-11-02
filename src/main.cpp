@@ -36,6 +36,20 @@ void competition_initialize() {}
  * will be stopped. Re-enabling the robot will restart the task, not re-start it
  * from where it left off.
  */
+
+ //PID Controller
+ const double liftkP = 0.001;
+ const double liftkI = 0.0001;
+ const double liftkD = 0.00001;
+
+ //TODO: WILL HAVE TO MODIFY WHEN WE HAVE TWO MOTORS FOR ANGLER
+ const int ANGLER_MOTOR_PORT = 15;
+
+ auto anglerControllerAut = AsyncPosControllerBuilder()
+                         .withMotor(ANGLER_MOTOR_PORT) // lift motor port 3
+                         .withGains({liftkP, liftkI, liftkD})
+                         .build();
+
 void autonomous() {
 
   bool redAlliance = false;
@@ -49,7 +63,12 @@ void autonomous() {
                     .buildOdometry();
   std::shared_ptr<okapi::ChassisModel> model = std::dynamic_pointer_cast<okapi::ChassisModel>(chassis->getModel());
 
-	if(redAlliance)
+  chassis->setState({0_ft,9.9_ft,0_deg});
+  chassis->driveToPoint({2_ft, 9.9_ft});
+  chassis->waitUntilSettled();
+  //anglerControllerAut->setTarget(2500);
+  //anglerMotor.moveAbsolute(1690, 150);
+	/*if(redAlliance)
 	{
 
     //       RED AUTON       //
@@ -71,6 +90,7 @@ void autonomous() {
     pros::Task::delay(200);
 
     chassis->turnToAngle(270_deg);
+    chassis->waitUntilSettled();
     intake.moveVelocity(-5);
     chassis->setState({0_ft,0_ft,0_deg});
     chassis->driveToPoint({4_ft,0_ft});
@@ -97,7 +117,7 @@ void autonomous() {
     //sqiggle backwards to line up with second row
     pros::Task::delay(200);
 
-    chassis->turnToAngle(120_deg);
+    chassis->turnToAngle(-120_deg);
     intake.moveVelocity(-5);
     chassis->setState({0_ft,0_ft,0_deg});
     chassis->driveToPoint({4_ft,0_ft});
@@ -107,7 +127,7 @@ void autonomous() {
 
     chassis->moveDistance(-1_ft);
 
-  }
+  }*/
 }
 
 
@@ -123,17 +143,21 @@ void opcontrol() {
   while(true){
 
     // TANK DRIVE CODE //
-    model->tank(controller.getAnalog(okapi::ControllerAnalog::rightY),
-          controller.getAnalog(okapi::ControllerAnalog::leftY));
+    model->tank(controller.getAnalog(okapi::ControllerAnalog::leftY),
+          controller.getAnalog(okapi::ControllerAnalog::rightY));
 
     //  INTAKE TOGGLE CODE  //
     toggleIntake();
     intakeRev();
 
     //  ANGLER TOGGLE CODE  //
-    anglerToggle();
-    //checkLiftDown();
-    //checkLiftUp();
+    //anglerToggle();
+    liftVertOp();
+    lowerFlat();
+
+    //  LIFT  //
+    //liftDown();
+    //liftUp();
 
     pros::delay(10);
   }

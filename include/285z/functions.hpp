@@ -12,6 +12,8 @@ void intakeRev();
 //Tray
 void trayVert();
 void trayFlat();
+void liftVertOp();
+void lowerFlat();
 
 //Lift
 void liftUp();

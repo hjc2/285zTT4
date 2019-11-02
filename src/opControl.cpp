@@ -5,14 +5,15 @@ okapi::Controller controller;
 //button definitions
 okapi::ControllerButton intakeButton = okapi::ControllerDigital::R2;
 okapi::ControllerButton trayButton = okapi::ControllerDigital::L1;
+okapi::ControllerButton trayDown = okapi::ControllerDigital::L2;
 okapi::ControllerButton outtakeButton = okapi::ControllerDigital::R1;
-okapi::ControllerButton liftUpButton = okapi::ControllerDigital::A;
-okapi::ControllerButton liftDownButton = okapi::ControllerDigital::B;
+okapi::ControllerButton liftUpButton = okapi::ControllerDigital::up;
+okapi::ControllerButton liftDownButton = okapi::ControllerDigital::down;
 
  //motor port definitions
 
  //angler motor port
- int anglerPort = 15;
+ int anglerPort = 20;
 
  //drive motor points
  int frontLeftPort = 11;
