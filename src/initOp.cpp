@@ -35,6 +35,14 @@ void toggleIntake(){
   //intake.moveVelocity(200);
 }
 
+void intakeRev()
+{
+  if (outtakeButton.isPressed())
+  {
+    intake.moveVelocity (100);
+  }
+}
+
 //          LIFT         //
 
 //      OUTPUT        //

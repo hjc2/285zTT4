@@ -97,6 +97,9 @@ void opcontrol() {
 
     //  INTAKE TOGGLE CODE  //
     toggleIntake();
+    intakeRev();
+
+    //  ANGLER TOGGLE CODE  //
     anglerToggle();
     //checkLiftDown();
     //checkLiftUp();

@@ -7,6 +7,7 @@ void tankDrive();
 
 //Intake
 void toggleIntake();
+void intakeRev();
 
 //Tray
 void trayVert();
