@@ -16,12 +16,17 @@ void liftDown(){
 }
 
 void trayFlat(){
-  //does nothing
+  anglerMotor.moveAbsolute(-1690, 100);
 }
 
 void trayVert(){
-  //does nothing
+  anglerMotor.moveAbsolute(1690, 100);
 }
+
+//if(liftDownButton.isPressed()) {
+//lift.moveAbsolute(13903, 100);
+//}
+
 
 void checkLiftUp(){
   if(liftUpButton.isPressed()){
