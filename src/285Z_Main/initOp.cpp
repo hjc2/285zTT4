@@ -1,5 +1,5 @@
-#include "285z/functions.hpp"
-#include "285z/initRobot.hpp"
+#include "../include/285z/functions.hpp"
+#include "../include/285z/initRobot.hpp"
 
 bool anglerPositionBool = false;
 bool intakeToggleBool = false;
@@ -30,7 +30,6 @@ void toggleIntake(){
   else
   {
     intake.moveVelocity	(0);
-    intake.setBrakeMode(AbstractMotor::brakeMode::hold);
   }
   //intake.moveVelocity(200);
 }
@@ -58,7 +57,7 @@ void liftDown(){
     liftMotor.moveVelocity(-100);
 
   } else {
-    liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
+    //liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
   }
 }
 
@@ -67,7 +66,7 @@ void checkLiftUp(){
   if(liftUpButton.isPressed()){
     liftUp();
   } else {
-    liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
+    //liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
   }
 }
 

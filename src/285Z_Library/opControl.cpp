@@ -1,4 +1,4 @@
-#include "285z/initRobot.hpp"
+#include "../include/285z/initRobot.hpp"
 
 okapi::Controller controller;
 
