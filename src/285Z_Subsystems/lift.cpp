@@ -4,7 +4,7 @@ public:
   double liftAngle;
   bool liftState;
 
-  void liftPosition(position){
+  void liftPosition(int position){
     liftMotor.moveAbsolute(position);
   }
 
