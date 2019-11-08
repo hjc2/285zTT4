@@ -1,13 +1,13 @@
 #include "../include/285z/initRobot.hpp"
 
-class Tray {
+const UP = 1;
+const DOWN = 0;
 
-  const int UP = true;
-  const bool DOWN = false;
+class Tray {
 
   //Tray Class Attributes
   public:
-    bool pos;
+    int pos;
 
   // Tray Constructor
   Tray(int initPos){
@@ -19,9 +19,10 @@ class Tray {
     switch(pos){
       case true:
         //UP
+        anglerMotor.moveAbsolute(1690, 100);
       case false:
         //DOWN
-        
+        anglerMotor.moveAbsolute(0, -100);
       break;
     }
   }

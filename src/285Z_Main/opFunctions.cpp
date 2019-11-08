@@ -1,5 +1,6 @@
 #include "../include/285z/functions.hpp"
 #include "../include/285z/initRobot.hpp"
+#include "../include/285Z_Subsystems/tray.hpp"
 
 bool anglerPositionBool = false;
 bool intakeToggleBool = false;
@@ -76,6 +77,24 @@ void checkLiftDown(){
 
 //       ANGLER       //
 
+Tray angler(DOWN);
+int cool_integer = 6;
+int* same_cool_int = &cool_integer;
+*same_cool_int++;
+// void* pointer = &cool_integer;
+// void* pointer = new int(8);
+
+
+// * ->
+int cool_func(int &position)
+{
+  return position++;
+}
+
+int newint = cool_func(angler.pos);
+// int new_integer = cool_func(cool_integer);
+// void*
+
 //PID Controller
 const double liftkP = 0.001;
 const double liftkI = 0.0001;
@@ -107,7 +126,7 @@ void liftVertOp() {
   if (trayButton.changedToPressed())
   {
     anglerMotor.moveAbsolute(1400, 600);
-    pros::delay(500);
+    pros::delay(200);
     anglerMotor.moveAbsolute(2000, 200);
     //anglerController->setTarget(1690);
     //anglerControllerLPID.setTarget(1690);

@@ -6,10 +6,7 @@ const double liftkI = 0.0001;
 const double liftkD = 0.0001;
 
 //TODO: WILL HAVE TO MODIFY WHEN WE HAVE TWO MOTORS FOR ANGLER
-const int ANGLER_MOTOR_PORT = 15;
-
-
-
+const int ANGLER_MOTOR_PORT = 20;
 
 
 //auto anglerControllerL = AsyncPosPIDController(
