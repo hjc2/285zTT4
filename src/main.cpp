@@ -156,8 +156,7 @@ void opcontrol() {
     lowerFlat();
 
     //  LIFT  //
-    liftDown();
-    liftUp();
+    liftManual();
 
     pros::delay(10);
   }

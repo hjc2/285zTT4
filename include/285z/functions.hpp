@@ -18,6 +18,7 @@ void lowerFlat();
 //Lift
 void liftUp();
 void liftDown();
+void liftManual();
 void anglerToggle();
 
 void liftPositionToggleFunction();

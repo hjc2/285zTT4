@@ -35,7 +35,6 @@ void toggleIntake(){
   }
   //intake.moveVelocity(200);
 }
-
 //PRESS intake
 void intakeRev(){
   if (outtakeButton.isPressed())
@@ -54,7 +53,7 @@ void liftUp(){
   if(liftUpButton.isPressed()){
     liftMotor.moveVelocity(-100);
   }
-  if (!liftUpButton.isPressed()&&!liftDownButton.isPressed()){
+  if(liftMotor.getTargetVelocity() != 0){
     liftMotor.moveVelocity(0);
     liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
   }
@@ -64,10 +63,15 @@ void liftDown(){
   if(liftDownButton.isPressed()){
     liftMotor.moveVelocity(100);
   }
-  if (!liftUpButton.isPressed()&&!liftDownButton.isPressed()){
+  if(liftMotor.getTargetVelocity() != 0){
     liftMotor.moveVelocity(0);
     liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
   }
+}
+//MANUAL DUAL CONTROL
+void liftManual(){
+  liftDown();
+  liftUp();
 }
 
 
@@ -85,6 +89,9 @@ auto anglerController = AsyncPosControllerBuilder()
                         .withMotor(ANGLER_MOTOR_PORT) // lift motor port 3
                         .withGains({liftkP, liftkI, liftkD})
                         .build();
+
+
+
 
 void trayFlat(){
   anglerMotor.moveAbsolute(-1690, 80);
