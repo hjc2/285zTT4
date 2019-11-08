@@ -3,7 +3,8 @@
 
 bool anglerPositionBool = false;
 bool intakeToggleBool = false;
-
+bool liftUpBool = false;
+bool liftDownBool = false;
 //           DRIVE         //
 /*void tankDrive(){
   model->tank(controller.getAnalog(okapi::ControllerAnalog::rightY),
@@ -30,6 +31,7 @@ void toggleIntake(){
   else
   {
     intake.moveVelocity	(0);
+
   }
   //intake.moveVelocity(200);
 }
@@ -47,20 +49,15 @@ void intakeRev()
 //      OUTPUT        //
 void liftUp(){
   if(liftUpButton.isPressed()){
-    liftMotor.moveVelocity(100);
+    liftMotor.moveVelocity(-100);
   }
-
 }
 
 void liftDown(){
   if(liftDownButton.isPressed()){
-    liftMotor.moveVelocity(-100);
-
-  } else {
-    //liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
+    liftMotor.moveVelocity(100);
   }
 }
-
 //      INPUT         //
 void checkLiftUp(){
   if(liftUpButton.isPressed()){
