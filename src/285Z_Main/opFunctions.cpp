@@ -3,8 +3,7 @@
 
 bool anglerPositionBool = false;
 bool intakeToggleBool = false;
-bool liftUpBool = false;
-bool liftDownBool = false;
+bool liftPositionBool = false;
 //           DRIVE         //
 /*void tankDrive(){
   model->tank(controller.getAnalog(okapi::ControllerAnalog::rightY),
@@ -51,11 +50,19 @@ void liftUp(){
   if(liftUpButton.isPressed()){
     liftMotor.moveVelocity(-100);
   }
+  if (!liftUpButton.isPressed()&&!liftDownButton.isPressed()){
+    liftMotor.moveVelocity(0);
+    liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
+  }
 }
 
 void liftDown(){
   if(liftDownButton.isPressed()){
     liftMotor.moveVelocity(100);
+  }
+  if (!liftUpButton.isPressed()&&!liftDownButton.isPressed()){
+    liftMotor.moveVelocity(0);
+    liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
   }
 }
 //      INPUT         //
@@ -88,7 +95,6 @@ auto anglerController = AsyncPosControllerBuilder()
 
 void trayFlat(){
   anglerMotor.moveAbsolute(-1690, 80);
-
 }
 
 void trayVert(){
@@ -120,6 +126,17 @@ void lowerFlat(){
     //anglerControllerRPID.setTarget(0);
     //anglerController->setTarget(0);
   }
+}
+void liftPositionToggleFunction(){
+ if(liftToggleButton.changedToPressed()){
+   if(liftPositionBool == true){
+     liftMotor.moveAbsolute(0, 100);
+     liftPositionBool = !liftPositionBool;
+   } else {
+     liftMotor.moveAbsolute(0, -100);
+     liftPositionBool = !liftPositionBool;
+   }
+ }
 }
 
 void anglerToggle(){

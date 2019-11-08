@@ -22,7 +22,7 @@ void anglerToggle();
 
 void checkLiftUp();
 void checkLiftDown();
-
+void liftPositionToggleFunction();
 //   **AUTON FUNCTIONS**    //
 
 void turn();
