@@ -52,18 +52,17 @@ void intakeRev(){
 void liftUp(){
   if(liftUpButton.isPressed()){
     liftMotor.moveVelocity(-100);
-  }
-  if(liftMotor.getTargetVelocity() != 0){
+  } else if(!liftUpButton.isPressed()&&!liftDownButton.isPressed()){
     liftMotor.moveVelocity(0);
     liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
   }
 }
+
 //MANUAL liftdown
 void liftDown(){
   if(liftDownButton.isPressed()){
     liftMotor.moveVelocity(100);
-  }
-  if(liftMotor.getTargetVelocity() != 0){
+  } else if(!liftUpButton.isPressed()&&!liftDownButton.isPressed()){
     liftMotor.moveVelocity(0);
     liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
   }
@@ -127,6 +126,7 @@ void lowerFlat(){
     //anglerController->setTarget(0);
   }
 }
+/*
 void liftPositionToggleFunction(){
  if(liftToggleButton.changedToPressed()){
    if(liftPositionBool == true){
@@ -137,7 +137,7 @@ void liftPositionToggleFunction(){
      liftPositionBool = !liftPositionBool;
    }
  }
-}
+} */
 
 void anglerToggle(){
   if(trayButton.changedToPressed()){

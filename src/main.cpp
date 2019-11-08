@@ -152,11 +152,12 @@ void opcontrol() {
 
     //  ANGLER TOGGLE CODE  //
     //anglerToggle();
-    liftVertOp();
-    lowerFlat();
+  //  liftVertOp();
+  //  lowerFlat();
 
     //  LIFT  //
-    liftManual();
+    liftDown();
+    liftUp();
 
     pros::delay(10);
   }
