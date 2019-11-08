@@ -17,7 +17,8 @@ void arcadeDrive(){
 }*/
 
 
-//          INTAKE         //
+// INTAKE INTAKE INTAKE INTAKE INTAKE INTAKE
+//TOGGLE intake
 void toggleIntake(){
   if (intakeButton.changedToPressed())
   {
@@ -35,17 +36,20 @@ void toggleIntake(){
   //intake.moveVelocity(200);
 }
 
-void intakeRev()
-{
+//PRESS intake
+void intakeRev(){
   if (outtakeButton.isPressed())
   {
     intake.moveVelocity (-100);
   }
 }
 
-//          LIFT         //
+//
+//
+//
 
-//      OUTPUT        //
+//LIFT LIFT LIFT LIFT LIFT LIFT LIFT LIFT
+//MANUAL liftup
 void liftUp(){
   if(liftUpButton.isPressed()){
     liftMotor.moveVelocity(-100);
@@ -55,7 +59,7 @@ void liftUp(){
     liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
   }
 }
-
+//MANUAL liftdown
 void liftDown(){
   if(liftDownButton.isPressed()){
     liftMotor.moveVelocity(100);
@@ -65,18 +69,7 @@ void liftDown(){
     liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
   }
 }
-//      INPUT         //
-void checkLiftUp(){
-  if(liftUpButton.isPressed()){
-    liftUp();
-  } else {
-    //liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
-  }
-}
 
-void checkLiftDown(){
-
-}
 
 //       ANGLER       //
 

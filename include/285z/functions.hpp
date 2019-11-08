@@ -20,8 +20,6 @@ void liftUp();
 void liftDown();
 void anglerToggle();
 
-void checkLiftUp();
-void checkLiftDown();
 void liftPositionToggleFunction();
 //   **AUTON FUNCTIONS**    //
 

@@ -1,6 +1,6 @@
 /*
 class lift{
-public:
+public
 
   double liftAngle;
   bool liftState;
