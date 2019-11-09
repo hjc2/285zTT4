@@ -157,6 +157,7 @@ void opcontrol() {
     //  LIFT  //
     //toggleLiftHeight();
     liftManual();
+    anglerManual();
     //liftPID();
     pros::delay(10);
   }

@@ -4,12 +4,12 @@ okapi::Controller controller;
 
 //button definitions
 okapi::ControllerButton intakeButton = okapi::ControllerDigital:: R2;
-okapi::ControllerButton trayButton = okapi::ControllerDigital:: L1;
-okapi::ControllerButton trayDown = okapi::ControllerDigital::L2;
+okapi::ControllerButton trayButton = okapi::ControllerDigital:: Y;
+okapi::ControllerButton trayDown = okapi::ControllerDigital:: X;
 okapi::ControllerButton outtakeButton = okapi::ControllerDigital::R1;
 okapi::ControllerButton liftToggleButton = okapi::ControllerDigital::right;
-okapi::ControllerButton liftUpButton = okapi::ControllerDigital::up;
-okapi::ControllerButton liftDownButton = okapi::ControllerDigital::down;
+okapi::ControllerButton liftUpButton = okapi::ControllerDigital::L1;
+okapi::ControllerButton liftDownButton = okapi::ControllerDigital::L2;
 okapi::ControllerButton anglerUpButton = okapi::ControllerDigital::A;
 okapi::ControllerButton anglerDownButton = okapi::ControllerDigital::B;
  //motor port definitions
