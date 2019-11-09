@@ -13,6 +13,8 @@ extern ControllerButton outtakeButton;
 extern ControllerButton liftUpButton;
 extern ControllerButton liftDownButton;
 extern ControllerButton liftToggleButton;
+extern ControllerButton anglerUpButton;
+extern ControllerButton anglerDownButton;
 //  MOTORS  //
 
 //Drivetrain motors

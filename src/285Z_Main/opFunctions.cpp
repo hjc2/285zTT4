@@ -4,6 +4,8 @@
 bool anglerPositionBool = false;
 bool intakeToggleBool = false;
 bool liftPositionBool = false;
+double liftPosReal = 0.0;
+double liftPosReq = 0.0;
 //           DRIVE         //
 /*void tankDrive(){
   model->tank(controller.getAnalog(okapi::ControllerAnalog::rightY),
@@ -26,12 +28,13 @@ void toggleIntake(){
   }
   else if(intakeToggleBool)
   {
+    intake.setBrakeMode(AbstractMotor::brakeMode::coast);
     intake.moveVelocity   (600);
   }
   else
   {
     intake.moveVelocity	(0);
-
+    intake.setBrakeMode(AbstractMotor::brakeMode::hold);
   }
   //intake.moveVelocity(200);
 }
@@ -39,8 +42,11 @@ void toggleIntake(){
 void intakeRev(){
   if (outtakeButton.isPressed())
   {
-    intake.moveVelocity (-100);
-  }
+    intake.moveVelocity (-150);
+    intake.setBrakeMode(AbstractMotor::brakeMode::coast);
+  } else {
+  intake.setBrakeMode(AbstractMotor::brakeMode::hold);
+}
 }
 
 //
@@ -51,6 +57,7 @@ void intakeRev(){
 //MANUAL liftup
 void liftUp(){
   if(liftUpButton.isPressed()){
+    liftMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
     liftMotor.moveVelocity(-100);
   } else if(!liftUpButton.isPressed()&&!liftDownButton.isPressed()){
     liftMotor.moveVelocity(0);
@@ -61,6 +68,7 @@ void liftUp(){
 //MANUAL liftdown
 void liftDown(){
   if(liftDownButton.isPressed()){
+    liftMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
     liftMotor.moveVelocity(100);
   } else if(!liftUpButton.isPressed()&&!liftDownButton.isPressed()){
     liftMotor.moveVelocity(0);
@@ -90,14 +98,38 @@ auto anglerController = AsyncPosControllerBuilder()
                         .build();
 
 
-
-
 void trayFlat(){
   anglerMotor.moveAbsolute(-1690, 80);
 }
 
 void trayVert(){
   anglerMotor.moveAbsolute(1690, 150);
+}
+
+void anglerUp(){
+  if(anglerUpButton.isPressed()){
+    anglerMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
+    anglerMotor.moveVelocity(-100);
+  } else if(!liftUpButton.isPressed()&&!liftDownButton.isPressed()){
+    anglerMotor.moveVelocity(0);
+    anglerMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
+  }
+}
+
+//MANUAL liftdown
+void anglerDown(){
+  if(anglerDownButton.isPressed()){
+    anglerMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
+    anglerMotor.moveVelocity(100);
+  } else if(!liftUpButton.isPressed()&&!liftDownButton.isPressed()){
+    anglerMotor.moveVelocity(0);
+    anglerMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
+  }
+}
+//MANUAL DUAL CONTROL
+void anglerManual(){
+  anglerDown();
+  anglerUp();
 }
 
 //kachow
@@ -154,3 +186,26 @@ void anglerToggle(){
 //if(liftDownButton.isPressed()) {
 //lift.moveAbsolute(13903, 100);
 //}
+void toggleLiftHeight(){
+  if(liftToggleButton.changedToPressed()){
+    if(liftPositionBool == false){
+      liftMotor.moveAbsolute(100,100);
+      liftPositionBool = !liftPositionBool;
+    } else {
+      liftMotor.moveAbsolute(-100,100);
+      liftPositionBool = !liftPositionBool;
+
+    }
+  }
+}
+
+void liftPID(){
+
+liftPosReal =  liftMotor.getPosition();
+liftPosReq = 1600;
+if(liftPosReal < liftPosReq){
+    liftMotor.moveVelocity(50);
+  } else {
+    liftMotor.moveVelocity(-50);
+  }
+}
