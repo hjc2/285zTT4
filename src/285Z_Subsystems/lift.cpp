@@ -1,18 +1,33 @@
 /*
 class lift{
-public:
+public
 
   double liftAngle;
   bool liftState;
   void liftPosition(int position){
     liftMotor.moveAbsolute(position);
 
+void liftUp(){
+  if(liftUpButton.isPressed()){
+    liftMotor.moveVelocity(-100);
   }
-
-};
-
-lift myLift(0){
+  if (!liftUpButton.isPressed()&&!liftDownButton.isPressed()){
+    liftMotor.moveVelocity(0);
+    liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
+  }
 }
-myLift.liftAngle(0);
-myLift.liftState(up);
+void liftDown(){
+  if(liftDownButton.isPressed()){
+    liftMotor.moveVelocity(100);
+  }
+  if (!liftUpButton.isPressed()&&!liftDownButton.isPressed()){
+    liftMotor.moveVelocity(0);
+    liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
+  }
+}
+
+void manualLiftControl(){
+  liftUp();
+  liftDown();
+}
 */

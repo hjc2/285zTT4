@@ -139,7 +139,6 @@ void opcontrol() {
 										.withOdometry(okapi::StateMode::FRAME_TRANSFORMATION, 0_mm, 0_deg, 0.0001_mps)
 										.buildOdometry();
 	std::shared_ptr<okapi::ChassisModel> model = std::dynamic_pointer_cast<okapi::ChassisModel>(chassis->getModel());
-
   while(true){
 
     // TANK DRIVE CODE //
@@ -152,14 +151,14 @@ void opcontrol() {
 
     //  ANGLER TOGGLE CODE  //
     //anglerToggle();
-    liftVertOp();
-    lowerFlat();
+  //  liftVertOp();
+  //  lowerFlat();
 
     //  LIFT  //
-    //liftDown();
-    //liftUp();
-
+    //toggleLiftHeight();
+    liftManual();
+    anglerManual();
+    //liftPID();
     pros::delay(10);
   }
-
 }

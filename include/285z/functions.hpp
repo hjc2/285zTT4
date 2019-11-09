@@ -14,15 +14,21 @@ void trayVert();
 void trayFlat();
 void liftVertOp();
 void lowerFlat();
+void anglerUp();
+void anglerdown();
+void anglerManual();
 
 //Lift
 void liftUp();
 void liftDown();
+void liftManual();
+void toggleLiftHeight();
+void liftPID();
+
+
 void anglerToggle();
 
-void checkLiftUp();
-void checkLiftDown();
-
+void liftPositionToggleFunction();
 //   **AUTON FUNCTIONS**    //
 
 void turn();
