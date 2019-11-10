@@ -131,7 +131,7 @@ void anglerUp(){
     anglerMotor.moveVelocity(-100);
   } else if(!anglerUpButton.isPressed()&&!anglerDownButton.isPressed()){
     anglerMotor.moveVelocity(0);
-    anglerMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
+    anglerMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
   }
 }
 
@@ -142,7 +142,7 @@ void anglerDown(){
     anglerMotor.moveVelocity(100);
   } else if(!anglerUpButton.isPressed()&&!anglerDownButton.isPressed()){
     anglerMotor.moveVelocity(0);
-    anglerMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
+    anglerMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
   }
 }
 //MANUAL DUAL CONTROL
