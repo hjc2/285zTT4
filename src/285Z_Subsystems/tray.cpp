@@ -1,7 +1,7 @@
 #include "../include/285z/initRobot.hpp"
 
-const UP = 1;
-const DOWN = 0;
+const int UP = 1;
+const int DOWN = 0;
 
 class Tray {
 
