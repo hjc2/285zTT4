@@ -141,11 +141,9 @@ void opcontrol() {
     intakeRev();
 
     //  ANGLER TOGGLE CODE  //
-    //anglerToggle();
-  //  liftVertOp();
-  //  lowerFlat();
     anglerToggle();
     anglerManual();
+    
     //  LIFT  //
     //toggleLiftHeight();
     liftManual();
