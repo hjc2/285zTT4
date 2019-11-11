@@ -141,13 +141,12 @@ void opcontrol() {
     intakeRev();
 
     //  ANGLER TOGGLE CODE  //
-    anglerToggle();
+  //  anglerToggle();
     anglerManual();
-    
+
     //  LIFT  //
     //toggleLiftHeight();
     liftManual();
-
     //liftPID();
     pros::delay(10);
   }
