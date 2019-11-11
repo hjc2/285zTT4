@@ -3,6 +3,8 @@
 const int DOWN = 0;
 const int UP = 1;
 
+const int LIFTUP = 2;
+
 double traykP = 0.001;
 double traykI = 0.0001;
 double traykD = 0.00001;
@@ -12,12 +14,8 @@ auto anglerController = AsyncPosControllerBuilder().withMotor(anglerPort)
                         .build();
 
 class Tray {
-
-
   //TRAY CLASS ATTRIBUTES
   public:
-  int ANGLER_MOTOR_PORT;
-
 
   //TRAY CONSTRUCTOR
   Tray(){}
@@ -34,10 +32,11 @@ class Tray {
         anglerController->setTarget(0);
         anglerController->waitUntilSettled();
         //anglerMotor.moveAbsolute(0, -100);
+      case LIFTUP:
+        anglerController->setTarget(300);
+        anglerController->waitUntilSettled();
       break;
     }
   }
-
-
 
 };

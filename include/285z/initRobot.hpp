@@ -8,7 +8,7 @@ extern Controller controller;
 //Controller Buttons
 extern ControllerButton intakeButton;
 extern ControllerButton trayButton;
-extern ControllerButton trayDown;
+extern ControllerButton trayDownButton;
 extern ControllerButton outtakeButton;
 extern ControllerButton liftUpButton;
 extern ControllerButton liftDownButton;

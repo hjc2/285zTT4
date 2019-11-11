@@ -20,7 +20,7 @@ void arcadeDrive(){
 }*/
 
 
-//                     INTAKE                     //
+//******************* INTAKE ********************//
 
 //Toggles intake
 void toggleIntake(){
@@ -51,40 +51,7 @@ void intakeRev(){
   }
 }
 
-//
-//
-//
-
-//                      LIFT                     //
-//MANUAL liftup
-void liftUp(){
-  if(liftUpButton.isPressed()){
-    liftMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
-    liftMotor.moveVelocity(-100);
-  } else if(!liftUpButton.isPressed()&&!liftDownButton.isPressed()){
-    liftMotor.moveVelocity(0);
-    liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
-  }
-}
-
-//MANUAL liftdown
-void liftDown(){
-  if(liftDownButton.isPressed()){
-    liftMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
-    liftMotor.moveVelocity(100);
-  } else if(!liftUpButton.isPressed()&&!liftDownButton.isPressed()){
-    liftMotor.moveVelocity(0);
-    liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
-  }
-}
-//MANUAL DUAL CONTROL
-void liftManual(){
-  liftDown();
-  liftUp();
-}
-
-
-//                   ANGLER                   //
+//****************** ANGLER ********************//
 
 Tray angler();
 
@@ -114,10 +81,8 @@ void anglerManual(){
   anglerUp();
 }
 
-//kachow
-//angler toggle function that is able to be button checked
 
-void liftVertOp() {
+void trayUp() {
   //-1690 degrees
   //TODO: Change angler1 to angler when there are two motors
   if (trayButton.changedToPressed())
@@ -131,8 +96,8 @@ void liftVertOp() {
   }
 }
 
-void lowerFlat(){
-  if (trayDown.changedToPressed())
+void trayDown(){
+  if (trayDownButton.changedToPressed())
   {
     anglerMotor.moveAbsolute(0, -100);
     //anglerControllerLPID.setTarget(0);
@@ -142,6 +107,33 @@ void lowerFlat(){
 }
 
 //******************** LIFT *******************//
+
+//MANUAL liftup
+void liftUp(){
+  if(liftUpButton.isPressed()){
+    liftMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
+    liftMotor.moveVelocity(-100);
+  } else if(!liftUpButton.isPressed()&&!liftDownButton.isPressed()){
+    liftMotor.moveVelocity(0);
+    liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
+  }
+}
+
+//MANUAL liftdown
+void liftDown(){
+  if(liftDownButton.isPressed()){
+    liftMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
+    liftMotor.moveVelocity(100);
+  } else if(!liftUpButton.isPressed()&&!liftDownButton.isPressed()){
+    liftMotor.moveVelocity(0);
+    liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
+  }
+}
+//MANUAL DUAL CONTROL
+void liftManual(){
+  liftDown();
+  liftUp();
+}
 
 void toggleLiftHeight(){
   if(liftToggleButton.changedToPressed()){
