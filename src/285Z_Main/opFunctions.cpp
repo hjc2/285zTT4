@@ -85,7 +85,7 @@ void liftManual(){
 
 //       ANGLER       //
 
-Tray angler(DOWN);
+//Tray angler(DOWN);
 // int new_integer = cool_func(cool_integer);
 // void*
 
