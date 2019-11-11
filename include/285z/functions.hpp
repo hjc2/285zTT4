@@ -11,6 +11,7 @@ void intakeRev();
 
 //Tray
 void anglerManual();
+void anglerToggle();
 void anglerUp();
 void anglerDown();
 

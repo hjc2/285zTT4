@@ -144,11 +144,12 @@ void opcontrol() {
     //anglerToggle();
   //  liftVertOp();
   //  lowerFlat();
-
+    anglerToggle();
+    anglerManual();
     //  LIFT  //
     //toggleLiftHeight();
     liftManual();
-    anglerManual();
+
     //liftPID();
     pros::delay(10);
   }

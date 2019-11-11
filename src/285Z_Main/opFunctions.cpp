@@ -67,9 +67,12 @@ void anglerManual(){
   }
 }
 
+void anglerToggle(){
+  anglerUp();
+  anglerDown();
+}
+
 void anglerUp() {
-  //-1690 degrees
-  //TODO: Change angler1 to angler when there are two motors
   if (trayButton.changedToPressed())
   {
     angler.moveToState(UP);
