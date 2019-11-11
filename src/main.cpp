@@ -63,11 +63,11 @@ void autonomous() {
                     .buildOdometry();
   std::shared_ptr<okapi::ChassisModel> model = std::dynamic_pointer_cast<okapi::ChassisModel>(chassis->getModel());
 
-  chassis->setState({0_ft,9.9_ft,0_deg});
-  chassis->driveToPoint({2_ft, 9.9_ft});
-  chassis->waitUntilSettled();
+  //chassis->setState({0_ft,9.9_ft,0_deg});
+  //chassis->driveToPoint({2_ft, 9.9_ft});
+  //chassis->waitUntilSettled();
   //anglerControllerAut->setTarget(2500);
-  //anglerMotor.moveAbsolute(1690, 150);
+  anglerMotor.moveAbsolute(1690, 100);
 	/*if(redAlliance)
 	{
 
