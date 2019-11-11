@@ -39,4 +39,9 @@ class Tray {
     }
   }
 
+  void moveVel(int velocity){
+    anglerMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
+    anglerMotor.moveVelocity(-velocity);
+  }
+
 };

@@ -18,4 +18,5 @@ class Tray {
 
   //Tray Functions
   void moveToState(int);
+  void moveVel(int);
 };

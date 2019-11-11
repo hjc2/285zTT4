@@ -10,13 +10,9 @@ void toggleIntake();
 void intakeRev();
 
 //Tray
-void trayVert();
-void trayFlat();
-void liftVertOp();
-void lowerFlat();
-void anglerUp();
-void anglerdown();
 void anglerManual();
+void anglerUp();
+void anglerDown();
 
 //Lift
 void liftUp();

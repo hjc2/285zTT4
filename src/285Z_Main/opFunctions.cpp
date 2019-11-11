@@ -53,36 +53,19 @@ void intakeRev(){
 
 //****************** ANGLER ********************//
 
-Tray angler();
+Tray angler;
 
-void anglerUp(){
-  if(anglerUpButton.isPressed()){
-    anglerMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
-    anglerMotor.moveVelocity(-100);
-  } else if(!anglerUpButton.isPressed()&&!anglerDownButton.isPressed()){
-    anglerMotor.moveVelocity(0);
-    anglerMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
-  }
-}
-
-//MANUAL liftdown
-void anglerDown(){
-  if(anglerDownButton.isPressed()){
-    anglerMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
-    anglerMotor.moveVelocity(100);
-  } else if(!anglerUpButton.isPressed()&&!anglerDownButton.isPressed()){
-    anglerMotor.moveVelocity(0);
-    anglerMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
-  }
-}
-//MANUAL DUAL CONTROL
 void anglerManual(){
-  anglerDown();
-  anglerUp();
+  if(anglerUpButton.isPressed()){
+    angler.moveVel(100);
+  } else if(anglerDownButton.isPressed()){
+    angler.moveVel(-100);
+  } else if(!anglerUpButton.isPressed() && !anglerDownButton.isPressed()){
+    angler.moveVel(0);
+  }
 }
 
-
-void trayUp() {
+void anglerUp() {
   //-1690 degrees
   //TODO: Change angler1 to angler when there are two motors
   if (trayButton.changedToPressed())
@@ -96,7 +79,7 @@ void trayUp() {
   }
 }
 
-void trayDown(){
+void anglerDown(){
   if (trayDownButton.changedToPressed())
   {
     anglerMotor.moveAbsolute(0, -100);
