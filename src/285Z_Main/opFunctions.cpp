@@ -85,11 +85,8 @@ void liftManual(){
 
 
 //                   ANGLER                   //
-double traykP = 0.001;
-double traykI = 0.0001;
-double traykD = 0.00001;
 
-Tray angler(anglerPort, traykP, traykI, traykD);
+Tray angler();
 
 void anglerUp(){
   if(anglerUpButton.isPressed()){

@@ -5,12 +5,16 @@
 int UP;
 int DOWN;
 
+extern double traykP;
+extern double traykI;
+extern double traykD;
+
 class Tray {
   //Tray Class Attributes
   public:
 
   // Tray Constructor
-  Tray(int, double, double, double);
+  Tray();
 
   //Tray Functions
   void moveToState(int);
