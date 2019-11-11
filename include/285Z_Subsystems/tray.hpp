@@ -10,7 +10,7 @@ class Tray {
   public:
 
   // Tray Constructor
-  Tray();
+  Tray(int, double, double, double);
 
   //Tray Functions
   void moveToState(int);

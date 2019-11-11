@@ -86,21 +86,11 @@ void liftManual(){
 
 //                   ANGLER                   //
 
-Tray angler;
+double liftkP = 0.001;
+double liftkI = 0.0001;
+double liftkD = 0.00001;
 
-
-//PID Controller
-const double liftkP = 0.001;
-const double liftkI = 0.0001;
-const double liftkD = 0.00001;
-
-const int ANGLER_MOTOR_PORT = 20;
-
-auto anglerController = AsyncPosControllerBuilder()
-                        .withMotor(ANGLER_MOTOR_PORT) // lift motor port 3
-                        .withGains({liftkP, liftkI, liftkD})
-                        .build();
-
+Tray angler();
 
 void trayFlat(){
   anglerMotor.moveAbsolute(-1690, 80);

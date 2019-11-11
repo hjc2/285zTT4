@@ -17,6 +17,9 @@ extern ControllerButton anglerUpButton;
 extern ControllerButton anglerDownButton;
 //  MOTORS  //
 
+//ports
+extern int anglerPort;
+
 //Drivetrain motors
 extern Motor frontLeftMotor;
 extern Motor backLeftMotor;

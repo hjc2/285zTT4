@@ -5,13 +5,22 @@ const int DOWN = 0;
 
 class Tray {
 
-  //Tray Class Attributes
+  //TRAY CLASS ATTRIBUTES
   public:
 
-  // Tray Constructor
-  Tray(){}
+  int ANGLER_MOTOR_PORT;
 
-  //Tray Functions
+  //TRAY CONSTRUCTOR
+  Tray(int port, double kP, double kI, double kD){
+
+    ANGLER_MOTOR_PORT = port;
+    auto anglerController = AsyncPosControllerBuilder()
+                            .withMotor(ANGLER_MOTOR_PORT) // lift motor port 3
+                            .withGains({kP, kI, kD})
+                            .build();
+  }
+
+  //TRAY FUNCTIONS
   void moveToState(int pos){
     switch(pos){
       case UP:
@@ -23,5 +32,7 @@ class Tray {
       break;
     }
   }
+
+
 
 };
