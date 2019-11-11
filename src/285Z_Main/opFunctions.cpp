@@ -86,20 +86,6 @@ void liftManual(){
 //       ANGLER       //
 
 Tray angler(DOWN);
-int cool_integer = 6;
-int* same_cool_int = &cool_integer;
-*same_cool_int++;
-// void* pointer = &cool_integer;
-// void* pointer = new int(8);
-
-
-// * ->
-int cool_func(int &position)
-{
-  return position++;
-}
-
-int newint = cool_func(angler.pos);
 // int new_integer = cool_func(cool_integer);
 // void*
 
