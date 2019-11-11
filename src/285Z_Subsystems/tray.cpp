@@ -16,17 +16,17 @@ auto anglerController = AsyncPosControllerBuilder().withMotor(anglerPort)
 
 void Tray::moveToState(int pos){
   switch(pos){
-    case UP:
-      anglerController->setTarget(1690);
-      anglerController->waitUntilSettled();
-      //anglerMotor.moveAbsolute(1690, 100);
     case DOWN:
       //DOWN
       anglerController->setTarget(0);
       anglerController->waitUntilSettled();
       //anglerMotor.moveAbsolute(0, -100);
+    case UP:
+      anglerController->setTarget(3200);
+      anglerController->waitUntilSettled();
+      //anglerMotor.moveAbsolute(1690, 100);
     case LIFTUP:
-      anglerController->setTarget(300);
+      anglerController->setTarget(1600);
       anglerController->waitUntilSettled();
     break;
   }

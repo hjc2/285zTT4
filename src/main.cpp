@@ -52,7 +52,6 @@ void autonomous() {
   std::shared_ptr<okapi::ChassisModel> model = std::dynamic_pointer_cast<okapi::ChassisModel>(chassis->getModel());
 
   //TODO: move this to autFunctions
-
   Tray angler;
   angler.moveToState(1);
   //chassis->setState({0_ft,9.9_ft,0_deg});
