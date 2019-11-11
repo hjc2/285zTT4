@@ -2,29 +2,14 @@
 #include "main.h"
 #include "../include/285z/initRobot.hpp"
 
-/*class lift{
-public:
+class Lift{
 
-double liftAngle;
-bool liftState;
-void liftPosition(int position){
-  liftMotor.moveAbsolute(position);
+  public:
 
-void liftUp(){
-  if(liftUpButton.isPressed()){
-    liftMotor.moveVelocity(-100);
-  }
-  if (!liftUpButton.isPressed()&&!liftDownButton.isPressed()){
-    liftMotor.moveVelocity(0);
-    liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
-  }
-}
-void liftDown(){
-  if(liftDownButton.isPressed()){
-    liftMotor.moveVelocity(100);
-  }
-  if (!liftUpButton.isPressed()&&!liftDownButton.isPressed()){
-    liftMotor.moveVelocity(0);
-    liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
-  }
-}*/
+  double liftAngle;
+  bool liftState;
+
+  void moveToState(int);
+  void moveVel(int);
+
+};

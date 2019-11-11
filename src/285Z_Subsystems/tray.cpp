@@ -22,7 +22,7 @@ void Tray::moveToState(int pos){
       anglerController->waitUntilSettled();
       //anglerMotor.moveAbsolute(0, -100);
     case UP:
-      anglerController->setTarget(3200);
+      anglerController->setTarget(3400);
       anglerController->waitUntilSettled();
       //anglerMotor.moveAbsolute(1690, 100);
     case LIFTUP:

@@ -1,3 +1,42 @@
+#include "../include/285z/initRobot.hpp"
+#include "../include/285Z_Subsystems/lift.hpp"
+
+const int DOWN = 0;
+const int UP = 1;
+
+const int NUM_HEIGHTS = 2;
+const int height0 = 0;
+const int height1 = 1000;
+
+double liftkP = 0.001;
+double liftkI = 0.0001;
+double liftkD = 0.00001;
+
+auto liftController = AsyncPosControllerBuilder().withMotor(anglerPort)
+                        .withGains({liftkP, liftkI, liftkD})
+                        .build();
+
+void Lift::moveToState(int pos){
+  switch(pos){
+    case DOWN:
+      //DOWN
+      liftController->setTarget(0);
+      liftController->waitUntilSettled();
+      //anglerMotor.moveAbsolute(0, -100);
+    case UP:
+      liftController->setTarget(3200);
+      liftController->waitUntilSettled();
+      //anglerMotor.moveAbsolute(1690, 100);
+    break;
+  }
+}
+
+//TODO: Fix this
+void Lift::moveVel(int velocity){
+  liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
+  liftMotor.moveVelocity(velocity);
+}
+
 /*
 class lift{
 public
