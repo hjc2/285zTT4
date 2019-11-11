@@ -7,20 +7,17 @@ class Tray {
 
   //Tray Class Attributes
   public:
-    int pos;
 
   // Tray Constructor
-  Tray(int initPos){
-    pos = initPos;
-  }
+  Tray(){}
 
   //Tray Functions
-  void moveToState(bool pos){
+  void moveToState(int pos){
     switch(pos){
-      case true:
+      case UP:
         //UP
         anglerMotor.moveAbsolute(1690, 100);
-      case false:
+      case DOWN:
         //DOWN
         anglerMotor.moveAbsolute(0, -100);
       break;

@@ -20,8 +20,9 @@ void arcadeDrive(){
 }*/
 
 
-// INTAKE INTAKE INTAKE INTAKE INTAKE INTAKE
-//TOGGLE intake
+//                     INTAKE                     //
+
+//Toggles intake
 void toggleIntake(){
   if (intakeButton.changedToPressed())
   {
@@ -37,24 +38,24 @@ void toggleIntake(){
     intake.moveVelocity	(0);
     intake.setBrakeMode(AbstractMotor::brakeMode::hold);
   }
-  //intake.moveVelocity(200);
 }
-//PRESS intake
+
+//Reverse intake
 void intakeRev(){
   if (outtakeButton.isPressed())
   {
     intake.moveVelocity (-150);
     intake.setBrakeMode(AbstractMotor::brakeMode::coast);
   } else {
-  intake.setBrakeMode(AbstractMotor::brakeMode::hold);
-}
+    intake.setBrakeMode(AbstractMotor::brakeMode::hold);
+  }
 }
 
 //
 //
 //
 
-//LIFT LIFT LIFT LIFT LIFT LIFT LIFT LIFT
+//                      LIFT                     //
 //MANUAL liftup
 void liftUp(){
   if(liftUpButton.isPressed()){
@@ -83,18 +84,16 @@ void liftManual(){
 }
 
 
-//       ANGLER       //
+//                   ANGLER                   //
 
-//Tray angler(DOWN);
-// int new_integer = cool_func(cool_integer);
-// void*
+Tray angler;
+
 
 //PID Controller
 const double liftkP = 0.001;
 const double liftkI = 0.0001;
 const double liftkD = 0.00001;
 
-//TODO: WILL HAVE TO MODIFY WHEN WE HAVE TWO MOTORS FOR ANGLER
 const int ANGLER_MOTOR_PORT = 20;
 
 auto anglerController = AsyncPosControllerBuilder()

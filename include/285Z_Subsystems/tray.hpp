@@ -8,11 +8,10 @@ int DOWN;
 class Tray {
   //Tray Class Attributes
   public:
-    int pos;
 
   // Tray Constructor
-  Tray(int);
+  Tray();
 
   //Tray Functions
-  void moveToState(bool);
+  void moveToState(int);
 };
