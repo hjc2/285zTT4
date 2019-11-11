@@ -1,4 +1,5 @@
 #include "../include/285z/initRobot.hpp"
+#include "../include/285Z_Subsystems/tray.hpp"
 
 const int DOWN = 0;
 const int UP = 1;
@@ -13,35 +14,26 @@ auto anglerController = AsyncPosControllerBuilder().withMotor(anglerPort)
                         .withGains({traykP, traykI, traykD})
                         .build();
 
-class Tray {
-  //TRAY CLASS ATTRIBUTES
-  public:
-
-  //TRAY CONSTRUCTOR
-  Tray(){}
-
-  //TRAY FUNCTIONS
-  void moveToState(int pos){
-    switch(pos){
-      case UP:
-        anglerController->setTarget(1690);
-        anglerController->waitUntilSettled();
-        //anglerMotor.moveAbsolute(1690, 100);
-      case DOWN:
-        //DOWN
-        anglerController->setTarget(0);
-        anglerController->waitUntilSettled();
-        //anglerMotor.moveAbsolute(0, -100);
-      case LIFTUP:
-        anglerController->setTarget(300);
-        anglerController->waitUntilSettled();
-      break;
-    }
+void Tray::moveToState(int pos){
+  switch(pos){
+    case UP:
+      anglerController->setTarget(1690);
+      anglerController->waitUntilSettled();
+      //anglerMotor.moveAbsolute(1690, 100);
+    case DOWN:
+      //DOWN
+      anglerController->setTarget(0);
+      anglerController->waitUntilSettled();
+      //anglerMotor.moveAbsolute(0, -100);
+    case LIFTUP:
+      anglerController->setTarget(300);
+      anglerController->waitUntilSettled();
+    break;
   }
+}
 
-  void moveVel(int velocity){
-    anglerMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
-    anglerMotor.moveVelocity(-velocity);
-  }
-
-};
+//TODO: Fix this
+void Tray::moveVel(int velocity){
+  anglerMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
+  anglerMotor.moveVelocity(-velocity);
+}

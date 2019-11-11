@@ -2,8 +2,9 @@
 #include "main.h"
 #include "../include/285z/initRobot.hpp"
 
-int UP;
-int DOWN;
+extern const int UP;
+extern const int DOWN;
+extern const int LIFTUP;
 
 extern double traykP;
 extern double traykI;
@@ -14,7 +15,6 @@ class Tray {
   public:
 
   // Tray Constructor
-  Tray();
 
   //Tray Functions
   void moveToState(int);

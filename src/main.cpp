@@ -38,19 +38,6 @@ void competition_initialize() {}
  * from where it left off.
  */
 
- //PID Controller
- const double liftkP = 0.001;
- const double liftkI = 0.0001;
- const double liftkD = 0.00001;
-
- //TODO: WILL HAVE TO MODIFY WHEN WE HAVE TWO MOTORS FOR ANGLER
- const int ANGLER_MOTOR_PORT = 15;
-
- auto anglerControllerAut = AsyncPosControllerBuilder()
-                         .withMotor(ANGLER_MOTOR_PORT) // lift motor port 3
-                         .withGains({liftkP, liftkI, liftkD})
-                         .build();
-
 void autonomous() {
 
   bool redAlliance = false;
@@ -64,7 +51,10 @@ void autonomous() {
                     .buildOdometry();
   std::shared_ptr<okapi::ChassisModel> model = std::dynamic_pointer_cast<okapi::ChassisModel>(chassis->getModel());
 
+  //TODO: move this to autFunctions
 
+  Tray angler;
+  angler.moveToState(1);
   //chassis->setState({0_ft,9.9_ft,0_deg});
   //chassis->driveToPoint({2_ft, 9.9_ft});
   //chassis->waitUntilSettled();

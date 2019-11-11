@@ -70,12 +70,12 @@ void anglerUp() {
   //TODO: Change angler1 to angler when there are two motors
   if (trayButton.changedToPressed())
   {
+    /*
     anglerMotor.moveAbsolute(1400, 600);
     pros::delay(200);
-    anglerMotor.moveAbsolute(2000, 200);
-    //anglerController->setTarget(1690);
-    //anglerControllerLPID.setTarget(1690);
-    //anglerControllerRPID.setTarget(1690);
+    anglerMotor.moveAbsolute(2000, 200); */
+    angler.moveToState(1);
+
   }
 }
 
