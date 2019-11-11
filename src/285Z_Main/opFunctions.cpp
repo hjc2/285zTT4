@@ -7,6 +7,8 @@ bool intakeToggleBool = false;
 bool liftPositionBool = false;
 double liftPosReal = 0.0;
 double liftPosReq = 0.0;
+
+
 //           DRIVE         //
 /*void tankDrive(){
   model->tank(controller.getAnalog(okapi::ControllerAnalog::rightY),
@@ -70,22 +72,14 @@ void anglerUp() {
   //TODO: Change angler1 to angler when there are two motors
   if (trayButton.changedToPressed())
   {
-    /*
-    anglerMotor.moveAbsolute(1400, 600);
-    pros::delay(200);
-    anglerMotor.moveAbsolute(2000, 200); */
-    angler.moveToState(1);
-
+    angler.moveToState(UP);
   }
 }
 
 void anglerDown(){
   if (trayDownButton.changedToPressed())
   {
-    anglerMotor.moveAbsolute(0, -100);
-    //anglerControllerLPID.setTarget(0);
-    //anglerControllerRPID.setTarget(0);
-    //anglerController->setTarget(0);
+    angler.moveToState(DOWN);
   }
 }
 
