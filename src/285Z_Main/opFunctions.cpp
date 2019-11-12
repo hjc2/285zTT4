@@ -4,7 +4,7 @@
 
 bool anglerPositionBool = false;
 bool intakeToggleBool = false;
-bool liftPositionBool = false;
+bool liftPositionBool = true;
 double liftPosReal = 0.0;
 double liftPosReq = 0.0;
 
@@ -76,17 +76,20 @@ void anglerToggle(){
   anglerDown();
 }
 
+
+
 void anglerUp() {
   if (trayButton.changedToPressed())
   {
-    angler.moveToState(UP);
+    //anglerMotor.moveRelative(1690, 100);
+    //angler.moveToState(1);
   }
 }
 
 void anglerDown(){
   if (trayDownButton.changedToPressed())
   {
-    angler.moveToState(DOWN);
+    angler.moveToState(0);
   }
 }
 
@@ -122,12 +125,11 @@ void liftManual(){
 void toggleLiftHeight(){
   if(liftToggleButton.changedToPressed()){
     if(liftPositionBool == false){
-      liftMotor.moveAbsolute(100,100);
+      liftMotor.moveAbsolute(900,100);
       liftPositionBool = !liftPositionBool;
     } else {
-      liftMotor.moveAbsolute(-100,100);
+      liftMotor.moveAbsolute(-900,100);
       liftPositionBool = !liftPositionBool;
-
     }
   }
 }

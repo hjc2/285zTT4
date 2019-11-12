@@ -54,9 +54,10 @@ void autonomous() {
   //TODO: move this to autFunctions
   Tray angler;
   angler.moveToState(1);
-  //chassis->setState({0_ft,9.9_ft,0_deg});
-  //chassis->driveToPoint({2_ft, 9.9_ft});
-  //chassis->waitUntilSettled();
+
+  chassis->setState({0_ft,9.9_ft,0_deg});
+  chassis->driveToPoint({2_ft, 9.9_ft});
+  chassis->waitUntilSettled();
   //anglerControllerAut->setTarget(2500);
   //anglerMotor.moveAbsolute(1690, 100);
 	/*if(redAlliance)
@@ -130,6 +131,7 @@ void opcontrol() {
 										.withOdometry(okapi::StateMode::FRAME_TRANSFORMATION, 0_mm, 0_deg, 0.0001_mps)
 										.buildOdometry();
 	std::shared_ptr<okapi::ChassisModel> model = std::dynamic_pointer_cast<okapi::ChassisModel>(chassis->getModel());
+
   while(true){
 
     // TANK DRIVE CODE //
@@ -141,10 +143,11 @@ void opcontrol() {
     intakeRev();
 
     //  ANGLER TOGGLE CODE  //
-    anglerToggle();
+    anglerUp();
+    //anglerDown();
 
     //  LIFT  //
-    //toggleLiftHeight();
+    toggleLiftHeight();
     liftManual();
 
     //liftPID();

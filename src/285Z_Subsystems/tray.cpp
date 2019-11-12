@@ -6,8 +6,8 @@ const int UP = 1;
 
 const int LIFTUP = 2;
 
-double traykP = 0.0001;
-double traykI = 0.0001;
+double traykP = 0.0005;
+double traykI = 0.00001;
 double traykD = 0.00001;
 
 auto anglerController = AsyncPosControllerBuilder().withMotor(anglerPort)
