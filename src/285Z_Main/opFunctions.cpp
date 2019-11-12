@@ -59,11 +59,14 @@ Tray angler;
 
 void anglerManual(){
   if(anglerUpButton.isPressed()){
-    angler.moveVel(100);
+    anglerMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
+    anglerMotor.moveVelocity(100);
   } else if(anglerDownButton.isPressed()){
-    angler.moveVel(-100);
+    anglerMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
+    anglerMotor.moveVelocity(-100);
   } else if(!anglerUpButton.isPressed() && !anglerDownButton.isPressed()){
-    angler.moveVel(0);
+    anglerMotor.moveVelocity(0);
+    anglerMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
   }
 }
 
