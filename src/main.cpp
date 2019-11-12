@@ -142,8 +142,7 @@ void opcontrol() {
 
     //  ANGLER TOGGLE CODE  //
     anglerToggle();
-    anglerManual();
-    
+
     //  LIFT  //
     //toggleLiftHeight();
     liftManual();

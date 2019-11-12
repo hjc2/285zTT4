@@ -32,7 +32,6 @@ void Tray::moveToState(int pos){
   }
 }
 
-//TODO: Fix this
 void Tray::moveVel(int velocity){
   anglerMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
   anglerMotor.moveVelocity(-velocity);
