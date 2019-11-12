@@ -32,6 +32,14 @@ void Tray::moveToState(int pos){
   }
 }
 
+void Tray::moveToUp(){
+  anglerController->setTarget(3600);
+}
+
+void Tray::moveToDown(){
+  anglerController->setTarget(0);
+}
+
 //TODO: Fix this
 void Tray::moveVel(int velocity){
   anglerMotor.setBrakeMode(AbstractMotor::brakeMode::coast);

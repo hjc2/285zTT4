@@ -134,6 +134,7 @@ void opcontrol() {
 
   while(true){
 
+    anglerUp();
     // TANK DRIVE CODE //
     model->tank(controller.getAnalog(okapi::ControllerAnalog::leftY),
           controller.getAnalog(okapi::ControllerAnalog::rightY));
@@ -144,11 +145,12 @@ void opcontrol() {
 
     //  ANGLER TOGGLE CODE  //
     anglerUp();
+    anglerDown();
     //anglerDown();
 
     //  LIFT  //
     toggleLiftHeight();
-    liftManual();
+    //liftManual();
 
     //liftPID();
     pros::delay(10);

@@ -61,7 +61,6 @@ void anglerManual(){
   if(anglerUpButton.isPressed()){
     anglerMotor.moveVelocity(100);
     anglerMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
-
   } else if(anglerDownButton.isPressed()){
     anglerMotor.moveVelocity(-100);
     anglerMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
@@ -81,15 +80,14 @@ void anglerToggle(){
 void anglerUp() {
   if (trayButton.changedToPressed())
   {
-    //anglerMotor.moveRelative(1690, 100);
-    //angler.moveToState(1);
+    angler.moveToUp();
   }
 }
 
 void anglerDown(){
   if (trayDownButton.changedToPressed())
   {
-    angler.moveToState(0);
+    angler.moveToDown();
   }
 }
 

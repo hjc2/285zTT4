@@ -10,6 +10,7 @@ class Lift{
   bool liftState;
 
   void moveToState(int);
-  void moveVel(int);
+  void moveToUp();
+  void moveToDown();
 
 };

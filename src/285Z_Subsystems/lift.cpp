@@ -8,8 +8,8 @@ const int NUM_HEIGHTS = 2;
 const int height0 = 0;
 const int height1 = 1000;
 
-double liftkP = 0.001;
-double liftkI = 0.0001;
+double liftkP = 0.0005;
+double liftkI = 0.00001;
 double liftkD = 0.00001;
 
 auto liftController = AsyncPosControllerBuilder().withMotor(anglerPort)
@@ -31,11 +31,14 @@ void Lift::moveToState(int pos){
   }
 }
 
-//TODO: Fix this
-void Lift::moveVel(int velocity){
-  liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
-  liftMotor.moveVelocity(velocity);
+void Lift::moveToUp(){
+  anglerController->setTarget(3600);
 }
+
+void Lift::moveToDown(){
+  anglerController->setTarget(0);
+}
+
 
 /*
 class lift{
