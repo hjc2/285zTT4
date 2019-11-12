@@ -82,6 +82,7 @@ void anglerUp() {
   if (trayButton.changedToPressed())
   {
     angler.moveToUp();
+    intake.moveAbsolute(-100, 30);
   }
 }
 
@@ -126,8 +127,13 @@ void liftDown(){
 }
 //MANUAL DUAL CONTROL
 void liftManual(){
-  liftDown();
-  liftUp();
+  if(liftUpButton.isPressed()){
+    lift.move(100);
+  } else if(liftDownButton.isPressed()){
+    lift.move(-100);
+  } else if(!liftUpButton.isPressed() && !liftDownButton.isPressed()){
+    lift.move(0);
+  }
 }
 
 void toggleLiftHeight(){

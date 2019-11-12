@@ -12,5 +12,6 @@ class Lift{
   void moveToState(int);
   void moveToUp();
   void moveToDown();
+  void move(int);
 
 };

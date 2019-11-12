@@ -39,6 +39,10 @@ void Lift::moveToDown(){
   liftController->setTarget(0);
 }
 
+void Lift::move(int vel){
+  anglerMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
+  liftMotor.moveVelocity(-vel);
+}
 
 /*
 class lift{

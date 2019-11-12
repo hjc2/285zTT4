@@ -41,7 +41,7 @@ void Tray::moveToDown(){
 }
 
 void Tray::moveToLift(){
-  anglerController->setTarget(900);
+  anglerController->setTarget(1100);
 }
 
 //TODO: Fix this
