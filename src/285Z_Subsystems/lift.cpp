@@ -8,11 +8,11 @@ const int NUM_HEIGHTS = 2;
 const int height0 = 0;
 const int height1 = 1000;
 
-double liftkP = 0.0005;
+double liftkP = 0.001;
 double liftkI = 0.00001;
 double liftkD = 0.00001;
 
-auto liftController = AsyncPosControllerBuilder().withMotor(anglerPort)
+auto liftController = AsyncPosControllerBuilder().withMotor(-liftPort)
                         .withGains({liftkP, liftkI, liftkD})
                         .build();
 
@@ -24,7 +24,7 @@ void Lift::moveToState(int pos){
       liftController->waitUntilSettled();
       //anglerMotor.moveAbsolute(0, -100);
     case UP:
-      liftController->setTarget(3200);
+      liftController->setTarget(1000);
       liftController->waitUntilSettled();
       //anglerMotor.moveAbsolute(1690, 100);
     break;
@@ -32,11 +32,11 @@ void Lift::moveToState(int pos){
 }
 
 void Lift::moveToUp(){
-  anglerController->setTarget(3600);
+  liftController->setTarget(2300);
 }
 
 void Lift::moveToDown(){
-  anglerController->setTarget(0);
+  liftController->setTarget(0);
 }
 
 

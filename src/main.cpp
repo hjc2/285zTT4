@@ -149,7 +149,9 @@ void opcontrol() {
     //anglerDown();
 
     //  LIFT  //
-    toggleLiftHeight();
+    liftUp();
+    liftDown();
+    //toggleLiftHeight();
     //liftManual();
 
     //liftPID();

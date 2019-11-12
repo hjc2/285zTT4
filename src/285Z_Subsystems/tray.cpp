@@ -40,6 +40,10 @@ void Tray::moveToDown(){
   anglerController->setTarget(0);
 }
 
+void Tray::moveToLift(){
+  anglerController->setTarget(900);
+}
+
 //TODO: Fix this
 void Tray::moveVel(int velocity){
   anglerMotor.setBrakeMode(AbstractMotor::brakeMode::coast);

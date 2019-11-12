@@ -1,6 +1,7 @@
 #include "../include/285z/functions.hpp"
 #include "../include/285z/initRobot.hpp"
 #include "../include/285Z_Subsystems/tray.hpp"
+#include "../include/285Z_Subsystems/lift.hpp"
 
 bool anglerPositionBool = false;
 bool intakeToggleBool = false;
@@ -93,25 +94,34 @@ void anglerDown(){
 
 //******************** LIFT *******************//
 
+Lift lift;
 //MANUAL liftup
 void liftUp(){
-  if(liftUpButton.isPressed()){
+  /*if(liftUpButton.isPressed()){
     liftMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
     liftMotor.moveVelocity(-100);
   } else if(!liftUpButton.isPressed()&&!liftDownButton.isPressed()){
     liftMotor.moveVelocity(0);
     liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
+  }*/
+  if(liftUpButton.changedToPressed()){
+    lift.moveToUp();
+    angler.moveToLift();
   }
 }
 
 //MANUAL liftdown
 void liftDown(){
-  if(liftDownButton.isPressed()){
+  /*if(liftDownButton.isPressed()){
     liftMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
     liftMotor.moveVelocity(100);
   } else if(!liftUpButton.isPressed()&&!liftDownButton.isPressed()){
     liftMotor.moveVelocity(0);
     liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
+  }*/
+  if(liftDownButton.changedToPressed()){
+    lift.moveToDown();
+    angler.moveToDown();
   }
 }
 //MANUAL DUAL CONTROL
@@ -133,7 +143,6 @@ void toggleLiftHeight(){
 }
 
 void liftPID(){
-
   liftPosReal =  liftMotor.getPosition();
   liftPosReq = 1600;
   if(liftPosReal < liftPosReq){

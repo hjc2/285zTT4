@@ -21,4 +21,5 @@ class Tray {
   void moveVel(int);
   void moveToUp();
   void moveToDown();
+  void moveToLift();
 };
