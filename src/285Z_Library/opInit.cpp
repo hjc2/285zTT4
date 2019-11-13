@@ -15,7 +15,7 @@ okapi::ControllerButton anglerDownButton = okapi::ControllerDigital::Y;
  //motor port definitions
 
  //angler motor port
- int anglerPort = 10;
+ int anglerPort = 20;
 
  //drive motor points
  int frontLeftPort = 11;
