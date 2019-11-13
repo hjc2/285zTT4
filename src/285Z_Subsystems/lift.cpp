@@ -40,8 +40,9 @@ void Lift::moveToDown(){
 }
 
 void Lift::move(int vel){
-  anglerMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
   liftMotor.moveVelocity(-vel);
+  liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
+
 }
 
 /*
