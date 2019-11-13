@@ -1,6 +1,6 @@
 #include "../include/285z/initRobot.hpp"
 
-void flat(void) {
+/*void flat(void) {
     // Field
     Brain.Screen.drawRectangle(20,20,200,200,"#A9A9A9");
     Brain.Screen.drawRectangle(20,60,40,40,vex::color::red);
@@ -65,4 +65,4 @@ int GUI() {
         }
     }
     return(0);
-}
+}*/
