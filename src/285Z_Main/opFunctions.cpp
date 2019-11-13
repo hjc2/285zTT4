@@ -82,7 +82,6 @@ void anglerUp() {
   if (trayButton.changedToPressed())
   {
     angler.moveToUp();
-    intake.moveAbsolute(-100, 30);
   }
 }
 
@@ -116,6 +115,8 @@ void liftDown(){
 
 
 //MANUAL DUAL CONTROL
+//runs
+//
 void liftManual(){
   liftManualUp();
   liftManualDown();
@@ -127,6 +128,8 @@ void liftManual(){
 //if it's pressed it will coast and set velocity positive
 void liftManualUp(){
   if(liftUpButton.isPressed()){
+    angler.moveToLift();
+    anglerMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
     liftMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
     liftMotor.moveVelocity(100);
   }
@@ -136,8 +139,10 @@ void liftManualUp(){
 //if it's pressed it will coast and set velocity positive
 void liftManualDown(){
   if(liftDownButton.isPressed()){
+    anglerMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
+    angler.moveToDown();
     liftMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
-    liftMotor.moveVelocity(-100);
+    liftMotor.moveVelocity(100);
   }
 }
 
@@ -146,8 +151,8 @@ void liftManualDown(){
 //if either pressed, it will make velocity 0 and brake hold
 void liftManualStop(){
   if(!liftDownButton.isPressed() && !liftUpButton.isPressed()) {
-    liftMotor.moveVelocity(0);
     liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
+    liftMotor.moveVelocity(-100);
   }
 }
 
