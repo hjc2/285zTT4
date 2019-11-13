@@ -1,6 +1,7 @@
 #include "285z/initRobot.hpp"
 #include "285z/functions.hpp"
 #include "285Z_Subsystems/tray.hpp"
+#include "../include/285Z_Aux/gui.hpp"
  /** Runs initialization code. This occurs as soon as the program is started.
  *
  * All other competition modes are blocked by initialize; it is recommended
@@ -24,7 +25,9 @@ void disabled() {}
  * This task will exit when the robot is enabled and autonomous or opcontrol
  * starts.
  */
-void competition_initialize() {}
+void competition_initialize() {
+  initScreen();
+}
 
 /**
  * Runs the user autonomous code. This function will be started in its own task
@@ -75,14 +78,9 @@ void opcontrol() {
     //  ANGLER TOGGLE CODE  //
     anglerUp();
     anglerDown();
-    //anglerDown();
 
     //  LIFT  //
-    //liftUp();
-    //liftDown();
     liftManual();
-    //toggleLiftHeight();
-    //liftManual();
 
     //liftPID();
     pros::delay(10);
