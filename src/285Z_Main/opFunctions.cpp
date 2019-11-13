@@ -126,7 +126,7 @@ void liftDown(){
   }
 }
 //MANUAL DUAL CONTROL
-void liftManual(){
+void liftManualUp(){
   if(liftUpButton.isPressed()){
     lift.move(100);
   } else if(liftDownButton.isPressed()){

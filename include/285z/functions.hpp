@@ -1,4 +1,5 @@
 #pragma once
+#include "../include/285z/initRobot.hpp"
 
 //  **TELEOP FUNCTIONS**   //
 
@@ -28,6 +29,8 @@ void anglerToggle();
 void liftPositionToggleFunction();
 //   **AUTON FUNCTIONS**    //
 
-void turn();
-void red();
-void blue();
+void redFiveCube(std::shared_ptr<okapi::OdomChassisController>);
+void blueFiveCube(std::shared_ptr<okapi::OdomChassisController>);
+
+void redNineCube(std::shared_ptr<okapi::OdomChassisController>);
+void blueNineCube(std::shared_ptr<okapi::OdomChassisController>);

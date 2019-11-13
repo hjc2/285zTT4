@@ -4,6 +4,8 @@
 //Controller
 extern Controller controller;
 //extern std::shared_ptr<okapi::ChassisModel> model;
+//GUI
+int GUI();
 
 //Controller Buttons
 extern ControllerButton intakeButton;

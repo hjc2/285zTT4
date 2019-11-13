@@ -40,8 +40,6 @@ void competition_initialize() {}
 
 void autonomous() {
 
-  bool redAlliance = false;
-
   std::shared_ptr<okapi::OdomChassisController> chassis = okapi::ChassisControllerBuilder()
                     .withMotors({ 11, 12 }, { -13, -14 })
                     .withGearset(okapi::AbstractMotor::gearset::green)
@@ -51,75 +49,7 @@ void autonomous() {
                     .buildOdometry();
   std::shared_ptr<okapi::ChassisModel> model = std::dynamic_pointer_cast<okapi::ChassisModel>(chassis->getModel());
 
-  //TODO: move this to autFunctions
-  Tray angler;
-  angler.moveToState(1);
-
-  chassis->setState({0_ft,9.9_ft,0_deg});
-  chassis->driveToPoint({2_ft, 9.9_ft});
-  chassis->waitUntilSettled();
-  //anglerControllerAut->setTarget(2500);
-  //anglerMotor.moveAbsolute(1690, 100);
-	/*if(redAlliance)
-	{
-
-    //       RED AUTON       //
-    //Intake On
-    intake.moveVelocity(200);
-    //Move to blocks
-    chassis->setState({0_ft,9.9_ft,0_deg});
-    chassis->driveToPoint({4_ft, 9.9_ft});
-    chassis->waitUntilSettled();
-    pros::Task::delay(1000);
-    //need to work out deceleration program
-    //sqiggle backwards to line up with second row
-    chassis->moveDistance({-3_ft});
-    intake.moveVelocity(5);
-    //back up
-
-    //need to work out deceleration program
-    //sqiggle backwards to line up with second row
-    pros::Task::delay(200);
-
-    chassis->turnToAngle(270_deg);
-    chassis->waitUntilSettled();
-    intake.moveVelocity(-5);
-    chassis->setState({0_ft,0_ft,0_deg});
-    chassis->driveToPoint({4_ft,0_ft});
-
-    anglerMotor.moveAbsolute(1690, 50);
-    pros::Task::delay(2000);
-
-    chassis->moveDistance(-1_ft);
-	} else {
-    //       BLUE AUTON       //
-    intake.moveVelocity(200);
-    //Move to blocks
-    chassis->setState({0_ft,9.9_ft,0_deg});
-    chassis->driveToPoint({4_ft, 9.9_ft});
-    chassis->waitUntilSettled();
-    pros::Task::delay(1000);
-    //need to work out deceleration program
-    //sqiggle backwards to line up with second row
-    chassis->moveDistance({-3_ft});
-    intake.moveVelocity(5);
-    //back up
-
-    //need to work out deceleration program
-    //sqiggle backwards to line up with second row
-    pros::Task::delay(200);
-
-    chassis->turnToAngle(-120_deg);
-    intake.moveVelocity(-5);
-    chassis->setState({0_ft,0_ft,0_deg});
-    chassis->driveToPoint({4_ft,0_ft});
-
-    anglerMotor.moveAbsolute(1690, 50);
-    pros::Task::delay(2000);
-
-    chassis->moveDistance(-1_ft);
-
-  }*/
+  redFiveCube(chassis);
 }
 
 
