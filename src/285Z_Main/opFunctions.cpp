@@ -98,13 +98,6 @@ void anglerDown(){
 Lift lift;
 //MANUAL liftup
 void liftUp(){
-  /*if(liftUpButton.isPressed()){
-    liftMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
-    liftMotor.moveVelocity(-100);
-  } else if(!liftUpButton.isPressed()&&!liftDownButton.isPressed()){
-    liftMotor.moveVelocity(0);
-    liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
-  }*/
   if(liftUpButton.changedToPressed()){
     lift.moveToUp();
     angler.moveToLift();
@@ -113,25 +106,19 @@ void liftUp(){
 
 //MANUAL liftdown
 void liftDown(){
-  /*if(liftDownButton.isPressed()){
-    liftMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
-    liftMotor.moveVelocity(100);
-  } else if(!liftUpButton.isPressed()&&!liftDownButton.isPressed()){
-    liftMotor.moveVelocity(0);
-    liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
-  }*/
   if(liftDownButton.changedToPressed()){
     lift.moveToDown();
     angler.moveToDown();
   }
 }
+
 //MANUAL DUAL CONTROL
-void liftManualUp(){
+void liftManual(){
   if(liftUpButton.isPressed()){
     lift.move(100);
   } else if(liftDownButton.isPressed()){
     lift.move(-100);
-  } else if(!liftUpButton.isPressed() && !liftDownButton.isPressed()){
+  } else {
     lift.move(0);
   }
 }
@@ -146,14 +133,4 @@ void toggleLiftHeight(){
       liftPositionBool = !liftPositionBool;
     }
   }
-}
-
-void liftPID(){
-  liftPosReal =  liftMotor.getPosition();
-  liftPosReq = 1600;
-  if(liftPosReal < liftPosReq){
-      liftMotor.moveVelocity(50);
-    } else {
-      liftMotor.moveVelocity(-50);
-    }
 }
