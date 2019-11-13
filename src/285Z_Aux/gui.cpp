@@ -1,68 +1,115 @@
 #include "../include/285z/initRobot.hpp"
+#include "../include/285Z_Aux/gui.hpp"
 
-/*void flat(void) {
-    // Field
-    Brain.Screen.drawRectangle(20,20,200,200,"#A9A9A9");
-    Brain.Screen.drawRectangle(20,60,40,40,vex::color::red);
-    Brain.Screen.drawRectangle(20,140,40,40,vex::color::red);
-    Brain.Screen.drawRectangle(180,60,40,40,vex::color::blue);
-    Brain.Screen.drawRectangle(180,140,40,40,vex::color::blue);
+lv_obj_t * myButton;
+lv_obj_t * myButtonLabel;
+lv_obj_t * myLabel;
 
-    // Flags
-    Brain.Screen.drawRectangle(40, 20, 20, 15, vex::color::blue);
-    Brain.Screen.drawRectangle(60, 20, 20, 15, vex::color::red);
+lv_style_t myButtonStyleREL; //relesed style
+lv_style_t myButtonStylePR; //pressed style
 
-    Brain.Screen.drawRectangle(100, 20, 20, 15, vex::color::blue);
-    Brain.Screen.drawRectangle(120, 20, 20, 15, vex::color::red);
+static lv_res_t btn_click_action(lv_obj_t * btn)
+{
+    uint8_t id = lv_obj_get_free_num(btn); //id usefull when there are multiple buttons
 
-    Brain.Screen.drawRectangle(160, 20, 20, 15, vex::color::blue);
-    Brain.Screen.drawRectangle(180, 20, 20, 15, vex::color::red);
+    if(id == 0)
+    {
+        char buffer[100];
+		sprintf(buffer, "button was clicked %i milliseconds from start", pros::millis());
+		lv_label_set_text(myLabel, buffer);
+    }
+
+    return LV_RES_OK;
 }
 
+lv_obj_t * createBtn(lv_obj_t * parent, lv_coord_t x, lv_coord_t y, lv_coord_t width, lv_coord_t height,
+    int id, const char * title)
+{
+    lv_obj_t * btn = lv_btn_create(parent, NULL);
+    lv_obj_set_pos(btn, x, y);
+    lv_obj_set_size(btn, width, height);
+    lv_obj_set_free_num(btn, id);
 
-int GUI() {
-    flat();
-    Brain.Screen.setFont(vex::fontType::prop40);
+    lv_obj_t * label = lv_label_create(btn, NULL);
+    lv_label_set_text(label, title);
+    lv_obj_align(label, NULL, LV_ALIGN_IN_TOP_MID, 0, 5);
 
-    int autonState = 10;
-    while(true) {
-        double potVal = Pot.value(vex::percentUnits::pct);
-        if (potVal <= 10){
-            if (autonState != 0) {
-                flat();
-                Brain.Screen.printAt(250,100,true,"RED FRONT      ");
-                Brain.Screen.drawCircle(40,80,15,vex::color::green);
-            }
-            autonState = 0;
-        } else if (potVal > 10 && potVal <= 20){
-            if (autonState != 1) {
-                flat();
-                Brain.Screen.printAt(250,100,true,"RED BACK        ");
-                Brain.Screen.drawCircle(40,160,15,vex::color::green);
-            }
-            autonState = 1;
-        } else if (potVal > 20 && potVal <= 30){
-            if (autonState != 2) {
-                flat();
-                Brain.Screen.printAt(250,100,true,"BLUE FRONT       ");
-                Brain.Screen.drawCircle(200,80,15,vex::color::green);
-            }
-            autonState = 2;
-        } else if (potVal > 30 && potVal < 40){
-            if (autonState != 3) {
-                flat();
-                Brain.Screen.printAt(250,100,true,"BLUE BACK       ");
-                Brain.Screen.drawCircle(200,160,15,vex::color::green);
-            }
-            autonState = 3;
-        } else {
-            if (autonState != 4) {
-                flat();
-                Brain.Screen.printAt(250,100,true,"SKILLS          ");
-                Brain.Screen.drawCircle(40,80,15,vex::color::white);
-            }
-            autonState = 4;
-        }
-    }
-    return(0);
-}*/
+    return btn;
+}
+
+lv_style_t * createBtnStyle(lv_style_t * copy, lv_color_t rel, lv_color_t pr,
+    lv_color_t tglRel, lv_color_t tglPr, lv_color_t tglBorder, lv_color_t textColor, lv_obj_t * btn)
+{
+    lv_style_t * btnStyle = (lv_style_t *)malloc(sizeof(lv_style_t) * 4);
+
+    for(int i = 0; i < 4; i++) lv_style_copy(&btnStyle[i], copy);
+
+    btnStyle[0].body.main_color = rel;
+    btnStyle[0].body.grad_color = rel;
+    btnStyle[0].text.color = textColor;
+
+    btnStyle[1].body.main_color = pr;
+    btnStyle[1].body.grad_color = pr;
+    btnStyle[1].text.color = textColor;
+
+    btnStyle[2].body.main_color = tglRel;
+    btnStyle[2].body.grad_color = tglRel;
+    btnStyle[2].body.border.width = 2;
+    btnStyle[2].body.border.color = tglBorder;
+    btnStyle[2].text.color = textColor;
+
+    btnStyle[3].body.main_color = tglPr;
+    btnStyle[3].body.grad_color = tglPr;
+    btnStyle[3].body.border.width = 2;
+    btnStyle[3].body.border.color = tglBorder;
+    btnStyle[3].text.color = textColor;
+
+    lv_btn_set_style(btn, LV_BTN_STYLE_REL, &btnStyle[0]);
+    lv_btn_set_style(btn, LV_BTN_STYLE_PR, &btnStyle[1]);
+    lv_btn_set_style(btn, LV_BTN_STYLE_TGL_REL, &btnStyle[2]);
+    lv_btn_set_style(btn, LV_BTN_STYLE_TGL_PR, &btnStyle[3]);
+
+    return btnStyle;
+}
+
+void setBtnStyle(lv_style_t * btnStyle, lv_obj_t * btn)
+{
+    lv_btn_set_style(btn, LV_BTN_STYLE_REL, &btnStyle[0]);
+    lv_btn_set_style(btn, LV_BTN_STYLE_PR, &btnStyle[1]);
+    lv_btn_set_style(btn, LV_BTN_STYLE_TGL_REL, &btnStyle[2]);
+    lv_btn_set_style(btn, LV_BTN_STYLE_TGL_PR, &btnStyle[3]);
+}
+
+void btnSetToggled(lv_obj_t * btn, bool toggled)
+{
+    if(toggled != (lv_btn_get_state(btn) >= 2)) lv_btn_toggle(btn);
+}
+
+void initScreen(){
+  lv_style_copy(&myButtonStyleREL, &lv_style_plain);
+    myButtonStyleREL.body.main_color = LV_COLOR_MAKE(150, 0, 0);
+    myButtonStyleREL.body.grad_color = LV_COLOR_MAKE(0, 0, 150);
+    myButtonStyleREL.body.radius = 0;
+    myButtonStyleREL.text.color = LV_COLOR_MAKE(255, 255, 255);
+
+    lv_style_copy(&myButtonStylePR, &lv_style_plain);
+    myButtonStylePR.body.main_color = LV_COLOR_MAKE(255, 0, 0);
+    myButtonStylePR.body.grad_color = LV_COLOR_MAKE(0, 0, 255);
+    myButtonStylePR.body.radius = 0;
+    myButtonStylePR.text.color = LV_COLOR_MAKE(255, 255, 255);
+
+    myButton = lv_btn_create(lv_scr_act(), NULL); //create button, lv_scr_act() is deafult screen object
+    lv_obj_set_free_num(myButton, 0); //set button is to 0
+    lv_btn_set_action(myButton, LV_BTN_ACTION_CLICK, btn_click_action); //set function to be called on button click
+    lv_btn_set_style(myButton, LV_BTN_STYLE_REL, &myButtonStyleREL); //set the relesed style
+    lv_btn_set_style(myButton, LV_BTN_STYLE_PR, &myButtonStylePR); //set the pressed style
+    lv_obj_set_size(myButton, 200, 50); //set the button size
+    lv_obj_align(myButton, NULL, LV_ALIGN_IN_TOP_LEFT, 10, 10); //set the position to top mid
+
+    myButtonLabel = lv_label_create(myButton, NULL); //create label and puts it inside of the button
+    lv_label_set_text(myButtonLabel, "Click the Button"); //sets label text
+
+    myLabel = lv_label_create(lv_scr_act(), NULL); //create label and puts it on the screen
+    lv_label_set_text(myLabel, "Button has not been clicked yet"); //sets label text
+    lv_obj_align(myLabel, NULL, LV_ALIGN_IN_LEFT_MID, 10, 0); //set the position to center
+}
