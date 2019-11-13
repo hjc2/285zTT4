@@ -19,10 +19,14 @@ void anglerDown();
 //Lift
 void liftUp();
 void liftDown();
-void liftManual();
 void toggleLiftHeight();
 void liftPID();
 
+//MANUAL LIFT CONTROL
+void liftManual();
+void liftManualUp();
+void liftManualDown();
+void liftManualStop();
 
 void anglerToggle();
 

@@ -112,14 +112,42 @@ void liftDown(){
   }
 }
 
+
+
+
 //MANUAL DUAL CONTROL
 void liftManual(){
+  liftManualUp();
+  liftManualDown();
+  liftManualStop();
+}
+
+//liftManualUp
+//will check if the liftUpButton is pressed,
+//if it's pressed it will coast and set velocity positive
+void liftManualUp(){
   if(liftUpButton.isPressed()){
-    lift.move(100);
-  } else if(liftDownButton.isPressed()){
-    lift.move(-100);
-  } else {
-    lift.move(0);
+    liftMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
+    liftMotor.moveVelocity(100);
+  }
+}
+//liftManualDown
+//will check if the liftDownButton is pressed,
+//if it's pressed it will coast and set velocity positive
+void liftManualDown(){
+  if(liftDownButton.isPressed()){
+    liftMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
+    liftMotor.moveVelocity(-100);
+  }
+}
+
+//liftManualStop
+//will check if either lift buttons are pressed
+//if either pressed, it will make velocity 0 and brake hold
+void liftManualStop(){
+  if(!liftDownButton.isPressed() && !liftUpButton.isPressed()) {
+    liftMotor.moveVelocity(0);
+    liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
   }
 }
 
