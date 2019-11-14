@@ -15,7 +15,6 @@ void anglerManual();
 void anglerToggle();
 void anglerUp();
 void anglerDown();
-void anglerStop();
 
 //Lift
 void liftUp();

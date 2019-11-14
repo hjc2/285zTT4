@@ -22,7 +22,7 @@ void Tray::moveToState(int pos){
       anglerController->waitUntilSettled();
       //anglerMotor.moveAbsolute(0, -100);
     case UP:
-      anglerController->setTarget(3600);
+      anglerController->setTarget(3700);
       anglerController->waitUntilSettled();
       //anglerMotor.moveAbsolute(1690, 100);
     case LIFTUP:
@@ -36,7 +36,7 @@ void Tray::moveToUp(){
   if(anglerController->isDisabled()){
     anglerController->flipDisable();
   }
-  anglerController->setTarget(3600);
+  anglerController->setTarget(3700);
 }
 
 void Tray::moveToDown(){

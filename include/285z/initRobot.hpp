@@ -1,6 +1,7 @@
 #pragma once
 #include "main.h"
 
+extern bool anglerDisabled;
 //Controller
 extern Controller controller;
 //extern std::shared_ptr<okapi::ChassisModel> model;
@@ -10,8 +11,8 @@ void flat();
 
 //Controller Buttons
 extern ControllerButton intakeButton;
-extern ControllerButton trayUpButton;
-extern ControllerButton trayDownButton;
+extern ControllerButton trayButton;
+extern ControllerButton stopPID;
 extern ControllerButton outtakeButton;
 extern ControllerButton liftUpButton;
 extern ControllerButton liftDownButton;

@@ -3,11 +3,13 @@
 #include "../include/285Z_Subsystems/tray.hpp"
 #include "../include/285Z_Subsystems/lift.hpp"
 
-bool anglerPositionBool = false;
+bool anglerUpBool = false;
+bool anglerDisabled = false;
+
 bool intakeToggleBool = false;
 bool liftPositionBool = true;
-double liftPosReal = 0.0;
-double liftPosReq = 0.0;
+
+
 
 
 //           DRIVE         //
@@ -72,32 +74,15 @@ void anglerManual(){
 }
 
 void anglerToggle(){
-  anglerUp();
-  anglerDown();
-}
+  if(trayButton.changedToPressed()){
+    anglerDisabled = false;
+    anglerUpBool = !anglerUpBool;
+  }
 
-
-
-void anglerUp() {
-  if (trayUpButton.changedToPressed())
-  {
+  if(anglerUpBool && !anglerDisabled){
     angler.moveToUp();
-    intake.moveVelocity(-40);
-  }
-}
-
-void anglerDown(){
-  if (trayDownButton.changedToPressed())
-  {
-    intake.moveVelocity(0);
+  } else if(!anglerUpBool && !anglerDisabled){
     angler.moveToDown();
-  }
-}
-
-void anglerStop(){
-  if (anglerUpButton.changedToPressed())
-  {
-    angler.stopPID();
   }
 }
 
@@ -106,6 +91,7 @@ void anglerStop(){
 Lift lift;
 
 void liftToggle(){
+  anglerDisabled = true;
   lift.liftToggle(angler);
 }
 
