@@ -47,7 +47,7 @@ void autonomous() {
                     .withMotors({ 11, 12 }, { -13, -14 })
                     .withGearset(okapi::AbstractMotor::gearset::green)
                     .withDimensions(scales)
-                    .withMaxVelocity(60)
+                    .withMaxVelocity(100)
                     .withOdometry(okapi::StateMode::FRAME_TRANSFORMATION, 0_mm, 0_deg, 0.00001_mps)
                     .buildOdometry();
   std::shared_ptr<okapi::ChassisModel> model = std::dynamic_pointer_cast<okapi::ChassisModel>(chassis->getModel());

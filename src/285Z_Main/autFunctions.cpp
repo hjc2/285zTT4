@@ -4,6 +4,7 @@
 #include "../include/285z/functions.hpp"
 
 
+//TODO: Look up turntoPoint function
 //*****************************   RED: FIVE CUBES    **********************//
 void redFiveCube(std::shared_ptr<okapi::OdomChassisController> chassis){
   Tray angler;
@@ -12,27 +13,23 @@ void redFiveCube(std::shared_ptr<okapi::OdomChassisController> chassis){
   //Intake On
   intake.moveVelocity(200);
   //Move to blocks
-  chassis->setState({0_ft,9.9_ft,0_deg});
-  chassis->driveToPoint({4_ft, 9.9_ft});
-  chassis->waitUntilSettled();
-  pros::Task::delay(1000);
-  //need to work out deceleration program
-  //sqiggle backwards to line up with second row
-  chassis->moveDistance({-3_ft});
+  chassis->setState({0.5_ft,9.9_ft,0_deg});
+  chassis->driveToPoint({4.5_ft, 9.9_ft});
+  pros::Task::delay(500);
+
+  chassis->driveToPoint({3.5_ft, 9.9_ft}, true);
+	chassis->driveToPoint({1.5_ft, 9.0_ft});
+  //second param means backwards
+  //chassis->driveToPoint({0_ft,9.9_ft}, true);
   intake.moveVelocity(5);
   //back up
 
   //need to work out deceleration program
   //sqiggle backwards to line up with second row
   pros::Task::delay(200);
-
-  chassis->turnToAngle(270_deg);
-  chassis->waitUntilSettled();
   intake.moveVelocity(-5);
-  chassis->setState({0_ft,0_ft,0_deg});
-  chassis->driveToPoint({4_ft,0_ft});
 
-  angler.moveToState(1);
+  angler.moveToUp();
   pros::Task::delay(1000);
 
   chassis->moveDistance(-1_ft);
@@ -45,27 +42,19 @@ void blueFiveCube(std::shared_ptr<okapi::OdomChassisController> chassis){
   //       BLUE AUTON       //
   intake.moveVelocity(200);
   //Move to blocks
-  chassis->setState({0_ft,9.9_ft,0_deg});
-  chassis->driveToPoint({4_ft, 9.9_ft});
-  chassis->waitUntilSettled();
-  pros::Task::delay(1000);
-  //need to work out deceleration program
-  //sqiggle backwards to line up with second row
-  chassis->moveDistance({-3_ft});
-  intake.moveVelocity(5);
-  //back up
+  chassis->setState({11.5_ft,9.9_ft,0_deg});
+  chassis->driveToPoint({7.5_ft, 9.9_ft});
 
-  //need to work out deceleration program
-  //sqiggle backwards to line up with second row
+  pros::Task::delay(500);
+
+  chassis->driveToPoint({8.25_ft, 9.75_ft}, true);
+	chassis->driveToPoint({10_ft, 8.75_ft});
   pros::Task::delay(200);
 
-  chassis->turnToAngle(-120_deg);
   intake.moveVelocity(-5);
-  chassis->setState({0_ft,0_ft,0_deg});
-  chassis->driveToPoint({4_ft,0_ft});
 
-  angler.moveToState(1);
-  pros::Task::delay(2000);
+  angler.moveToUp();
+  pros::Task::delay(1000);
 
   chassis->moveDistance(-1_ft);
 }
