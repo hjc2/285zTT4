@@ -7,6 +7,7 @@ bool anglerUpBool = false;
 bool anglerDisabled = false;
 
 bool intakeToggleBool = false;
+bool intakeToggleHold = true;
 bool liftPositionBool = true;
 
 
@@ -43,7 +44,10 @@ void toggleIntake(){
   else
   {
     intake.moveVelocity	(0);
-    intake.setBrakeMode(AbstractMotor::brakeMode::hold);
+    if(intakeToggleHold){
+      intake.setBrakeMode(AbstractMotor::brakeMode::hold);
+    }
+
   }
 }
 
@@ -54,7 +58,9 @@ void intakeRev(){
     intake.moveVelocity (-150);
     intake.setBrakeMode(AbstractMotor::brakeMode::coast);
   } else {
-    intake.setBrakeMode(AbstractMotor::brakeMode::hold);
+    if(intakeToggleHold){
+      intake.setBrakeMode(AbstractMotor::brakeMode::hold);
+    }
   }
 }
 
@@ -80,9 +86,9 @@ void anglerToggle(){
   }
 
   if(anglerUpBool && !anglerDisabled && lift.getHeightPos() == 0){
+    intakeToggleHold = false;
     angler.moveToUp(true);
   } else if(!anglerUpBool && !anglerDisabled && lift.getHeightPos() == 0){
-
     angler.moveToDown(true);
   }
 }
