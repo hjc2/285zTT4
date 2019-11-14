@@ -24,8 +24,8 @@ class Tray {
 
   int getHeightPos();
 
-  void moveToUp();
-  void moveToDown();
+  void moveToUp(bool);
+  void moveToDown(bool);
   void moveToLift();
 
   void moveAbsolute(double, int);

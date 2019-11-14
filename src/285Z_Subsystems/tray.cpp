@@ -34,20 +34,26 @@ void Tray::moveToState(int pos){
   }
 }
 
-void Tray::moveToUp(){
+void Tray::moveToUp(bool op){
   trayHeightPos = 1;
   if(anglerController->isDisabled()){
     anglerController->flipDisable();
   }
   anglerController->setTarget(3800);
+  if(!op){
+    anglerController->waitUntilSettled();
+  }
 }
 
-void Tray::moveToDown(){
+void Tray::moveToDown(bool op){
   trayHeightPos = 0;
   if(anglerController->isDisabled()){
     anglerController->flipDisable();
   }
   anglerController->setTarget(0);
+  if(!op){
+    anglerController->waitUntilSettled();
+  }
 }
 
 void Tray::moveToLift(){

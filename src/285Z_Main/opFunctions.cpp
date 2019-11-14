@@ -80,9 +80,9 @@ void anglerToggle(){
   }
 
   if(anglerUpBool && !anglerDisabled && lift.getHeightPos() == 0){
-    angler.moveToUp();
+    angler.moveToUp(true);
   } else if(!anglerUpBool && !anglerDisabled && lift.getHeightPos() == 0){
-    angler.moveToDown();
+    angler.moveToDown(true);
   }
 }
 
@@ -117,7 +117,7 @@ void liftUp(){
 void liftDown(){
   if(liftDownButton.changedToPressed()){
     lift.moveToDown();
-    angler.moveToDown();
+    angler.moveToDown(true);
   }
 }
 
@@ -152,7 +152,7 @@ void liftManualUp(){
 void liftManualDown(){
   if(liftDownButton.isPressed()){
     anglerMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
-    angler.moveToDown();
+    angler.moveToDown(true);
     liftMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
     liftMotor.moveVelocity(100);
   }
