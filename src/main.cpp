@@ -78,6 +78,7 @@ void opcontrol() {
     //  ANGLER TOGGLE CODE  //
     anglerUp();
     anglerDown();
+    anglerStop();
 
     //  LIFT  //
     liftManual();

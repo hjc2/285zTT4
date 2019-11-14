@@ -92,6 +92,13 @@ void anglerDown(){
   }
 }
 
+void anglerStop(){
+  if (anglerUpButton.changedToPressed())
+  {
+    angler.stopPID();
+  }
+}
+
 //******************** LIFT *******************//
 
 Lift lift;
