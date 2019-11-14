@@ -80,9 +80,9 @@ void anglerToggle(){
   }
 
   if(anglerUpBool && !anglerDisabled && lift.getHeightPos() == 0){
-    intake.setBrakeMode(AbstractMotor::brakeMode::coast);
     angler.moveToUp(true);
   } else if(!anglerUpBool && !anglerDisabled && lift.getHeightPos() == 0){
+
     angler.moveToDown(true);
   }
 }

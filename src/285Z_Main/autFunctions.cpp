@@ -82,7 +82,7 @@ void redNineCube(std::shared_ptr<okapi::OdomChassisController> chassis){
   chassis->driveToPoint({4.5_ft, 9.9_ft});
   pros::Task::delay(500);
 
-  chassis->driveToPoint({1_ft, 6.9ft}, true);
+  chassis->driveToPoint({1_ft, 6.9_ft}, true);
   chassis->turnToPoint({2_ft, 6.9_ft});
 	/*chassis->turnToPoint({1.5_ft, 9.0_ft});
   pros::Task::delay(300);

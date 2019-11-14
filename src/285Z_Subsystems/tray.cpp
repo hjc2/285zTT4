@@ -36,6 +36,7 @@ void Tray::moveToState(int pos){
 
 void Tray::moveToUp(bool op){
   trayHeightPos = 1;
+  intake.setBrakeMode(AbstractMotor::brakeMode::coast);
   if(anglerController->isDisabled()){
     anglerController->flipDisable();
   }
@@ -47,6 +48,7 @@ void Tray::moveToUp(bool op){
 
 void Tray::moveToDown(bool op){
   trayHeightPos = 0;
+  intake.setBrakeMode(AbstractMotor::brakeMode::hold);
   if(anglerController->isDisabled()){
     anglerController->flipDisable();
   }
