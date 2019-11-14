@@ -113,14 +113,19 @@ void liftDown(){
 
 
 
-
 //MANUAL DUAL CONTROL
-//runs
-//
 void liftManual(){
-  liftManualUp();
+  if(liftUpButton.isPressed()){
+    lift.move(100);
+  } else if(liftDownButton.isPressed()){
+    lift.move(-100);
+  } else {
+    lift.move(0);
+  }
+
+  /*liftManualUp();
   liftManualDown();
-  liftManualStop();
+  liftManualStop();*/
 }
 
 //liftManualUp
