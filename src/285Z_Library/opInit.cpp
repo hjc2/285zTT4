@@ -7,7 +7,7 @@ okapi::ControllerButton intakeButton = okapi::ControllerDigital:: R2;
 okapi::ControllerButton outtakeButton = okapi::ControllerDigital::R1;
 
 okapi::ControllerButton trayButton = okapi::ControllerDigital:: A;
-okapi::ControllerButton stopPID = okapi::ControllerDigital:: Y;
+okapi::ControllerButton stopPIDButton = okapi::ControllerDigital:: Y;
 
 okapi::ControllerButton liftUpButton = okapi::ControllerDigital::L1;
 okapi::ControllerButton liftDownButton = okapi::ControllerDigital::L2;

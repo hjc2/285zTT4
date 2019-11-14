@@ -77,6 +77,7 @@ void opcontrol() {
 
     //  ANGLER TOGGLE CODE  //
     anglerToggle();
+    stopPID();
 
     //  LIFT  //
     liftToggle();

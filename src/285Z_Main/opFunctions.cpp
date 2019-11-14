@@ -86,6 +86,13 @@ void anglerToggle(){
   }
 }
 
+void stopPID(){
+  if(stopPIDButton.changedToPressed()){
+    anglerDisabled = true;
+    angler.stopPID();
+  }
+}
+
 //******************** LIFT *******************//
 
 Lift lift;
