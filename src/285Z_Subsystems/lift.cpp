@@ -4,7 +4,7 @@
 
 const int NUM_HEIGHTS = 3;
 const int height0 = 5;
-const int height1 = 2000;
+const int height1 = 2200;
 const int height2 = 2800;
 
 const int heights[NUM_HEIGHTS] = {height0, height1, height2};

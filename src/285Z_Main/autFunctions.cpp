@@ -18,14 +18,12 @@ void redFiveCube(std::shared_ptr<okapi::OdomChassisController> chassis){
   chassis->driveToPoint({4.5_ft, 9.9_ft});
   pros::Task::delay(500);
 
-  chassis->driveToPoint({3.5_ft, 9.9_ft}, true);
-	chassis->turnToPoint({1.5_ft, 9.0_ft});
-  pros::Task::delay(300);
-  //second param means backwards
 
-  chassis->setState({0.5_ft,9.9_ft,0_deg});
-  chassis->driveToPoint({3.5_ft, 9.9_ft});
-  intake.moveVelocity(3);
+  angler.moveToUp(false);
+  chassis->driveToPoint({3.0_ft, 9.9_ft}, true);
+	chassis->driveToPoint({1.5_ft, 9.0_ft});
+  //second param means backward
+
   //back up
 
   //need to work out deceleration program
@@ -33,8 +31,8 @@ void redFiveCube(std::shared_ptr<okapi::OdomChassisController> chassis){
   pros::Task::delay(200);
 
   //false means its auton
-  intake.moveRelative(-700, 50);
-  angler.moveToUp(false);
+  //intake.moveRelative(-700, 50);
+
   pros::Task::delay(2000);
 
   chassis->moveDistance(-1.5_ft);

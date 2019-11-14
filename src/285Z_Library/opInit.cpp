@@ -24,8 +24,8 @@ okapi::ControllerButton liftDownButton = okapi::ControllerDigital::L2;
  int backRightPort = -14;
 
  //intake motor ports
- int intakeRightPort = 17;
- int intakeLeftPort = -18;
+ int intakeRightPort = 18;
+ int intakeLeftPort = -2;
 
  //lift motor port
  int liftPort = 15;
