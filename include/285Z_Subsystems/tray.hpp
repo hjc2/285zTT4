@@ -22,6 +22,8 @@ class Tray {
 
   void stopPID();
 
+  int getHeightPos();
+
   void moveToUp();
   void moveToDown();
   void moveToLift();

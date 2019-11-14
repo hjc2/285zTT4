@@ -10,7 +10,9 @@ bool intakeToggleBool = false;
 bool liftPositionBool = true;
 
 
-
+//***********************  INITIALIZE SUBSYSTEMS  ***************************//
+Tray angler;
+Lift lift;
 
 //           DRIVE         //
 /*void tankDrive(){
@@ -58,8 +60,6 @@ void intakeRev(){
 
 //****************** ANGLER ********************//
 
-Tray angler;
-
 void anglerManual(){
   if(anglerUpButton.isPressed()){
     anglerMotor.moveVelocity(100);
@@ -79,9 +79,9 @@ void anglerToggle(){
     anglerUpBool = !anglerUpBool;
   }
 
-  if(anglerUpBool && !anglerDisabled){
+  if(anglerUpBool && !anglerDisabled && lift.getHeightPos() == 0){
     angler.moveToUp();
-  } else if(!anglerUpBool && !anglerDisabled){
+  } else if(!anglerUpBool && !anglerDisabled && lift.getHeightPos() == 0){
     angler.moveToDown();
   }
 }
@@ -95,11 +95,14 @@ void stopPID(){
 
 //******************** LIFT *******************//
 
-Lift lift;
+
 
 void liftToggle(){
   anglerDisabled = true;
-  lift.liftToggle(angler);
+  if(angler.getHeightPos() == 0){
+    lift.liftToggle(angler);
+  }
+
 }
 
 //Preset liftup

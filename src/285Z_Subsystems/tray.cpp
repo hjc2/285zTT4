@@ -6,6 +6,8 @@ const int UP = 1;
 
 const int LIFTUP = 2;
 
+int trayHeightPos = 0;
+
 double traykP = 0.0005;
 double traykI = 0.00001;
 double traykD = 0.00001;
@@ -33,6 +35,7 @@ void Tray::moveToState(int pos){
 }
 
 void Tray::moveToUp(){
+  trayHeightPos = 1;
   if(anglerController->isDisabled()){
     anglerController->flipDisable();
   }
@@ -40,6 +43,7 @@ void Tray::moveToUp(){
 }
 
 void Tray::moveToDown(){
+  trayHeightPos = 0;
   if(anglerController->isDisabled()){
     anglerController->flipDisable();
   }
@@ -47,10 +51,15 @@ void Tray::moveToDown(){
 }
 
 void Tray::moveToLift(){
+  trayHeightPos = 2;
   if(anglerController->isDisabled()){
     anglerController->flipDisable();
   }
   anglerController->setTarget(1300);
+}
+
+int Tray::getHeightPos(){
+  return trayHeightPos;
 }
 
 void Tray::stopPID(){

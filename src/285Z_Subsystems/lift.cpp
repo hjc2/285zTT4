@@ -13,6 +13,8 @@ double liftkP = 0.001;
 double liftkI = 0.00001;
 double liftkD = 0.00001;
 
+int heightNow = 0;
+
 auto liftController = AsyncPosControllerBuilder().withMotor(-liftPort)
                         .withGains({liftkP, liftkI, liftkD})
                         .build();
@@ -32,7 +34,6 @@ void Lift::moveToState(int pos){
   }
 }
 
-int heightNow = 0;
 void Lift::liftToggle(Tray angler){
 
   if (liftUpButton.changedToPressed() && heightNow < NUM_HEIGHTS - 1) {
@@ -52,6 +53,10 @@ void Lift::liftToggle(Tray angler){
       }
     }
 
+}
+
+int Lift::getHeightPos(){
+  return heightNow;
 }
 
 void Lift::moveToUp(){
