@@ -81,7 +81,7 @@ void opcontrol() {
     anglerStop();
 
     //  LIFT  //
-    liftManual();
+    liftToggle();
 
     //liftPID();
     pros::delay(10);

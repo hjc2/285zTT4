@@ -1,12 +1,13 @@
 #include "../include/285z/initRobot.hpp"
 #include "../include/285Z_Subsystems/lift.hpp"
+#include "../include/285Z_Subsystems/tray.hpp"
 
-const int DOWN = 0;
-const int UP = 1;
+const int NUM_HEIGHTS = 3;
+const int height0 = 5;
+const int height1 = 2000;
+const int height2 = 2800;
 
-const int NUM_HEIGHTS = 2;
-const int height0 = 0;
-const int height1 = 1000;
+const int heights[NUM_HEIGHTS] = {height0, height1, height2};
 
 double liftkP = 0.001;
 double liftkI = 0.00001;
@@ -18,17 +19,39 @@ auto liftController = AsyncPosControllerBuilder().withMotor(-liftPort)
 
 void Lift::moveToState(int pos){
   switch(pos){
-    case DOWN:
+    case 0:
       //DOWN
       liftController->setTarget(0);
       liftController->waitUntilSettled();
       //anglerMotor.moveAbsolute(0, -100);
-    case UP:
+    case 1:
       liftController->setTarget(1000);
       liftController->waitUntilSettled();
       //anglerMotor.moveAbsolute(1690, 100);
     break;
   }
+}
+
+int heightNow = 0;
+void Lift::liftToggle(Tray angler){
+
+  if (liftUpButton.changedToPressed() && heightNow < NUM_HEIGHTS - 1) {
+      angler.stopPID();
+      // If the goal height is not at maximum and the up button is pressed, increase the setpoint
+      heightNow++;
+      liftController->setTarget(heights[heightNow]);
+      angler.moveAbsolute(1300, 100);
+
+    } else if (liftDownButton.changedToPressed() && heightNow > 0) {
+      angler.stopPID();
+
+      heightNow--;
+      liftController->setTarget(heights[heightNow]);
+      if(heightNow == 0){
+        angler.moveAbsolute(0, -100);
+      }
+    }
+
 }
 
 void Lift::moveToUp(){
@@ -44,37 +67,3 @@ void Lift::move(int vel){
   liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
 
 }
-
-/*
-class lift{
-public
-
-  double liftAngle;
-  bool liftState;
-  void liftPosition(int position){
-    liftMotor.moveAbsolute(position);
-
-void liftUp(){
-  if(liftUpButton.isPressed()){
-    liftMotor.moveVelocity(-100);
-  }
-  if (!liftUpButton.isPressed()&&!liftDownButton.isPressed()){
-    liftMotor.moveVelocity(0);
-    liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
-  }
-}
-void liftDown(){
-  if(liftDownButton.isPressed()){
-    liftMotor.moveVelocity(100);
-  }
-  if (!liftUpButton.isPressed()&&!liftDownButton.isPressed()){
-    liftMotor.moveVelocity(0);
-    liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
-  }
-}
-
-void manualLiftControl(){
-  liftUp();
-  liftDown();
-}
-*/

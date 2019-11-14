@@ -19,8 +19,12 @@ class Tray {
   //Tray Functions
   void moveToState(int);
   void moveVel(int);
+
   void stopPID();
+
   void moveToUp();
   void moveToDown();
   void moveToLift();
+
+  void moveAbsolute(double, int);
 };

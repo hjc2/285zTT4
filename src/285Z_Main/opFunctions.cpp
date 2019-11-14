@@ -79,15 +79,17 @@ void anglerToggle(){
 
 
 void anglerUp() {
-  if (trayButton.changedToPressed())
+  if (trayUpButton.changedToPressed())
   {
     angler.moveToUp();
+    intake.moveVelocity(-40);
   }
 }
 
 void anglerDown(){
   if (trayDownButton.changedToPressed())
   {
+    intake.moveVelocity(0);
     angler.moveToDown();
   }
 }
@@ -102,7 +104,12 @@ void anglerStop(){
 //******************** LIFT *******************//
 
 Lift lift;
-//MANUAL liftup
+
+void liftToggle(){
+  lift.liftToggle(angler);
+}
+
+//Preset liftup
 void liftUp(){
   if(liftUpButton.changedToPressed()){
     lift.moveToUp();
@@ -110,7 +117,7 @@ void liftUp(){
   }
 }
 
-//MANUAL liftdown
+//Preset liftdown
 void liftDown(){
   if(liftDownButton.changedToPressed()){
     lift.moveToDown();
@@ -130,9 +137,6 @@ void liftManual(){
     lift.move(0);
   }
 
-  /*liftManualUp();
-  liftManualDown();
-  liftManualStop();*/
 }
 
 //liftManualUp
@@ -165,17 +169,5 @@ void liftManualStop(){
   if(!liftDownButton.isPressed() && !liftUpButton.isPressed()) {
     liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
     liftMotor.moveVelocity(-100);
-  }
-}
-
-void toggleLiftHeight(){
-  if(liftToggleButton.changedToPressed()){
-    if(liftPositionBool == false){
-      liftMotor.moveAbsolute(900,100);
-      liftPositionBool = !liftPositionBool;
-    } else {
-      liftMotor.moveAbsolute(-900,100);
-      liftPositionBool = !liftPositionBool;
-    }
   }
 }

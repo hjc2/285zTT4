@@ -10,7 +10,7 @@ void flat();
 
 //Controller Buttons
 extern ControllerButton intakeButton;
-extern ControllerButton trayButton;
+extern ControllerButton trayUpButton;
 extern ControllerButton trayDownButton;
 extern ControllerButton outtakeButton;
 extern ControllerButton liftUpButton;

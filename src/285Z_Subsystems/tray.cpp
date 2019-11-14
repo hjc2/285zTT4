@@ -14,7 +14,6 @@ auto anglerController = AsyncPosControllerBuilder().withMotor(anglerPort)
                         .withGains({traykP, traykI, traykD})
                         .build();
 
-
 void Tray::moveToState(int pos){
   switch(pos){
     case DOWN:
@@ -51,13 +50,18 @@ void Tray::moveToLift(){
   if(anglerController->isDisabled()){
     anglerController->flipDisable();
   }
-  anglerController->setTarget(1100);
+  anglerController->setTarget(1300);
 }
 
 void Tray::stopPID(){
   if(!(anglerController->isDisabled())){
     anglerController->flipDisable();
   }
+}
+
+void Tray::moveAbsolute(double position, int velocity){
+  anglerMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
+  anglerMotor.moveAbsolute(position, velocity);
 }
 
 void Tray::moveVel(int velocity){
