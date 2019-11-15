@@ -12,29 +12,32 @@ void redFiveCube(std::shared_ptr<okapi::OdomChassisController> chassis){
 
   //       RED AUTON       //
   //Intake On
-  intake.moveVelocity(200);
+  intake.moveVelocity(270);
   //Move to blocks
   chassis->setState({0.5_ft,9.9_ft,0_deg});
-  chassis->driveToPoint({4.5_ft, 9.9_ft});
+  chassis->driveToPoint({5.05_ft, 9.9_ft});
   pros::Task::delay(500);
+//  chassis->turnToAngle(135_deg);
+  intake.setBrakeMode(AbstractMotor::brakeMode::hold);
+  intake.moveVelocity(0);
 
+  chassis->driveToPoint({3.0_ft, 9.9_ft}, true);
+  chassis->waitUntilSettled();
+	chassis->turnToAngle(160_deg);
+  chassis->waitUntilSettled();
+
+
+  chassis->setState({0.5_ft,9.9_ft,0_deg});
+  intake.moveRelative(-725, 30);
+  chassis->driveToPoint({2_ft, 9.9_ft});
 
   angler.moveToUp(false);
-  chassis->driveToPoint({3.0_ft, 9.9_ft}, true);
-	chassis->driveToPoint({1.5_ft, 9.0_ft});
-  //second param means backward
-
-  //back up
-
-  //need to work out deceleration program
-  //sqiggle backwards to line up with second row
-  pros::Task::delay(200);
-
   //false means its auton
   //intake.moveRelative(-700, 50);
 
-  pros::Task::delay(2000);
-
+  pros::Task::delay(2300);
+  intake.moveRelative(-300, 110);
+  pros::Task::delay(200);
   chassis->moveDistance(-1.5_ft);
   angler.moveToDown(false);
 }

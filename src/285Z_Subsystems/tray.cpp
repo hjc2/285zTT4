@@ -8,7 +8,7 @@ const int LIFTUP = 2;
 
 int trayHeightPos = 0;
 
-double traykP = 0.0005;
+double traykP = 0.0004;
 double traykI = 0.00001;
 double traykD = 0.00001;
 
@@ -40,7 +40,7 @@ void Tray::moveToUp(bool op){
   if(anglerController->isDisabled()){
     anglerController->flipDisable();
   }
-  anglerController->setTarget(3800);
+  anglerController->setTarget(3900);
   if(!op){
     anglerController->waitUntilSettled();
   }
