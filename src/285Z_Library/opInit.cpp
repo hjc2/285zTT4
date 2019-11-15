@@ -28,7 +28,7 @@ okapi::ControllerButton liftDownButton = okapi::ControllerDigital::L2;
  int intakeLeftPort = -2;
 
  //lift motor port
- int liftPort = 15;
+ int liftPort = 3;
 
 //false is down
 //true is up
