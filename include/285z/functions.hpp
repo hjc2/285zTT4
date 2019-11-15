@@ -35,5 +35,8 @@ void liftPositionToggleFunction();
 void redFiveCube(std::shared_ptr<okapi::OdomChassisController>);
 void blueFiveCube(std::shared_ptr<okapi::OdomChassisController>);
 
+void redLongGoal(std::shared_ptr<okapi::OdomChassisController>);
+void blueLongGoal(std::shared_ptr<okapi::OdomChassisController>);
+
 void redNineCube(std::shared_ptr<okapi::OdomChassisController>);
 void blueNineCube(std::shared_ptr<okapi::OdomChassisController>);
