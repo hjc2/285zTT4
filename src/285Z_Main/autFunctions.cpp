@@ -46,27 +46,34 @@ void redFiveCube(std::shared_ptr<okapi::OdomChassisController> chassis){
 void blueFiveCube(std::shared_ptr<okapi::OdomChassisController> chassis){
   Tray angler;
 
-  //       BLUE AUTON       //
-  intake.moveVelocity(200);
+  //       RED AUTON       //
+  //Intake On
+  intake.moveVelocity(270);
   //Move to blocks
-  chassis->setState({11.5_ft,9.9_ft,0_deg});
-  chassis->driveToPoint({7.5_ft, 9.9_ft});
-
+  chassis->setState({0.5_ft,9.9_ft,0_deg});
+  chassis->driveToPoint({5.05_ft, 9.9_ft});
   pros::Task::delay(500);
 
-  chassis->driveToPoint({8.25_ft, 9.75_ft}, true);
-	chassis->turnToPoint({10_ft, 8.75_ft});
-  pros::Task::delay(300);
+  intake.setBrakeMode(AbstractMotor::brakeMode::hold);
+  intake.moveVelocity(0);
+
+  chassis->driveToPoint({1.5_ft, 9.9_ft}, true);
+  chassis->waitUntilSettled();
+	chassis->turnToPoint({0.25_ft, 8.5_ft});
+  chassis->waitUntilSettled();
+
 
   chassis->setState({0.5_ft,9.9_ft,0_deg});
-  chassis->driveToPoint({3.5_ft, 9.9_ft});
-  intake.moveVelocity(3);
-  pros::Task::delay(200);
+  intake.moveRelative(-725, 30);
+  chassis->driveToPoint({1_ft, 9.9_ft});
 
-  intake.moveRelative(-700, 50);
   angler.moveToUp(false);
-  pros::Task::delay(2000);
+  //false means its auton
+  //intake.moveRelative(-700, 50);
 
+  pros::Task::delay(2300);
+  intake.moveRelative(-300, 110);
+  pros::Task::delay(200);
   chassis->moveDistance(-1.5_ft);
   angler.moveToDown(false);
 }

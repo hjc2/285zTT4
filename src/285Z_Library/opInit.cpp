@@ -12,6 +12,7 @@ okapi::ControllerButton stopPIDButton = okapi::ControllerDigital:: Y;
 okapi::ControllerButton liftUpButton = okapi::ControllerDigital::L1;
 okapi::ControllerButton liftDownButton = okapi::ControllerDigital::L2;
 
+// Broken Ports: 5, 14
  //motor port definitions
 
  //angler motor port
@@ -21,7 +22,7 @@ okapi::ControllerButton liftDownButton = okapi::ControllerDigital::L2;
  int frontLeftPort = 11;
  int backLeftPort = 12;
  int frontRightPort = -13;
- int backRightPort = -14;
+ int backRightPort = -5;
 
  //intake motor ports
  int intakeRightPort = 18;
