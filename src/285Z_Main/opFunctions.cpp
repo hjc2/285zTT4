@@ -38,7 +38,7 @@ void toggleIntake(){
   }
   else if(intakeToggleBool)
   {
-    intake.setBrakeMode(AbstractMotor::brakeMode::coast);
+    intake.setBrakeMode(AbstractMotor::brakeMode::hold);
     intake.moveVelocity   (600);
   }
   else
