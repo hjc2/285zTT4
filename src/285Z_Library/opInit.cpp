@@ -3,6 +3,9 @@
 okapi::Controller controller;
 
 //button definitions
+//button definitions for later
+//okapi::ControllerButton myButton = okapi::ControllerDigital::A;
+
 okapi::ControllerButton intakeButton = okapi::ControllerDigital:: R2;
 okapi::ControllerButton outtakeButton = okapi::ControllerDigital::R1;
 
@@ -15,6 +18,7 @@ okapi::ControllerButton liftDownButton = okapi::ControllerDigital::L2;
 // Broken Ports: 5, 14
  //motor port definitions
 
+ //int myMotorPort = 21;
  //angler motor port
  int anglerPort = 20;
 
@@ -35,8 +39,10 @@ okapi::ControllerButton liftDownButton = okapi::ControllerDigital::L2;
 //true is up
 
 
- //motors for the drivetrain
- //could be incorrect
+//declaring all the motors using the motor class
+//made each port have a integer for easier reading
+
+  //Motor myMotor(myMotorPort);
  Motor frontLeftMotor(frontLeftPort);
  Motor backLeftMotor(backLeftPort);
  Motor frontRightMotor(frontRightPort);
@@ -57,12 +63,13 @@ okapi::ControllerButton liftDownButton = okapi::ControllerDigital::L2;
 
 okapi::ChassisScales scales
 {
- {4.125_in, 9.75_in},
+  //4.125 is the wheelsize and 9.75 is the wheelbase
+ {4.125_in, 9.75_in}, //dimensions of the chassis
  imev5GreenTPR
 };
 
 auto drive = okapi::ChassisControllerBuilder()
-                  .withMotors({ 11, 12 }, { -13, -14 })
+                  .withMotors({frontLeftPort, backLeftPort }, {frontRightPort, backRightPort}) //drive motors
                   .withGearset(okapi::AbstractMotor::gearset::green)
                   .withDimensions(scales)
                   .withMaxVelocity(200)
