@@ -78,12 +78,18 @@ void opcontrol() {
           controller.getAnalog(okapi::ControllerAnalog::rightY));
 
     //  INTAKE TOGGLE CODE  //
+
+    //toggles the intake 600/0
     toggleIntake();
+    //push to intake -150/0
     intakeRev();
 
-    //  ANGLER TOGGLE CODE  //
+  /* ANGLER TOGGLE CODE
+  toggles the anglers position using the PID */
     anglerToggle();
+    //stops the pid from running
     stopPID();
+
 
     //  LIFT  //
     liftToggle();
