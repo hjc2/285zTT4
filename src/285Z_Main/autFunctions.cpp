@@ -5,6 +5,14 @@
 
 
 //TODO: Look up turntoPoint function
+void selectAuton(std::shared_ptr<okapi::OdomChassisController> chassis){
+  if(adi_analog_read(potentiometerPort) > 1023 && adi_analog_read(potentiometerPort) < 2047){
+    redFiveCube(chassis);
+  }
+}
+
+
+
 
 //*****************************   RED: FIVE CUBES    **********************//
 void redFiveCube(std::shared_ptr<okapi::OdomChassisController> chassis){

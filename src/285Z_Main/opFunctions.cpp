@@ -11,10 +11,10 @@ bool intakeToggleHold = true;
 bool liftPositionBool = true;
 
 
+
 //***********************  INITIALIZE SUBSYSTEMS  ***************************//
 Tray angler;
 Lift lift;
-
 //           DRIVE         //
 /*void tankDrive(){
   model->tank(controller.getAnalog(okapi::ControllerAnalog::rightY),
@@ -34,6 +34,9 @@ void arcadeDrive(){
 //checks if the intake button is pressed
 //if pressed, it will toggle the state of the intake
 //using the intake intakeToggleBool between 600RPM and 0RPM
+
+
+
 void toggleIntake(){
   if (intakeButton.changedToPressed())
   {
