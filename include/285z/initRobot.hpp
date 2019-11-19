@@ -19,6 +19,9 @@ extern ControllerButton liftDownButton;
 extern ControllerButton liftToggleButton;
 extern ControllerButton anglerUpButton;
 extern ControllerButton anglerDownButton;
+
+//  SENSORS  //
+extern Potentiometer autonPot;
 //  MOTORS  //
 
 //ports

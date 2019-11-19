@@ -6,8 +6,18 @@
 
 //TODO: Look up turntoPoint function
 void selectAuton(std::shared_ptr<okapi::OdomChassisController> chassis){
-  if(adi_analog_read(potentiometerPort) > 1023 && adi_analog_read(potentiometerPort) < 2047){
+  double potVal = autonPot.get();
+  if(potVal >= 0 && potVal < 1023){
     redFiveCube(chassis);
+  }
+  if(potVal >= 1023 && potVal < 2047){
+    blueFiveCube(chassis);
+  }
+  if(potVal >= 2047 && potVal < 3072){
+    redNineCube(chassis);
+  }
+  if(potVal >= 3072 && potVal < 4096){
+    blueNineCube(chassis);
   }
 }
 

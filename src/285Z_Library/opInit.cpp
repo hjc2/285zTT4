@@ -36,13 +36,15 @@ okapi::ControllerButton liftDownButton = okapi::ControllerDigital::L2;
  int liftPort = 3;
 
 //sensor ports
- int potentiometerPort = 17;
+
+ char potentiometerPort = 'A';
+ Potentiometer autonPot(potentiometerPort);
 
 //false is down
 //true is up
 
 //sensors
-pros::ADIPotentiometer selectorPort(potentiometerPort);
+//pros::ADIPotentiometer selectorPort(potentiometerPort);
 
 //declaring all the motors using the motor class
 //made each port have a integer for easier reading
