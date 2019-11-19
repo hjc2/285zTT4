@@ -44,10 +44,10 @@ void competition_initialize() {
 void autonomous() {
 
   std::shared_ptr<okapi::OdomChassisController> chassis = okapi::ChassisControllerBuilder()
-                    .withMotors({ 11, 12 }, { -13, -10 })
-                    .withGearset(okapi::AbstractMotor::gearset::green)
+                    .withMotors({ 11, 12 }, { -13, -10 }) //the motors it uses
+                    .withGearset(okapi::AbstractMotor::gearset::green) //we are using the green gearset
                     .withDimensions(scales)
-                    .withMaxVelocity(120)
+                    .withMaxVelocity(120) //is not allowed to go faster than 120
                     .withGains(
                  {0.005, 0, 0.001}, // Distance controller gains 0.001, 0.001, 0.00009
                  {0.001, 0.001, 0.00001}, // Turn controller gains
@@ -78,12 +78,18 @@ void opcontrol() {
           controller.getAnalog(okapi::ControllerAnalog::rightY));
 
     //  INTAKE TOGGLE CODE  //
+
+    //toggles the intake 600/0
     toggleIntake();
+    //push to intake -150/0
     intakeRev();
 
-    //  ANGLER TOGGLE CODE  //
+  /* ANGLER TOGGLE CODE
+  toggles the anglers position using the PID */
     anglerToggle();
+    //stops the pid from running
     stopPID();
+
 
     //  LIFT  //
     liftToggle();
