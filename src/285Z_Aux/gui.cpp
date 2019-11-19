@@ -1,11 +1,11 @@
 #include "../include/285z/initRobot.hpp"
 #include "../include/285Z_Aux/gui.hpp"
 
-void lv_aut_display(void)
+void lv_aut_display(char *text)
 {
-    lv_obj_t * autLabel = lv_label_create(lv_scr_act(), NULL);     
+    lv_obj_t * autLabel = lv_label_create(lv_scr_act(), NULL);
     /*Modify the Label's text*/
-    lv_label_set_text(autLabel, "BLUE AUTON");
+    lv_label_set_text(autLabel, text);
 
     /* Align the Label to the center
      * NULL means align on parent (which is the screen now)
