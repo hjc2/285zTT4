@@ -52,7 +52,7 @@ void Lift::liftToggle(Tray angler){
       heightNow--;
       liftController->setTarget(heights[heightNow]);
       if(heightNow == 0){
-        angler.moveAbsolute(0, -100);
+        angler.moveAbsolute(5, -100);
       }
     }
 

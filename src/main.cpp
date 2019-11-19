@@ -26,7 +26,7 @@ void disabled() {}
  * starts.
  */
 void competition_initialize() {
-  initScreen();
+  lv_aut_display();
 }
 
 /**
@@ -75,7 +75,7 @@ void opcontrol() {
 
     //GUI
     lv_aut_display();
-    
+
     // TANK DRIVE CODE //
     model->tank(controller.getAnalog(okapi::ControllerAnalog::leftY),
           controller.getAnalog(okapi::ControllerAnalog::rightY));

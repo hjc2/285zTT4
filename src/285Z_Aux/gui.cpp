@@ -3,8 +3,7 @@
 
 void lv_aut_display(void)
 {
-    lv_obj_t * autLabel;     /*Get the current screen*/
-
+    lv_obj_t * autLabel = lv_label_create(lv_scr_act(), NULL);     
     /*Modify the Label's text*/
     lv_label_set_text(autLabel, "BLUE AUTON");
 

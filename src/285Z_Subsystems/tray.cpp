@@ -74,6 +74,7 @@ void Tray::stopPID(){
   if(!(anglerController->isDisabled())){
     anglerController->flipDisable();
   }
+  anglerMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
 }
 
 void Tray::moveAbsolute(double position, int velocity){
