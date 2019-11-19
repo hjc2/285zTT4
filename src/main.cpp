@@ -49,7 +49,7 @@ void autonomous() {
                     .withDimensions(scales)
                     .withMaxVelocity(120)
                     .withGains(
-                 {0.001, 0.001, 0.00009}, // Distance controller gains
+                 {0.005, 0, 0.001}, // Distance controller gains 0.001, 0.001, 0.00009
                  {0.001, 0.001, 0.00001}, // Turn controller gains
                  {0.001, 0.001, 0.0001}  // Angle controller gains (helps drive straight)
              )
@@ -57,7 +57,7 @@ void autonomous() {
                     .buildOdometry();
   std::shared_ptr<okapi::ChassisModel> model = std::dynamic_pointer_cast<okapi::ChassisModel>(chassis->getModel());
 
-  blueLongGoal(chassis);
+  test(chassis);
 
 }
 
