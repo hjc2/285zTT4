@@ -171,3 +171,8 @@ void redLongGoal(std::shared_ptr<okapi::OdomChassisController> chassis){
 void blueNineCube(std::shared_ptr<okapi::OdomChassisController> chassis){
 
 }
+
+void test(std::shared_ptr<okapi::OdomChassisController> chassis) {
+  chassis->setState({0.5_ft,9.9_ft,0_deg});
+  chassis->driveToPoint({2.5_ft, 9.9_ft});
+}
