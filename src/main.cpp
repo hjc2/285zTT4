@@ -73,9 +73,13 @@ void opcontrol() {
 
   while(true){
 
+    //GUI
+    lv_aut_display();
+    
     // TANK DRIVE CODE //
     model->tank(controller.getAnalog(okapi::ControllerAnalog::leftY),
           controller.getAnalog(okapi::ControllerAnalog::rightY));
+
 
     //  INTAKE TOGGLE CODE  //
 
