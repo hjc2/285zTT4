@@ -5,19 +5,19 @@
 #include "../include/285Z_Aux/gui.hpp"
 
 
-//TODO: Look up turntoPoint function
 void selectAuton(std::shared_ptr<okapi::OdomChassisController> chassis){
-  double potVal = autonPot.get();
-  if(potVal >= 0 && potVal < 1023){
+  pros::delay(300);
+
+  if(autonPot.get() >= 0 && autonPot.get() < 1023){
     redFiveCube(chassis);
   }
-  if(potVal >= 1023 && potVal < 2047){
+  if(autonPot.get() >= 1023 && autonPot.get() < 2047){
     blueFiveCube(chassis);
   }
-  if(potVal >= 2047 && potVal < 3072){
+  if(autonPot.get() >= 2047 && autonPot.get() < 3072){
     redLongGoal(chassis);
   }
-  if(potVal >= 3072 && potVal < 4096){
+  if(autonPot.get() >= 3072 && autonPot.get() < 4096){
     blueLongGoal(chassis);
   }
 }
@@ -97,7 +97,7 @@ void blueFiveCube(std::shared_ptr<okapi::OdomChassisController> chassis){
 
   chassis->setState({0.5_ft,9.9_ft,0_deg});
   intake.moveRelative(-725, 30);
-  chassis->driveToPoint({1_ft, 9.9_ft});
+  chassis->driveToPoint({1.25_ft, 9.9_ft});
 
   angler.moveToUp(false);
   //false means its auton

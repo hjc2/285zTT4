@@ -49,7 +49,7 @@ void autonomous() {
                     .withDimensions(scales)
                     .withMaxVelocity(120) //is not allowed to go faster than 120
                     .withGains(
-                 {0.005, 0, 0.001}, // Distance controller gains 0.001, 0.001, 0.00009
+                 {0.001, 0.001, 0.00009}, // Distance controller gains 0.005, 0, 0.001
                  {0.001, 0.001, 0.00001}, // Turn controller gains
                  {0.001, 0.001, 0.0001}  // Angle controller gains (helps drive straight)
              )
