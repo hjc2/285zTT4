@@ -2,6 +2,7 @@
 #include "../include/285Z_Subsystems/tray.hpp"
 #include "../include/285Z_Subsystems/lift.hpp"
 #include "../include/285z/functions.hpp"
+#include "../include/285Z_Aux/gui.hpp"
 
 
 //TODO: Look up turntoPoint function
@@ -18,6 +19,21 @@ void selectAuton(std::shared_ptr<okapi::OdomChassisController> chassis){
   }
   if(potVal >= 3072 && potVal < 4096){
     blueNineCube(chassis);
+  }
+}
+  void displayAuton(){
+  double potVal = autonPot.get();
+  if(potVal >= 0 && potVal < 1023){
+    lv_aut_display("RED SHORT GOAL");
+  }
+  if(potVal >= 1023 && potVal < 2047){
+    lv_aut_display("BLUE SHORT GOAL");
+  }
+  if(potVal >= 2047 && potVal < 3072){
+    lv_aut_display("RED LONG GOAL");
+  }
+  if(potVal >= 3072 && potVal < 4096){
+    lv_aut_display("RED LONG GOAL");
   }
 }
 

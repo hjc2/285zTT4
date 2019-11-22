@@ -5,14 +5,25 @@ lv_obj_t * autLabel = lv_label_create(lv_scr_act(), NULL);
 
 void lv_aut_display(char *text)
 {
+<<<<<<< HEAD
 
+=======
+    //STYLE
+    /*Create a style and use the new font*/
+    static lv_style_t style1;
+    lv_style_copy(&style1, &lv_style_plain);
+    style1.text.color = LV_COLOR_MAKE(255, 0, 0);/*Set the base font whcih is concatenated with the others*/
+
+    lv_obj_t * autLabel = lv_label_create(lv_scr_act(), NULL);
+>>>>>>> 47a5390a3f5b4d514eebb1ce9585283061f4263d
     /*Modify the Label's text*/
+    lv_label_set_style(autLabel, &style1);
     lv_label_set_text(autLabel, text);
-
     /* Align the Label to the center
      * NULL means align on parent (which is the screen now)
      * 0, 0 at the end means an x, y offset after alignment*/
     lv_obj_align(autLabel, NULL, LV_ALIGN_CENTER, 0, 0);
+
 }
 
 //-----------------------------------------------
@@ -31,7 +42,9 @@ static lv_res_t btn_click_action(lv_obj_t * btn)
     {
         char buffer[100];
 		sprintf(buffer, "button was clicked %i milliseconds from start", pros::millis());
+
 		lv_label_set_text(myLabel, buffer);
+
     }
 
     return LV_RES_OK;
