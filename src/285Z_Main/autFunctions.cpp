@@ -38,9 +38,6 @@ void selectAuton(std::shared_ptr<okapi::OdomChassisController> chassis){
   }
 }
 
-
-
-
 //*****************************   RED: FIVE CUBES    **********************//
 void redFiveCube(std::shared_ptr<okapi::OdomChassisController> chassis){
   Tray angler;
