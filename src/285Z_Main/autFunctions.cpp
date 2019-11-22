@@ -52,7 +52,7 @@ void redFiveCube(std::shared_ptr<okapi::OdomChassisController> chassis){
   intake.moveVelocity(270);
   //Move to blocks
   chassis->setState({0.5_ft,9.9_ft,0_deg});
-  chassis->driveToPoint({5.05_ft, 9.9_ft});
+  chassis->driveToPoint({4.9_ft, 9.9_ft});
   pros::Task::delay(500);
 //  chassis->turnToAngle(135_deg);
   intake.setBrakeMode(AbstractMotor::brakeMode::hold);
@@ -88,15 +88,15 @@ void blueFiveCube(std::shared_ptr<okapi::OdomChassisController> chassis){
   intake.moveVelocity(270);
   //Move to blocks
   chassis->setState({0.5_ft,9.9_ft,0_deg});
-  chassis->driveToPoint({5.05_ft, 9.9_ft});
+  chassis->driveToPoint({4.9_ft, 9.9_ft});
   pros::Task::delay(500);
 
   intake.setBrakeMode(AbstractMotor::brakeMode::hold);
   intake.moveVelocity(0);
 
-  chassis->driveToPoint({1.6_ft, 9.9_ft}, true);
+  chassis->driveToPoint({1.75_ft, 9.9_ft}, true);
   chassis->waitUntilSettled();
-	chassis->turnToPoint({0.25_ft, 8.5_ft});
+	chassis->turnToPoint({0.5_ft, 8.5_ft});
   chassis->waitUntilSettled();
 
 
