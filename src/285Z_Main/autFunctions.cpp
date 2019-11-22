@@ -94,7 +94,7 @@ void blueFiveCube(std::shared_ptr<okapi::OdomChassisController> chassis){
   intake.setBrakeMode(AbstractMotor::brakeMode::hold);
   intake.moveVelocity(0);
 
-  chassis->driveToPoint({1.5_ft, 9.9_ft}, true);
+  chassis->driveToPoint({1.6_ft, 9.9_ft}, true);
   chassis->waitUntilSettled();
 	chassis->turnToPoint({0.25_ft, 8.5_ft});
   chassis->waitUntilSettled();
