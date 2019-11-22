@@ -127,6 +127,7 @@ void liftToggle(){
 
 }
 
+/*
 //Preset liftup
 void liftUp(){
   if(liftUpButton.changedToPressed()){
@@ -142,7 +143,7 @@ void liftDown(){
     angler.moveToDown(true);
   }
 }
-
+*/
 
 
 //MANUAL DUAL CONTROL

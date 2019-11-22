@@ -60,8 +60,10 @@ int Lift::getHeightPos(){
   return heightNow;
 }
 
-void Lift::moveToUp(){
-  liftController->setTarget(2300);
+void Lift::deploy(){
+  liftMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
+  liftMotor.moveAbsolute(400, 200);
+  liftMotor.moveAbsolute(50, -200);
 }
 
 void Lift::moveToDown(){
