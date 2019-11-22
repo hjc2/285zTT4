@@ -26,7 +26,7 @@ void disabled() {}
  * starts.
  */
 void competition_initialize() {
-  lv_aut_display();
+  initScreen();
 }
 
 /**
@@ -57,7 +57,7 @@ void autonomous() {
                     .buildOdometry();
   std::shared_ptr<okapi::ChassisModel> model = std::dynamic_pointer_cast<okapi::ChassisModel>(chassis->getModel());
 
-  test(chassis);
+  selectAuton(chassis);
 
 }
 
@@ -74,7 +74,7 @@ void opcontrol() {
   while(true){
 
     //GUI
-    lv_aut_display();
+    initScreen();
 
     // TANK DRIVE CODE //
     model->tank(controller.getAnalog(okapi::ControllerAnalog::leftY),

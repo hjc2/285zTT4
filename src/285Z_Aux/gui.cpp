@@ -1,9 +1,11 @@
 #include "../include/285z/initRobot.hpp"
 #include "../include/285Z_Aux/gui.hpp"
 
+lv_obj_t * autLabel = lv_label_create(lv_scr_act(), NULL);
+
 void lv_aut_display(char *text)
 {
-    lv_obj_t * autLabel = lv_label_create(lv_scr_act(), NULL);
+
     /*Modify the Label's text*/
     lv_label_set_text(autLabel, text);
 
@@ -12,9 +14,6 @@ void lv_aut_display(char *text)
      * 0, 0 at the end means an x, y offset after alignment*/
     lv_obj_align(autLabel, NULL, LV_ALIGN_CENTER, 0, 0);
 }
-
-
-
 
 //-----------------------------------------------
 lv_obj_t * myButton;
@@ -101,7 +100,24 @@ void btnSetToggled(lv_obj_t * btn, bool toggled)
     if(toggled != (lv_btn_get_state(btn) >= 2)) lv_btn_toggle(btn);
 }
 
+
 void initScreen(){
+  double potVal = autonPot.get();
+  if(potVal >= 0 && potVal < 1023){
+    lv_aut_display("RED FIVE CUBE");
+  }
+  if(potVal >= 1023 && potVal < 2047){
+    lv_aut_display("BLUE FIVE CUBE");
+  }
+  if(potVal >= 2047 && potVal < 3072){
+    lv_aut_display("RED LONG GOAL");
+  }
+  if(potVal >= 3072 && potVal < 4096){
+    lv_aut_display("BLUE LONG GOAL");
+  }
+}
+
+void testScreen (){
   lv_style_copy(&myButtonStyleREL, &lv_style_plain);
     myButtonStyleREL.body.main_color = LV_COLOR_MAKE(150, 0, 0);
     myButtonStyleREL.body.grad_color = LV_COLOR_MAKE(0, 0, 150);

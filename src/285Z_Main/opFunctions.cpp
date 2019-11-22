@@ -116,8 +116,8 @@ void stopPID(){
 
 
 void liftToggle(){
-  anglerDisabled = true;
   if(angler.getHeightPos() == 0){
+    anglerDisabled = true;
     lift.liftToggle(angler);
   }
 

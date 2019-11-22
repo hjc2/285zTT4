@@ -24,3 +24,5 @@ void setBtnStyle(lv_style_t * btnStyle, lv_obj_t * btn);
 void btnSetToggled(lv_obj_t * btn, bool toggled);
 
 void initScreen();
+
+void testScreen();

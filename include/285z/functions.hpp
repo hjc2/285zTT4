@@ -32,6 +32,8 @@ void anglerToggle();
 void liftPositionToggleFunction();
 //   **AUTON FUNCTIONS**    //
 
+void selectAuton(std::shared_ptr<okapi::OdomChassisController>);
+
 void redFiveCube(std::shared_ptr<okapi::OdomChassisController>);
 void blueFiveCube(std::shared_ptr<okapi::OdomChassisController>);
 
