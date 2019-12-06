@@ -45,35 +45,33 @@ void selectAuton(std::shared_ptr<okapi::OdomChassisController> chassis){
 //*****************************   RED: FIVE CUBES    **********************//
 void redFiveCube(std::shared_ptr<okapi::OdomChassisController> chassis){
   Tray angler;
-
-
   //       RED AUTON       //
   //Intake On
   intake.moveVelocity(270);
   //Move to blocks
   chassis->setState({0.5_ft,9.9_ft,0_deg});
-  chassis->driveToPoint({4.9_ft, 9.9_ft});
+  chassis->driveToPoint({4.75_ft, 9.9_ft});
   pros::Task::delay(500);
 //  chassis->turnToAngle(135_deg);
   intake.setBrakeMode(AbstractMotor::brakeMode::hold);
-  intake.moveVelocity(0);
 
   chassis->driveToPoint({3.0_ft, 9.9_ft}, true);
+  intake.moveVelocity(0);
   // chassis->waitUntilSettled();
 	chassis->turnToAngle(160_deg);
   // chassis->waitUntilSettled();
 
 
   chassis->setState({0.5_ft,9.9_ft,0_deg});
-  intake.moveRelative(-725, 30);
-  chassis->driveToPoint({2_ft, 9.9_ft});
+  intake.moveRelative(-650, 30);
+  chassis->driveToPoint({1.9_ft, 9.9_ft});
 
   angler.moveToUp(false);
   //false means its auton
   //intake.moveRelative(-700, 50);
 
-  pros::Task::delay(2300);
-  intake.moveRelative(-300, 110);
+  pros::Task::delay(2000);
+  intake.moveRelative(-300, 95);
   pros::Task::delay(200);
   chassis->moveDistance(-1.5_ft);
   angler.moveToDown(false);
@@ -92,23 +90,24 @@ void blueFiveCube(std::shared_ptr<okapi::OdomChassisController> chassis){
   pros::Task::delay(500);
 
   intake.setBrakeMode(AbstractMotor::brakeMode::hold);
-  intake.moveVelocity(0);
 
   chassis->driveToPoint({1.75_ft, 9.9_ft}, true);
+  intake.moveVelocity(0);
+
   chassis->waitUntilSettled();
 	chassis->turnToPoint({0.5_ft, 8.5_ft});
   chassis->waitUntilSettled();
 
-
   chassis->setState({0.5_ft,9.9_ft,0_deg});
-  intake.moveRelative(-725, 30);
-  chassis->driveToPoint({1.25_ft, 9.9_ft});
+  intake.moveRelative(-650, 30);
+  chassis->driveToPoint({1.10_ft, 9.9_ft});
 
   angler.moveToUp(false);
+  //chassis->moveDistance(0.25_ft);
   //false means its auton
   //intake.moveRelative(-700, 50);
 
-  pros::Task::delay(2300);
+  pros::Task::delay(2200);
   intake.moveRelative(-300, 110);
   pros::Task::delay(200);
   chassis->moveDistance(-1.5_ft);
@@ -175,7 +174,7 @@ void redLongGoal(std::shared_ptr<okapi::OdomChassisController> chassis){
 
 
   chassis->setState({0.5_ft,9.9_ft,0_deg});
-  chassis->driveToPoint({2.0_ft, 9.9_ft});
+  chassis->driveToPoint({2.25_ft, 9.9_ft});
   intake.moveVelocity(0);
   chassis->turnToAngle(-45_deg);
   intake.moveRelative(-725, 30);
@@ -211,7 +210,7 @@ void blueLongGoal(std::shared_ptr<okapi::OdomChassisController> chassis){
 
 
   chassis->setState({0.5_ft,9.9_ft,0_deg});
-  chassis->driveToPoint({2.0_ft, 9.9_ft});
+  chassis->driveToPoint({2.25_ft, 9.9_ft});
   intake.moveVelocity(0);
   chassis->turnToAngle(45_deg);
   intake.moveRelative(-725, 30);
@@ -228,6 +227,67 @@ void blueLongGoal(std::shared_ptr<okapi::OdomChassisController> chassis){
   angler.moveToDown(false);
 }
 
+void skills(std::shared_ptr<okapi::OdomChassisController> chassis){
+  Tray angler;
+
+  //       RED AUTON       //
+  //Intake On
+  intake.moveVelocity(270);
+  //Move to blocks
+  chassis->setState({0.5_ft,9.9_ft,0_deg});
+  chassis->driveToPoint({9.5_ft, 9.9_ft});
+//  chassis->turnToAngle(135_deg);
+  intake.setBrakeMode(AbstractMotor::brakeMode::hold);
+  intake.moveVelocity(0);
+	chassis->turnToAngle(55_deg);
+
+  intake.moveRelative(-725, 30);
+  chassis->setState({0.5_ft,9.9_ft,0_deg});
+  chassis->driveToPoint({2.0_ft, 9.9_ft});
+
+
+  angler.moveToUp(false);
+  //false means its auton
+  //intake.moveRelative(-700, 50);
+
+  pros::Task::delay(1500);
+  intake.moveRelative(-300, 110);
+  pros::Task::delay(200);
+  chassis->moveDistance(-1.5_ft);
+  angler.moveToDown(false);
+}
+
+void redFiveCubeNew(std::shared_ptr<okapi::OdomChassisController> chassis){
+  Tray angler;
+  //       RED AUTON       //
+  //Intake On
+  intake.moveVelocity(270);
+  //Move to blocks
+  chassis->setState({0.5_ft,9.9_ft,0_deg});
+  chassis->driveToPoint({4.5_ft, 9.9_ft});
+  pros::Task::delay(500);
+//  chassis->turnToAngle(135_deg);
+  intake.setBrakeMode(AbstractMotor::brakeMode::hold);
+
+  intake.moveVelocity(0);
+  // chassis->waitUntilSettled();
+	chassis->turnToAngle(160_deg);
+  // chassis->waitUntilSettled();
+
+  chassis->setState({0.5_ft,9.9_ft,0_deg});
+  intake.moveRelative(-680, 30);
+  chassis->driveToPoint({3.8_ft, 9.9_ft});
+
+  angler.moveToUp(false);
+  //false means its auton
+  //intake.moveRelative(-700, 50);
+
+  pros::Task::delay(1500);
+  intake.moveRelative(-300, 110);
+  pros::Task::delay(200);
+
+  angler.moveToDown(false);
+}
 void test(std::shared_ptr<okapi::OdomChassisController> chassis) {
   chassis->setState({0.5_ft,9.9_ft,0_deg});
   chassis->driveToPoint({2.5_ft, 9.9_ft});
