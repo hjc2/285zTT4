@@ -106,7 +106,7 @@ void initScreen(){
     lv_aut_display("BLUE FIVE CUBE");
   }
   if(potVal >= 2047 && potVal < 3072){
-    lv_aut_display("RED LONG GOAL");
+    lv_aut_display("RED LONG GOAL \n hello");
   }
   if(potVal >= 3072 && potVal < 4096){
     lv_aut_display("BLUE LONG GOAL");
@@ -118,13 +118,16 @@ void testScreen (){
     myButtonStyleREL.body.main_color = LV_COLOR_MAKE(150, 0, 0);
     myButtonStyleREL.body.grad_color = LV_COLOR_MAKE(0, 0, 150);
     myButtonStyleREL.body.radius = 0;
-    myButtonStyleREL.text.color = LV_COLOR_MAKE(255, 255, 255);
+    myButtonStyleREL.text.color = LV_COLOR_MAKE(255, 255, 255); //text color white
 
     lv_style_copy(&myButtonStylePR, &lv_style_plain);
     myButtonStylePR.body.main_color = LV_COLOR_MAKE(255, 0, 0);
     myButtonStylePR.body.grad_color = LV_COLOR_MAKE(0, 0, 255);
-    myButtonStylePR.body.radius = 0;
-    myButtonStylePR.text.color = LV_COLOR_MAKE(255, 255, 255);
+    myButtonStylePR.body.radius = 0; //radius is bad ok
+    myButtonStylePR.text.color = LV_COLOR_MAKE(255, 255, 255); //sets text color to white
+
+    //jared made me commennt this at the comp and it was so sad
+    //-hugh 12//07/2019
 
     myButton = lv_btn_create(lv_scr_act(), NULL); //create button, lv_scr_act() is deafult screen object
     lv_obj_set_free_num(myButton, 0); //set button is to 0
