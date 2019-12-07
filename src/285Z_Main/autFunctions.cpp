@@ -1,3 +1,4 @@
+#pragma once
 #include "../include/285z/initrobot.hpp"
 #include "../include/285Z_Subsystems/tray.hpp"
 #include "../include/285Z_Subsystems/lift.hpp"

@@ -26,8 +26,19 @@ extern Potentiometer autonPot;
 
 //ports
 extern int anglerPort;
+
 extern int liftPort;
 
+extern int frontLeftPort;
+extern int backLeftPort;
+extern int frontRightPort;
+extern int backRightPort;
+
+//intake motor ports
+extern int intakeRightPort;
+extern int intakeLeftPort;
+
+//lift motor port
 //Drivetrain motors
 extern Motor frontLeftMotor;
 extern Motor backLeftMotor;
