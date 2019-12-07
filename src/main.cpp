@@ -2,6 +2,7 @@
 #include "285z/functions.hpp"
 #include "285Z_Subsystems/tray.hpp"
 #include "../include/285Z_Aux/gui.hpp"
+#include ".../include/mai"
  /** Runs initialization code. This occurs as soon as the program is started.
  *
  * All other competition modes are blocked by initialize; it is recommended
@@ -44,7 +45,7 @@ void competition_initialize() {
 void autonomous() {
 
   std::shared_ptr<okapi::OdomChassisController> chassis = okapi::ChassisControllerBuilder()
-                    .withMotors({ 11, 12 }, { -13, -10 }) //the motors it uses
+                    .withMotors({ 11, 12 }, { -13, -6 }) //the motors it uses
                     .withGearset(okapi::AbstractMotor::gearset::green) //we are using the green gearset
                     .withDimensions(scales)
                     .withMaxVelocity(120) //is not allowed to go faster than 120
@@ -64,7 +65,7 @@ void autonomous() {
 
 void opcontrol() {
   std::shared_ptr<okapi::OdomChassisController> chassis = okapi::ChassisControllerBuilder()
-										.withMotors({ 11, 12 }, { -13, -10 })
+										.withMotors({ 11, 12 }, { -13, -6 })
 										.withGearset(okapi::AbstractMotor::gearset::green)
 										.withDimensions(scales)
 										.withOdometry(okapi::StateMode::FRAME_TRANSFORMATION, 0_mm, 0_deg, 0.0001_mps)
