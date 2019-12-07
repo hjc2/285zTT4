@@ -40,7 +40,7 @@ void Tray::moveToUp(bool op){
   if(anglerController->isDisabled()){
     anglerController->flipDisable();
   }
-  anglerController->setTarget(4200);
+  anglerController->setTarget(3950);
   if(!op){
     anglerController->waitUntilSettled();
   }
@@ -78,7 +78,7 @@ void Tray::stopPID(){
 }
 
 void Tray::moveAbsolute(double position, int velocity){
-  
+
   anglerMotor.moveAbsolute(position, velocity);
   anglerMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
 }

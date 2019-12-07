@@ -63,11 +63,7 @@ void toggleIntake(){
 void intakeRev(){
   if (outtakeButton.isPressed())
   {
-    if(heightNow == 0){
-      intake.moveVelocity (-150);
-    } else {
-      intake.moveVelocity (-100);
-    }
+    intake.moveVelocity (-125);
     intake.setBrakeMode(AbstractMotor::brakeMode::coast);
   } else {
     if(intakeToggleHold){
@@ -124,7 +120,6 @@ void liftToggle(){
     anglerDisabled = true;
     lift.liftToggle(angler);
   }
-
 }
 
 /*
