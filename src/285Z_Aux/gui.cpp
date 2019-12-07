@@ -106,7 +106,7 @@ void initScreen(){
     lv_aut_display("BLUE FIVE CUBE");
   }
   if(potVal >= 2047 && potVal < 3072){
-    lv_aut_display("RED LONG GOAL \n hello");
+    lv_aut_display("RED LONG GOAL");
   }
   if(potVal >= 3072 && potVal < 4096){
     lv_aut_display("BLUE LONG GOAL");
