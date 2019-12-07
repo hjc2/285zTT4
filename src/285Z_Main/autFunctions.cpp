@@ -227,9 +227,6 @@ void blueLongGoal(std::shared_ptr<okapi::OdomChassisController> chassis){
   angler.moveToDown(false);
 }
 
-<<<<<<< HEAD
-void soleyMotion(std::shared_ptr<okapi::OdomChassisController> chassis) {
-=======
 void skills(std::shared_ptr<okapi::OdomChassisController> chassis){
   Tray angler;
 
@@ -292,7 +289,6 @@ void redFiveCubeNew(std::shared_ptr<okapi::OdomChassisController> chassis){
   angler.moveToDown(false);
 }
 void test(std::shared_ptr<okapi::OdomChassisController> chassis) {
->>>>>>> 54373aff278ed445055dffb1eac29bc18322062e
   chassis->setState({0.5_ft,9.9_ft,0_deg});
   chassis->driveToPoint({2.5_ft, 9.9_ft});
 
