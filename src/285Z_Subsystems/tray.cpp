@@ -20,11 +20,11 @@ void Tray::moveToState(int pos){
   switch(pos){
     case DOWN:
       //DOWN
-      anglerController->setTarget(0);
+      anglerController->setTarget(3500);
       anglerController->waitUntilSettled();
       //anglerMotor.moveAbsolute(0, -100);
     case UP:
-      anglerController->setTarget(3800);
+      anglerController->setTarget(0);
       anglerController->waitUntilSettled();
       //anglerMotor.moveAbsolute(1690, 100);
     case LIFTUP:
@@ -40,7 +40,7 @@ void Tray::moveToUp(bool op){
   if(anglerController->isDisabled()){
     anglerController->flipDisable();
   }
-  anglerController->setTarget(4200);
+  anglerController->setTarget(4000);
   if(!op){
     anglerController->waitUntilSettled();
   }
@@ -78,7 +78,7 @@ void Tray::stopPID(){
 }
 
 void Tray::moveAbsolute(double position, int velocity){
-  
+
   anglerMotor.moveAbsolute(position, velocity);
   anglerMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
 }
