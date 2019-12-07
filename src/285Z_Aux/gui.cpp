@@ -8,7 +8,7 @@ void lv_aut_display(char *text)
 
     /*Modify the Label's text*/
     lv_label_set_text(autLabel, text);
-    lv_obj_align(autLabel, NULL, LV_ALIGN_CENTER, 0, 0);
+    lv_obj_align(autLabel, NULL, LV_ALIGN_CENTER, 5, 40);
 }
 
 //-----------------------------------------------
@@ -106,7 +106,7 @@ void initScreen(){
     lv_aut_display("BLUE FIVE CUBE");
   }
   if(potVal >= 2047 && potVal < 3072){
-    lv_aut_display("RED LONG GOAL");
+    lv_aut_display("RED LONG GOAL" );
   }
   if(potVal >= 3072 && potVal < 4096){
     lv_aut_display("BLUE LONG GOAL");
