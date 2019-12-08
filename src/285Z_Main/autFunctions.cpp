@@ -284,7 +284,7 @@ void redFiveCubeNew(std::shared_ptr<okapi::OdomChassisController> chassis){
   //intake.moveRelative(-700, 50);
 
   pros::Task::delay(1500);
-  intake.moveRelative(-100, 95);
+  intake.moveRelative(-120, 105);
   pros::Task::delay(200);
 
   angler.moveToDown(false);
