@@ -45,7 +45,7 @@ void competition_initialize() {
 void autonomous() {
 
   std::shared_ptr<okapi::OdomChassisController> chassis = okapi::ChassisControllerBuilder()
-                    .withMotors({ 11, 12 }, { -13, -6 }) //the motors it uses
+                    .withMotors({ frontLeftPort, backLeftPort }, { frontRightPort, backRightPort}) //the motors it uses
                     .withGearset(okapi::AbstractMotor::gearset::green) //we are using the green gearset
                     .withDimensions(scales)
                     .withMaxVelocity(120) //is not allowed to go faster than 120
@@ -65,7 +65,7 @@ void autonomous() {
 
 void opcontrol() {
   std::shared_ptr<okapi::OdomChassisController> chassis = okapi::ChassisControllerBuilder()
-										.withMotors({ 11, 12 }, { -13, -6 })
+										.withMotors({ frontLeftPort, backLeftPort }, { frontRightPort, backRightPort})
 										.withGearset(okapi::AbstractMotor::gearset::green)
 										.withDimensions(scales)
 										.withOdometry(okapi::StateMode::FRAME_TRANSFORMATION, 0_mm, 0_deg, 0.0001_mps)

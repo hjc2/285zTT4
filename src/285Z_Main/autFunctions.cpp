@@ -275,7 +275,7 @@ void redFiveCubeNew(std::shared_ptr<okapi::OdomChassisController> chassis){
 	chassis->turnToAngle(160_deg);
   // chassis->waitUntilSettled();
 
-  chassis->setState({0.5_ft,9.9_ft,0_deg});
+  chassis->setState({0.5_ft, 10.05_ft,0_deg});
   intake.moveRelative(-680, 30);
   chassis->driveToPoint({3.8_ft, 9.9_ft});
 
@@ -284,13 +284,13 @@ void redFiveCubeNew(std::shared_ptr<okapi::OdomChassisController> chassis){
   //intake.moveRelative(-700, 50);
 
   pros::Task::delay(1500);
-  intake.moveRelative(-300, 110);
+  intake.moveRelative(-100, 95);
   pros::Task::delay(200);
 
   angler.moveToDown(false);
 }
 void test(std::shared_ptr<okapi::OdomChassisController> chassis) {
-  chassis->setState({0.5_ft,9.9_ft,0_deg});
+  chassis->setState({0.5_ft, 10.05_ft,0_deg});
   chassis->driveToPoint({2.5_ft, 9.9_ft});
 
 }
