@@ -40,7 +40,7 @@ void Tray::moveToUp(bool op){
   if(anglerController->isDisabled()){
     anglerController->flipDisable();
   }
-  anglerController->setTarget(3950);
+  anglerController->setTarget(4000);
   if(!op){
     anglerController->waitUntilSettled();
   }
