@@ -63,7 +63,7 @@ void toggleIntake(){
 void intakeRev(){
   if (outtakeButton.isPressed())
   {
-    intake.moveVelocity (-125);
+    intake.moveVelocity (-75);
     intake.setBrakeMode(AbstractMotor::brakeMode::coast);
   } else {
     if(intakeToggleHold){

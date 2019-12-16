@@ -181,13 +181,13 @@ void redLongGoal(std::shared_ptr<okapi::OdomChassisController> chassis){
   intake.moveRelative(-725, 30);
   chassis->setState({0.5_ft,9.9_ft,0_deg});
   chassis->driveToPoint({2_ft, 9.9_ft});
-  angler.moveToUp(false);
+  angler.moveToUp(true);
   //false means its auton
   //intake.moveRelative(-700, 50);
 
   pros::Task::delay(1500);
   intake.moveRelative(-300, 110);
-  pros::Task::delay(200);
+  pros::Task::delay(300);
   chassis->moveDistance(-1.5_ft);
   angler.moveToDown(false);
 }
@@ -216,15 +216,15 @@ void blueLongGoal(std::shared_ptr<okapi::OdomChassisController> chassis){
   chassis->turnToAngle(45_deg);
   intake.moveRelative(-725, 30);
   chassis->setState({0.5_ft,9.9_ft,0_deg});
-  chassis->driveToPoint({1.75_ft, 9.9_ft});
-  angler.moveToUp(false);
+  chassis->driveToPoint({1.65_ft, 9.8_ft});
+  angler.moveToUp(true);
   //false means its auton
   //intake.moveRelative(-700, 50);
 
   pros::Task::delay(1500);
   intake.moveRelative(-300, 110);
   pros::Task::delay(200);
-  chassis->moveDistance(-1.5_ft);
+  chassis->moveDistance(-1.8_ft);
   angler.moveToDown(false);
 }
 
