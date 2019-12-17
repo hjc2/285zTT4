@@ -43,5 +43,4 @@ void blueLongGoal(std::shared_ptr<okapi::OdomChassisController>);
 void redNineCube(std::shared_ptr<okapi::OdomChassisController>);
 void blueNineCube(std::shared_ptr<okapi::OdomChassisController>);
 
-void skills(std::shared_ptr<okapi::OdomChassisController>);
 void test(std::shared_ptr<okapi::OdomChassisController>);

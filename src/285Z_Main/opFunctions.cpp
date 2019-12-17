@@ -45,7 +45,7 @@ void toggleIntake(){
   else if(intakeToggleBool)
   {
     intake.setBrakeMode(AbstractMotor::brakeMode::hold);
-    intake.moveVelocity(600);
+    intake.moveVelocity   (600);
   }
   else
   {
@@ -124,6 +124,7 @@ void liftToggle(){
     anglerDisabled = true;
     lift.liftToggle(angler);
   }
+
 }
 
 /*
