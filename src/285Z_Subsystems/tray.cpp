@@ -19,6 +19,7 @@ auto anglerController = AsyncPosControllerBuilder().withMotor(anglerPort)
 void Tray::moveToState(int pos){
   switch(pos){
     case DOWN:
+    
       //DOWN
       anglerController->setTarget(3500);
       anglerController->waitUntilSettled();
