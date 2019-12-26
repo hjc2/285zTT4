@@ -4,14 +4,15 @@
 #include "../include/285z/functions.hpp"
 #include "../include/285Z_Aux/gui.hpp"
 
-
+//function called in main.cpp
+//will select auton then run it
 void selectAuton(std::shared_ptr<okapi::OdomChassisController> chassis){
-
+/*
   liftMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
   liftMotor.moveAbsolute(400, 200);
   liftMotor.moveAbsolute(50, -200);
   pros::delay(300);
-
+*/
   if(autonPot.get() >= 0 && autonPot.get() < 1023){
     redFiveCube(chassis);
   }
@@ -26,6 +27,8 @@ void selectAuton(std::shared_ptr<okapi::OdomChassisController> chassis){
   }
 }
 
+
+//will write to the screen to say the auton
   void displayAuton(){
   double potVal = autonPot.get();
   if(potVal >= 0 && potVal < 1023){
