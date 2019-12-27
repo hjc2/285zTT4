@@ -2,16 +2,21 @@
 #include "../include/285Z_Aux/gui.hpp"
 #include "../include/pros/llemu.hpp"
 
+std::string counter = "myString";
+
 void lcdSelect(){
-  pros::lcd::print(0, "Buttons Bitmap: %d\n", pros::lcd::read_buttons());
+  pros::lcd::set_text(1, "hello world");
+
 }
 
 void lcdRun(){
   while(1){
     lcdSelect();
+    pros::delay(10);
   }
 }
 
 void lcdStart(){
-  lcdSelect();
+  pros::lcd::initialize();
+  lcdRun();
 }
