@@ -36,10 +36,11 @@ okapi::ControllerButton liftDownButton = okapi::ControllerDigital::L2;
  int liftPort = 7;
 
 //sensor ports
-
- char potentiometerPort = 'A';
- Potentiometer autonPot(potentiometerPort);
-
+/*
+ std::string buttonBlueRedPort = "A";
+ char buttonLongShortPort = "B";
+ ADIButton(buttonBlueRedPort, false);
+*/
 //false is down
 //true is up
 

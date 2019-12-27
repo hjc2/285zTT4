@@ -6,13 +6,14 @@
 
 //function called in main.cpp
 //will select auton then run it
+/*
 void selectAuton(std::shared_ptr<okapi::OdomChassisController> chassis){
 /*
   liftMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
   liftMotor.moveAbsolute(400, 200);
   liftMotor.moveAbsolute(50, -200);
   pros::delay(300);
-*/
+*//*
   if(autonPot.get() >= 0 && autonPot.get() < 1023){
     redFiveCube(chassis);
   }
@@ -26,9 +27,10 @@ void selectAuton(std::shared_ptr<okapi::OdomChassisController> chassis){
     blueLongGoal(chassis);
   }
 }
-
+*/
 
 //will write to the screen to say the auton
+/*
   void displayAuton(){
   double potVal = autonPot.get();
   if(potVal >= 0 && potVal < 1023){
@@ -44,7 +46,7 @@ void selectAuton(std::shared_ptr<okapi::OdomChassisController> chassis){
     lv_aut_display("BLUE LONG GOAL");
   }
 }
-
+*/
 //*****************************   RED: FIVE CUBES    **********************//
 void redFiveCube(std::shared_ptr<okapi::OdomChassisController> chassis){
   Tray angler;
