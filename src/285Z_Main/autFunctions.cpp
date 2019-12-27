@@ -235,3 +235,18 @@ void test(std::shared_ptr<okapi::OdomChassisController> chassis) {
   chassis->setState({0.5_ft,9.9_ft,0_deg});
   chassis->driveToPoint({2.5_ft, 9.9_ft});
 }
+/*
+==========================
+NEW AUTON STRUCTURE
+place all the relevant autons here.
+Describe exact position for each
+  //RED
+    //LONG GOAL RED
+
+    //SHORT GOAL RED
+
+  //BLUE
+    //LONG GOAL BLUE
+
+    //SHORT GOAL BLUE
+*/
