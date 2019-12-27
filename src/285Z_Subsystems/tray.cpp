@@ -1,6 +1,7 @@
 #include "../include/285z/initRobot.hpp"
 #include "../include/285Z_Subsystems/tray.hpp"
-
+#include "../include/285z/functions.hpp"
+#include "src\285Z_Main\opFunctions.cpp"
 //the PID works on a system where it has the max vertical distance as UP and the minimum as DOWN
 
 const int DOWN = 0; //down is this
@@ -42,6 +43,8 @@ void Tray::moveToUp(bool op){
   intake.setBrakeMode(AbstractMotor::brakeMode::coast); //overrides intake to coast
   if(anglerController->isDisabled()){ // toggles intake to enabled
     anglerController->flipDisable();
+    intakeToggleBool = false;
+
   }
   anglerController->setTarget(4000); //sets the target angle
   if(!op){
