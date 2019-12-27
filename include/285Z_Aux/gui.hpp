@@ -7,3 +7,5 @@ void lcdStart();
 void lcdSelect();
 
 void lcdRun();
+
+void on_center_button();

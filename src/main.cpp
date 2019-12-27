@@ -72,10 +72,13 @@ void opcontrol() {
 										.withOdometry(okapi::StateMode::FRAME_TRANSFORMATION, 0_mm, 0_deg, 0.0001_mps)
 										.buildOdometry();
 	std::shared_ptr<okapi::ChassisModel> model = std::dynamic_pointer_cast<okapi::ChassisModel>(chassis->getModel());
+
+  lcdStart();
   while(true){
 
     //GUI CODE
-    lcdSelect();
+
+    pros::lcd::register_btn0_cb(on_center_button);
 
     //GUI
     // TANK DRIVE CODE //
