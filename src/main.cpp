@@ -2,12 +2,16 @@
 #include "285z/functions.hpp"
 #include "285Z_Subsystems/tray.hpp"
 #include "../include/285Z_Aux/gui.hpp"
+#include "../include/pros/llemu.hpp"
+
  /** Runs initialization code. This occurs as soon as the program is started.
  *
  * All other competition modes are blocked by initialize; it is recommended
  * to keep execution time for this mode under a few seconds.
  */
-void initialize() {}
+void initialize() {
+  lcdStart();
+}
 
 /**
  * Runs while the robot is in the disabled state of Field Management System or
@@ -26,7 +30,7 @@ void disabled() {}
  * starts.
  */
 void competition_initialize() {
-  initScreen();
+  lcdStart();
 }
 
 /**
@@ -70,12 +74,11 @@ void opcontrol() {
 										.withOdometry(okapi::StateMode::FRAME_TRANSFORMATION, 0_mm, 0_deg, 0.0001_mps)
 										.buildOdometry();
 	std::shared_ptr<okapi::ChassisModel> model = std::dynamic_pointer_cast<okapi::ChassisModel>(chassis->getModel());
+  lcdStart();
 
   while(true){
 
     //GUI
-    initScreen();
-
     // TANK DRIVE CODE //
     model->tank(controller.getAnalog(okapi::ControllerAnalog::leftY),
           controller.getAnalog(okapi::ControllerAnalog::rightY));
