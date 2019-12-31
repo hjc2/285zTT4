@@ -14,7 +14,7 @@ void lcdRun(){
     pros::delay(10);
   }
 }
-
+/*
 void lcdStart(){
   pros::lcd::initialize();
 }
@@ -32,3 +32,4 @@ void initialize() {
   pros::lcd::initialize();
   pros::lcd::register_btn2_cb(on_center_button);
 }
+*/
