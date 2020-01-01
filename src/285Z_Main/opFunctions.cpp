@@ -42,32 +42,16 @@ void toggleIntake(){
     if (intakeButton.changedToPressed())
     {
       intakeToggleBool = !intakeToggleBool;
-    }
-    else if(intakeToggleBool)
+    } else if(intakeToggleBool)
     {
       intake.setBrakeMode(AbstractMotor::brakeMode::hold);
       intake.moveVelocity   (600);
-    }
-    else
-    {
+    } else {
       intake.moveVelocity	(0);
       if(intakeToggleHold){
         intake.setBrakeMode(AbstractMotor::brakeMode::hold);
       }
-
     }
-/*  } else {
-    if (intakeButton.changedToPressed())
-    {
-      intakeToggleBool = !intakeToggleBool;
-    }
-    else if(intakeToggleBool)
-    {
-      intake.setBrakeMode(AbstractMotor::brakeMode::hold);
-      intake.moveVelocity(0);
-    }
-  }
-  */
 }
 //is a push button approach to using the intake
 //unable to use this and toggle at the same time

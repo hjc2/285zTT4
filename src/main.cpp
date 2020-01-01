@@ -10,7 +10,6 @@
  * to keep execution time for this mode under a few seconds.
  */
 void initialize() {
-  lcdStart();
 }
 
 /**
@@ -30,7 +29,6 @@ void disabled() {}
  * starts.
  */
 void competition_initialize() {
-  lcdStart();
 }
 
 /**
