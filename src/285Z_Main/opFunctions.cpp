@@ -130,7 +130,6 @@ void liftManual(){
   } else {
     lift.move(0);
   }
-
 }
 
 //liftManualUp
