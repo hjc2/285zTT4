@@ -20,13 +20,19 @@ extern ControllerButton liftToggleButton;
 extern ControllerButton anglerUpButton;
 extern ControllerButton anglerDownButton;
 
-//  SENSORS  //
-extern Potentiometer autonPot;
 //  MOTORS  //
 
 //ports
 extern int anglerPort;
 extern int liftPort;
+
+extern int intakeRightPort;
+extern int intakeLeftPort;
+
+extern int frontLeftPort;
+extern int backLeftPort;
+extern int frontRightPort;
+extern int backRightPort;
 
 //Drivetrain motors
 extern Motor frontLeftMotor;
