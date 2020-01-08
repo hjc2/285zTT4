@@ -241,26 +241,26 @@ void test(std::shared_ptr<okapi::OdomChassisController> chassis) {
   chassis->driveToPoint({2.5_ft, 9.9_ft});
 }
 
-void nineCubeTestRed(std::shared_ptr<okapi::OdomChassisController> chassis)
+void nineCubeTestRed(std::shared_ptr<okapi::OdomChassisController> chassis, std::shared_ptr<okapi::AsyncMotionProfileController> slow,std::shared_ptr<okapi::AsyncMotionProfileController> fast)
 {
   Tray angler;
 
-  slow.generatePath({
+  slow->generatePath({
     {0_ft,0_ft,0_deg},
     {3.5_ft,0_ft,0_deg}},
     "A"
   );//4"
-  fast.generatePath({
+  fast->generatePath({
     {0_ft,0_ft,0_deg},
     {4.5_ft,0_ft,0_deg}},
     "B"
   );
-  fast.generatePath({
+  fast->generatePath({
     {0_ft,0_ft,0_deg},
     {4_ft,2_ft,0_deg}},
     "S"
   );
-  fast.generatePath({
+  fast->generatePath({
     {0_ft,0_ft,0_deg},
     {1.5_ft,0_ft,0_deg}},
     "C"
@@ -270,24 +270,24 @@ void nineCubeTestRed(std::shared_ptr<okapi::OdomChassisController> chassis)
   pros::Task::delay(500);
   intake.moveVelocity(200);//deploy robot and tray
 
-  slow.setTarget("A", fwd);
-  slow.waitUntilSettled();//goes forward to get 4 cubes
+  slow->setTarget("A", fwd);
+  slow->waitUntilSettled();//goes forward to get 4 cubes
 
-  fast.setTarget("S", bwd);
-  fast.waitUntilSettled();//splines backwards to line up for second row
+  fast->setTarget("S", bwd);
+  fast->waitUntilSettled();//splines backwards to line up for second row
 
-  slow.setTarget("A", fwd);
-  slow.waitUntilSettled();//intakes last 3 CUBES
+  slow->setTarget("A", fwd);
+  slow->waitUntilSettled();//intakes last 3 CUBES
 
   chassis->turnToAngle(-135_deg);
-  fast.setTarget("B");//drives to goal zone
-  fast.waitUntilSettled();
+  fast->setTarget("B");//drives to goal zone
+  fast->waitUntilSettled();
 
   angler.moveToUp(false);
   pros::Task::delay(2300);
   intake.moveRelative(-300, 110);
   pros::Task::delay(200);
-  fast.setTarget("C",bwd);
+  fast->setTarget("C",bwd);
   angler.moveToDown(false);//stack deploy
 }
 /*
