@@ -251,24 +251,24 @@ void nineCubeTestRed(std::shared_ptr<okapi::OdomChassisController> chassis)
     "A"
   );//4"
   fast.generatePath({
-    {0_ft,0_ft,0_deg}
-    ,{4.5_ft,0_ft,0_deg}},
+    {0_ft,0_ft,0_deg},
+    {4.5_ft,0_ft,0_deg}},
     "B"
   );
   fast.generatePath({
-    {0_ft,0_ft,0_deg}
-    ,{4_ft,2_ft,0_deg}},
+    {0_ft,0_ft,0_deg},
+    {4_ft,2_ft,0_deg}},
     "S"
   );
   fast.generatePath({
-    {0_ft,0_ft,0_deg}
-    ,{1.5_ft,0_ft,0_deg}},
+    {0_ft,0_ft,0_deg},
+    {1.5_ft,0_ft,0_deg}},
     "C"
   );
 
   intake.moveVelocity(-200);
   pros::Task::delay(500);
-  intake.moveVelocity(200);//deploy
+  intake.moveVelocity(200);//deploy robot and tray
 
   slow.setTarget("A", fwd);
   slow.waitUntilSettled();//goes forward to get 4 cubes
