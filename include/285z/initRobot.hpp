@@ -54,4 +54,4 @@ extern MotorGroup intake;
 extern AsyncMotionProfileController fast;
 extern AsyncMotionProfileController slow;
 
-extern ChassisControllerIntegrated aut;
+extern ChassisControllerBuilder aut;
