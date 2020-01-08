@@ -49,3 +49,9 @@ extern Motor liftMotor;
 
 //Intake
 extern MotorGroup intake;
+
+//Chassis controllers
+extern AsyncMotionProfileController fast;
+extern AsyncMotionProfileController slow;
+
+extern ChassisControllerIntegrated aut;

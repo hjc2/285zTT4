@@ -48,6 +48,9 @@ void selectAuton(std::shared_ptr<okapi::OdomChassisController> chassis){
 }
 */
 //*****************************   RED: FIVE CUBES    **********************//
+const bool fwd {false};
+const bool bwd {true};
+
 void redFiveCube(std::shared_ptr<okapi::OdomChassisController> chassis){
   Tray angler;
 
@@ -236,6 +239,56 @@ void blueLongGoal(std::shared_ptr<okapi::OdomChassisController> chassis){
 void test(std::shared_ptr<okapi::OdomChassisController> chassis) {
   chassis->setState({0.5_ft,9.9_ft,0_deg});
   chassis->driveToPoint({2.5_ft, 9.9_ft});
+}
+
+void nineCubeTestRed(std::shared_ptr<okapi::OdomChassisController> chassis)
+{
+  Tray angler;
+
+  slow.generatePath({
+    {0_ft,0_ft,0_deg},
+    {3.5_ft,0_ft,0_deg}},
+    "A"
+  );//4"
+  fast.generatePath({
+    {0_ft,0_ft,0_deg}
+    ,{4.5_ft,0_ft,0_deg}},
+    "B"
+  );
+  fast.generatePath({
+    {0_ft,0_ft,0_deg}
+    ,{4_ft,2_ft,0_deg}},
+    "S"
+  );
+  fast.generatePath({
+    {0_ft,0_ft,0_deg}
+    ,{1.5_ft,0_ft,0_deg}},
+    "C"
+  );
+
+  intake.moveVelocity(-200);
+  pros::Task::delay(500);
+  intake.moveVelocity(200);//deploy
+
+  slow.setTarget("A", fwd);
+  slow.waitUntilSettled();//goes forward to get 4 cubes
+
+  fast.setTarget("S", bwd);
+  fast.waitUntilSettled();//splines backwards to line up for second row
+
+  slow.setTarget("A", fwd);
+  slow.waitUntilSettled();//intakes last 3 CUBES
+
+  chassis->turnToAngle(-135_deg);
+  fast.setTarget("B");//drives to goal zone
+  fast.waitUntilSettled();
+
+  angler.moveToUp(false);
+  pros::Task::delay(2300);
+  intake.moveRelative(-300, 110);
+  pros::Task::delay(200);
+  fast.setTarget("C",bwd);
+  angler.moveToDown(false);//stack deploy
 }
 /*
 ==========================
