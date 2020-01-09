@@ -69,18 +69,25 @@ okapi::ControllerButton liftDownButton = okapi::ControllerDigital::L2;
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-okapi::ChassisScales scales
-{
-  //4.125 is the wheelsize and 9.75 is the wheelbase
- {4.125_in, 9.75_in}, //dimensions of the chassis
- imev5GreenTPR
-};
-
-auto drive = okapi::ChassisControllerBuilder()
-                  .withMotors({frontLeftPort, backLeftPort }, {frontRightPort, backRightPort}) //drive motors
-                  .withGearset(okapi::AbstractMotor::gearset::green)
-                  .withDimensions(scales)
-                  .withMaxVelocity(200)
-                  .withOdometry(okapi::StateMode::FRAME_TRANSFORMATION, 0_mm, 0_deg, 0.00001_mps)
-                  .buildOdometry();
-std::shared_ptr<okapi::ChassisModel> model = std::dynamic_pointer_cast<okapi::ChassisModel>(drive->getModel());
+// okapi::ChassisScales scales
+// {
+//   //4.125 is the wheelsize and 9.75 is the wheelbase
+//  {4.125_in, 9.75_in}, //dimensions of the chassis
+//  imev5GreenTPR
+// };
+//
+// auto drive = okapi::ChassisControllerBuilder()
+//                   .withMotors({frontLeftPort, backLeftPort }, {frontRightPort, backRightPort}) //drive motors
+//                   .withGearset(okapi::AbstractMotor::gearset::green)
+//                   .withDimensions(scales)
+//                   .withMaxVelocity(200)
+//                   .withOdometry(okapi::StateMode::FRAME_TRANSFORMATION, 0_mm, 0_deg, 0.00001_mps)
+//                   .buildOdometry();
+// std::shared_ptr<okapi::ChassisModel> model = std::dynamic_pointer_cast<okapi::ChassisModel>(drive->getModel());
+auto drive= okapi::ChassisControllerBuilder()
+    .withMotors({frontLeftPort,backLeftPort}, {frontRightPort,backRightPort}) // left motor is 1, right motor is 2 (reversed)
+    // green gearset, 4 inch wheel diameter, 11.5 inch wheelbase
+    .withDimensions(AbstractMotor::gearset::green, {{4.125_in, 9.75_in}, imev5GreenTPR})
+    .withOdometry() // use the same scales as the chassis (above)
+    .withMaxVelocity(200)
+    .buildOdometry(); // build an odometry chassis

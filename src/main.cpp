@@ -10,7 +10,7 @@
  * to keep execution time for this mode under a few seconds.
  */
 void initialize() {
-  lcdStart();
+  // lcdStart();
 }
 
 /**
@@ -30,7 +30,7 @@ void disabled() {}
  * starts.
  */
 void competition_initialize() {
-  lcdStart();
+  // lcdStart();
 }
 
 /**
@@ -47,31 +47,31 @@ void competition_initialize() {
 
 void autonomous() {
 
-  std::shared_ptr<okapi::OdomChassisController> chassis = okapi::ChassisControllerBuilder()
-                    .withMotors({ frontLeftMotor, backLeftMotor }, { frontRightMotor, backRightMotor }) //the motors it uses
-                    .withGearset(okapi::AbstractMotor::gearset::green) //we are using the green gearset
-                    .withDimensions(scales)
-                    .withMaxVelocity(120) //is not allowed to go faster than 120
-                    .withGains(
-                 {0.001, 0.001, 0.00009}, // Distance controller gains 0.005, 0, 0.001
-                 {0.001, 0.001, 0.00001}, // Turn controller gains
-                 {0.001, 0.001, 0.0001}  // Angle controller gains (helps drive straight)
-             )
-                    .withOdometry(okapi::StateMode::FRAME_TRANSFORMATION, 0_mm, 0_deg, 0.00001_mps)
-                    .buildOdometry();
-  std::shared_ptr<okapi::ChassisModel> model = std::dynamic_pointer_cast<okapi::ChassisModel>(chassis->getModel());
+  // std::shared_ptr<okapi::OdomChassisController> chassis = okapi::ChassisControllerBuilder()
+  //                   .withMotors({ frontLeftMotor, backLeftMotor }, { frontRightMotor, backRightMotor }) //the motors it uses
+  //                   .withGearset(okapi::AbstractMotor::gearset::green) //we are using the green gearset
+  //                   .withDimensions(scales)
+  //                   .withMaxVelocity(120) //is not allowed to go faster than 120
+  //                   .withGains(
+  //                {0.001, 0.001, 0.00009}, // Distance controller gains 0.005, 0, 0.001
+  //                {0.001, 0.001, 0.00001}, // Turn controller gains
+  //                {0.001, 0.001, 0.0001}  // Angle controller gains (helps drive straight)
+  //            )
+  //                   .withOdometry(okapi::StateMode::FRAME_TRANSFORMATION, 0_mm, 0_deg, 0.00001_mps)
+  //                   .buildOdometry();
+  // std::shared_ptr<okapi::ChassisModel> model = std::dynamic_pointer_cast<okapi::ChassisModel>(chassis->getModel());
 
 }
 
 
 void opcontrol() {
-  std::shared_ptr<okapi::OdomChassisController> chassis = okapi::ChassisControllerBuilder()
-										.withMotors({ frontLeftMotor, backLeftMotor }, { frontRightMotor, backRightMotor })
-										.withGearset(okapi::AbstractMotor::gearset::green)
-										.withDimensions(scales)
-										.withOdometry(okapi::StateMode::FRAME_TRANSFORMATION, 0_mm, 0_deg, 0.0001_mps)
-										.buildOdometry();
-	std::shared_ptr<okapi::ChassisModel> model = std::dynamic_pointer_cast<okapi::ChassisModel>(chassis->getModel());
+  // std::shared_ptr<okapi::OdomChassisController> chassis = okapi::ChassisControllerBuilder()
+	// 									.withMotors({ frontLeftMotor, backLeftMotor }, { frontRightMotor, backRightMotor })
+	// 									.withGearset(okapi::AbstractMotor::gearset::green)
+	// 									.withDimensions(scales)
+	// 									.withOdometry(okapi::StateMode::FRAME_TRANSFORMATION, 0_mm, 0_deg, 0.0001_mps)
+	// 									.buildOdometry();
+	// std::shared_ptr<okapi::ChassisModel> model = std::dynamic_pointer_cast<okapi::ChassisModel>(chassis->getModel());
 
   lcdStart();
   while(true){

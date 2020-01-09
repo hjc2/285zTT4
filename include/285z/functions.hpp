@@ -2,7 +2,7 @@
 #include "../include/285z/initRobot.hpp"
 
 //  **TELEOP FUNCTIONS**   //
-
+void lcdStart();
 //Drive
 void tankDrive();
 
