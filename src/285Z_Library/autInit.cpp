@@ -1,6 +1,8 @@
 #include "../include/285z/initRobot.hpp"
 
-
+void profileControllers()
+{
+  
 auto motion =
   ChassisControllerBuilder()
     .withMotors({frontLeftPort,backLeftPort}, {frontRightPort,backRightPort})
@@ -38,3 +40,5 @@ auto chassis = okapi::ChassisControllerBuilder()
     .withOdometry() // use the same scales as the chassis (above)
     .withMaxVelocity(200)
     .buildOdometry(); // build an odometry chassis
+
+  }
