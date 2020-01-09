@@ -10,7 +10,7 @@
  * to keep execution time for this mode under a few seconds.
  */
 void initialize() {
-  // lcdStart();
+  profileControllers();
 }
 
 /**
@@ -30,80 +30,41 @@ void disabled() {}
  * starts.
  */
 void competition_initialize() {
-  // lcdStart();
+
 }
 
-/**
- * Runs the user autonomous code. This function will be started in its own task
- * with the default priority and stack size whenever the robot is enabled via
- * the Field Management System or the VEX Competition Switch in the autonomous
- * mode. Alternatively, this function may be called in initialize or opcontrol
- * for non-competition testing purposes.
- *
- * If the robot is disabled or communications is lost, the autonomous task
- * will be stopped. Re-enabling the robot will restart the task, not re-start it
- * from where it left off.
- */
 
 void autonomous() {
-
-  // std::shared_ptr<okapi::OdomChassisController> chassis = okapi::ChassisControllerBuilder()
-  //                   .withMotors({ frontLeftMotor, backLeftMotor }, { frontRightMotor, backRightMotor }) //the motors it uses
-  //                   .withGearset(okapi::AbstractMotor::gearset::green) //we are using the green gearset
-  //                   .withDimensions(scales)
-  //                   .withMaxVelocity(120) //is not allowed to go faster than 120
-  //                   .withGains(
-  //                {0.001, 0.001, 0.00009}, // Distance controller gains 0.005, 0, 0.001
-  //                {0.001, 0.001, 0.00001}, // Turn controller gains
-  //                {0.001, 0.001, 0.0001}  // Angle controller gains (helps drive straight)
-  //            )
-  //                   .withOdometry(okapi::StateMode::FRAME_TRANSFORMATION, 0_mm, 0_deg, 0.00001_mps)
-  //                   .buildOdometry();
-  // std::shared_ptr<okapi::ChassisModel> model = std::dynamic_pointer_cast<okapi::ChassisModel>(chassis->getModel());
 
 }
 
 
 void opcontrol() {
-  // std::shared_ptr<okapi::OdomChassisController> chassis = okapi::ChassisControllerBuilder()
-	// 									.withMotors({ frontLeftMotor, backLeftMotor }, { frontRightMotor, backRightMotor })
-	// 									.withGearset(okapi::AbstractMotor::gearset::green)
-	// 									.withDimensions(scales)
-	// 									.withOdometry(okapi::StateMode::FRAME_TRANSFORMATION, 0_mm, 0_deg, 0.0001_mps)
-	// 									.buildOdometry();
-	// std::shared_ptr<okapi::ChassisModel> model = std::dynamic_pointer_cast<okapi::ChassisModel>(chassis->getModel());
 
-  lcdStart();
+  auto chassis = okapi::ChassisControllerBuilder()
+      .withMotors({frontLeftPort,backLeftPort}, {frontRightPort,backRightPort}) // left motor is 1, right motor is 2 (reversed)
+      .withDimensions(AbstractMotor::gearset::green, {{4.125_in, 9.75_in}, imev5GreenTPR})
+      .withMaxVelocity(200)
+      .build(); // build an odometry chassis
+      std::shared_ptr<okapi::ChassisModel> model = std::dynamic_pointer_cast<okapi::ChassisModel>(chassis->getModel());
+
   while(true){
 
-    //GUI CODE
-
-    pros::lcd::register_btn0_cb(on_center_button);
-
-    //GUI
     // TANK DRIVE CODE //
     model->tank(controller.getAnalog(okapi::ControllerAnalog::leftY),
-          controller.getAnalog(okapi::ControllerAnalog::rightY));
-
+              controller.getAnalog(okapi::ControllerAnalog::rightY));
 
     //  INTAKE TOGGLE CODE  //
-
-    //toggles the intake 600/0
     toggleIntake();
-    //push to intake -150/0
     intakeRev();
 
-  /* ANGLER TOGGLE CODE
-  toggles the anglers position using the PID */
+  // ANGLER TOGGLE CODE
     anglerToggle();
-    //stops the pid from running
     stopPID();
-
 
     //  LIFT  //
     liftToggle();
-
-    //liftPID();
+    
     pros::delay(10);
   }
 }
