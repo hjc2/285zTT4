@@ -12,7 +12,7 @@ auto motion =
 auto fast =
   AsyncMotionProfileControllerBuilder()
     .withLimits({
-      5.0,  //max velocity
+      1.1,  //max velocity
       3.0,  //max acceleration
       10.0  //max jerk
     })
@@ -22,9 +22,9 @@ auto fast =
 auto slow =
   AsyncMotionProfileControllerBuilder()
     .withLimits({
-      0.5,
-      2.0,
-      10.0
+      0.5,  //max velocity
+      2.0,  //max acceleration
+      10.0  //max jerk
     })
     .withOutput(motion)
     .buildMotionProfileController();

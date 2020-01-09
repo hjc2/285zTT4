@@ -30,19 +30,22 @@ void disabled() {}
  * starts.
  */
 void competition_initialize() {
-
+  while(true) {
+  initScreen();
+  pros::delay(10);
+  }
 }
 
 
 void autonomous() {
-
+  // selectAuton(chassis);
 }
 
 
 void opcontrol() {
 
   auto chassis = okapi::ChassisControllerBuilder()
-      .withMotors({frontLeftPort,backLeftPort}, {frontRightPort,backRightPort}) // left motor is 1, right motor is 2 (reversed)
+      .withMotors({frontLeftPort,backLeftPort}, {frontRightPort,backRightPort})
       .withDimensions(AbstractMotor::gearset::green, {{4.125_in, 9.75_in}, imev5GreenTPR})
       .withMaxVelocity(200)
       .build(); // build an odometry chassis
@@ -64,7 +67,7 @@ void opcontrol() {
 
     //  LIFT  //
     liftToggle();
-    
+
     pros::delay(10);
   }
 }

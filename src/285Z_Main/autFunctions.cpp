@@ -30,7 +30,7 @@ void selectAuton(std::shared_ptr<okapi::OdomChassisController> chassis){
 
 
 //will write to the screen to say the auton
-/*
+
   void displayAuton(){
   double potVal = autonPot.get();
   if(potVal >= 0 && potVal < 1023){
@@ -46,7 +46,7 @@ void selectAuton(std::shared_ptr<okapi::OdomChassisController> chassis){
     lv_aut_display("BLUE LONG GOAL");
   }
 }
-*/
+
 //*****************************   RED: FIVE CUBES    **********************//
 const bool fwd {false};
 const bool bwd {true};
@@ -283,10 +283,11 @@ void nineCubeTestRed(std::shared_ptr<okapi::OdomChassisController> chassis, std:
   fast->waitUntilSettled();
 
   angler.moveToUp(false);
-  pros::Task::delay(2300);
+  pros::Task::delay(1500);
   intake.moveRelative(-300, 110);
+
   pros::Task::delay(200);
-  fast->setTarget("C",bwd);
+  fast->setTarget("C",bwd); //drives away
   angler.moveToDown(false);//stack deploy
 }
 /*
