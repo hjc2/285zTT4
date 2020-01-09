@@ -2,7 +2,7 @@
 
 void profileControllers()
 {
-  
+
 auto motion =
   ChassisControllerBuilder()
     .withMotors({frontLeftPort,backLeftPort}, {frontRightPort,backRightPort})
@@ -12,9 +12,9 @@ auto motion =
 auto fast =
   AsyncMotionProfileControllerBuilder()
     .withLimits({
-      1.0,
-      2.0,
-      10.0
+      5.0,  //max velocity
+      3.0,  //max acceleration
+      10.0  //max jerk
     })
     .withOutput(motion)
     .buildMotionProfileController();
@@ -22,8 +22,8 @@ auto fast =
 auto slow =
   AsyncMotionProfileControllerBuilder()
     .withLimits({
-      1.0,
-      3.0,
+      0.5,
+      2.0,
       10.0
     })
     .withOutput(motion)
