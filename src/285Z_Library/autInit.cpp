@@ -1,4 +1,8 @@
 #include "../include/285z/initRobot.hpp"
+#include "../include/285Z_Subsystems/tray.hpp"
+#include "../include/285Z_Subsystems/lift.hpp"
+#include "../include/285z/functions.hpp"
+#include "../include/285Z_Aux/gui.hpp"
 
 void profileControllers()
 {
@@ -6,14 +10,15 @@ void profileControllers()
 auto motion =
   ChassisControllerBuilder()
     .withMotors({frontLeftPort,backLeftPort}, {frontRightPort,backRightPort})
-    .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
+    .withDimensions(AbstractMotor::gearset::green, {{4.125_in, 9.75_in}, imev5GreenTPR})
+    .withMaxVelocity(200)
     .build();
 
 auto fast =
   AsyncMotionProfileControllerBuilder()
     .withLimits({
       1.1,  //max velocity
-      3.0,  //max acceleration
+      4.0,  //max acceleration
       10.0  //max jerk
     })
     .withOutput(motion)
@@ -40,5 +45,23 @@ auto chassis = okapi::ChassisControllerBuilder()
     .withOdometry() // use the same scales as the chassis (above)
     .withMaxVelocity(200)
     .buildOdometry(); // build an odometry chassis
+  }
 
+  void robotDeploy()
+  {
+    intake.moveVelocity(-200);
+    pros::Task::delay(200);
+    intake.moveVelocity(0);
+  }
+
+  void stackDeploy(std::shared_ptr<okapi::AsyncMotionProfileController> fast)
+  {
+    Tray angler;
+    angler.moveToUp(false);
+    pros::Task::delay(1500);
+    intake.moveRelative(-300, 110);
+
+    pros::Task::delay(200);
+    fast->setTarget("C",bwd); //drives away
+    angler.moveToDown(false);//stack deploy
   }

@@ -48,9 +48,6 @@ void selectAuton(std::shared_ptr<okapi::OdomChassisController> chassis){
 }
 
 //*****************************   RED: FIVE CUBES    **********************//
-const bool fwd {false};
-const bool bwd {true};
-
 void redFiveCube(std::shared_ptr<okapi::OdomChassisController> chassis){
   Tray angler;
 
@@ -206,7 +203,7 @@ void blueLongGoal(std::shared_ptr<okapi::OdomChassisController> chassis){
 
   //       RED AUTON       //
   //Intake On
-  intake.moveVelocity(270);
+  intake.moveVelocity(200);
   //Move to blocks
   chassis->setState({0.5_ft,9.9_ft,0_deg});
   chassis->driveToPoint({4.25_ft, 9.9_ft});
@@ -282,13 +279,7 @@ void nineCubeTestRed(std::shared_ptr<okapi::OdomChassisController> chassis, std:
   fast->setTarget("B");//drives to goal zone
   fast->waitUntilSettled();
 
-  angler.moveToUp(false);
-  pros::Task::delay(1500);
-  intake.moveRelative(-300, 110);
-
-  pros::Task::delay(200);
-  fast->setTarget("C",bwd); //drives away
-  angler.moveToDown(false);//stack deploy
+  stackDeploy();
 }
 /*
 ==========================

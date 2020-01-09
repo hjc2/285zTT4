@@ -3,6 +3,7 @@
 #include "285Z_Subsystems/tray.hpp"
 #include "../include/285Z_Aux/gui.hpp"
 #include "../include/pros/llemu.hpp"
+
 //
  /** Runs initialization code. This occurs as soon as the program is started.
  *
@@ -38,7 +39,8 @@ void competition_initialize() {
 
 
 void autonomous() {
-  // selectAuton(chassis);
+  robotDeploy();
+  selectAuton(chassis);
 }
 
 

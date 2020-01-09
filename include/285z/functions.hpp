@@ -32,6 +32,9 @@ void anglerToggle();
 void liftPositionToggleFunction();
 //   **AUTON FUNCTIONS**    //
 
+const bool fwd {false};
+const bool bwd {true};
+
 void selectAuton(std::shared_ptr<okapi::OdomChassisController>);
 
 void redFiveCube(std::shared_ptr<okapi::OdomChassisController>);
@@ -44,6 +47,9 @@ void redNineCube(std::shared_ptr<okapi::OdomChassisController>);
 void blueNineCube(std::shared_ptr<okapi::OdomChassisController>);
 
 void test(std::shared_ptr<okapi::OdomChassisController>);
+
+void robotDeploy();
+void stackDeploy();
 
 //INITIALIZE
 void profileControllers();
