@@ -51,9 +51,10 @@ okapi::ChassisScales scales
 };
 
 
-auto drive = okapi::ChassisControllerBuilder()
+auto chassis = okapi::ChassisControllerBuilder()
     .withMotors({frontLeftPort,backLeftPort}, {frontRightPort,backRightPort}) // left motor is 1, right motor is 2 (reversed)
     .withDimensions(AbstractMotor::gearset::green, {{4.125_in, 9.75_in}, imev5GreenTPR})
     .withMaxVelocity(200)
     .build(); // build an odometry chassis
-    std::shared_ptr<okapi::ChassisModel> model = std::dynamic_pointer_cast<okapi::ChassisModel>(drive->getModel());
+
+std::shared_ptr<okapi::ChassisModel> model = std::dynamic_pointer_cast<okapi::ChassisModel>(chassis->getModel());
