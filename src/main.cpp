@@ -39,16 +39,28 @@ void competition_initialize() {
 
 
 void autonomous() {
+  auto chassis = okapi::ChassisControllerBuilder()
+      .withMotors({frontLeftPort,backLeftPort}, {frontRightPort,backRightPort}) // left motor is 1, right motor is 2 (reversed)
+      .withGains(
+         {0.001, 0.001, 0.00009}, // Distance controller gains 0.005, 0, 0.001
+         {0.001, 0.001, 0.00001}, // Turn controller gains
+         {0.001, 0.001, 0.0001}  // Angle controller gains (helps drive straight)
+       )
+      .withDimensions(AbstractMotor::gearset::green, scales)
+      .withOdometry() // use the same scales as the chassis (above)
+      .withMaxVelocity(200)
+      .buildOdometry(); // build an odometry chassis
+
   robotDeploy();
   selectAuton(chassis);
-}
+  }
 
 
 void opcontrol() {
 
   auto chassis = okapi::ChassisControllerBuilder()
       .withMotors({frontLeftPort,backLeftPort}, {frontRightPort,backRightPort})
-      .withDimensions(AbstractMotor::gearset::green, {{4.125_in, 9.75_in}, imev5GreenTPR})
+      .withDimensions(AbstractMotor::gearset::green, scales)
       .withMaxVelocity(200)
       .build(); // build an odometry chassis
       std::shared_ptr<okapi::ChassisModel> model = std::dynamic_pointer_cast<okapi::ChassisModel>(chassis->getModel());

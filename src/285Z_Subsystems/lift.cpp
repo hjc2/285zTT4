@@ -37,21 +37,19 @@ void Lift::moveToState(int pos){
 void Lift::liftToggle(Tray angler){
 
   if (liftUpButton.changedToPressed() && heightNow < NUM_HEIGHTS - 1) {
-      angler.stopPID();
+      // angler.stopPID();
       // If the goal height is not at maximum and the up button is pressed, increase the setpoint
       heightNow++;
       liftController->setTarget(heights[heightNow]);
-      pros::delay(500);
-      angler.moveAbsolute(1400, 500);
+      // pros::delay(500);
+      // angler.moveAbsolute(1400, 500);
 
     } else if (liftDownButton.changedToPressed() && heightNow > 0) {
-      angler.stopPID();
+      // angler.stopPID();
       heightNow--;
       liftController->setTarget(heights[heightNow]);
-      if(heightNow == 0){
-        angler.moveAbsolute(200, -100);
-
-      }
+      // if(heightNow == 0){
+      //   angler.moveAbsolute(200, -100);
     }
 
 }

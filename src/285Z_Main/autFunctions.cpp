@@ -262,8 +262,6 @@ void nineCubeTestRed(std::shared_ptr<okapi::OdomChassisController> chassis, std:
     "C"
   );
 
-  intake.moveVelocity(-200);
-  pros::Task::delay(500);
   intake.moveVelocity(200);//deploy robot and tray
 
   slow->setTarget("A", fwd);
@@ -281,6 +279,8 @@ void nineCubeTestRed(std::shared_ptr<okapi::OdomChassisController> chassis, std:
 
   stackDeploy();
 }
+
+
 /*
 ==========================
 NEW AUTON STRUCTURE
