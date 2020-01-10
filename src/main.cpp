@@ -11,8 +11,67 @@
  * to keep execution time for this mode under a few seconds.
 
  */
+
+//**************** INITIALIZE ALL CHASSIS FOR AUTON ********************//
+ auto chassisauto = okapi::ChassisControllerBuilder()
+     .withMotors(driveL, driveR) // left motor is 1, right motor is 2 (reversed)
+     .withGains(
+        {0.001, 0.001, 0.00009}, // Distance controller gains 0.005, 0, 0.001
+        {0.001, 0.001, 0.00001}, // Turn controller gains
+        {0.001, 0.001, 0.0001}  // Angle controller gains (helps drive straight)
+      )
+     .withDimensions(AbstractMotor::gearset::green, scales)
+     .withOdometry() // use the same scales as the chassis (above)
+     .withMaxVelocity(200)
+     .buildOdometry(); // build an odometry chassis
+ auto motion =
+   ChassisControllerBuilder()
+     .withMotors({frontLeftPort,backLeftPort}, {frontRightPort,backRightPort})
+     .withDimensions(AbstractMotor::gearset::green, scales)
+     .withMaxVelocity(200)
+     .build();
+ auto fastauto =
+   AsyncMotionProfileControllerBuilder()
+     .withLimits({
+       1.1,  //max velocity
+       4.0,  //max acceleration
+       10.0  //max jerk
+     })
+     .withOutput(motion)
+     .buildMotionProfileController();
+ auto slowauto =
+   AsyncMotionProfileControllerBuilder()
+     .withLimits({
+       0.5,  //max velocity
+       2.0,  //max acceleration
+       10.0  //max jerk
+     })
+     .withOutput(motion)
+     .buildMotionProfileController();
+
+//**************** INITIALIZE ALL CHASSIS FOR AUTON ********************//
 void initialize() {
-  profileControllers();
+  slowauto->generatePath({
+    {0_ft,0_ft,0_deg},
+    {3.5_ft,0_ft,0_deg}},
+    "A"
+  );
+  fastauto->generatePath({
+    {0_ft,0_ft,0_deg},
+    {4.5_ft,0_ft,0_deg}},
+    "B"
+  );
+  fastauto->generatePath({
+    {0_ft,0_ft,0_deg},
+    {4_ft,2_ft,0_deg}},
+    "S"
+  );
+  fastauto->generatePath({
+    {0_ft,0_ft,0_deg},
+    {1.5_ft,0_ft,0_deg}},
+    "C"
+  );
+
 }
 
 /**
@@ -23,15 +82,7 @@ void initialize() {
  */
 void disabled() {}
 //yes
-/**
- * Runs after initialize(), and before autonomous when connected to the Field
- * Management System or the VEX Competition Switch. This is intended for
- * competition-specific initialization routines, such as an autonomous selector
- * on the LCD.
- *
- * This task will exit when the robot is enabled and autonomous or opcontrol
- * starts.
- */
+
 void competition_initialize() {
   while(true) {
   initScreen();
@@ -41,20 +92,9 @@ void competition_initialize() {
 
 
 void autonomous() {
-  auto chassis = okapi::ChassisControllerBuilder()
-      .withMotors(driveL, driveR) // left motor is 1, right motor is 2 (reversed)
-      .withGains(
-         {0.001, 0.001, 0.00009}, // Distance controller gains 0.005, 0, 0.001
-         {0.001, 0.001, 0.00001}, // Turn controller gains
-         {0.001, 0.001, 0.0001}  // Angle controller gains (helps drive straight)
-       )
-      .withDimensions(AbstractMotor::gearset::green, scales)
-      .withOdometry() // use the same scales as the chassis (above)
-      .withMaxVelocity(200)
-      .buildOdometry(); // build an odometry chassis
 
   robotDeploy();
-  selectAuton(chassis);
+  selectAuton(chassisauto, fastauto, slowauto);
   }
 
 
