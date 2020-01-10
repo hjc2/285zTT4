@@ -14,6 +14,7 @@ class Lift{
 
   void moveToState(int);
   void liftToggle(Tray);
+  void moveTo(int);
   int getHeightPos();
   void deploy();
   void moveToUp();

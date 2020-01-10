@@ -68,6 +68,10 @@ void Lift::moveToDown(){
   liftController->setTarget(0);
 }
 
+void Lift::moveTo(int deg){
+  liftController->setTarget(deg);
+}
+
 void Lift::move(int vel){
   liftMotor.moveVelocity(-vel);
   liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
