@@ -26,7 +26,7 @@ okapi::ControllerButton liftDownButton = okapi::ControllerDigital::L2;
  //angler motor port
  int anglerPort = 8;
 
- Motor frontLeftMotor(frontLeftPort);
+ Motor frontLeftMotor(frontLeftPort);02
  Motor backLeftMotor(backLeftPort);
  Motor frontRightMotor(frontRightPort);
  Motor backRightMotor(backRightPort);
