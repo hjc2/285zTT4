@@ -40,7 +40,7 @@ void competition_initialize() {
 
 void autonomous() {
   auto chassis = okapi::ChassisControllerBuilder()
-      .withMotors({frontLeftPort,backLeftPort}, {frontRightPort,backRightPort}) // left motor is 1, right motor is 2 (reversed)
+      .withMotors(driveL, driveR) // left motor is 1, right motor is 2 (reversed)
       .withGains(
          {0.001, 0.001, 0.00009}, // Distance controller gains 0.005, 0, 0.001
          {0.001, 0.001, 0.00001}, // Turn controller gains
@@ -58,14 +58,16 @@ void autonomous() {
 
 void opcontrol() {
 
+// CHASSIS CONTROLLER
   auto chassis = okapi::ChassisControllerBuilder()
-      .withMotors({frontLeftPort,backLeftPort}, {frontRightPort,backRightPort})
+      .withMotors(driveL, driveR)
       .withDimensions(AbstractMotor::gearset::green, scales)
       .withMaxVelocity(200)
       .build(); // build an odometry chassis
       std::shared_ptr<okapi::ChassisModel> model = std::dynamic_pointer_cast<okapi::ChassisModel>(chassis->getModel());
 
-  pros::Task intakeThread(liftTask, (void*)"PROS", TASK_PRIORITY_DEFAULT, //Task for Lift
+// LIFT TASK
+  pros::Task intakeThread(liftTask, (void*)"PROS", TASK_PRIORITY_DEFAULT,
                     TASK_STACK_DEPTH_DEFAULT, "Lift Task");
 
   while(true){
@@ -74,7 +76,7 @@ void opcontrol() {
     model->tank(controller.getAnalog(okapi::ControllerAnalog::leftY),
               controller.getAnalog(okapi::ControllerAnalog::rightY));
 
-    //  INTAKE TOGGLE CODE  //
+    // INTAKE TOGGLE CODE  //
     toggleIntake();
     intakeRev();
 

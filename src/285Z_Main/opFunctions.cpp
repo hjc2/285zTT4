@@ -28,14 +28,13 @@ void arcadeDrive(){
 }*/
 
 
+
 //******************* INTAKE ********************//
 
 //Toggles intake
 //checks if the intake button is pressed
 //if pressed, it will toggle the state of the intake
 //using the intake intakeToggleBool between 600RPM and 0RPM
-
-
 
 void toggleIntake(){
 //  if (anglerController->!isDisabled()){
@@ -88,6 +87,7 @@ void intakeRev(){
   }
 }
 
+
 //****************** ANGLER ********************//
 
 void anglerManual(){
@@ -103,7 +103,7 @@ void anglerManual(){
   }
 }
 
-//will only move if lift height is 0 and angler isn't disanled
+//will only move if lift height is 0 and angler isn't disabled
 //will move to the states defined in the angler class
 void anglerToggle(){
   if(trayButton.changedToPressed()){
