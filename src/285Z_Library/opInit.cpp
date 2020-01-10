@@ -31,18 +31,21 @@ okapi::ControllerButton liftDownButton = okapi::ControllerDigital::L2;
  Motor frontRightMotor(frontRightPort);
  Motor backRightMotor(backRightPort);
 
-  //motors for the intake. (looking from the front)
  Motor intakeRightMotor(intakeRightPort);
  Motor intakeLeftMotor(intakeLeftPort);
 
-  //angler motor is not sure
  Motor anglerMotor(anglerPort);
  Motor liftMotor(liftPort);
 
+//motor groups
  MotorGroup intake({intakeRightPort, intakeLeftPort});
+
+ MotorGroup driveL({frontLeftPort, backLeftPort});
+ MotorGroup driveR({frontRightPort, backLeftPort});
 
  double wheelSize = 4.125;
  double wheelBase = 9.75;
+
 okapi::ChassisScales scales
 {
   //4.125 is the wheelsize and 9.75 is the wheelbase
