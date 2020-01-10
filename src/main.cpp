@@ -65,6 +65,9 @@ void opcontrol() {
       .build(); // build an odometry chassis
       std::shared_ptr<okapi::ChassisModel> model = std::dynamic_pointer_cast<okapi::ChassisModel>(chassis->getModel());
 
+  pros::Task intakeThread(liftTask, (void*)"PROS", TASK_PRIORITY_DEFAULT, //Task for Lift
+                    TASK_STACK_DEPTH_DEFAULT, "Lift Task");
+
   while(true){
 
     // TANK DRIVE CODE //
@@ -78,9 +81,6 @@ void opcontrol() {
   // ANGLER TOGGLE CODE
     anglerToggle();
     stopPID();
-
-    //  LIFT  //
-    liftToggle();
 
     pros::delay(10);
   }

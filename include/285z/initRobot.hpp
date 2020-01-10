@@ -4,7 +4,7 @@
 extern bool anglerDisabled;
 //Controller
 extern Controller controller;
-//extern std::shared_ptr<okapi::ChassisModel> model;
+// extern std::shared_ptr<okapi::ChassisModel> model;
 //GUI
 int GUI();
 void flat();
@@ -67,3 +67,6 @@ extern AsyncMotionProfileControllerBuilder slow;
 
 extern ChassisControllerBuilder aut;
 extern ChassisControllerBuilder chassis;
+
+//TASKS
+void liftTask (void*);

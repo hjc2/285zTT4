@@ -25,6 +25,4 @@ void btnSetToggled(lv_obj_t * btn, bool toggled);
 
 void initScreen();
 
-void selectAuton(std::shared_ptr<okapi::OdomChassisController> chassis);
-
 void testScreen();

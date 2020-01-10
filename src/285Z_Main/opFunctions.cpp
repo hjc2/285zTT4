@@ -202,3 +202,9 @@ void liftManualStop(){
     liftMotor.moveVelocity(-100);
   }
 }
+void liftTask(void* param) {
+  while(true) {
+    liftToggle();
+    pros::Task::delay(10);
+  }
+}
