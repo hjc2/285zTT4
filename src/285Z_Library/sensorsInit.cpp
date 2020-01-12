@@ -5,3 +5,6 @@
 //POTENTIOMETER AUTON SELECTOR
  char potentiometerPort = 'A';
  Potentiometer autonPot(potentiometerPort);
+
+ char cubeSensorPort = 'B';
+ pros::ADILineSensor cubeSensor(cubeSensorPort);

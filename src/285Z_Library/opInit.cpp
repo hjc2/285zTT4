@@ -2,14 +2,19 @@
 
 okapi::Controller controller;
 
-okapi::ControllerButton intakeButton = okapi::ControllerDigital:: R2;
+okapi::ControllerButton intakeButton = okapi::ControllerDigital:: R2; //Intake Buttons
 okapi::ControllerButton outtakeButton = okapi::ControllerDigital::R1;
 
-okapi::ControllerButton trayButton = okapi::ControllerDigital:: A;
+okapi::ControllerButton trayButton = okapi::ControllerDigital:: A;    //Tray Buttons
 okapi::ControllerButton stopPIDButton = okapi::ControllerDigital:: Y;
 
-okapi::ControllerButton liftUpButton = okapi::ControllerDigital::L1;
+okapi::ControllerButton liftUpButton = okapi::ControllerDigital::L1;  //Lift Buttons
 okapi::ControllerButton liftDownButton = okapi::ControllerDigital::L2;
+
+okapi::ControllerButton deployButton = okapi::ControllerDigital::B;  //Macro Buttons
+
+
+
 
  //drive motor points
  int frontLeftPort = 9;

@@ -10,6 +10,7 @@ bool intakeToggleBool = false;
 bool intakeToggleHold = true;
 bool liftPositionBool = true;
 
+double outtakeSpeed = 75;
 
 
 //***********************  INITIALIZE SUBSYSTEMS  ***************************//
@@ -206,5 +207,24 @@ void liftTask(void* param) {
   while(true) {
     liftToggle();
     pros::Task::delay(10);
+  }
+}
+
+void stackDeploy()
+{
+  if(deployButton.changedToPressed())
+  {
+    //ratio is 0.860776764973 intake:drive
+    angler.moveToDown(true);
+    intake.moveVelocity(outtakeSpeed*0.860776764973);
+
+    driveL.moveVelocity(outtakeSpeed);
+    driveR.moveVelocity(outtakeSpeed);
+
+    pros::Task::delay(750);
+    intake.moveVelocity(0);
+
+    driveL.moveVelocity(0);
+    driveR.moveVelocity(0);
   }
 }

@@ -122,9 +122,11 @@ void opcontrol() {
     toggleIntake();
     intakeRev();
 
-  // ANGLER TOGGLE CODE
+    // ANGLER TOGGLE CODE
     anglerToggle();
     stopPID();
+    // MACRO CODE
+    stackDeploy();
 
     pros::delay(10);
   }

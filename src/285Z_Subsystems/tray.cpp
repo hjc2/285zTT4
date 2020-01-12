@@ -18,6 +18,7 @@ auto anglerController = AsyncPosControllerBuilder().withMotor(anglerPort)
                         .withGains({traykP, traykI, traykD})
                         .build();
 //will check which position is requested and run that with the overall rotation
+/*
 void Tray::moveToState(int pos){
   switch(pos){
     case DOWN:
@@ -35,7 +36,7 @@ void Tray::moveToState(int pos){
     break;
   }
 }
-
+*/
 //this function will undisable the angler
 void Tray::moveToUp(bool op){
   trayHeightPos = 1;
@@ -44,7 +45,7 @@ void Tray::moveToUp(bool op){
     anglerController->flipDisable();
 
   }
-  anglerController->setTarget(4200); //sets the target angle
+  anglerController->setTarget(4500); //sets the target angle
   if(!op){
     anglerController->waitUntilSettled(); //checks if its auton so no accidental movement
   }
