@@ -20,12 +20,12 @@ void selectAuton(std::shared_ptr<okapi::OdomChassisController> chassis, std::sha
   if(autonPot.get() >= 1023 && autonPot.get() < 2047){
     blueFiveCube(chassis);
   }
-  if(autonPot.get() >= 2047 && autonPot.get() < 3072){
-    redLongGoal(chassis);
-  }
-  if(autonPot.get() >= 3072 && autonPot.get() < 4096){
-    blueLongGoal(chassis);
-  }
+  // if(autonPot.get() >= 2047 && autonPot.get() < 3072){
+  //   longGoalRed(chassis);
+  // }
+  // if(autonPot.get() >= 3072 && autonPot.get() < 4096){
+  //   blueLongGoal(chassis);
+  // }
 }
 
 

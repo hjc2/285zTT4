@@ -10,7 +10,7 @@ const int LIFTUP = 2;
 
 int trayHeightPos = 0;
 
-double traykP = 0.0004; //tray P coefficient
+double traykP = 0.0006; //tray P coefficient
 double traykI = 0.00001; //tray K coefficient
 double traykD = 0.00001; //tray D coefficient
 
@@ -44,7 +44,7 @@ void Tray::moveToUp(bool op){
     anglerController->flipDisable();
 
   }
-  anglerController->setTarget(4000); //sets the target angle
+  anglerController->setTarget(4200); //sets the target angle
   if(!op){
     anglerController->waitUntilSettled(); //checks if its auton so no accidental movement
   }
