@@ -149,7 +149,7 @@ void longGoalRed(std::shared_ptr<okapi::OdomChassisController> chassis, std::sha
 
   fast->generatePath({
     {0_ft,0_ft,0_deg},
-    {4_ft,2_ft,0_deg}},
+    {4_ft,0_ft,0_deg}},
     "F2"
   );
   fast->generatePath({
@@ -211,7 +211,7 @@ void longGoalBlue(std::shared_ptr<okapi::OdomChassisController> chassis, std::sh
 
   fast->generatePath({
     {0_ft,0_ft,0_deg},
-    {4_ft,2_ft,0_deg}},
+    {4_ft,0_ft,0_deg}},
     "F2"
   );
   fast->generatePath({
