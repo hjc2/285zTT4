@@ -35,6 +35,7 @@ void liftPositionToggleFunction();
 const bool fwd {false};
 const bool bwd {true};
 
+void autoStackDeploy();
 void selectAuton(std::shared_ptr<okapi::OdomChassisController>, std::shared_ptr<okapi::AsyncMotionProfileController> slow,std::shared_ptr<okapi::AsyncMotionProfileController> fast);
 /*****************************   RED: FIVE CUBES    **********************/
 void shortGoalFiveRed(std::shared_ptr<okapi::OdomChassisController> chassis, std::shared_ptr<okapi::AsyncMotionProfileController> slow,std::shared_ptr<okapi::AsyncMotionProfileController> fast);

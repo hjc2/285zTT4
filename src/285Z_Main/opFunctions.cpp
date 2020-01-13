@@ -75,8 +75,8 @@ void toggleIntake(){
 void intakeRev(){
   if (outtakeButton.isPressed())
   {
-    if(heightNow == 0){
-      intake.moveVelocity (-125);
+    if(heightNow == 2){
+      intake.moveVelocity (-150);
     } else {
       intake.moveVelocity (-100);
     }
