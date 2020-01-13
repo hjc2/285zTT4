@@ -36,17 +36,20 @@ const bool fwd {false};
 const bool bwd {true};
 
 void selectAuton(std::shared_ptr<okapi::OdomChassisController>, std::shared_ptr<okapi::AsyncMotionProfileController> slow,std::shared_ptr<okapi::AsyncMotionProfileController> fast);
+/*****************************   RED: FIVE CUBES    **********************/
+void shortGoalFiveRed(std::shared_ptr<okapi::OdomChassisController> chassis, std::shared_ptr<okapi::AsyncMotionProfileController> slow,std::shared_ptr<okapi::AsyncMotionProfileController> fast);
+//******************************   RED: NINE CUBES   ****************************//
+void shortGoalNineRed(std::shared_ptr<okapi::OdomChassisController> chassis, std::shared_ptr<okapi::AsyncMotionProfileController> slow,std::shared_ptr<okapi::AsyncMotionProfileController> fast);
+//************************   RED: LONG GOAL   ****************************//
+void longGoalRed(std::shared_ptr<okapi::OdomChassisController> chassis, std::shared_ptr<okapi::AsyncMotionProfileController> slow,std::shared_ptr<okapi::AsyncMotionProfileController> fast);
 
-void redFiveCube(std::shared_ptr<okapi::OdomChassisController>);
-void blueFiveCube(std::shared_ptr<okapi::OdomChassisController>);
 
-void redLongGoal(std::shared_ptr<okapi::OdomChassisController>);
-void blueLongGoal(std::shared_ptr<okapi::OdomChassisController>);
-
-void redNineCube(std::shared_ptr<okapi::OdomChassisController>);
-void blueNineCube(std::shared_ptr<okapi::OdomChassisController>);
-
-void test(std::shared_ptr<okapi::OdomChassisController>);
+//************************   BLUE: FIVE CUBES   ****************************//
+void shortGoalFiveBlue(std::shared_ptr<okapi::OdomChassisController> chassis, std::shared_ptr<okapi::AsyncMotionProfileController> slow,std::shared_ptr<okapi::AsyncMotionProfileController> fast);
+//************************   BLUE: SHORT GOAL, NINE CUBES   ****************************//
+void shortGoalNineBlue(std::shared_ptr<okapi::OdomChassisController> chassis, std::shared_ptr<okapi::AsyncMotionProfileController> slow,std::shared_ptr<okapi::AsyncMotionProfileController> fast);
+//************************   BLUE: LONG GOAL   ****************************//
+void longGoalBlue(std::shared_ptr<okapi::OdomChassisController> chassis, std::shared_ptr<okapi::AsyncMotionProfileController> slow,std::shared_ptr<okapi::AsyncMotionProfileController> fast);
 
 void robotDeploy();
 void stackDeploy();

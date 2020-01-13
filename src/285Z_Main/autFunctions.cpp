@@ -15,19 +15,18 @@ void selectAuton(std::shared_ptr<okapi::OdomChassisController> chassis, std::sha
   pros::delay(300);
 
   if(autonPot.get() >= 0 && autonPot.get() < 1023){
-    redFiveCube(chassis);
+    shortGoalFiveRed(chassis, slow, fast);
   }
   if(autonPot.get() >= 1023 && autonPot.get() < 2047){
-    blueFiveCube(chassis);
+    shortGoalFiveBlue(chassis, slow, fast);
   }
   if(autonPot.get() >= 2047 && autonPot.get() < 3072){
-    redLongGoal(chassis);
+    longGoalRed(chassis, slow, fast);
   }
   if(autonPot.get() >= 3072 && autonPot.get() < 4096){
-    blueLongGoal(chassis);
+    longGoalBlue(chassis, slow, fast);
   }
 }
-
 
 //will write to the screen to say the auton
 
@@ -75,84 +74,57 @@ void initAutoPaths(std::shared_ptr<okapi::AsyncMotionProfileController> slow,std
   mp[1] = fast;
 
 }
+
+//***************** RED AUTONOMOUS PROGRAMS *********************//
 //*****************************   RED: FIVE CUBES    **********************//
-void redFiveCube(std::shared_ptr<okapi::OdomChassisController> chassis){
+void shortGoalFiveRed(std::shared_ptr<okapi::OdomChassisController> chassis, std::shared_ptr<okapi::AsyncMotionProfileController> slow,std::shared_ptr<okapi::AsyncMotionProfileController> fast){
+
+}
+
+//******************************   RED: NINE CUBES   ****************************//
+void shortGoalNineRed(std::shared_ptr<okapi::OdomChassisController> chassis, std::shared_ptr<okapi::AsyncMotionProfileController> slow,std::shared_ptr<okapi::AsyncMotionProfileController> fast)
+{
   Tray angler;
 
+  //************** INIT PATHS *******************//
+  slow->generatePath({
+    {0_ft,0_ft,0_deg},
+    {3.5_ft,0_ft,0_deg}},
+    "A"
+  );
+  fast->generatePath({
+    {0_ft,0_ft,0_deg},
+    {4.5_ft,0_ft,0_deg}},
+    "B"
+  );
+  fast->generatePath({
+    {0_ft,0_ft,0_deg},
+    {4_ft,2_ft,0_deg}},
+    "S"
+  );
+  fast->generatePath({
+    {0_ft,0_ft,0_deg},
+    {1.5_ft,0_ft,0_deg}},
+    "C"
+  );
+  //************** RUN AUTON *******************//
+  slow->setTarget("A", fwd);
+  slow->waitUntilSettled();//goes forward to get 4 cubes
 
-  //       RED AUTON       //
-  //Intake On
-  intake.moveVelocity(270);
-  //Move to blocks
-  chassis->setState({0.5_ft,9.9_ft,0_deg});
-  chassis->driveToPoint({5.05_ft, 9.9_ft});
-  pros::Task::delay(500);
-//  chassis->turnToAngle(135_deg);
-  intake.setBrakeMode(AbstractMotor::brakeMode::hold);
-  intake.moveVelocity(0);
+  fast->setTarget("S", bwd);
+  fast->waitUntilSettled();//splines backwards to line up for second row
 
-  chassis->driveToPoint({3.0_ft, 9.9_ft}, true);
-  // chassis->waitUntilSettled();
-	chassis->turnToAngle(160_deg);
-  // chassis->waitUntilSettled();
+  slow->setTarget("A", fwd);
+  slow->waitUntilSettled();//intakes last 3 CUBES
 
+  chassis->turnToAngle(-135_deg);
+  fast->setTarget("B");//drives to goal zone
+  fast->waitUntilSettled();
 
-  chassis->setState({0.5_ft,9.9_ft,0_deg});
-  intake.moveRelative(-725, 30);
-  chassis->driveToPoint({2_ft, 9.9_ft});
-
-  angler.moveToUp(false);
-  //false means its auton
-  //intake.moveRelative(-700, 50);
-
-  pros::Task::delay(2300);
-  intake.moveRelative(-300, 110);
-  pros::Task::delay(200);
-  chassis->moveDistance(-1.5_ft);
-  angler.moveToDown(false);
+  stackDeploy();
 }
 
-//************************   BLUE: FIVE CUBES   ****************************//
-void blueFiveCube(std::shared_ptr<okapi::OdomChassisController> chassis){
-  Tray angler;
-
-  //       RED AUTON       //
-  //Intake On
-  intake.moveVelocity(270);
-  //Move to blocks
-  chassis->setState({0.5_ft,9.9_ft,0_deg});
-  chassis->driveToPoint({5.05_ft, 9.9_ft});
-  pros::Task::delay(500);
-
-  intake.setBrakeMode(AbstractMotor::brakeMode::hold);
-  intake.moveVelocity(0);
-
-  chassis->driveToPoint({1.6_ft, 9.9_ft}, true);
-  chassis->waitUntilSettled();
-	chassis->turnToPoint({0.25_ft, 8.5_ft});
-  chassis->waitUntilSettled();
-
-
-  chassis->setState({0.5_ft,9.9_ft,0_deg});
-  intake.moveRelative(-725, 30);
-  chassis->driveToPoint({1.25_ft, 9.9_ft});
-
-  angler.moveToUp(false);
-  //false means its auton
-  //intake.moveRelative(-700, 50);
-
-  pros::Task::delay(2300);
-  intake.moveRelative(-300, 110);
-  pros::Task::delay(200);
-  chassis->moveDistance(-1.5_ft);
-  angler.moveToDown(false);
-}
-
-void test(std::shared_ptr<okapi::OdomChassisController> chassis) {
-  chassis->setState({0.5_ft,9.9_ft,0_deg});
-  chassis->driveToPoint({2.5_ft, 9.9_ft});
-}
-
+//************************   RED: LONG GOAL   ****************************//
 void longGoalRed(std::shared_ptr<okapi::OdomChassisController> chassis, std::shared_ptr<okapi::AsyncMotionProfileController> slow,std::shared_ptr<okapi::AsyncMotionProfileController> fast){
   Tray angler;
   slow->generatePath({
@@ -177,39 +149,22 @@ void longGoalRed(std::shared_ptr<okapi::OdomChassisController> chassis, std::sha
   );
 }
 
-void nineCubeTestRed(std::shared_ptr<okapi::OdomChassisController> chassis, std::shared_ptr<okapi::AsyncMotionProfileController> slow,std::shared_ptr<okapi::AsyncMotionProfileController> fast)
-{
-  Tray angler;
 
-  slow->setTarget("A", fwd);
-  slow->waitUntilSettled();//goes forward to get 4 cubes
+//*************BLUE AUTONOMOUS PROGRAMS********************//
 
-  fast->setTarget("S", bwd);
-  fast->waitUntilSettled();//splines backwards to line up for second row
+//************************   BLUE: FIVE CUBES   ****************************//
+void shortGoalFiveBlue(std::shared_ptr<okapi::OdomChassisController> chassis, std::shared_ptr<okapi::AsyncMotionProfileController> slow,std::shared_ptr<okapi::AsyncMotionProfileController> fast){
 
-  slow->setTarget("A", fwd);
-  slow->waitUntilSettled();//intakes last 3 CUBES
-
-  chassis->turnToAngle(-135_deg);
-  fast->setTarget("B");//drives to goal zone
-  fast->waitUntilSettled();
-
-  stackDeploy();
 }
 
 
-/*
-==========================
-NEW AUTON STRUCTURE
-place all the relevant autons here.
-Describe exact position for each
-  //RED
-    //LONG GOAL RED
+//************************   BLUE: SHORT GOAL, NINE CUBES   ****************************//
+void shortGoalNineBlue(std::shared_ptr<okapi::OdomChassisController> chassis, std::shared_ptr<okapi::AsyncMotionProfileController> slow,std::shared_ptr<okapi::AsyncMotionProfileController> fast){
 
-    //SHORT GOAL RED
+}
 
-  //BLUE
-    //LONG GOAL BLUE
 
-    //SHORT GOAL BLUE
-*/
+//************************   BLUE: LONG GOAL   ****************************//
+void longGoalBlue(std::shared_ptr<okapi::OdomChassisController> chassis, std::shared_ptr<okapi::AsyncMotionProfileController> slow,std::shared_ptr<okapi::AsyncMotionProfileController> fast){
+
+}
