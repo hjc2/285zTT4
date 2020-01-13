@@ -4,8 +4,8 @@
 
 const int NUM_HEIGHTS = 3;
 const int height0 = 5;
-const int height1 = 800;
-const int height2 = 1600;
+const int height1 = 1600;
+const int height2 = 2300;
 
 const int heights[NUM_HEIGHTS] = {height0, height1, height2};
 
