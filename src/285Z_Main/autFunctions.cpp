@@ -76,11 +76,12 @@ void initAutoPaths(std::shared_ptr<okapi::AsyncMotionProfileController> slow,std
 }
 
 //******************AUXILIARY FUNCTIONS *************************//
-void stackDeploy(){
+
+/*void stackDeploy(){
   Tray angler;
   angler.moveToUp(0); //0 in auton
 }
-
+*/
 //***************** RED AUTONOMOUS PROGRAMS *********************//
 //*****************************   RED: FIVE CUBES    **********************//
 void shortGoalFiveRed(std::shared_ptr<okapi::OdomChassisController> chassis, std::shared_ptr<okapi::AsyncMotionProfileController> slow,std::shared_ptr<okapi::AsyncMotionProfileController> fast){
@@ -127,7 +128,7 @@ void shortGoalNineRed(std::shared_ptr<okapi::OdomChassisController> chassis, std
   fast->setTarget("G");//drives to goal zone
   fast->waitUntilSettled();
 
-  stackDeploy();
+  //stackDeploy();
 }
 
 //************************   RED: LONG GOAL   ****************************//
@@ -174,7 +175,7 @@ void longGoalRed(std::shared_ptr<okapi::OdomChassisController> chassis, std::sha
   fast->setTarget("G");//drives to goal zone
   fast->waitUntilSettled();
 
-  stackDeploy();
+  //stackDeploy();
 }
 
 
