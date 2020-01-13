@@ -194,5 +194,47 @@ void shortGoalNineBlue(std::shared_ptr<okapi::OdomChassisController> chassis, st
 
 //************************   BLUE: LONG GOAL   ****************************//
 void longGoalBlue(std::shared_ptr<okapi::OdomChassisController> chassis, std::shared_ptr<okapi::AsyncMotionProfileController> slow,std::shared_ptr<okapi::AsyncMotionProfileController> fast){
+  Tray angler;
 
+  //************** INIT PATHS *******************//
+  slow->generatePath({
+    {0_ft,0_ft,0_deg},
+    {4.5_ft,0_ft,0_deg}},
+    "F1"
+  );
+
+  fast->generatePath({
+    {0_ft,0_ft,0_deg},
+    {3.5_ft,0_ft,0_deg}},
+    "B1"
+  );
+
+  fast->generatePath({
+    {0_ft,0_ft,0_deg},
+    {4_ft,2_ft,0_deg}},
+    "F2"
+  );
+  fast->generatePath({
+    {0_ft,0_ft,0_deg},
+    {1.5_ft,0_ft,0_deg}},
+    "G"
+  );
+  //************** RUN AUTON *******************//
+  slow->setTarget("F1", fwd);
+  slow->waitUntilSettled();//goes forward to get 2 cubes from VERTICAL Stack
+
+  chassis->turnToAngle(35_deg); //intake cube in front of tower
+  chassis->turnToAngle(-35_deg);
+  fast->setTarget("B1", bwd);
+  fast->waitUntilSettled();//move backwards straight
+
+  chassis->turnToAngle(95_deg); //turn to cube next to long goal
+  slow->setTarget("F2", fwd);
+  slow->waitUntilSettled();//intakes one cube
+
+  chassis->turnToAngle(50_deg);
+  fast->setTarget("G");//drives to goal zone
+  fast->waitUntilSettled();
+
+  stackDeploy();
 }
