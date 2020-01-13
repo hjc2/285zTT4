@@ -40,6 +40,7 @@ void Lift::liftToggle(Tray angler){
       // angler.stopPID();
       // If the goal height is not at maximum and the up button is pressed, increase the setpoint
       heightNow++;
+      if (heightNow == 2)
       liftController->setTarget(heights[heightNow]);
       // pros::delay(500);
       // angler.moveAbsolute(1400, 500);
