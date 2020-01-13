@@ -2,29 +2,34 @@
 
 okapi::Controller controller;
 
-okapi::ControllerButton intakeButton = okapi::ControllerDigital:: R2;
+okapi::ControllerButton intakeButton = okapi::ControllerDigital:: R2; //Intake Buttons
 okapi::ControllerButton outtakeButton = okapi::ControllerDigital::R1;
 
-okapi::ControllerButton trayButton = okapi::ControllerDigital:: A;
+okapi::ControllerButton trayButton = okapi::ControllerDigital:: A;    //Tray Buttons
 okapi::ControllerButton stopPIDButton = okapi::ControllerDigital:: Y;
 
-okapi::ControllerButton liftUpButton = okapi::ControllerDigital::L1;
+okapi::ControllerButton liftUpButton = okapi::ControllerDigital::L1;  //Lift Buttons
 okapi::ControllerButton liftDownButton = okapi::ControllerDigital::L2;
 
+okapi::ControllerButton deployButton = okapi::ControllerDigital::B;  //Macro Buttons
+
+
+
+
  //drive motor points
- int frontLeftPort = 1;
- int backLeftPort = 2;
- int frontRightPort = -3; //reversed
- int backRightPort = -4;  //reversed
+ int frontLeftPort = 9;
+ int backLeftPort = 3;
+ int frontRightPort = -8; //reversed
+ int backRightPort = -1;  //reversed
 
  //intake motor ports
- int intakeRightPort = 5;
- int intakeLeftPort = -9;
+ int intakeLeftPort = 18;
+ int intakeRightPort = -15;
 
  //LIFT MOTOR PORT
- int liftPort = 7;
+ int liftPort = 16;
  //angler motor port
- int anglerPort = 8;
+ int anglerPort = 2;
 
  Motor frontLeftMotor(frontLeftPort);
  Motor backLeftMotor(backLeftPort);
@@ -41,7 +46,7 @@ okapi::ControllerButton liftDownButton = okapi::ControllerDigital::L2;
  MotorGroup intake({intakeRightPort, intakeLeftPort});
 
  MotorGroup driveL({frontLeftPort, backLeftPort});
- MotorGroup driveR({frontRightPort, backLeftPort});
+ MotorGroup driveR({frontRightPort, backRightPort});
 
  double wheelSize = 4.125;
  double wheelBase = 9.75;
