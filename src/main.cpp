@@ -48,8 +48,6 @@
      })
      .withOutput(motion)
      .buildMotionProfileController();
-
-//**************** INITIALIZE ALL CHASSIS FOR AUTON ********************//
 void initialize() {
   //FOR NOW, WILL NOT DO THIS UNTIL SURE IT WORKS REGULARLY
   // slowauto->generatePath({

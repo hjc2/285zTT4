@@ -14,8 +14,6 @@ okapi::ControllerButton liftDownButton = okapi::ControllerDigital::L2;
 okapi::ControllerButton deployButton = okapi::ControllerDigital::B;  //Macro Buttons
 
 
-
-
  //drive motor points
  int frontLeftPort = 9;
  int backLeftPort = 3;
@@ -57,6 +55,9 @@ okapi::ChassisScales scales
  {4.125_in, 9.75_in}, //dimensions of the chassis
  imev5GreenTPR
 };
+
+//**************** INITIALIZE CHASSIS FOR TELEOP ***********************//
+
 
 
 // auto chassis = okapi::ChassisControllerBuilder()

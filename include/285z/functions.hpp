@@ -3,6 +3,7 @@
 
 //  **TELEOP FUNCTIONS**   //
 void lcdStart();
+void displayAuton();
 //Drive
 void tankDrive();
 
