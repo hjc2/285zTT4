@@ -10,8 +10,8 @@ const int height2 = 2300;
 const int heights[NUM_HEIGHTS] = {height0, height1, height2};
 
 double liftkP = 0.001;
-double liftkI = 0.0;
-double liftkD = 0.0;
+double liftkI = 0.0001;
+double liftkD = 0.001;
 
 int heightNow = 0;
 

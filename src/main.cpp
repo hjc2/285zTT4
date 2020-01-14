@@ -90,7 +90,7 @@ void competition_initialize() {
 
 
 void autonomous() {
-  robotDeploy();
+  //robotDeploy();
   selectAuton(chassisauto, fastauto, slowauto);
 }
 
@@ -111,6 +111,7 @@ void opcontrol() {
 
   while(true){
 
+    displayAuton();
     // TANK DRIVE CODE //
     model->tank(controller.getAnalog(okapi::ControllerAnalog::leftY),
               controller.getAnalog(okapi::ControllerAnalog::rightY));
