@@ -110,9 +110,11 @@ void anglerToggle(){
   if(trayButton.changedToPressed()){
     anglerDisabled = false;
     anglerUpBool = !anglerUpBool;
+    intake.moveVelocity(0);
   }
 
   if(anglerUpBool && !anglerDisabled && lift.getHeightPos() == 0){
+    intake.moveVelocity(-10);
     intakeToggleHold = false;
     angler.moveToUp(true);
   } else if(!anglerUpBool && !anglerDisabled && lift.getHeightPos() == 0){
@@ -158,16 +160,18 @@ void liftDown(){
 
 
 //MANUAL DUAL CONTROL
-void liftManual(){
-  if(liftUpButton.isPressed()){
+void liftControl() {
+  if(liftUpButton.isPressed()) {
     lift.move(100);
-  } else if(liftDownButton.isPressed()){
-    lift.move(-100);
-  } else {
+  }
+  else if(liftDownButton.isPressed()) {
+    lift.move(-90);
+  }
+  else {
     lift.move(0);
   }
-
 }
+
 
 //liftManualUp
 //will check if the liftUpButton is pressed,

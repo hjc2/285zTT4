@@ -46,6 +46,7 @@ void Tray::moveToUp(bool op){
 
   }
   anglerController->setTarget(4500); //sets the target angle
+  
   if(!op){
     anglerController->waitUntilSettled(); //checks if its auton so no accidental movement
   }

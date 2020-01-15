@@ -17,6 +17,7 @@ void anglerToggle();
 void stopPID();
 
 //Lift
+void liftControl();
 void liftUp();
 void liftDown();
 void liftToggle();
