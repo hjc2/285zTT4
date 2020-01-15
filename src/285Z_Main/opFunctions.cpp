@@ -130,8 +130,6 @@ void stopPID(){
 
 //******************** LIFT *******************//
 
-
-
 void liftToggle(){
   if(angler.getHeightPos() == 0){
     anglerDisabled = true;
