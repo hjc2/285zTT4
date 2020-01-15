@@ -9,9 +9,10 @@ const int height2 = 2300;
 
 const int heights[NUM_HEIGHTS] = {height0, height1, height2};
 
-double liftkP = 0.005;
-double liftkI = 0.0001;
-double liftkD = 0.00001;
+double liftkP = 0.004;
+double liftkI = 0.0;
+double liftkD = 0.0;
+// Old vals kp = 0.001, kI = 0.0001, kd = 0.0001
 
 int heightNow = 0;
 
@@ -40,16 +41,16 @@ void Lift::liftToggle(Tray angler){
       // angler.stopPID();
       // If the goal height is not at maximum and the up button is pressed, increase the setpoint
       heightNow++;
-      //liftController->setTarget(heights[heightNow]);
+      liftController->setTarget(heights[heightNow]);
       // pros::delay(500);
-      liftMotor.moveAbsolute(heights[heightNow], 100);
+      //liftMotor.moveAbsolute(heights[heightNow], 100);
 
     } else if (liftDownButton.changedToPressed() && heightNow > 0) {
       // angler.stopPID();
       heightNow--;
-      //liftController->setTarget(heights[heightNow]);
+      liftController->setTarget(heights[heightNow]);
       // if(heightNow == 0){
-      liftMotor.moveAbsolute(heights[heightNow], -70);
+      //liftMotor.moveAbsolute(heights[heightNow], -70);
     }
 
 }

@@ -111,7 +111,7 @@ void opcontrol() {
 
   while(true){
 
-    liftControl();
+    liftToggle();
     displayAuton();
     // TANK DRIVE CODE //
     model->tank(controller.getAnalog(okapi::ControllerAnalog::leftY),
