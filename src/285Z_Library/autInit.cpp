@@ -49,16 +49,6 @@ auto chassis = okapi::ChassisControllerBuilder()
     */
   }
 
-  void robotDeploy()
-  {
-    Lift lift;
-    intake.moveVelocity(-200);
-    lift.moveTo(300);
-
-    pros::Task::delay(200);
-    intake.moveVelocity(0);
-  }
-
   void stackDeploy(std::shared_ptr<okapi::AsyncMotionProfileController> fast)
   {
     Tray angler;

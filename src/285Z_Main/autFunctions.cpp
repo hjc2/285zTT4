@@ -82,6 +82,16 @@ void autoStackDeploy(){
   angler.moveToUp(0); //0 in auton
 }
 
+void robotDeploy()
+{
+  Lift lift;
+  intake.moveVelocity(-200);
+  lift.moveTo(300);
+
+  pros::Task::delay(200);
+  intake.moveVelocity(0);
+}
+
 //***************** RED AUTONOMOUS PROGRAMS *********************//
 //*****************************   RED: FIVE CUBES    **********************//
 void shortGoalFiveRed(std::shared_ptr<okapi::OdomChassisController> chassis, std::shared_ptr<okapi::AsyncMotionProfileController> slow,std::shared_ptr<okapi::AsyncMotionProfileController> fast){
