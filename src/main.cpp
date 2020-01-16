@@ -106,12 +106,11 @@ void opcontrol() {
       std::shared_ptr<okapi::ChassisModel> model = std::dynamic_pointer_cast<okapi::ChassisModel>(chassis->getModel());
 
   // LIFT TASK
-  // pros::Task intakeThread(liftTask, (void*)"PROS", TASK_PRIORITY_DEFAULT,
-  //                   TASK_STACK_DEPTH_DEFAULT, "Lift Task");
-
+  pros::Task intakeThread(liftTask, (void*)"PROS", TASK_PRIORITY_DEFAULT,
+                    TASK_STACK_DEPTH_DEFAULT, "Lift Task");
+  liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
   while(true){
 
-    liftToggle();
     displayAuton();
     // TANK DRIVE CODE //
     model->tank(controller.getAnalog(okapi::ControllerAnalog::leftY),

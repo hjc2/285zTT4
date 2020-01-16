@@ -207,6 +207,7 @@ void liftManualStop(){
 }
 void liftTask(void* param) {
   while(true) {
+    liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
     liftToggle();
     pros::Task::delay(10);
   }
