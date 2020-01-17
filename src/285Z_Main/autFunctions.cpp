@@ -84,8 +84,8 @@ void autoStackDeploy(){
 
 void robotDeploy()
 {
-  Lift Lift;
-  Lift.deploy();
+  liftMotor.moveAbsolute(200, 100);
+
 }
 
 //***************** RED AUTONOMOUS PROGRAMS *********************//
