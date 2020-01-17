@@ -90,7 +90,6 @@ void competition_initialize() {
 
 
 void autonomous() {
-    robotDeploy();
   //selectAuton(chassisauto, fastauto, slowauto);
 }
 
