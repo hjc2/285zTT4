@@ -86,7 +86,6 @@ void robotDeploy()
 {
   Lift Lift;
   Lift.deploy();
-
 }
 
 //***************** RED AUTONOMOUS PROGRAMS *********************//
