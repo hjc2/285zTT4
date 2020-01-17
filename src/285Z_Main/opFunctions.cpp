@@ -165,10 +165,10 @@ void liftControl() {
     lift.move(100);
   }
   else if(liftDownButton.isPressed()) {
-    lift.move(-90);
+    lift.move(-40);
   }
   else {
-    lift.move(0);
+    lift.move(1);
   }
 }
 
@@ -208,7 +208,7 @@ void liftManualStop(){
 void liftTask(void* param) {
   while(true) {
     liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
-    liftToggle();
+    liftControl();
     pros::Task::delay(10);
   }
 }
