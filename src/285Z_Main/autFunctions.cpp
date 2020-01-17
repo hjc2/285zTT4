@@ -3,7 +3,7 @@
 #include "../include/285Z_Subsystems/lift.hpp"
 #include "../include/285z/functions.hpp"
 #include "../include/285Z_Aux/gui.hpp"
-
+                                                                                  // v
 //function called in main.cpp
 //will select auton then run it
 
@@ -84,10 +84,8 @@ void autoStackDeploy(){
 
 void robotDeploy()
 {
-  Lift lift;
-  intake.moveVelocity(-100);
-  lift.moveTo(600);
-  pros::Task::delay(1000);
+  Lift Lift;
+  Lift.deploy();
 
 }
 

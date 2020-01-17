@@ -59,7 +59,7 @@ int Lift::getHeightPos(){
   return heightNow;
 }
 
-void Lift::deploy(){
+  void Lift::deploy(){
   liftMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
   liftMotor.moveAbsolute(400, 200);
   liftMotor.moveAbsolute(50, -200);
