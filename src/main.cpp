@@ -91,8 +91,8 @@ void competition_initialize() {
 
 
 void autonomous() {
-  liftMotor.moveVelocity(100);
-  pros::Task::delay(400);
+  Lift lift;
+  lift.deploy();
   //selectAuton(chassisauto, fastauto, slowauto);
 }
 
