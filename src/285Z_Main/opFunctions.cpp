@@ -114,7 +114,7 @@ void anglerToggle(){
   }
 
   if(anglerUpBool && !anglerDisabled && lift.getHeightPos() == 0){
-    intake.moveVelocity(-10);
+    // intake.moveVelocity(-10);
     intakeToggleHold = false;
     angler.moveToUp(true);
   } else if(!anglerUpBool && !anglerDisabled && lift.getHeightPos() == 0){
