@@ -85,11 +85,10 @@ void autoStackDeploy(){
 void robotDeploy()
 {
   Lift lift;
-  intake.moveVelocity(-200);
-  lift.moveTo(900);
-
+  intake.moveVelocity(-100);
+  lift.moveTo(600);
   pros::Task::delay(1000);
-  intake.moveVelocity(0);
+
 }
 
 //***************** RED AUTONOMOUS PROGRAMS *********************//
