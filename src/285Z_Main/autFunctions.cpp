@@ -79,16 +79,16 @@ void initAutoPaths(std::shared_ptr<okapi::AsyncMotionProfileController> slow,std
 
 void autoStackDeploy(){
   Tray angler;
-  angler.moveToUp(0); //0 in auton
+  angler.moveToUp(0); //0 in
 }
 
 void robotDeploy()
 {
   Lift lift;
   intake.moveVelocity(-200);
-  lift.moveTo(300);
+  lift.moveTo(900);
 
-  pros::Task::delay(200);
+  pros::Task::delay(1000);
   intake.moveVelocity(0);
 }
 
