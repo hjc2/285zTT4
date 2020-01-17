@@ -1,6 +1,7 @@
 #include "285z/initRobot.hpp"
 #include "285z/functions.hpp"
 #include "285Z_Subsystems/tray.hpp"
+#include "285Z_Subsystems/lift.hpp"
 #include "../include/285Z_Aux/gui.hpp"
 #include "../include/pros/llemu.hpp"
 
@@ -90,6 +91,9 @@ void competition_initialize() {
 
 
 void autonomous() {
+  Lift lift;
+  lift.move(150);
+  pros::Task::delay(400);
   //selectAuton(chassisauto, fastauto, slowauto);
 }
 
