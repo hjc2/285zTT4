@@ -91,8 +91,10 @@ void competition_initialize() {
 
 
 void autonomous() {
-  Lift lift;
-  lift.deploy();
+  intake.moveVelocity(-100);
+  //oneCubeSad();
+
+
   //selectAuton(chassisauto, fastauto, slowauto);
 }
 

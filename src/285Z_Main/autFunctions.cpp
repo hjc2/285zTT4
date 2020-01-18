@@ -326,3 +326,15 @@ void longGoalBlue(std::shared_ptr<okapi::OdomChassisController> chassis, std::sh
   intake.moveAbsolute(-90, 60);
   autoStackDeploy();
 }
+
+void oneCubeSad(std::shared_ptr<okapi::OdomChassisController> chassis, std::shared_ptr<okapi::AsyncMotionProfileController> slow,std::shared_ptr<okapi::AsyncMotionProfileController> fast)
+{
+  fast->generatePath({
+    {0_ft,0_ft,0_deg},
+    {1.5_ft,0_ft,0_deg}},
+    "G"
+  );
+  fast->setTarget("G",bwd);
+  fast->waitUntilSettled();
+  fast->setTarget("G");
+}
