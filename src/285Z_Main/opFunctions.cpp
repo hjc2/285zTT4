@@ -165,10 +165,10 @@ void liftControl() {
     lift.move(100);
   }
   else if(liftDownButton.isPressed()) {
-    lift.move(-60);
+    lift.move(-90);
   }
   else {
-    lift.move(1);
+    lift.move(0);
   }
 }
 

@@ -22,10 +22,10 @@ okapi::ControllerButton deployButton = okapi::ControllerDigital::B;  //Macro But
 
  //intake motor ports
  int intakeLeftPort = 18;
- int intakeRightPort = -15;
+ int intakeRightPort = -17;
 
  //LIFT MOTOR PORT
- int liftPort = 16;
+ int liftPort = 11;
  //angler motor port
  int anglerPort = 2;
 
