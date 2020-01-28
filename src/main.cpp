@@ -91,6 +91,7 @@ void competition_initialize() {
 
 
 void autonomous() {
+  /*
   intake.moveVelocity(-100);
   pros::delay(2500);
   intake.moveVelocity(0);
@@ -105,8 +106,8 @@ void autonomous() {
   //oneCubeSad();
 
 
-
-  //selectAuton(chassisauto, fastauto, slowauto);
+*/
+  selectAuton(chassisauto, fastauto, slowauto);
 }
 
 
