@@ -59,3 +59,5 @@ void stackDeploy();
 
 //INITIALIZE
 void profileControllers();
+
+void redSmallManual();

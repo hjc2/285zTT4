@@ -15,7 +15,8 @@ void selectAuton(std::shared_ptr<okapi::OdomChassisController> chassis, std::sha
   pros::delay(300);
 
   if(autonPot.get() >= 0 && autonPot.get() < 1023){
-    shortGoalFiveRed(chassis, slow, fast);
+    //shortGoalFiveRed(chassis, slow, fast);
+    redSmallManual();
   }
   if(autonPot.get() >= 1023 && autonPot.get() < 2047){
     shortGoalFiveBlue(chassis, slow, fast);
@@ -337,4 +338,24 @@ void oneCubeSad(std::shared_ptr<okapi::OdomChassisController> chassis, std::shar
   fast->setTarget("G",bwd);
   fast->waitUntilSettled();
   fast->setTarget("G");
+}
+
+void redSmallManual(){
+  intake.moveVelocity(-100);
+  driveL.moveVelocity(200);
+  driveR.moveVelocity(200);
+  pros::delay(400);
+
+  driveL.moveVelocity(-200);
+  driveR.moveVelocity(-200);
+  pros::delay(400);
+  driveL.moveVelocity(0);
+  driveR.moveVelocity(0);
+  pros::delay(2000);
+
+  intake.moveVelocity(100);
+  driveL.moveVelocity(50);
+  driveR.moveVelocity(50);
+  pros::delay(4000);
+
 }
