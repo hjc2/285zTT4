@@ -2,7 +2,6 @@
 #include "../include/285z/initRobot.hpp"
 #include "../include/285Z_Subsystems/tray.hpp"
 #include "../include/285Z_Subsystems/lift.hpp"
-
 bool anglerUpBool = false;
 bool anglerDisabled = false;
 
@@ -10,7 +9,7 @@ bool intakeToggleBool = false;
 bool intakeToggleHold = true;
 bool liftPositionBool = true;
 
-double outtakeSpeed = 75;
+double outtakeSpeed = 85;
 
 
 //***********************  INITIALIZE SUBSYSTEMS  ***************************//
@@ -165,7 +164,7 @@ void liftControl() {
     lift.move(200);
   }
   else if(liftDownButton.isPressed()) {
-    lift.move(-150);
+    lift.move(-170);
   }
   else {
     lift.move(0);

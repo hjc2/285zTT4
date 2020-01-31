@@ -61,3 +61,4 @@ void stackDeploy();
 void profileControllers();
 
 void redSmallManual();
+void deployTray();
