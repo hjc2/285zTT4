@@ -60,8 +60,9 @@ int Lift::getHeightPos(){
 }
 
 void Lift::deploy(){
-  liftController -> setTarget(100);
-  liftController -> waitUntilSettled();
+  liftController -> setTarget(600);
+  pros::delay(200);
+  liftController -> setTarget(160);
 }
 
 void Lift::moveToDown(){

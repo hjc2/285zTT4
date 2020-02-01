@@ -17,7 +17,7 @@ double traykD = 0.00001; //tray D coefficient
 auto anglerController = AsyncPosControllerBuilder().withMotor(anglerPort)
                         .withGains({traykP, traykI, traykD})
                         .build();
-//will check which position is requested and run that with the overall rotation
+//will check which position is requesuuuuuuuuuuuuuuuuuuuuuuted and run that with the overall rotation
 /*
 void Tray::moveToState(int pos){
   switch(pos){
@@ -46,7 +46,7 @@ void Tray::moveToUp(bool op){
 
   }
   anglerController->setTarget(4500); //sets the target angle
-  
+
   if(!op){
     anglerController->waitUntilSettled(); //checks if its auton so no accidental movement
   }

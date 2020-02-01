@@ -1,4 +1,4 @@
-#include "../include/285z/initrobot.hpp"
+#include "../include/285z/initRobot.hpp"
 #include "../include/285Z_Subsystems/tray.hpp"
 #include "../include/285Z_Subsystems/lift.hpp"
 #include "../include/285z/functions.hpp"
@@ -10,13 +10,15 @@
 void selectAuton(std::shared_ptr<okapi::OdomChassisController> chassis, std::shared_ptr<okapi::AsyncMotionProfileController> slow,std::shared_ptr<okapi::AsyncMotionProfileController> fast){
 
   liftMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
+  /*
   liftMotor.moveAbsolute(400, 200);
   liftMotor.moveAbsolute(50, -200);
   pros::delay(300);
-
+  */
+//
   if(autonPot.get() >= 0 && autonPot.get() < 1023){
     //shortGoalFiveRed(chassis, slow, fast);
-    redSmallManual();
+    shortGoalFiveRed(chassis, slow, fast);
   }
   if(autonPot.get() >= 1023 && autonPot.get() < 2047){
     shortGoalFiveBlue(chassis, slow, fast);
@@ -93,7 +95,9 @@ void robotDeploy()
 //*****************************   RED: FIVE CUBES    **********************//
 void shortGoalFiveRed(std::shared_ptr<okapi::OdomChassisController> chassis, std::shared_ptr<okapi::AsyncMotionProfileController> slow,std::shared_ptr<okapi::AsyncMotionProfileController> fast){
   Tray angler;
+  Lift theLift;
 
+  theLift.deploy();
   //************** INIT PATHS *******************//
   slow->generatePath({
     {0_ft,0_ft,0_deg},
@@ -230,7 +234,9 @@ void longGoalRed(std::shared_ptr<okapi::OdomChassisController> chassis, std::sha
 //************************   BLUE: FIVE CUBES   ****************************//
 void shortGoalFiveBlue(std::shared_ptr<okapi::OdomChassisController> chassis, std::shared_ptr<okapi::AsyncMotionProfileController> slow,std::shared_ptr<okapi::AsyncMotionProfileController> fast){
   Tray angler;
+  Lift theLift;
 
+  theLift.deploy();
   //************** INIT PATHS *******************//
   slow->generatePath({
     {0_ft,0_ft,0_deg},
