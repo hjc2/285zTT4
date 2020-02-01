@@ -60,8 +60,9 @@ int Lift::getHeightPos(){
 }
 
 void Lift::deploy(){
-  liftController -> setTarget(600);
-  pros::delay(200);
+  liftController -> setTarget(1000);
+  intake.moveVelocity(-100);
+  pros::delay(1200);
   liftController -> setTarget(160);
 }
 

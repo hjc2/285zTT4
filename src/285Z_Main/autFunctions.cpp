@@ -238,6 +238,7 @@ void shortGoalFiveBlue(std::shared_ptr<okapi::OdomChassisController> chassis, st
 
   theLift.deploy();
   //************** INIT PATHS *******************//
+/*
   slow->generatePath({
     {0_ft,0_ft,0_deg},
     {3.5_ft,0_ft,0_deg}},
@@ -258,7 +259,14 @@ void shortGoalFiveBlue(std::shared_ptr<okapi::OdomChassisController> chassis, st
     {1.5_ft,0_ft,0_deg}},
     "G"
   );
-  //************** RUN AUTON *******************//
+  fast->generatePath({
+    {0_ft,0_ft,0_deg},
+    {0.5_ft,0.5_ft,0_deg}},
+    "Z1"
+  );
+  //************** RUN AUTON *******************/
+
+/*
   slow->setTarget("F1", fwd);
   slow->waitUntilSettled();//goes forward to get 4 cubes
 
@@ -271,8 +279,22 @@ void shortGoalFiveBlue(std::shared_ptr<okapi::OdomChassisController> chassis, st
   chassis->turnToAngle(-135_deg);
   fast->setTarget("G");//drives to goal zone
   fast->waitUntilSettled();
+*/
+  intake.moveVelocity(100);
 
+  driveL.moveVelocity(30);
+  driveR.moveVelocity(30);
+  pros::delay(3000);
+  driveL.moveVelocity(50);
+  driveR.moveVelocity(-50);
+  pros::delay(400);
+  driveL.moveVelocity(30);
+  driveR.moveVelocity(30);
+  pros::delay(2000);
+  driveL.moveVelocity(0);
+  driveR.moveVelocity(0);
   autoStackDeploy();
+  pros::delay(1000);
 }
 
 

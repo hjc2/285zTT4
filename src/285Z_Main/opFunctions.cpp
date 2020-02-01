@@ -77,7 +77,7 @@ void intakeRev(){
     if(heightNow == 2){
       intake.moveVelocity (-100);
     } else {
-      intake.moveVelocity (-85);
+      intake.moveVelocity (-100);
     }
     intake.setBrakeMode(AbstractMotor::brakeMode::coast);
   } else {
