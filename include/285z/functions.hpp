@@ -59,3 +59,8 @@ void stackDeploy();
 
 //INITIALIZE
 void profileControllers();
+
+void redSmallManual();
+void deployTray();
+
+Motor autonLift();

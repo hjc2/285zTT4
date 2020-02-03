@@ -1,6 +1,7 @@
 #include "285z/initRobot.hpp"
 #include "285z/functions.hpp"
 #include "285Z_Subsystems/tray.hpp"
+#include "285Z_Subsystems/lift.hpp"
 #include "../include/285Z_Aux/gui.hpp"
 #include "../include/pros/llemu.hpp"
 
@@ -90,8 +91,23 @@ void competition_initialize() {
 
 
 void autonomous() {
-  //robotDeploy();
-  //selectAuton(chassisauto, fastauto, slowauto);
+  /*
+  intake.moveVelocity(-100);
+  pros::delay(2500);
+  intake.moveVelocity(0);
+  driveL.moveVelocity(-50);
+  driveR.moveVelocity(-50);
+  pros::delay(1500);
+  driveL.moveVelocity(100);
+  driveR.moveVelocity(100);
+  pros::delay(750);
+  driveL.moveVelocity(0);
+  driveR.moveVelocity(0);
+  //oneCubeSad();
+
+
+*/
+  selectAuton(chassisauto, fastauto, slowauto);
 }
 
 

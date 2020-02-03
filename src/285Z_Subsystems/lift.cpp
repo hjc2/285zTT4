@@ -2,13 +2,13 @@
 #include "../include/285Z_Subsystems/lift.hpp"
 #include "../include/285Z_Subsystems/tray.hpp"
 
-const int NUM_HEIGHTS = 3;
+const int NUM_HEIGHTS = 4;
 const int height0 = 5;
-const int height1 = 1600;
-const int height2 = 2300;
+const int height1 = 20;
+const int height2 = 1800;
+const int height3 = 2300;
 
-const int heights[NUM_HEIGHTS] = {height0, height1, height2};
-
+const int heights[NUM_HEIGHTS] = {height0, height1, height2, height3};
 double liftkP = 0.004;
 double liftkI = 0.000001;
 double liftkD = 0.00009;
@@ -45,10 +45,10 @@ void Lift::liftToggle(Tray angler){
       // pros::delay(500);
       //liftMotor.moveAbsolute(heights[heightNow], 100);
 
-    } else if (liftDownButton.changedToPressed() && heightNow > 0) {
+    } else if (liftDownButton.changedToPressed() && heightNow > 1) {
       // angler.stopPID();
-      heightNow = 0;
-      liftController->setTarget(heights[0]);
+      heightNow = 1;
+      liftController->setTarget(heights[1]);
       // if(heightNow == 0){
       //liftMotor.moveAbsolute(heights[heightNow], -70);
     }
@@ -60,9 +60,10 @@ int Lift::getHeightPos(){
 }
 
 void Lift::deploy(){
-  liftMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
-  liftMotor.moveAbsolute(400, 200);
-  liftMotor.moveAbsolute(50, -200);
+  liftController -> setTarget(1000);
+  intake.moveVelocity(-100);
+  pros::delay(1200);
+  liftController -> setTarget(160);
 }
 
 void Lift::moveToDown(){
