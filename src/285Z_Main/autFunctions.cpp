@@ -18,7 +18,7 @@ void selectAuton(std::shared_ptr<okapi::OdomChassisController> chassis, std::sha
 //
   if(autonPot.get() >= 0 && autonPot.get() < 1023){
     //shortGoalFiveRed(chassis, slow, fast);
-    shortGoalFiveRed(chassis, slow, fast);
+    shortGoalNineRed(chassis, slow, fast);
   }
   if(autonPot.get() >= 1023 && autonPot.get() < 2047){
     shortGoalFiveBlue(chassis, slow, fast);
@@ -140,6 +140,7 @@ void shortGoalFiveRed(std::shared_ptr<okapi::OdomChassisController> chassis, std
 void shortGoalNineRed(std::shared_ptr<okapi::OdomChassisController> chassis, std::shared_ptr<okapi::AsyncMotionProfileController> slow,std::shared_ptr<okapi::AsyncMotionProfileController> fast)
 {
   Tray angler;
+  Lift theLift;
 
   //************** INIT PATHS *******************//
   slow->generatePath({
@@ -162,7 +163,27 @@ void shortGoalNineRed(std::shared_ptr<okapi::OdomChassisController> chassis, std
     {1.5_ft,0_ft,0_deg}},
     "G"
   );
-  //************** RUN AUTON *******************//
+
+  fast->generatePath({
+    {0_ft,0_ft,0_deg},
+    {0.5_ft,0_ft,0_deg}},
+    "Start"
+  );
+  fast->generatePath({
+    {0_ft,0_ft,0_deg},
+    {0_ft,0_ft,0_deg}},
+    "Back"
+  );
+  theLift.deploy();
+
+  intake.moveVelocity(200);
+/*
+  fast->setTarget("Start", fwd);  //************** RUN AUTON ******************
+  fast->waitUntilSettled();
+
+  fast->setTarget("Back", bwd);
+  fast->waitUntilSettled();
+*/
   slow->setTarget("F1", fwd);
   slow->waitUntilSettled();//goes forward to get 4 cubes
 
@@ -382,6 +403,4 @@ void deployTray(){
   driveL.moveVelocity(-100);
   driveR.moveVelocity(-100);
   pros::delay(200);
-  driveL.moveVelocity(0);
-  driveR.moveVelocity(0);
 }
