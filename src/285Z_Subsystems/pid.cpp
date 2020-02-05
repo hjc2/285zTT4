@@ -2,9 +2,9 @@
 #include "../include/285z/initSensors.hpp"
 #include "../include/285Z_Subsystems/pid.hpp"
 
-const double GLOBAL_kP = 0.35;
-const double GLOBAL_kI = 0.13;
-const double GLOBAL_kD = 0.35;
+const double GLOBAL_kP = 0.001;
+const double GLOBAL_kI = 0.001;
+const double GLOBAL_kD = 0.00001;
 
 void PID::calibrate(){
   imuSensor.reset();
