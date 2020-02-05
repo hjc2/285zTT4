@@ -89,7 +89,6 @@ void competition_initialize() {
   }
 }
 
-
 void autonomous() {
   Lift lift;
   lift.deploy();
