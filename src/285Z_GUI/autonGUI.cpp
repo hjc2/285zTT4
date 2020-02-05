@@ -98,6 +98,7 @@ void btnSetToggled(lv_obj_t * btn, bool toggled)
 
 
 void initScreen(){
+  /*
   double potVal = autonPot.get();
   if(potVal >= 0 && potVal < 1023){
     lv_aut_display("RED FIVE CUBE");
@@ -111,6 +112,7 @@ void initScreen(){
   if(potVal >= 3072 && potVal < 4096){
     lv_aut_display("BLUE LONG GOAL");
   }
+  */
 }
 
 void testScreen (){
