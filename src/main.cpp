@@ -5,7 +5,6 @@
 #include "285Z_Subsystems/pid.hpp"
 #include "../include/285Z_Aux/gui.hpp"
 #include "../include/pros/llemu.hpp"
-
 //
  /** Runs initialization code. This occurs as soon as the program is started.
  *
@@ -84,17 +83,22 @@ void initialize() {
  */
 void disabled() {}
 //yes
+PID pid;
 
 void competition_initialize() {
+  pid.calibrate(); //Calibrate IMU Sensor
   while(true) {
-  initScreen();
-  pros::delay(10);
+    initScreen();
+    pros::delay(10);
   }
 }
 
-PID pid;
 void autonomous() {
-  pid.turnClockwise(5);
+  //TEST CASE
+  pid.turn(30, RELATIVE);
+  pid.turn(0, ABSOLUTE);
+  pid.turn(-45, RELATIVE);
+  pid.turn(-90, ABSOLUTE);
   /*
   intake.moveVelocity(-100);
   pros::delay(2500);

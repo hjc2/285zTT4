@@ -10,18 +10,24 @@ void PID::calibrate(){
   imuSensor.reset();
 }
 
-void PID::turnAbsolute(int deg){
-  //DOESN'T RESET IMUs
-}
-
-void PID::turnClockwise(int deg){
-  //int deg: turn deg degrees
+void turn(double deg, bool absolute){
+  //double deg: turn deg degrees (-360, 360)
   //*Should be 360 counting down cc, 0 to up
-  imuSensor.reset();
   double sensorValue = imuSensor.get_heading();
   std::cout << sensorValue;
 
-  double turnTarget = deg;
+  double turnTarget;
+  if (absolute) {
+    //Keeps all angles between -180 and 180, turns to closest
+    if (deg < 180) {
+      turnTarget = deg;
+    } else {
+      turnTarget = deg - 360;
+    }
+  } else if (!absolute) {
+    turnTarget = sensorValue + deg;
+  }
+
   double error = turnTarget - sensorValue;
   double oldError = error;
   double sumError = 0;
