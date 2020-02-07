@@ -6,6 +6,8 @@
 #include "../include/285Z_Aux/gui.hpp"
 #include "../include/pros/llemu.hpp"
 
+PID pid;
+
 //
  /** Runs initialization code. This occurs as soon as the program is started.
  *
@@ -53,6 +55,7 @@
      .withOutput(motion)
      .buildMotionProfileController();
 void initialize() {
+  pid.calibrate();
   //FOR NOW, WILL NOT DO THIS UNTIL SURE IT WORKS REGULARLY
   // slowauto->generatePath({
   //   {0_ft,0_ft,0_deg},
@@ -92,7 +95,6 @@ void competition_initialize() {
   }
 }
 
-PID pid;
 void autonomous() {
   pid.turnClockwise(5);
   /*
