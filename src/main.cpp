@@ -3,6 +3,7 @@
 #include "285Z_Subsystems/tray.hpp"
 #include "285Z_Subsystems/lift.hpp"
 #include "285Z_Subsystems/pid.hpp"
+#include "../include/285z/initSensors.hpp"
 #include "../include/285Z_Aux/gui.hpp"
 #include "../include/pros/llemu.hpp"
 //
@@ -82,11 +83,9 @@ void initialize() {
 
  */
 void disabled() {}
-//yes
-PID pid;
 
 void competition_initialize() {
-  pid.calibrate(); //Calibrate IMU Sensor
+  calibrate(); //Calibrate IMU Sensor
   while(true) {
     initScreen();
     pros::delay(10);
@@ -94,11 +93,13 @@ void competition_initialize() {
 }
 
 void autonomous() {
+  imuSensor.reset();
+  pros::delay(4000);
   //TEST CASE
-  pid.turn(30, RELATIVE);
-  pid.turn(0, ABSOLUTE);
-  pid.turn(-45, RELATIVE);
-  pid.turn(-90, ABSOLUTE);
+  turn(30);
+  // pid.turn(0, ABSOLUTE);
+  // pid.turn(-45, RELATIVE);
+  // pid.turn(-90, ABSOLUTE);
   /*
   intake.moveVelocity(-100);
   pros::delay(2500);
@@ -135,7 +136,6 @@ void opcontrol() {
                     TASK_STACK_DEPTH_DEFAULT, "Lift Task");
   liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
   while(true){
-
     displayAuton();
     // TANK DRIVE CODE //
     model->tank(controller.getAnalog(okapi::ControllerAnalog::leftY),

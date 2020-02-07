@@ -9,11 +9,6 @@ extern double kP;
 extern double kI;
 extern double kD;
 
-class PID {
-
-  public:
-
-    void calibrate();
-    void turn(double, bool);
-
-};
+void calibrate();
+void turnTask(void*);
+void turn(double);
