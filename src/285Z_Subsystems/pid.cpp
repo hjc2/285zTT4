@@ -2,7 +2,7 @@
 #include "../include/285z/initSensors.hpp"
 #include "../include/285Z_Subsystems/pid.hpp"
 
-const double GLOBAL_kP = 0.01;
+const double GLOBAL_kP = 0.5;
 const double GLOBAL_kI = 0;
 const double GLOBAL_kD = 0;
 
@@ -13,7 +13,7 @@ void calibrate(){
 double deg = 0;
 bool absolute = true;
 
-void turnTask(void* param){
+void turnTest(void* param){
   //double deg: turn deg degrees (0, 360)
   //*Should be 360 counting down cc, 0 to up
   double sensorValue = imuSensor.get_heading();
