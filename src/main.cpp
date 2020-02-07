@@ -2,6 +2,7 @@
 #include "285z/functions.hpp"
 #include "285Z_Subsystems/tray.hpp"
 #include "285Z_Subsystems/lift.hpp"
+#include "285Z_Subsystems/pid.hpp"
 #include "../include/285Z_Aux/gui.hpp"
 #include "../include/pros/llemu.hpp"
 
@@ -91,8 +92,8 @@ void competition_initialize() {
   }
 }
 
-
 void autonomous() {
+  turnClockwise(5)();
   /*
   intake.moveVelocity(-100);
   pros::delay(2500);
@@ -109,7 +110,8 @@ void autonomous() {
 
 
 */
-  selectAuton(chassisauto, fastauto, slowauto);
+  // selectAuton(chassisauto, fastauto, slowauto);
+
 }
 
 
