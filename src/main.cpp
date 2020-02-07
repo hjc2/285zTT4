@@ -18,24 +18,26 @@
      .withMotors(driveL, driveR) // left motor is 1, right motor is 2 (reversed)
      .withGains(
         {0.001, 0.001, 0.00009}, // Distance controller gains 0.005, 0, 0.001
-        {0.001, 0.001, 0.00001}, // Turn controller gains
+        {0.00075, 0.001, 0.00009}, // Turn controller gains
         {0.001, 0.001, 0.0001}  // Angle controller gains (helps drive straight)
       )
      .withDimensions(AbstractMotor::gearset::green, scales)
      .withOdometry() // use the same scales as the chassis (above)
      .withMaxVelocity(200)
      .buildOdometry(); // build an odometry chassis
+
  auto motion =
    ChassisControllerBuilder()
      .withMotors({frontLeftPort,backLeftPort}, {frontRightPort,backRightPort})
      .withDimensions(AbstractMotor::gearset::green, scales)
      .withMaxVelocity(200)
      .build();
+
  auto fastauto =
    AsyncMotionProfileControllerBuilder()
      .withLimits({
        1.1,  //max velocity
-       4.0,  //max acceleration
+       2.5,  //max acceleration
        10.0  //max jerk
      })
      .withOutput(motion)
@@ -43,7 +45,7 @@
  auto slowauto =
    AsyncMotionProfileControllerBuilder()
      .withLimits({
-       0.5,  //max velocity
+       0.325,  //max velocity
        2.0,  //max acceleration
        10.0  //max jerk
      })
