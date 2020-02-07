@@ -92,8 +92,9 @@ void competition_initialize() {
   }
 }
 
+PID pid;
 void autonomous() {
-  turnClockwise(5)();
+  pid.turnClockwise(5);
   /*
   intake.moveVelocity(-100);
   pros::delay(2500);

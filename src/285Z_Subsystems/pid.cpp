@@ -10,6 +10,10 @@ void PID::calibrate(){
   imuSensor.reset();
 }
 
+void PID::turnAbsolute(int deg){
+  //DOESN'T RESET IMUs
+}
+
 void PID::turnClockwise(int deg){
   //int deg: turn deg degrees
   //*Should be 360 counting down cc, 0 to up
@@ -51,4 +55,5 @@ void PID::turnClockwise(int deg){
 
     TURN_NOT_FINISH = !((abs(error) < errorThreshold) && (abs(changeInError) < velocityThreshold));
   }
+
 }

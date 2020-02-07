@@ -9,9 +9,9 @@ extern double kD;
 class PID {
 
   public:
-
-  PID(double, double, double);
+    
   void calibrate();
+  void turnAbsolute(int);
   void turnClockwise(int);
 
 };
