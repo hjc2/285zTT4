@@ -2,7 +2,11 @@
 #include "../include/285z/initSensors.hpp"
 #include "../include/285Z_Subsystems/pid.hpp"
 
+<<<<<<< HEAD
 const double GLOBAL_kP = 0.5;
+=======
+const double GLOBAL_kP = 0.35;
+>>>>>>> a0f3d702f76c53d53f628cf2cd04b16c1b482fcc
 const double GLOBAL_kI = 0;
 const double GLOBAL_kD = 0;
 
