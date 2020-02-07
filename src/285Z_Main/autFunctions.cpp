@@ -16,18 +16,21 @@ void selectAuton(std::shared_ptr<okapi::OdomChassisController> chassis, std::sha
   pros::delay(300);
   */
 //
-  if(autonPot.get() >= 0 && autonPot.get() < 1023){
+  if(autonPot.get() >= 0 && autonPot.get() <= 819){
     //shortGoalFiveRed(chassis, slow, fast);
     shortGoalNineRed(chassis, slow, fast);
   }
-  if(autonPot.get() >= 1023 && autonPot.get() < 2047){
+  if(autonPot.get() >= 820 && autonPot.get() <= 1638){
     shortGoalFiveBlue(chassis, slow, fast);
   }
-  if(autonPot.get() >= 2047 && autonPot.get() < 3072){
+  if(autonPot.get() >= 1639 && autonPot.get() <= 2457){
     longGoalRed(chassis, slow, fast);
   }
-  if(autonPot.get() >= 3072 && autonPot.get() < 4096){
+  if(autonPot.get() >= 2458 && autonPot.get() <= 3276){
     longGoalBlue(chassis, slow, fast);
+  }
+  if(autonPot.get() >= 3277 && autonPot.get() <= 4096){
+    redSmallManual();
   }
 }
 
@@ -35,17 +38,20 @@ void selectAuton(std::shared_ptr<okapi::OdomChassisController> chassis, std::sha
 
   void displayAuton(){
   double potVal = autonPot.get();
-  if(potVal >= 0 && potVal < 1023){
+  if(potVal >= 0 && potVal < 819){
     lv_aut_display("RED SHORT GOAL");
   }
-  if(potVal >= 1023 && potVal < 2047){
+  if(potVal >= 820 && potVal <= 1638){
     lv_aut_display("BLUE SHORT GOAL");
   }
-  if(potVal >= 2047 && potVal < 3072){
+  if(potVal >= 1639 && potVal <= 2457){
     lv_aut_display("RED LONG GOAL");
   }
-  if(potVal >= 3072 && potVal < 4096){
+  if(potVal >= 2458 && potVal <= 3276){
     lv_aut_display("BLUE LONG GOAL");
+  }
+  if(potVal >= 3277 && potVal <= 4096){
+    lv_aut_display("ONE CUBE");
   }
 }
 
@@ -390,7 +396,8 @@ void oneCubeSad(std::shared_ptr<okapi::OdomChassisController> chassis, std::shar
 }
 
 void redSmallManual(){
-  deployTray();
+  Lift theLift;
+  theLift.deploy();
 }
 void deployTray(){
   driveL.moveVelocity(200);
