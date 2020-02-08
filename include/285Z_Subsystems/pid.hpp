@@ -10,5 +10,5 @@ extern double kI;
 extern double kD;
 
 void calibrate();
-void turnTask(void*);
+void turnTest(double);
 void turn(double);

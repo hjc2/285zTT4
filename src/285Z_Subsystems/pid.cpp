@@ -2,15 +2,7 @@
 #include "../include/285z/initSensors.hpp"
 #include "../include/285Z_Subsystems/pid.hpp"
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-const double GLOBAL_kP = 0.35;
-=======
 const double GLOBAL_kP = 0.5;
->>>>>>> parent of 739a1c2... Merge branch 'pid/turn' of https://github.com/hcolemantx/285zTT4 into pid/turn
-=======
-const double GLOBAL_kP = 0.01;
->>>>>>> parent of a0f3d70... Change kP Value
 const double GLOBAL_kI = 0;
 const double GLOBAL_kD = 0;
 
@@ -21,23 +13,27 @@ void calibrate(){
 double deg = 0;
 bool absolute = true;
 
-void turnTest(void* param){
-  //double deg: turn deg degrees (0, 360)
-  //*Should be 360 counting down cc, 0 to up
-  double sensorValue = imuSensor.get_heading();
-  std::cout << sensorValue;
+void turnTest(double degrees){
+  double sensorValue;
+  double turnTarget;
 
-  double turnTarget = deg;
-  // if (absolute) {
-  //   //Keeps all angles between -180 and 180, turns to closest
-  //   if (deg < 180) {
-  //     turnTarget = deg;
-  //   } else {
-  //     turnTarget = deg - 360;
-  //   }
-  // } else if (!absolute) {
-  //   turnTarget = sensorValue + deg;
-  // }
+  double thetaI = imuSensor.get_heading();
+  double thetaF = degrees;
+  double deltaI = abs(thetaF - thetaI);
+
+  if (deltaI > 180){
+    if (thetaF > 180) {
+      turnTarget = thetaF - 360;
+    } else {
+      turnTarget = thetaF;
+    }
+
+    if (thetaI > 180) {
+      sensorValue = thetaI - 360;
+    } else {
+      sensorValue = thetaI;
+    }
+  }
 
   double error = turnTarget - sensorValue;
   double oldError = error;
@@ -46,9 +42,18 @@ void turnTest(void* param){
   bool TURN_NOT_FINISH = true;
   while (TURN_NOT_FINISH) {
     sensorValue = imuSensor.get_heading();
-    printf("IN PID LOOP");
+    printf("TARGET: %.4f\n", turnTarget);
+    printf("IMU: %.4f\n", sensorValue);
+
+    if (deltaI > 180){
+      if (sensorValue > 180) {
+        sensorValue = sensorValue - 360;
+      }
+    }
+
     //PROPORTIONAL
     error = turnTarget - sensorValue;
+    printf("ERROR: %.4f\n", error);
     //DERIVATIVE
     double changeInError = error - oldError;
     //INTEGRAL

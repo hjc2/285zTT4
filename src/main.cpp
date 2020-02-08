@@ -94,9 +94,9 @@ void competition_initialize() {
 
 void autonomous() {
   imuSensor.reset();
-  pros::delay(4000);
+  pros::delay(3000);
   //TEST CASE
-  turn(30);
+  turnTest(90);
   // pid.turn(0, ABSOLUTE);
   // pid.turn(-45, RELATIVE);
   // pid.turn(-90, ABSOLUTE);
