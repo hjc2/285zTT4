@@ -48,7 +48,7 @@ PID pid;
  auto slowauto =
    AsyncMotionProfileControllerBuilder()
      .withLimits({
-       0.325,  //max velocity
+       0.2,  //max velocity
        2.0,  //max acceleration
        10.0  //max jerk
      })
@@ -96,7 +96,7 @@ void competition_initialize() {
 }
 
 void autonomous() {
-  pid.turnClockwise(5);
+  //pid.turnClockwise(5);
   /*
   intake.moveVelocity(-100);
   pros::delay(2500);
@@ -113,7 +113,7 @@ void autonomous() {
 
 
 */
-  // selectAuton(chassisauto, fastauto, slowauto);
+  selectAuton(chassisauto, fastauto, slowauto);
 
 }
 
