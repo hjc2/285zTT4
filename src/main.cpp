@@ -83,7 +83,7 @@ void initialize() {
  * Runs while the robot is in the disabled state of Field Management System or
  * the VEX Competition Switch, following either autonomous or opcontrol. When
  * the robot is enabled, this task will exit.
-
+-+
  */
 void disabled() {}
 //yes
@@ -96,7 +96,7 @@ void competition_initialize() {
 }
 
 void autonomous() {
-shortGoalFiveRed(chassisauto, slowauto, fastauto);
+oneCubeSad(chassisauto, slowauto, fastauto);
   // selectAuton(chassisauto, fastauto, slowauto);
 
 }
