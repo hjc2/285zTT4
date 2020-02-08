@@ -404,18 +404,21 @@ void deployOne(){
   Tray theAngler;
 
   theLift.deploy();
-  driveL.moveVelocity(-150);
-  driveR.moveVelocity(-150);
+  driveL.moveVelocity(-75);
+  driveR.moveVelocity(-75);
   pros::delay(600);
   intake.moveVelocity(0);
-  driveL.moveVelocity(100);
-  driveR.moveVelocity(100);
-  pros::delay(750);
+  driveL.moveVelocity(150);
+  driveR.moveVelocity(150);
+  pros::delay(400);
+  driveL.moveVelocity(50);
+  driveR.moveVelocity(50);
+  pros::delay(200);
 
   driveL.moveVelocity(0);
   driveR.moveVelocity(0);
 
-  pros::delay(2000);
+  pros::delay(1000);
   theAngler.moveToUp(true);
   pros::delay(2000);
   theAngler.moveToDown(true);

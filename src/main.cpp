@@ -114,7 +114,7 @@ void autonomous() {
 
 */
 //  selectAuton(chassisauto, fastauto, slowauto);
-  redSmallManual();
+  deployOne();
 }
 
 
