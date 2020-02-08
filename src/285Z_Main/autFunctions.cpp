@@ -403,15 +403,14 @@ void deployOne(){
   Lift theLift;
   Tray theAngler;
 
-
   theLift.deploy();
   driveL.moveVelocity(-150);
   driveR.moveVelocity(-150);
-  pros::delay(500);
+  pros::delay(600);
   intake.moveVelocity(0);
   driveL.moveVelocity(100);
   driveR.moveVelocity(100);
-  pros::delay(400);
+  pros::delay(750);
 
   driveL.moveVelocity(0);
   driveR.moveVelocity(0);
@@ -422,7 +421,45 @@ void deployOne(){
   theAngler.moveToDown(true);
 }
 void redSmallManual(){
+  Lift theLift;
+  Tray theAngler;
 
+  theLift.deploy();
+  driveL.moveVelocity(20);
+  driveR.moveVelocity(20);
+  pros::delay(3000);
+/*
+  for(int i = 20; i > 0; i--){
+    driveR.moveVelocity(i);
+    driveL.moveVelocity(i);
+    pros::delay(40);
+  }
+*/
+  driveL.moveVelocity(0);
+  driveR.moveVelocity(0);
+  pros::delay(400);
+  
+  driveL.moveVelocity(-20);
+  driveR.moveVelocity(-20);
+  pros::delay(400);
+
+  driveL.moveVelocity(40);
+  driveR.moveVelocity(-40);
+  pros::delay(300);
+
+  driveR.moveVelocity(20);
+  driveL.moveVelocity(20);
+  pros::delay(400);
+
+  theAngler.moveToUp(true);
+  pros::delay(1000);
+
+  intake.moveVelocity(-5);
+  driveL.moveVelocity(-3);
+  driveR.moveVelocity(-3);
+  pros::delay(3000);
+
+  theAngler.moveToDown(true);
 }
 void blueSmallManual(){
   Lift theLift;
@@ -455,7 +492,7 @@ void blueSmallManual(){
   driveL.moveVelocity(-3);
   driveR.moveVelocity(-3);
   pros::delay(3000);
-  
+
   theAngler.moveToDown(true);
 }
 void deployTray(){
