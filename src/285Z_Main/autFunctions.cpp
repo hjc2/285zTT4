@@ -18,7 +18,7 @@ void selectAuton(std::shared_ptr<okapi::OdomChassisController> chassis, std::sha
 //
   if(autonPot.get() >= 0 && autonPot.get() <= 819){
     //shortGoalFiveRed(chassis, slow, fast);
-    shortGoalNineRed(chassis, slow, fast);
+    shortGoalFiveRed(chassis, slow, fast);
   }
   if(autonPot.get() >= 820 && autonPot.get() <= 1638){
     shortGoalFiveBlue(chassis, slow, fast);
@@ -401,7 +401,7 @@ void redSmallManual(){
   driveL.moveVelocity(-100);
   driveR.moveVelocity(-100);
   pros::delay(200);
-  
+
   driveL.moveVelocity(100);
   driveR.moveVelocity(100);
   pros::delay(200);
