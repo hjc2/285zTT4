@@ -57,10 +57,12 @@ void longGoalBlue(std::shared_ptr<okapi::OdomChassisController> chassis, std::sh
 void robotDeploy();
 void stackDeploy();
 
+void blueSmallManual();
+void redSmallManual();
 //INITIALIZE
 void profileControllers();
 
-void redSmallManual();
+void deployOne();
 void deployTray();
 
 Motor autonLift();

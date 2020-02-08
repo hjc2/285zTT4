@@ -30,7 +30,7 @@ void selectAuton(std::shared_ptr<okapi::OdomChassisController> chassis, std::sha
     longGoalBlue(chassis, slow, fast);
   }
   if(autonPot.get() >= 3277 && autonPot.get() <= 4096){
-    redSmallManual();
+    deployOne();
   }
 }
 
@@ -399,7 +399,7 @@ void oneCubeSad(std::shared_ptr<okapi::OdomChassisController> chassis, std::shar
   fast->setTarget("G");
 }
 
-void redSmallManual(){
+void deployOne(){
   Lift theLift;
   Tray theAngler;
 
@@ -419,6 +419,43 @@ void redSmallManual(){
   pros::delay(2000);
   theAngler.moveToUp(true);
   pros::delay(2000);
+  theAngler.moveToDown(true);
+}
+void redSmallManual(){
+
+}
+void blueSmallManual(){
+  Lift theLift;
+  Tray theAngler;
+  theLift.deploy();
+  driveL.moveVelocity(20);
+  driveR.moveVelocity(20);
+  pros::delay(4000);
+
+  for(int i = 20; i > 0; i--){
+    driveR.moveVelocity(i);
+    pros::delay(12);
+  }
+  driveL.moveVelocity(-20);
+  driveR.moveVelocity(-20);
+  pros::delay(400);
+
+  driveL.moveVelocity(40);
+  driveR.moveVelocity(-40);
+  pros::delay(300);
+
+  driveR.moveVelocity(20);
+  driveL.moveVelocity(20);
+  pros::delay(400);
+
+  theAngler.moveToUp(true);
+  pros::delay(1000);
+
+  intake.moveVelocity(-5);
+  driveL.moveVelocity(-3);
+  driveR.moveVelocity(-3);
+  pros::delay(3000);
+  
   theAngler.moveToDown(true);
 }
 void deployTray(){
