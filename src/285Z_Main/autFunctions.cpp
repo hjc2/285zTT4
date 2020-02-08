@@ -122,10 +122,12 @@ slow->generatePath({
 );
 
 slow->setTarget("align on wall", bwd);
-slow->waitUntilSettled();
 
 intake.moveVelocity(-200);
 theLift.deploy();
+
+slow->waitUntilSettled();
+
 
 fast->generatePath({
   {0_ft, 0_ft, 0_deg},  // Profile starting position, this will normally be (0, 0, 0)
