@@ -407,6 +407,14 @@ void longGoalBlue(std::shared_ptr<okapi::OdomChassisController> chassis, std::sh
 
 void oneCubeSad(std::shared_ptr<okapi::OdomChassisController> chassis, std::shared_ptr<okapi::AsyncMotionProfileController> slow,std::shared_ptr<okapi::AsyncMotionProfileController> fast)
 {
+  Lift theLift;
+Tray theAngler;
+
+intake.moveVelocity(-200);
+theLift.deploy();
+pros::delay(100);
+
+
   fast->generatePath({
     {0_ft,0_ft,0_deg},
     {1.5_ft,0_ft,0_deg}},
@@ -415,6 +423,11 @@ void oneCubeSad(std::shared_ptr<okapi::OdomChassisController> chassis, std::shar
   fast->setTarget("G",bwd);
   fast->waitUntilSettled();
   fast->setTarget("G");
+
+  theAngler.moveToUp(true);
+  pros::delay(1000);
+  theAngler.moveToDown(true);
+
 }
 
 void redSmallManual(){
