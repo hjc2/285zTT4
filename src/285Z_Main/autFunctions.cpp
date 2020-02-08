@@ -105,31 +105,31 @@ void shortGoalFiveRed(std::shared_ptr<okapi::OdomChassisController> chassis, std
 
 
   //************** INIT PATHS *******************//
-  slow->generatePath({
+  fast->generatePath({
   {0_ft, 0_ft, 0_deg},
   {1_ft, 0_ft, 0_deg}},
   "Push Cube"
 );
 
-slow->setTarget("Push Cube");
-slow->waitUntilSettled();
+fast->setTarget("Push Cube");
+fast->waitUntilSettled();
 
 
-slow->generatePath({
+fast->generatePath({
   {0_ft, 0_ft, 0_deg},
   {0.75_ft, 0_ft, 0_deg}},
   "align on wall"
 );
 
-slow->setTarget("align on wall", bwd);
+fast->setTarget("align on wall", bwd);
 
 intake.moveVelocity(-200);
 theLift.deploy();
 
-slow->waitUntilSettled();
+fast->waitUntilSettled();
 
 
-fast->generatePath({
+slow->generatePath({
   {0_ft, 0_ft, 0_deg},  // Profile starting position, this will normally be (0, 0, 0)
   {3.1_ft, 0_ft, 0_deg}}, // The next point in the profile, 3 feet forwardx
   "Cube Line"
@@ -137,16 +137,16 @@ fast->generatePath({
 
 intake.moveVelocity(200);
 
-fast->setTarget("Cube Line");
-fast->waitUntilSettled();
+slow->setTarget("Cube Line");
+slow->waitUntilSettled();
 
-slow->generatePath({
+fast->generatePath({
   {0_ft, 0_ft, 0_deg},
   {2_ft, 0_ft, 0_deg}},
   "Goal Align Pt 1"
 );
-slow->setTarget("Goal Align Pt 1", 1);
-slow->waitUntilSettled();
+fast->setTarget("Goal Align Pt 1", 1);
+fast->waitUntilSettled();
 
 
 chassis->turnAngle(163_deg);
@@ -154,7 +154,7 @@ chassis->waitUntilSettled();
 
 intake.moveVelocity(0);
 
-slow->generatePath({
+fast->generatePath({
   {0_ft, 0_ft, 0_deg},
   {1_ft, 0_ft, 0_deg}},//0.75
   "Goal Align Pt 2"
