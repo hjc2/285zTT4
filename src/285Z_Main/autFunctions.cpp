@@ -420,14 +420,27 @@ void deployOne(){
   pros::delay(2000);
   theAngler.moveToDown(true);
 }
+
 void redSmallManual(){
   Lift theLift;
   Tray theAngler;
 
   theLift.deploy();
-  driveL.moveVelocity(20);
-  driveR.moveVelocity(20);
-  pros::delay(3000);
+  pros::delay(100);
+  intake.moveVelocity(100);
+
+  pros::delay(100);
+  driveL.moveVelocity(100);
+  driveR.moveVelocity(100);
+  pros::delay(200);
+
+  driveL.moveVelocity(-100);
+  driveR.moveVelocity(-100);
+  pros::delay(300);
+
+  driveL.moveVelocity(30);
+  driveR.moveVelocity(30);
+  pros::delay(6000);
 /*
   for(int i = 20; i > 0; i--){
     driveR.moveVelocity(i);
@@ -438,7 +451,7 @@ void redSmallManual(){
   driveL.moveVelocity(0);
   driveR.moveVelocity(0);
   pros::delay(400);
-  
+
   driveL.moveVelocity(-20);
   driveR.moveVelocity(-20);
   pros::delay(400);
@@ -461,6 +474,7 @@ void redSmallManual(){
 
   theAngler.moveToDown(true);
 }
+
 void blueSmallManual(){
   Lift theLift;
   Tray theAngler;
