@@ -149,7 +149,7 @@ slow->setTarget("Goal Align Pt 1", 1);
 slow->waitUntilSettled();
 
 
-chassis->turnAngle(158_deg);
+chassis->turnAngle(163_deg);
 chassis->waitUntilSettled();
 
 intake.moveVelocity(0);
@@ -296,10 +296,11 @@ slow->generatePath({
 );
 
 slow->setTarget("align on wall", bwd);
-slow->waitUntilSettled();
 
 intake.moveVelocity(-200);
 theLift.deploy();
+
+slow->waitUntilSettled();
 
 fast->generatePath({
   {0_ft, 0_ft, 0_deg},  // Profile starting position, this will normally be (0, 0, 0)
@@ -330,6 +331,7 @@ slow->generatePath({
   {0_ft, 0_ft, 0_deg},
   {1_ft, 0_ft, 0_deg}},//0.75
   "Goal Align Pt 2"
+
 );
 
 slow->setTarget("Goal Align Pt 2");
