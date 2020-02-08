@@ -96,7 +96,7 @@ void competition_initialize() {
 }
 
 void autonomous() {
-shortGoalFiveBlue(chassisauto, slowauto, fastauto);
+shortGoalFiveRed(chassisauto, slowauto, fastauto);
   // selectAuton(chassisauto, fastauto, slowauto);
 
 }
