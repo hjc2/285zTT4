@@ -69,8 +69,8 @@ void Lift::deploy(){
   intake.moveVelocity(-20);
   liftController -> setTarget(100);
   intake.moveVelocity(0);
-  pros::delay(200000);
-}
+  pros::delay(200);
+  }
 
 void Lift::moveToDown(){
   liftController->setTarget(0);

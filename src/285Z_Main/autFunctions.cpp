@@ -102,7 +102,7 @@ void robotDeploy()
 void shortGoalFiveRed(std::shared_ptr<okapi::OdomChassisController> chassis, std::shared_ptr<okapi::AsyncMotionProfileController> slow,std::shared_ptr<okapi::AsyncMotionProfileController> fast){
   Tray angler;
   Lift theLift;
-
+  Tray theTray;
   theLift.deploy();
   //************** INIT PATHS *******************//
   slow->generatePath({
@@ -114,7 +114,7 @@ void shortGoalFiveRed(std::shared_ptr<okapi::OdomChassisController> chassis, std
     {0_ft,0_ft,0_deg},
     {4.5_ft,0_ft,0_deg}},
     "B1"
-  );
+  );//
   fast->generatePath({
     {0_ft,0_ft,0_deg},
     {4_ft,2_ft,0_deg}},
@@ -138,8 +138,12 @@ void shortGoalFiveRed(std::shared_ptr<okapi::OdomChassisController> chassis, std
   chassis->turnToAngle(-135_deg);
   fast->setTarget("G");//drives to goal zone
   fast->waitUntilSettled();
-
-  autoStackDeploy();
+  pros::delay(200);
+  theTray.moveToUp(1);
+  pros::delay(1000);
+  driveL.moveVelocity(-4);
+  driveR.moveVelocity(-4);
+  intake.moveVelocity(-4);
 }
 
 //******************************   RED: NINE CUBES   ****************************//
@@ -397,14 +401,15 @@ void oneCubeSad(std::shared_ptr<okapi::OdomChassisController> chassis, std::shar
 
 void redSmallManual(){
   Lift theLift;
+  Tray angler;
   theLift.deploy();
   driveL.moveVelocity(-100);
   driveR.moveVelocity(-100);
-  pros::delay(200);
+  pros::delay(100);
 
   driveL.moveVelocity(100);
   driveR.moveVelocity(100);
-  pros::delay(200);
+  pros::delay(100);
 
   driveL.moveVelocity(0);
   driveR.moveVelocity(0);
