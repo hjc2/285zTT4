@@ -3,10 +3,14 @@
 #include "../include/285Z_Subsystems/pid.hpp"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 const double GLOBAL_kP = 0.35;
 =======
 const double GLOBAL_kP = 0.5;
 >>>>>>> parent of 739a1c2... Merge branch 'pid/turn' of https://github.com/hcolemantx/285zTT4 into pid/turn
+=======
+const double GLOBAL_kP = 0.01;
+>>>>>>> parent of a0f3d70... Change kP Value
 const double GLOBAL_kI = 0;
 const double GLOBAL_kD = 0;
 
