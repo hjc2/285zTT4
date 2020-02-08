@@ -113,8 +113,8 @@ void autonomous() {
 
 
 */
-  selectAuton(chassisauto, fastauto, slowauto);
-
+//  selectAuton(chassisauto, fastauto, slowauto);
+  redSmallManual();
 }
 
 

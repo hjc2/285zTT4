@@ -401,18 +401,25 @@ void oneCubeSad(std::shared_ptr<okapi::OdomChassisController> chassis, std::shar
 
 void redSmallManual(){
   Lift theLift;
-  Tray angler;
-  theLift.deploy();
-  driveL.moveVelocity(-100);
-  driveR.moveVelocity(-100);
-  pros::delay(100);
+  Tray theAngler;
 
+
+  theLift.deploy();
+  driveL.moveVelocity(-150);
+  driveR.moveVelocity(-150);
+  pros::delay(500);
+  intake.moveVelocity(0);
   driveL.moveVelocity(100);
   driveR.moveVelocity(100);
-  pros::delay(100);
+  pros::delay(400);
 
   driveL.moveVelocity(0);
   driveR.moveVelocity(0);
+
+  pros::delay(2000);
+  theAngler.moveToUp(true);
+  pros::delay(2000);
+  theAngler.moveToDown(true);
 }
 void deployTray(){
   driveL.moveVelocity(200);

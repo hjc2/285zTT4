@@ -66,9 +66,9 @@ void Lift::deploy(){
   pros::delay(1000);
   intake.moveVelocity(-40);
   pros::delay(600);
-  intake.moveVelocity(-20);
+  intake.moveVelocity(-30);
   liftController -> setTarget(100);
-  intake.moveVelocity(0);
+  intake.moveVelocity(-10);
   pros::delay(200);
   }
 
