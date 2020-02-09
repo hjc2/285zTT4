@@ -105,11 +105,13 @@ void shortGoalFiveRed(std::shared_ptr<okapi::OdomChassisController> chassis, std
     {3.5_ft,0_ft,0_deg}},
     "F1"
   );
+
   fast->generatePath({
     {0_ft,0_ft,0_deg},
     {4.5_ft,0_ft,0_deg}},
     "B1"
   );
+
   fast->generatePath({
     {0_ft,0_ft,0_deg},
     {4_ft,0_ft,0_deg}},
@@ -123,7 +125,7 @@ void shortGoalFiveRed(std::shared_ptr<okapi::OdomChassisController> chassis, std
   //************** RUN AUTON *******************//
   slow->setTarget("F1", fwd);
   slow->waitUntilSettled();//goes forward to get 4 cubes
-
+  turn(150);
 
   fast->setTarget("B1", bwd);
   fast->waitUntilSettled();//splines backwards to line up for second row
