@@ -3,6 +3,7 @@
 #include "../include/285Z_Subsystems/lift.hpp"
 #include "../include/285z/functions.hpp"
 #include "../include/285Z_Aux/gui.hpp"
+#include "../include/285Z_Subsystems/pid.hpp"
                                                                                   // v
 //function called in main.cpp
 //will select auton then run it
@@ -111,7 +112,7 @@ void shortGoalFiveRed(std::shared_ptr<okapi::OdomChassisController> chassis, std
   );
   fast->generatePath({
     {0_ft,0_ft,0_deg},
-    {4_ft,2_ft,0_deg}},
+    {4_ft,0_ft,0_deg}},
     "F2"
   );
   fast->generatePath({
@@ -122,6 +123,7 @@ void shortGoalFiveRed(std::shared_ptr<okapi::OdomChassisController> chassis, std
   //************** RUN AUTON *******************//
   slow->setTarget("F1", fwd);
   slow->waitUntilSettled();//goes forward to get 4 cubes
+
 
   fast->setTarget("B1", bwd);
   fast->waitUntilSettled();//splines backwards to line up for second row
@@ -145,59 +147,55 @@ void shortGoalNineRed(std::shared_ptr<okapi::OdomChassisController> chassis, std
   //************** INIT PATHS *******************//
   slow->generatePath({
     {0_ft,0_ft,0_deg},
-    {3.5_ft,0_ft,0_deg}},
+    {4_ft,0_ft,0_deg}},
     "F1"
-  );
-  fast->generatePath({
-    {0_ft,0_ft,0_deg},
-    {4.5_ft,0_ft,0_deg}},
-    "B1"
-  );
-  fast->generatePath({
-    {0_ft,0_ft,0_deg},
-    {4_ft,2_ft,0_deg}},
-    "F2"
-  );
-  fast->generatePath({
-    {0_ft,0_ft,0_deg},
-    {1.5_ft,0_ft,0_deg}},
-    "G"
   );
 
   fast->generatePath({
     {0_ft,0_ft,0_deg},
-    {0.5_ft,0_ft,0_deg}},
-    "Start"
+    {3_ft,0_ft,0_deg}},
+    "B1"
   );
+  slow->generatePath({
+    {0_ft,0_ft,0_deg},
+    {3.75_ft,0_ft,0_deg}},
+    "F2"
+  );
+
   fast->generatePath({
     {0_ft,0_ft,0_deg},
-    {0_ft,0_ft,0_deg}},
-    "Back"
+    {5_ft,0_ft,0_deg}},
+    "F3"
+  );
+
+  slow->generatePath({
+    {0_ft,0_ft,0_deg},
+    {0.5_ft,0_ft,0_deg}},
+    "B2"
   );
   theLift.deploy();
 
   intake.moveVelocity(200);
-/*
-  fast->setTarget("Start", fwd);  //************** RUN AUTON ******************
-  fast->waitUntilSettled();
 
-  fast->setTarget("Back", bwd);
-  fast->waitUntilSettled();
-*/
   slow->setTarget("F1", fwd);
   slow->waitUntilSettled();//goes forward to get 4 cubes
+  turn(330);
 
   fast->setTarget("B1", bwd);
-  fast->waitUntilSettled();//splines backwards to line up for second row
+  fast->waitUntilSettled();//moves backward to align with other 4 cubes
+  turn(0);
 
   slow->setTarget("F2", fwd);
-  slow->waitUntilSettled();//intakes last 3 CUBES
+  slow->waitUntilSettled();//intakes last 4 cubes
+  turn(150);
 
-  chassis->turnToAngle(-135_deg);
-  fast->setTarget("G");//drives to goal zone
+  fast->setTarget("F3", fwd);//drives to goal zone
   fast->waitUntilSettled();
 
   autoStackDeploy();
+
+  slow->setTarget("B2", bwd);
+  slow->waitUntilSettled();
 }
 
 //************************   RED: LONG GOAL   ****************************//
