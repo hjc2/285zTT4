@@ -321,7 +321,61 @@ void shortGoalFiveBlue(std::shared_ptr<okapi::OdomChassisController> chassis, st
 
 //************************   BLUE: SHORT GOAL, NINE CUBES   ****************************//
 void shortGoalNineBlue(std::shared_ptr<okapi::OdomChassisController> chassis, std::shared_ptr<okapi::AsyncMotionProfileController> slow,std::shared_ptr<okapi::AsyncMotionProfileController> fast){
+  Tray angler;
+  Lift theLift;
 
+  //************** INIT PATHS *******************//
+  slow->generatePath({
+    {0_ft,0_ft,0_deg},
+    {4_ft,0_ft,0_deg}},
+    "F1"
+  );
+
+  fast->generatePath({
+    {0_ft,0_ft,0_deg},
+    {3_ft,0_ft,0_deg}},
+    "B1"
+  );
+  slow->generatePath({
+    {0_ft,0_ft,0_deg},
+    {3.75_ft,0_ft,0_deg}},
+    "F2"
+  );
+
+  fast->generatePath({
+    {0_ft,0_ft,0_deg},
+    {5_ft,0_ft,0_deg}},
+    "F3"
+  );
+
+  slow->generatePath({
+    {0_ft,0_ft,0_deg},
+    {0.5_ft,0_ft,0_deg}},
+    "B2"
+  );
+  theLift.deploy();
+
+  intake.moveVelocity(200);
+
+  slow->setTarget("F1", fwd);
+  slow->waitUntilSettled();//goes forward to get 4 cubes
+  turn(30);
+
+  fast->setTarget("B1", bwd);
+  fast->waitUntilSettled();//moves backward to align with other 4 cubes
+  turn(0);
+
+  slow->setTarget("F2", fwd);
+  slow->waitUntilSettled();//intakes last 4 cubes
+  turn(210);
+
+  fast->setTarget("F3", fwd);//drives to goal zone
+  fast->waitUntilSettled();
+
+  autoStackDeploy();
+
+  slow->setTarget("B2", bwd);
+  slow->waitUntilSettled();
 }
 
 
