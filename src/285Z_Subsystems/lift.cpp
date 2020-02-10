@@ -61,19 +61,19 @@ int Lift::getHeightPos(){
 
 void Lift::deploy(){
   liftController -> setTarget(1000);
-  pros::delay(600);
+  pros::delay(700);
   intake.moveVelocity(-100);
-  pros::delay(400);
+  pros::delay(700);
   liftController -> setTarget(100);
   intake.moveVelocity(100);
 
   pros::delay(1000);
 
-  driveL.moveVelocity(40);
-  driveR.moveVelocity(40);
+  driveL.moveVelocity(45);
+  driveR.moveVelocity(45);
   pros::delay(100);
-  driveR.moveVelocity(-40);
-  driveL.moveVelocity(-40);
+  driveR.moveVelocity(-45);
+  driveL.moveVelocity(-45);
   pros::delay(100);
   driveR.moveVelocity(0);
   driveL.moveVelocity(0);

@@ -19,7 +19,7 @@ void selectAuton(std::shared_ptr<okapi::OdomChassisController> chassis, std::sha
 //
   if(autonPot.get() >= 0 && autonPot.get() < 1023){
     //shortGoalFiveRed(chassis, slow, fast);
-    shortGoalNineRed(chassis, slow, fast);
+    shortGoalFiveRed(chassis, slow, fast);
   }
   if(autonPot.get() >= 1023 && autonPot.get() < 2047){
     shortGoalFiveBlue(chassis, slow, fast);
@@ -102,38 +102,40 @@ void shortGoalFiveRed(std::shared_ptr<okapi::OdomChassisController> chassis, std
   //************** INIT PATHS *******************//
   slow->generatePath({
     {0_ft,0_ft,0_deg},
-    {3.5_ft,0_ft,0_deg}},
+    {4.5_ft,0_ft,0_deg}},
     "F1"
   );
 
   fast->generatePath({
     {0_ft,0_ft,0_deg},
-    {4.5_ft,0_ft,0_deg}},
-    "B1"
+    {0.5_ft,0_ft,0_deg}},
+    "F2"
   );
 
   fast->generatePath({
     {0_ft,0_ft,0_deg},
-    {4_ft,0_ft,0_deg}},
-    "F2"
+    {2_ft,0_ft,0_deg}},
+    "B1"
   );
   fast->generatePath({
     {0_ft,0_ft,0_deg},
-    {1.5_ft,0_ft,0_deg}},
+    {4.5_ft,0_ft,0_deg}},
     "G"
   );
   //************** RUN AUTON *******************//
+  robotDeploy();
+
   slow->setTarget("F1", fwd);
   slow->waitUntilSettled();//goes forward to get 4 cubes
-  turn(150);
+  turn(320);
 
-  fast->setTarget("B1", bwd);
-  fast->waitUntilSettled();//splines backwards to line up for second row
+  fast->setTarget("F2", fwd);
+  fast->waitUntilSettled();
 
-  slow->setTarget("F2", fwd);
-  slow->waitUntilSettled();//intakes last 3 CUBES
+  fast->setTarget("F2", bwd);
+  fast->waitUntilSettled();
+  turn(160);
 
-  chassis->turnToAngle(-135_deg);
   fast->setTarget("G");//drives to goal zone
   fast->waitUntilSettled();
 
