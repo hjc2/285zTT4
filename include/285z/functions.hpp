@@ -54,15 +54,16 @@ void shortGoalNineBlue(std::shared_ptr<okapi::OdomChassisController> chassis, st
 //************************   BLUE: LONG GOAL   ****************************//
 void longGoalBlue(std::shared_ptr<okapi::OdomChassisController> chassis, std::shared_ptr<okapi::AsyncMotionProfileController> slow,std::shared_ptr<okapi::AsyncMotionProfileController> fast);
 
+void longGoalBlue(std::shared_ptr<okapi::OdomChassisController> chassis, std::shared_ptr<okapi::AsyncMotionProfileController> slow,std::shared_ptr<okapi::AsyncMotionProfileController> fast);
+
+
 void robotDeploy();
 void stackDeploy();
 
-void blueSmallManual();
-void redSmallManual();
 //INITIALIZE
 void profileControllers();
 
-void deployOne();
+void redSmallManual();
 void deployTray();
 
 Motor autonLift();
