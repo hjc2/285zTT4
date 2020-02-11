@@ -19,7 +19,7 @@ void selectAuton(std::shared_ptr<okapi::OdomChassisController> chassis, std::sha
 //
   if(autonPot.get() >= 0 && autonPot.get() < 1023){
     //shortGoalFiveRed(chassis, slow, fast);
-    shortGoalNineRed(chassis, slow, fast);
+    shortGoalFiveRed(chassis, slow, fast);
   }
   if(autonPot.get() >= 1023 && autonPot.get() < 2047){
     shortGoalFiveBlue(chassis, slow, fast);
@@ -102,38 +102,40 @@ void shortGoalFiveRed(std::shared_ptr<okapi::OdomChassisController> chassis, std
   //************** INIT PATHS *******************//
   slow->generatePath({
     {0_ft,0_ft,0_deg},
-    {3.5_ft,0_ft,0_deg}},
+    {4.5_ft,0_ft,0_deg}},
     "F1"
   );
 
   fast->generatePath({
     {0_ft,0_ft,0_deg},
-    {4.5_ft,0_ft,0_deg}},
-    "B1"
+    {0.25_ft,0_ft,0_deg}},
+    "F2"
   );
 
   fast->generatePath({
     {0_ft,0_ft,0_deg},
-    {4_ft,0_ft,0_deg}},
-    "F2"
+    {2_ft,0_ft,0_deg}},
+    "B1"
   );
   fast->generatePath({
     {0_ft,0_ft,0_deg},
-    {1.5_ft,0_ft,0_deg}},
+    {4.5_ft,0_ft,0_deg}},
     "G"
   );
   //************** RUN AUTON *******************//
+  robotDeploy();
+
   slow->setTarget("F1", fwd);
   slow->waitUntilSettled();//goes forward to get 4 cubes
-  turn(150);
+  turn(320);
 
-  fast->setTarget("B1", bwd);
-  fast->waitUntilSettled();//splines backwards to line up for second row
+  fast->setTarget("F2", fwd);
+  fast->waitUntilSettled();
 
-  slow->setTarget("F2", fwd);
-  slow->waitUntilSettled();//intakes last 3 CUBES
+  fast->setTarget("F2", bwd);
+  fast->waitUntilSettled();
+  turn(160);
 
-  chassis->turnToAngle(-135_deg);
   fast->setTarget("G");//drives to goal zone
   fast->waitUntilSettled();
 
@@ -259,32 +261,7 @@ void shortGoalFiveBlue(std::shared_ptr<okapi::OdomChassisController> chassis, st
 
   theLift.deploy();
   //************** INIT PATHS *******************//
-/*
-  slow->generatePath({
-    {0_ft,0_ft,0_deg},
-    {3.5_ft,0_ft,0_deg}},
-    "F1"
-  );
-  fast->generatePath({
-    {0_ft,0_ft,0_deg},
-    {4.5_ft,0_ft,0_deg}},
-    "B1"
-  );
-  fast->generatePath({
-    {0_ft,0_ft,0_deg},
-    {4_ft,2_ft,0_deg}},
-    "F2"
-  );
-  fast->generatePath({
-    {0_ft,0_ft,0_deg},
-    {1.5_ft,0_ft,0_deg}},
-    "G"
-  );
-  fast->generatePath({
-    {0_ft,0_ft,0_deg},
-    {0.5_ft,0.5_ft,0_deg}},
-    "Z1"
-  );
+
   //************** RUN AUTON *******************/
 
 /*
@@ -386,75 +363,48 @@ void longGoalBlue(std::shared_ptr<okapi::OdomChassisController> chassis, std::sh
   //************** INIT PATHS *******************//
   slow->generatePath({
     {0_ft,0_ft,0_deg},
-    {4.5_ft,0_ft,0_deg}},
+    {4_ft,0_ft,0_deg}},
     "F1"
   );
 
   fast->generatePath({
     {0_ft,0_ft,0_deg},
-    {3.5_ft,0_ft,0_deg}},
-    "B1"
-  );
-
-  fast->generatePath({
-    {0_ft,0_ft,0_deg},
-    {4_ft,0_ft,0_deg}},
+    {2_ft,0_ft,0_deg}},
     "F2"
   );
 
   fast->generatePath({
     {0_ft,0_ft,0_deg},
-    {1.5_ft,0_ft,0_deg}},
+    {5_ft,0_ft,0_deg}},
+    "B1"
+  );
+
+  fast->generatePath({
+    {0_ft,0_ft,0_deg},
+    {0.5_ft,0_ft,0_deg}},
     "G"
   );
   //************** RUN AUTON *******************//
-  intake.moveVelocity(100);
+
   slow->setTarget("F1", fwd);
-  slow->waitUntilSettled();//goes forward to get 2 cubes from VERTICAL Stack
+  slow->waitUntilSettled();
+  turn(45);
 
-  chassis->turnToAngle(35_deg); //intake cube in front of tower
-  chassis->turnToAngle(5_deg); //turn back
-  fast->setTarget("B1", bwd);
-  fast->waitUntilSettled();//move backwards straight
+  fast->setTarget("F2", fwd);
+  fast->waitUntilSettled();
+  turn(330);
 
-  chassis->turnToAngle(110_deg); //turn to cube next to long goal
-  slow->setTarget("F2", fwd);
-  slow->waitUntilSettled();//intakes one cube
+  slow->setTarget("B1", fwd);
+  slow->waitUntilSettled();
+  turn(120);
 
-  intake.moveVelocity(0);
-  chassis->turnToAngle(150_deg);
+  fast->setTarget("G");
+  fast->waitUntilSettled();
+  turn(90);
+
   fast->setTarget("G");//drives to goal zone
   fast->waitUntilSettled();
 
-  //deploy
-  intake.moveAbsolute(-90, 60);
   autoStackDeploy();
-}
 
-void oneCubeSad(std::shared_ptr<okapi::OdomChassisController> chassis, std::shared_ptr<okapi::AsyncMotionProfileController> slow,std::shared_ptr<okapi::AsyncMotionProfileController> fast)
-{
-  fast->generatePath({
-    {0_ft,0_ft,0_deg},
-    {1.5_ft,0_ft,0_deg}},
-    "G"
-  );
-  fast->setTarget("G",bwd);
-  fast->waitUntilSettled();
-  fast->setTarget("G");
-}
-
-void redSmallManual(){
-  deployTray();
-}
-void deployTray(){
-  driveL.moveVelocity(200);
-  driveR.moveVelocity(200);
-  pros::delay(100);
-  intake.moveVelocity(-100);
-  pros::delay(200);
-  intake.moveVelocity(100);
-  pros::delay(500);
-  driveL.moveVelocity(-100);
-  driveR.moveVelocity(-100);
-  pros::delay(200);
 }
