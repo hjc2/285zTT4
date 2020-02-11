@@ -108,7 +108,7 @@ void shortGoalFiveRed(std::shared_ptr<okapi::OdomChassisController> chassis, std
 
   fast->generatePath({
     {0_ft,0_ft,0_deg},
-    {0.5_ft,0_ft,0_deg}},
+    {0.25_ft,0_ft,0_deg}},
     "F2"
   );
 
