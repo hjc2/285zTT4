@@ -97,26 +97,24 @@ void autonomous() {
   pros::delay(3000);
   //TEST CASE
   turnTest(90);
-  // pid.turn(0, ABSOLUTE);
-  // pid.turn(-45, RELATIVE);
-  // pid.turn(-90, ABSOLUTE);
-  /*
-  intake.moveVelocity(-100);
-  pros::delay(2500);
-  intake.moveVelocity(0);
-  driveL.moveVelocity(-50);
-  driveR.moveVelocity(-50);
-  pros::delay(1500);
-  driveL.moveVelocity(100);
-  driveR.moveVelocity(100);
-  pros::delay(750);
-  driveL.moveVelocity(0);
-  driveR.moveVelocity(0);
+  // pros::delay(1000);
+  // turnTest(0);
+  // pros::delay(500);
+  // turnTest(90);
+  // pros::delay(500);
+  // turnTest(270);
+  // intake.moveVelocity(-100);
+  // pros::delay(2500);
+  // intake.moveVelocity(0);
+  // driveL.moveVelocity(-50);
+  // driveR.moveVelocity(-50);
+  // pros::delay(1500);
+  // driveL.moveVelocity(100);
+  // driveR.moveVelocity(100);
+  // pros::delay(750);
+  // driveL.moveVelocity(0);
+  // driveR.moveVelocity(0);
   //oneCubeSad();
-
-
-*/
-  // selectAuton(chassisauto, fastauto, slowauto);
 
 }
 

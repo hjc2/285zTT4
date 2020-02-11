@@ -2,9 +2,9 @@
 #include "../include/285z/initSensors.hpp"
 #include "../include/285Z_Subsystems/pid.hpp"
 
-const double GLOBAL_kP = 0.5;
-const double GLOBAL_kI = 0;
-const double GLOBAL_kD = 0;
+const double GLOBAL_kP = 1.05;
+const double GLOBAL_kI = 0.00001;
+const double GLOBAL_kD = 0.4;
 
 void calibrate(){
   imuSensor.reset();
@@ -14,11 +14,13 @@ double deg = 0;
 bool absolute = true;
 
 void turnTest(double degrees){
-  double sensorValue;
-  double turnTarget;
 
   double thetaI = imuSensor.get_heading();
   double thetaF = degrees;
+
+  double sensorValue = thetaI;
+  double turnTarget = thetaF;
+
   double deltaI = abs(thetaF - thetaI);
 
   if (deltaI > 180){
@@ -73,12 +75,14 @@ void turnTest(double degrees){
     driveL.moveVelocity(sum);
     driveR.moveVelocity(-sum);
 
+    oldError = error;
     double errorThreshold = 5;
     double velocityThreshold = 5;
 
     TURN_NOT_FINISH = !((abs(error) < errorThreshold) && (abs(changeInError) < velocityThreshold));
-    pros::delay(10);
   }
+  driveL.moveVelocity(0);
+  driveR.moveVelocity(0);
 }
 
 void turn(double degrees){
