@@ -160,9 +160,9 @@ fast->generatePath({
   "Goal Align Pt 2"
 );
 
-slow->setTarget("Goal Align Pt 2");
+fast->setTarget("Goal Align Pt 2");
 intake.moveRelative(-500, 110);//outtake
-slow->waitUntilSettled();
+fast->waitUntilSettled();
 
 autoStackDeploy();
 
@@ -171,7 +171,7 @@ pros::Task::delay(1500);
 intake.moveVelocity(-200);
 
 pros::Task::delay(200);
-slow->setTarget("Goal Align Pt 2", 1);
+fast->setTarget("Goal Align Pt 2", 1);
 
 
 
