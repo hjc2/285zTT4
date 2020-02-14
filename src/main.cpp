@@ -97,8 +97,8 @@ void autonomous() {
   pros::delay(3000);
   //TEST CASE
   turnTest(90);
-  // pros::delay(1000);
-  // turnTest(0);
+  pros::delay(1000);
+  turnTest(0);
   // pros::delay(500);
   // turnTest(90);
   // pros::delay(500);

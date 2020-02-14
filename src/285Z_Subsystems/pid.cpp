@@ -88,27 +88,29 @@ void turnTest(double degrees){
 }
 
 void turn(double degrees){
-  // std::cout << "INTURN" << std::endl;
-  // deg = degrees;
-  // pros::Task turn_task(turnTask, (void*)"PROS", TASK_PRIORITY_DEFAULT,
-  //                   TASK_STACK_DEPTH_DEFAULT, "Turn Task");
+  driveL.setBrakeMode(AbstractMotor::brakeMode::brake);
+  driveR.setBrakeMode(AbstractMotor::brakeMode::brake);
+  double thetaI = imuSensor.get_heading();
+  double thetaF = degrees;
 
-  //double deg: turn deg degrees (0, 360)
-  //*Should be 360 counting down cc, 0 to up
-  double sensorValue = imuSensor.get_heading();
-  std::cout << sensorValue;
+  double sensorValue = thetaI;
+  double turnTarget = thetaF;
 
-  double turnTarget = degrees;
-  // if (absolute) {
-  //   //Keeps all angles between -180 and 180, turns to closest
-  //   if (deg < 180) {
-  //     turnTarget = deg;
-  //   } else {
-  //     turnTarget = deg - 360;
-  //   }
-  // } else if (!absolute) {
-  //   turnTarget = sensorValue + deg;
-  // }
+  double deltaI = abs(thetaF - thetaI);
+
+  if (deltaI > 180){
+    if (thetaF > 180) {
+      turnTarget = thetaF - 360;
+    } else {
+      turnTarget = thetaF;
+    }
+
+    if (thetaI > 180) {
+      sensorValue = thetaI - 360;
+    } else {
+      sensorValue = thetaI;
+    }
+  }
 
   double error = turnTarget - sensorValue;
   double oldError = error;
@@ -119,6 +121,13 @@ void turn(double degrees){
     sensorValue = imuSensor.get_heading();
     printf("TARGET: %.4f\n", turnTarget);
     printf("IMU: %.4f\n", sensorValue);
+
+    if (deltaI > 180){
+      if (sensorValue > 180) {
+        sensorValue = sensorValue - 360;
+      }
+    }
+
     //PROPORTIONAL
     error = turnTarget - sensorValue;
     printf("ERROR: %.4f\n", error);
@@ -141,10 +150,12 @@ void turn(double degrees){
     driveL.moveVelocity(sum);
     driveR.moveVelocity(-sum);
 
+    oldError = error;
     double errorThreshold = 5;
     double velocityThreshold = 5;
 
     TURN_NOT_FINISH = !((abs(error) < errorThreshold) && (abs(changeInError) < velocityThreshold));
-    pros::delay(10);
   }
+  driveL.moveVelocity(0);
+  driveR.moveVelocity(0);
 }
