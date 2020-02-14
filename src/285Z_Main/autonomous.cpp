@@ -81,17 +81,6 @@ void initAutoPaths(std::shared_ptr<okapi::AsyncMotionProfileController> slow,std
 
 //******************AUXILIARY FUNCTIONS *************************//
 
-void autoStackDeploy(){
-  Tray angler;
-  angler.moveToUp(0); //0 in
-}
-
-void robotDeploy()
-{
-  liftMotor.moveAbsolute(200, 100);
-
-}
-
 //***************** RED AUTONOMOUS PROGRAMS *********************//
 //*****************************   RED: FIVE CUBES    **********************//
 void shortGoalFiveRed(std::shared_ptr<okapi::OdomChassisController> chassis, std::shared_ptr<okapi::AsyncMotionProfileController> slow,std::shared_ptr<okapi::AsyncMotionProfileController> fast){
@@ -116,7 +105,7 @@ void shortGoalFiveRed(std::shared_ptr<okapi::OdomChassisController> chassis, std
     {0_ft,0_ft,0_deg},
     {2_ft,0_ft,0_deg}},
     "F3"
-
+  );
   fast->generatePath({
     {0_ft,0_ft,0_deg},
     {2_ft,0_ft,0_deg}},
@@ -156,7 +145,7 @@ void shortGoalFiveRed(std::shared_ptr<okapi::OdomChassisController> chassis, std
   fast->setTarget("G");//drives to goal zone
   fast->waitUntilSettled();
 
-  autoStackDeploy();
+  stackDeploy();
 }
 
 //******************************   RED: NINE CUBES   ****************************//
@@ -213,7 +202,7 @@ void shortGoalNineRed(std::shared_ptr<okapi::OdomChassisController> chassis, std
   fast->setTarget("F3", fwd);//drives to goal zone
   fast->waitUntilSettled();
 
-  autoStackDeploy();
+  stackDeploy();
 
   slow->setTarget("B2", bwd);
   slow->waitUntilSettled();
@@ -265,7 +254,7 @@ void longGoalRed(std::shared_ptr<okapi::OdomChassisController> chassis, std::sha
 
   //deploy
   intake.moveAbsolute(-90, 60);
-  autoStackDeploy();
+  stackDeploy();
 }
 
 
@@ -295,21 +284,6 @@ void shortGoalFiveBlue(std::shared_ptr<okapi::OdomChassisController> chassis, st
   fast->setTarget("G");//drives to goal zone
   fast->waitUntilSettled();
 */
-  intake.moveVelocity(100);
-
-  driveL.moveVelocity(30);
-  driveR.moveVelocity(30);
-  pros::delay(3000);
-  driveL.moveVelocity(50);
-  driveR.moveVelocity(-50);
-  pros::delay(400);
-  driveL.moveVelocity(30);
-  driveR.moveVelocity(30);
-  pros::delay(2000);
-  driveL.moveVelocity(0);
-  driveR.moveVelocity(0);
-  autoStackDeploy();
-  pros::delay(1000);
 }
 
 
@@ -366,7 +340,7 @@ void shortGoalNineBlue(std::shared_ptr<okapi::OdomChassisController> chassis, st
   fast->setTarget("F3", fwd);//drives to goal zone
   fast->waitUntilSettled();
 
-  autoStackDeploy();
+  stackDeploy();
 
   slow->setTarget("B2", bwd);
   slow->waitUntilSettled();
@@ -422,6 +396,82 @@ void longGoalBlue(std::shared_ptr<okapi::OdomChassisController> chassis, std::sh
   fast->setTarget("G");//drives to goal zone
   fast->waitUntilSettled();
 
-  autoStackDeploy();
+  stackDeploy();
+
+}
+
+void redFiveCube(std::shared_ptr<okapi::OdomChassisController> chassis, std::shared_ptr<okapi::AsyncMotionProfileController> slow,std::shared_ptr<okapi::AsyncMotionProfileController> fast)
+{
+
+Tray angler;
+Lift theLift;
+
+
+//************** INIT PATHS *******************//
+fast->generatePath({
+{0_ft, 0_ft, 0_deg},
+{1_ft, 0_ft, 0_deg}},
+"Push Cube"
+);
+
+fast->setTarget("Push Cube");
+fast->waitUntilSettled();
+
+
+fast->generatePath({
+{0_ft, 0_ft, 0_deg},
+{0.75_ft, 0_ft, 0_deg}},
+"align on wall"
+);
+
+fast->setTarget("align on wall", bwd);
+
+intake.moveVelocity(-200);
+theLift.deploy();
+
+fast->waitUntilSettled();
+
+
+slow->generatePath({
+{0_ft, 0_ft, 0_deg},  // Profile starting position, this will normally be (0, 0, 0)
+{3.1_ft, 0_ft, 0_deg}}, // The next point in the profile, 3 feet forwardx
+"Cube Line"
+);
+
+intake.moveVelocity(200);
+
+slow->setTarget("Cube Line");
+slow->waitUntilSettled();
+
+fast->generatePath({
+{0_ft, 0_ft, 0_deg},
+{2_ft, 0_ft, 0_deg}},
+"Goal Align Pt 1"
+);
+fast->setTarget("Goal Align Pt 1", 1);
+fast->waitUntilSettled();
+
+turnTest(163);
+
+intake.moveVelocity(0);
+
+fast->generatePath({
+{0_ft, 0_ft, 0_deg},
+{1_ft, 0_ft, 0_deg}},//0.75
+"Goal Align Pt 2"
+);
+
+fast->setTarget("Goal Align Pt 2");
+intake.moveRelative(-500, 110);//outtake
+fast->waitUntilSettled();
+
+stackDeploy();
+
+pros::Task::delay(1500);
+
+intake.moveVelocity(-200);
+
+pros::Task::delay(200);
+fast->setTarget("Goal Align Pt 2", 1);
 
 }

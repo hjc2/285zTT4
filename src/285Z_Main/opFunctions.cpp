@@ -139,24 +139,6 @@ void liftToggle(){
 
 }
 
-/*
-//Preset liftup
-void liftUp(){
-  if(liftUpButton.changedToPressed()){
-    lift.moveToUp();
-    angler.moveToLift();
-  }
-}
-
-//Preset liftdown
-void liftDown(){
-  if(liftDownButton.changedToPressed()){
-    lift.moveToDown();
-    angler.moveToDown(true);
-  }
-}
-*/
-
 
 //MANUAL DUAL CONTROL
 void liftControl() {

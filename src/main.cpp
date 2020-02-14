@@ -74,6 +74,8 @@ void initialize() {
   //   {1.5_ft,0_ft,0_deg}},
   //   "C"
   // );
+  imuSensor.reset();
+
 }
 
 /**
@@ -93,11 +95,10 @@ void competition_initialize() {
 }
 
 void autonomous() {
-  imuSensor.reset();
-  pros::delay(3000);
   //TEST CASE
-  selectAuton(chassisauto, slowauto, fastauto);
-
+  // selectAuton(chassisauto, slowauto, fastauto);
+  robotDeploy();
+  redFiveCube(chassisauto, slowauto, fastauto);
 }
 
 

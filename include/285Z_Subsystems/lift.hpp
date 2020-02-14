@@ -21,4 +21,5 @@ class Lift{
   void moveToDown();
   void move(int);
 
+
 };
