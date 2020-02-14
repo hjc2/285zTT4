@@ -123,6 +123,7 @@ void shortGoalFiveRed(std::shared_ptr<okapi::OdomChassisController> chassis, std
     "G"
   );
   //************** RUN AUTON *******************//
+
   robotDeploy();
 
   slow->setTarget("F1", fwd);
