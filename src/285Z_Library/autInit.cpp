@@ -55,7 +55,4 @@ auto chassis = okapi::ChassisControllerBuilder()
     angler.moveToUp(false);
     pros::Task::delay(1500);
     intake.moveRelative(-300, 110);//outtake
-
-    fast->setTarget("C",bwd); //drives away
-    angler.moveToDown(false);
   }
