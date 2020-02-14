@@ -2,9 +2,9 @@
 #include "../include/285z/initSensors.hpp"
 #include "../include/285Z_Subsystems/pid.hpp"
 
-const double GLOBAL_kP = 1.05;
-const double GLOBAL_kI = 0.00001;
-const double GLOBAL_kD = 0.4;
+const double GLOBAL_kP = 0.95;
+const double GLOBAL_kI = 0;
+const double GLOBAL_kD = 0.2;
 
 void calibrate(){
   imuSensor.reset();
@@ -15,6 +15,8 @@ bool absolute = true;
 
 void turnTest(double degrees){
 
+  driveL.setBrakeMode(AbstractMotor::brakeMode::brake);
+  driveR.setBrakeMode(AbstractMotor::brakeMode::brake);
   double thetaI = imuSensor.get_heading();
   double thetaF = degrees;
 
