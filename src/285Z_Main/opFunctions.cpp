@@ -218,12 +218,16 @@ void stackDeploy()
   {
     //ratio is 0.860776764973 intake:drive
     angler.moveToDown(true);
-    intake.moveVelocity(outtakeSpeed*0.860776764973);
+    anglerUpBool = false;
 
-    driveL.moveVelocity(outtakeSpeed);
-    driveR.moveVelocity(outtakeSpeed);
+    intake.moveVelocity(-100);
 
-    pros::Task::delay(750);
+    pros::Task::delay(200);
+
+    driveL.moveVelocity(-outtakeSpeed);
+    driveR.moveVelocity(-outtakeSpeed);
+
+    pros::Task::delay(800);
     intake.moveVelocity(0);
 
     driveL.moveVelocity(0);
