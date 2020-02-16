@@ -46,6 +46,7 @@ void shortGoalNineRed(std::shared_ptr<okapi::OdomChassisController> chassis, std
 //************************   RED: LONG GOAL   ****************************//
 void longGoalRed(std::shared_ptr<okapi::OdomChassisController> chassis, std::shared_ptr<okapi::AsyncMotionProfileController> slow,std::shared_ptr<okapi::AsyncMotionProfileController> fast);
 
+void redFiveCube(std::shared_ptr<okapi::OdomChassisController> chassis, std::shared_ptr<okapi::AsyncMotionProfileController> slow,std::shared_ptr<okapi::AsyncMotionProfileController> fast);
 
 //************************   BLUE: FIVE CUBES   ****************************//
 void shortGoalFiveBlue(std::shared_ptr<okapi::OdomChassisController> chassis, std::shared_ptr<okapi::AsyncMotionProfileController> slow,std::shared_ptr<okapi::AsyncMotionProfileController> fast);
