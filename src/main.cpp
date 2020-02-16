@@ -76,8 +76,7 @@ void competition_initialize() {
 void autonomous() {
   //TEST CASE
   // selectAuton(chassisauto, slowauto, fastauto);
-  robotDeploy();
-  redFiveCube(chassisauto, slowauto, fastauto);
+ shortGoalFiveRed(chassisauto, slowauto, fastauto);
 }
 
 

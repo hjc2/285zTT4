@@ -49,7 +49,7 @@ auto chassis = okapi::ChassisControllerBuilder()
     */
   }
 
-  void autoStackDeploy(std::shared_ptr<okapi::AsyncMotionProfileController> fast)
+  void autoStackDeploy()
   {
     Tray angler;
     angler.moveToUp(false);

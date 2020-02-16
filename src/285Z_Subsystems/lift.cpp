@@ -2,7 +2,7 @@
 #include "../include/285Z_Subsystems/lift.hpp"
 #include "../include/285Z_Subsystems/tray.hpp"
 
-const int NUM_HEIGHTS = 4;
+const int NUM_HEIGHTS = 3;
 const int height0 = 5;
 const int height1 = 1800;
 const int height2 = 2300;
@@ -15,7 +15,7 @@ double liftkD = 0.00009;
 
 int heightNow = 0;
 
-auto liftController = AsyncPosControllerBuilder().withMotor(-liftPort)
+auto liftController = AsyncPosControllerBuilder().withMotor(liftPort)
                         .build();
 
 void Lift::liftToggle(Tray angler){
@@ -25,13 +25,8 @@ void Lift::liftToggle(Tray angler){
       heightNow++;
       liftController->setTarget(heights[heightNow]);
 
-    } else if (liftDownButton.changedToPressed() && heightNow > 1) {
-      if(heightNow > 0) {
-        heightNow--;
-      } else {
-        heightNow = 0;
-      }
-
+    } else if (liftDownButton.changedToPressed() && heightNow > 0) {
+      heightNow--;
       liftController->setTarget(heights[heightNow]);
     }
 
@@ -60,8 +55,7 @@ void Lift::deploy(){
 
   liftController -> setTarget(100);
   liftController -> waitUntilSettled();
-
-  }
+}
 
 void Lift::move(int vel){
   liftMotor.moveVelocity(-vel);
