@@ -49,13 +49,13 @@ auto chassis = okapi::ChassisControllerBuilder()
     */
   }
 
-  void stackDeploy(std::shared_ptr<okapi::AsyncMotionProfileController> fast)
+  void autoStackDeploy(std::shared_ptr<okapi::AsyncMotionProfileController> fast)
   {
     Tray angler;
     angler.moveToUp(false);
     pros::Task::delay(1500);
     intake.moveRelative(-300, 110);//outtake
 
-    fast->setTarget("C",bwd); //drives away
+    //fast->setTarget("C",bwd); //drives away
     angler.moveToDown(false);
   }

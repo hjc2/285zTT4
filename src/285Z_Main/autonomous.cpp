@@ -128,7 +128,7 @@ void shortGoalFiveRed(std::shared_ptr<okapi::OdomChassisController> chassis, std
   fast->setTarget("G");//drives to goal zone
   fast->waitUntilSettled();
 
-  stackDeploy();
+  autoStackDeploy();
 }
 
 //******************************   RED: NINE CUBES   ****************************//
@@ -185,7 +185,7 @@ void shortGoalNineRed(std::shared_ptr<okapi::OdomChassisController> chassis, std
   fast->setTarget("F3", fwd);//drives to goal zone
   fast->waitUntilSettled();
 
-  stackDeploy();
+  autoStackDeploy();
 
   slow->setTarget("B2", bwd);
   slow->waitUntilSettled();
@@ -237,7 +237,7 @@ void longGoalRed(std::shared_ptr<okapi::OdomChassisController> chassis, std::sha
 
   //deploy
   intake.moveAbsolute(-90, 60);
-  stackDeploy();
+  autoStackDeploy();
 }
 
 
@@ -304,7 +304,7 @@ void shortGoalNineBlue(std::shared_ptr<okapi::OdomChassisController> chassis, st
   fast->setTarget("F3", fwd);//drives to goal zone
   fast->waitUntilSettled();
 
-  stackDeploy();
+  autoStackDeploy();
 
   slow->setTarget("B2", bwd);
   slow->waitUntilSettled();
@@ -360,7 +360,7 @@ void longGoalBlue(std::shared_ptr<okapi::OdomChassisController> chassis, std::sh
   fast->setTarget("G");//drives to goal zone
   fast->waitUntilSettled();
 
-  stackDeploy();
+  autoStackDeploy();
 
 }
 
@@ -429,7 +429,7 @@ void redFiveCube(std::shared_ptr<okapi::OdomChassisController> chassis, std::sha
   intake.moveRelative(-500, 110);//outtake
   fast->waitUntilSettled();
 
-  stackDeploy();
+  autoStackDeploy();
 
   pros::Task::delay(1500);
 
