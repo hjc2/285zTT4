@@ -17,26 +17,7 @@ double traykD = 0.00001; //tray D coefficient
 auto anglerController = AsyncPosControllerBuilder().withMotor(anglerPort)
                         .withGains({traykP, traykI, traykD})
                         .build();
-//will check which position is requesuuuuuuuuuuuuuuuuuuuuuuted and run that with the overall rotation
-/*
-void Tray::moveToState(int pos){
-  switch(pos){
-    case DOWN:
-      //DOWN
-      anglerController->setTarget(3500);
-      anglerController->waitUntilSettled();
-      //anglerMotor.moveAbsolute(0, -100);
-    case UP:
-      anglerController->setTarget(0);
-      anglerController->waitUntilSettled();
-      //anglerMotor.moveAbsolute(1690, 100);
-    case LIFTUP:
-      anglerController->setTarget(1600);
-      anglerController->waitUntilSettled();
-    break;
-  }
-}
-*/
+
 //this function will undisable the angler
 void Tray::moveToUp(bool op){
   trayHeightPos = 1;
@@ -64,13 +45,6 @@ void Tray::moveToDown(bool op){
   }
 }
 
-void Tray::moveToLift(){
-  trayHeightPos = 2;
-  if(anglerController->isDisabled()){
-    anglerController->flipDisable();
-  }
-  anglerController->setTarget(1300);
-}
 
 int Tray::getHeightPos(){
   return trayHeightPos;
@@ -81,15 +55,4 @@ void Tray::stopPID(){
     anglerController->flipDisable();
   }
   anglerMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
-}
-
-void Tray::moveAbsolute(double position, int velocity){
-
-  anglerMotor.moveAbsolute(position, velocity);
-  anglerMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
-}
-
-void Tray::moveVel(int velocity){
-  anglerMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
-  anglerMotor.moveVelocity(-velocity);
 }
