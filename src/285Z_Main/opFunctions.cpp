@@ -9,7 +9,7 @@ bool intakeToggleBool = false;
 bool intakeToggleHold = true;
 bool liftPositionBool = true;
 
-double outtakeSpeed = 85;
+double outtakeSpeed = 30;
 
 
 //***********************  INITIALIZE SUBSYSTEMS  ***************************//
