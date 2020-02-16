@@ -3,6 +3,7 @@
 #include "../include/285Z_Subsystems/lift.hpp"
 #include "../include/285z/functions.hpp"
 #include "../include/285Z_Aux/gui.hpp"
+#include "../include/285Z_Subsystems/pid.hpp"
                                                                                   // v
 //function called in main.cpp
 //will select auton then run it
@@ -86,17 +87,6 @@ void initAutoPaths(std::shared_ptr<okapi::AsyncMotionProfileController> slow,std
 
 //******************AUXILIARY FUNCTIONS *************************//
 
-void autoStackDeploy(){
-  Tray angler;
-  angler.moveToUp(0); //0 in
-}
-
-void robotDeploy()
-{
-  liftMotor.moveAbsolute(200, 100);
-
-}
-
 //***************** RED AUTONOMOUS PROGRAMS *********************//
 //*****************************   RED: FIVE CUBES    **********************//
 void shortGoalFiveRed(std::shared_ptr<okapi::OdomChassisController> chassis, std::shared_ptr<okapi::AsyncMotionProfileController> slow,std::shared_ptr<okapi::AsyncMotionProfileController> fast){
@@ -107,43 +97,61 @@ void shortGoalFiveRed(std::shared_ptr<okapi::OdomChassisController> chassis, std
   //************** INIT PATHS *******************//
   slow->generatePath({
     {0_ft,0_ft,0_deg},
-    {3.5_ft,0_ft,0_deg}},
+    {4.5_ft,0_ft,0_deg}},
     "F1"
   );
+
+  fast->generatePath({
+    {0_ft,0_ft,0_deg},
+    {0.25_ft,0_ft,0_deg}},
+    "F2"
+  );
+
+  fast->generatePath({
+    {0_ft,0_ft,0_deg},
+    {2_ft,0_ft,0_deg}},
+    "F3"
+  );
+  fast->generatePath({
+    {0_ft,0_ft,0_deg},
+    {2_ft,0_ft,0_deg}},
+    "B1"
+  );
+
+  fast->generatePath({
+    {0_ft,0_ft,0_deg},
+    {0.25_ft,0_ft,0_deg}},
+    "B2"
+  );
+
   fast->generatePath({
     {0_ft,0_ft,0_deg},
     {4.5_ft,0_ft,0_deg}},
-    "B1"
-  );//
-  fast->generatePath({
-    {0_ft,0_ft,0_deg},
-    {4_ft,2_ft,0_deg}},
-    "F2"
-  );
-  fast->generatePath({
-    {0_ft,0_ft,0_deg},
-    {1.5_ft,0_ft,0_deg}},
     "G"
   );
+
   //************** RUN AUTON *******************//
+
+  robotDeploy();
+
+  fast->setTarget("F3", fwd);
+  fast->waitUntilSettled();
+
   slow->setTarget("F1", fwd);
   slow->waitUntilSettled();//goes forward to get 4 cubes
+  turn(320);
 
-  fast->setTarget("B1", bwd);
-  fast->waitUntilSettled();//splines backwards to line up for second row
+  fast->setTarget("F2", fwd);
+  fast->waitUntilSettled();
 
-  slow->setTarget("F2", fwd);
-  slow->waitUntilSettled();//intakes last 3 CUBES
+  fast->setTarget("B2", bwd);
+  fast->waitUntilSettled();
+  turn(160);
 
-  chassis->turnToAngle(-135_deg);
   fast->setTarget("G");//drives to goal zone
   fast->waitUntilSettled();
-  pros::delay(200);
-  theTray.moveToUp(1);
-  pros::delay(1000);
-  driveL.moveVelocity(-4);
-  driveR.moveVelocity(-4);
-  intake.moveVelocity(-4);
+
+  stackDeploy();
 }
 
 //******************************   RED: NINE CUBES   ****************************//
@@ -155,59 +163,55 @@ void shortGoalNineRed(std::shared_ptr<okapi::OdomChassisController> chassis, std
   //************** INIT PATHS *******************//
   slow->generatePath({
     {0_ft,0_ft,0_deg},
-    {3.5_ft,0_ft,0_deg}},
+    {4_ft,0_ft,0_deg}},
     "F1"
-  );
-  fast->generatePath({
-    {0_ft,0_ft,0_deg},
-    {4.5_ft,0_ft,0_deg}},
-    "B1"
-  );
-  fast->generatePath({
-    {0_ft,0_ft,0_deg},
-    {4_ft,2_ft,0_deg}},
-    "F2"
-  );
-  fast->generatePath({
-    {0_ft,0_ft,0_deg},
-    {1.5_ft,0_ft,0_deg}},
-    "G"
   );
 
   fast->generatePath({
     {0_ft,0_ft,0_deg},
-    {0.5_ft,0_ft,0_deg}},
-    "Start"
+    {3_ft,0_ft,0_deg}},
+    "B1"
   );
+  slow->generatePath({
+    {0_ft,0_ft,0_deg},
+    {3.75_ft,0_ft,0_deg}},
+    "F2"
+  );
+
   fast->generatePath({
     {0_ft,0_ft,0_deg},
-    {0_ft,0_ft,0_deg}},
-    "Back"
+    {5_ft,0_ft,0_deg}},
+    "F3"
+  );
+
+  slow->generatePath({
+    {0_ft,0_ft,0_deg},
+    {0.5_ft,0_ft,0_deg}},
+    "B2"
   );
   theLift.deploy();
 
   intake.moveVelocity(200);
-/*
-  fast->setTarget("Start", fwd);  //************** RUN AUTON ******************
-  fast->waitUntilSettled();
 
-  fast->setTarget("Back", bwd);
-  fast->waitUntilSettled();
-*/
   slow->setTarget("F1", fwd);
   slow->waitUntilSettled();//goes forward to get 4 cubes
+  turn(330);
 
   fast->setTarget("B1", bwd);
-  fast->waitUntilSettled();//splines backwards to line up for second row
+  fast->waitUntilSettled();//moves backward to align with other 4 cubes
+  turn(0);
 
   slow->setTarget("F2", fwd);
-  slow->waitUntilSettled();//intakes last 3 CUBES
+  slow->waitUntilSettled();//intakes last 4 cubes
+  turn(150);
 
-  chassis->turnToAngle(-135_deg);
-  fast->setTarget("G");//drives to goal zone
+  fast->setTarget("F3", fwd);//drives to goal zone
   fast->waitUntilSettled();
 
-  autoStackDeploy();
+  stackDeploy();
+
+  slow->setTarget("B2", bwd);
+  slow->waitUntilSettled();
 }
 
 //************************   RED: LONG GOAL   ****************************//
@@ -256,7 +260,7 @@ void longGoalRed(std::shared_ptr<okapi::OdomChassisController> chassis, std::sha
 
   //deploy
   intake.moveAbsolute(-90, 60);
-  autoStackDeploy();
+  stackDeploy();
 }
 
 
@@ -269,32 +273,7 @@ void shortGoalFiveBlue(std::shared_ptr<okapi::OdomChassisController> chassis, st
 
   theLift.deploy();
   //************** INIT PATHS *******************//
-/*
-  slow->generatePath({
-    {0_ft,0_ft,0_deg},
-    {3.5_ft,0_ft,0_deg}},
-    "F1"
-  );
-  fast->generatePath({
-    {0_ft,0_ft,0_deg},
-    {4.5_ft,0_ft,0_deg}},
-    "B1"
-  );
-  fast->generatePath({
-    {0_ft,0_ft,0_deg},
-    {4_ft,2_ft,0_deg}},
-    "F2"
-  );
-  fast->generatePath({
-    {0_ft,0_ft,0_deg},
-    {1.5_ft,0_ft,0_deg}},
-    "G"
-  );
-  fast->generatePath({
-    {0_ft,0_ft,0_deg},
-    {0.5_ft,0.5_ft,0_deg}},
-    "Z1"
-  );
+
   //************** RUN AUTON *******************/
 
 /*
@@ -311,27 +290,66 @@ void shortGoalFiveBlue(std::shared_ptr<okapi::OdomChassisController> chassis, st
   fast->setTarget("G");//drives to goal zone
   fast->waitUntilSettled();
 */
-  intake.moveVelocity(100);
-
-  driveL.moveVelocity(30);
-  driveR.moveVelocity(30);
-  pros::delay(3000);
-  driveL.moveVelocity(50);
-  driveR.moveVelocity(-50);
-  pros::delay(400);
-  driveL.moveVelocity(30);
-  driveR.moveVelocity(30);
-  pros::delay(2000);
-  driveL.moveVelocity(0);
-  driveR.moveVelocity(0);
-  autoStackDeploy();
-  pros::delay(1000);
 }
 
 
 //************************   BLUE: SHORT GOAL, NINE CUBES   ****************************//
 void shortGoalNineBlue(std::shared_ptr<okapi::OdomChassisController> chassis, std::shared_ptr<okapi::AsyncMotionProfileController> slow,std::shared_ptr<okapi::AsyncMotionProfileController> fast){
+  Tray angler;
+  Lift theLift;
 
+  //************** INIT PATHS *******************//
+  slow->generatePath({
+    {0_ft,0_ft,0_deg},
+    {4_ft,0_ft,0_deg}},
+    "F1"
+  );
+
+  fast->generatePath({
+    {0_ft,0_ft,0_deg},
+    {3_ft,0_ft,0_deg}},
+    "B1"
+  );
+  slow->generatePath({
+    {0_ft,0_ft,0_deg},
+    {3.75_ft,0_ft,0_deg}},
+    "F2"
+  );
+
+  fast->generatePath({
+    {0_ft,0_ft,0_deg},
+    {5_ft,0_ft,0_deg}},
+    "F3"
+  );
+
+  slow->generatePath({
+    {0_ft,0_ft,0_deg},
+    {0.5_ft,0_ft,0_deg}},
+    "B2"
+  );
+  theLift.deploy();
+
+  intake.moveVelocity(200);
+
+  slow->setTarget("F1", fwd);
+  slow->waitUntilSettled();//goes forward to get 4 cubes
+  turn(30);
+
+  fast->setTarget("B1", bwd);
+  fast->waitUntilSettled();//moves backward to align with other 4 cubes
+  turn(0);
+
+  slow->setTarget("F2", fwd);
+  slow->waitUntilSettled();//intakes last 4 cubes
+  turn(210);
+
+  fast->setTarget("F3", fwd);//drives to goal zone
+  fast->waitUntilSettled();
+
+  stackDeploy();
+
+  slow->setTarget("B2", bwd);
+  slow->waitUntilSettled();
 }
 
 
@@ -342,185 +360,124 @@ void longGoalBlue(std::shared_ptr<okapi::OdomChassisController> chassis, std::sh
   //************** INIT PATHS *******************//
   slow->generatePath({
     {0_ft,0_ft,0_deg},
-    {4.5_ft,0_ft,0_deg}},
+    {4_ft,0_ft,0_deg}},
     "F1"
   );
 
   fast->generatePath({
     {0_ft,0_ft,0_deg},
-    {3.5_ft,0_ft,0_deg}},
-    "B1"
-  );
-
-  fast->generatePath({
-    {0_ft,0_ft,0_deg},
-    {4_ft,0_ft,0_deg}},
+    {2_ft,0_ft,0_deg}},
     "F2"
   );
 
   fast->generatePath({
     {0_ft,0_ft,0_deg},
-    {1.5_ft,0_ft,0_deg}},
+    {5_ft,0_ft,0_deg}},
+    "B1"
+  );
+
+  fast->generatePath({
+    {0_ft,0_ft,0_deg},
+    {0.5_ft,0_ft,0_deg}},
     "G"
   );
   //************** RUN AUTON *******************//
-  intake.moveVelocity(100);
+
   slow->setTarget("F1", fwd);
-  slow->waitUntilSettled();//goes forward to get 2 cubes from VERTICAL Stack
+  slow->waitUntilSettled();
+  turn(45);
 
-  chassis->turnToAngle(35_deg); //intake cube in front of tower
-  chassis->turnToAngle(5_deg); //turn back
-  fast->setTarget("B1", bwd);
-  fast->waitUntilSettled();//move backwards straight
+  fast->setTarget("F2", fwd);
+  fast->waitUntilSettled();
+  turn(330);
 
-  chassis->turnToAngle(110_deg); //turn to cube next to long goal
-  slow->setTarget("F2", fwd);
-  slow->waitUntilSettled();//intakes one cube
+  slow->setTarget("B1", fwd);
+  slow->waitUntilSettled();
+  turn(120);
 
-  intake.moveVelocity(0);
-  chassis->turnToAngle(150_deg);
+  fast->setTarget("G");
+  fast->waitUntilSettled();
+  turn(90);
+
   fast->setTarget("G");//drives to goal zone
   fast->waitUntilSettled();
 
-  //deploy
-  intake.moveAbsolute(-90, 60);
-  autoStackDeploy();
+  stackDeploy();
+
 }
 
-void oneCubeSad(std::shared_ptr<okapi::OdomChassisController> chassis, std::shared_ptr<okapi::AsyncMotionProfileController> slow,std::shared_ptr<okapi::AsyncMotionProfileController> fast)
+void redFiveCube(std::shared_ptr<okapi::OdomChassisController> chassis, std::shared_ptr<okapi::AsyncMotionProfileController> slow,std::shared_ptr<okapi::AsyncMotionProfileController> fast)
 {
-  fast->generatePath({
-    {0_ft,0_ft,0_deg},
-    {1.5_ft,0_ft,0_deg}},
-    "G"
-  );
-  fast->setTarget("G",bwd);
-  fast->waitUntilSettled();
-  fast->setTarget("G");
-}
 
-void deployOne(){
-  Lift theLift;
-  Tray theAngler;
+Tray angler;
+Lift theLift;
 
-  theLift.deploy();
-  driveL.moveVelocity(-75);
-  driveR.moveVelocity(-75);
-  pros::delay(600);
-  intake.moveVelocity(0);
-  driveL.moveVelocity(150);
-  driveR.moveVelocity(150);
-  pros::delay(400);
-  driveL.moveVelocity(50);
-  driveR.moveVelocity(50);
-  pros::delay(200);
 
-  driveL.moveVelocity(0);
-  driveR.moveVelocity(0);
+//************** INIT PATHS *******************//
+fast->generatePath({
+{0_ft, 0_ft, 0_deg},
+{1_ft, 0_ft, 0_deg}},
+"Push Cube"
+);
 
-  pros::delay(1000);
-  theAngler.moveToUp(true);
-  pros::delay(2000);
-  theAngler.moveToDown(true);
-}
+fast->setTarget("Push Cube");
+fast->waitUntilSettled();
 
-void redSmallManual(){
-  Lift theLift;
-  Tray theAngler;
 
-  theLift.deploy();
-  pros::delay(100);
-  intake.moveVelocity(100);
+fast->generatePath({
+{0_ft, 0_ft, 0_deg},
+{0.75_ft, 0_ft, 0_deg}},
+"align on wall"
+);
 
-  pros::delay(100);
-  driveL.moveVelocity(100);
-  driveR.moveVelocity(100);
-  pros::delay(200);
+fast->setTarget("align on wall", bwd);
 
-  driveL.moveVelocity(-100);
-  driveR.moveVelocity(-100);
-  pros::delay(300);
+intake.moveVelocity(-200);
+theLift.deploy();
 
-  driveL.moveVelocity(30);
-  driveR.moveVelocity(30);
-  pros::delay(6000);
-/*
-  for(int i = 20; i > 0; i--){
-    driveR.moveVelocity(i);
-    driveL.moveVelocity(i);
-    pros::delay(40);
-  }
-*/
-  driveL.moveVelocity(0);
-  driveR.moveVelocity(0);
-  pros::delay(400);
+fast->waitUntilSettled();
 
-  driveL.moveVelocity(-20);
-  driveR.moveVelocity(-20);
-  pros::delay(400);
 
-  driveL.moveVelocity(40);
-  driveR.moveVelocity(-40);
-  pros::delay(300);
+slow->generatePath({
+{0_ft, 0_ft, 0_deg},  // Profile starting position, this will normally be (0, 0, 0)
+{3.1_ft, 0_ft, 0_deg}}, // The next point in the profile, 3 feet forwardx
+"Cube Line"
+);
 
-  driveR.moveVelocity(20);
-  driveL.moveVelocity(20);
-  pros::delay(400);
+intake.moveVelocity(200);
 
-  theAngler.moveToUp(true);
-  pros::delay(1000);
+slow->setTarget("Cube Line");
+slow->waitUntilSettled();
 
-  intake.moveVelocity(-5);
-  driveL.moveVelocity(-3);
-  driveR.moveVelocity(-3);
-  pros::delay(3000);
+fast->generatePath({
+{0_ft, 0_ft, 0_deg},
+{2_ft, 0_ft, 0_deg}},
+"Goal Align Pt 1"
+);
+fast->setTarget("Goal Align Pt 1", 1);
+fast->waitUntilSettled();
 
-  theAngler.moveToDown(true);
-}
+turnTest(163);
 
-void blueSmallManual(){
-  Lift theLift;
-  Tray theAngler;
-  theLift.deploy();
-  driveL.moveVelocity(20);
-  driveR.moveVelocity(20);
-  pros::delay(4000);
+intake.moveVelocity(0);
 
-  for(int i = 20; i > 0; i--){
-    driveR.moveVelocity(i);
-    pros::delay(12);
-  }
-  driveL.moveVelocity(-20);
-  driveR.moveVelocity(-20);
-  pros::delay(400);
+fast->generatePath({
+{0_ft, 0_ft, 0_deg},
+{1_ft, 0_ft, 0_deg}},//0.75
+"Goal Align Pt 2"
+);
 
-  driveL.moveVelocity(40);
-  driveR.moveVelocity(-40);
-  pros::delay(300);
+fast->setTarget("Goal Align Pt 2");
+intake.moveRelative(-500, 110);//outtake
+fast->waitUntilSettled();
 
-  driveR.moveVelocity(20);
-  driveL.moveVelocity(20);
-  pros::delay(400);
+stackDeploy();
 
-  theAngler.moveToUp(true);
-  pros::delay(1000);
+pros::Task::delay(1500);
 
-  intake.moveVelocity(-5);
-  driveL.moveVelocity(-3);
-  driveR.moveVelocity(-3);
-  pros::delay(3000);
+intake.moveVelocity(-200);
 
-  theAngler.moveToDown(true);
-}
-void deployTray(){
-  driveL.moveVelocity(200);
-  driveR.moveVelocity(200);
-  pros::delay(100);
-  intake.moveVelocity(-100);
-  pros::delay(200);
-  intake.moveVelocity(100);
-  pros::delay(500);
-  driveL.moveVelocity(-100);
-  driveR.moveVelocity(-100);
-  pros::delay(200);
+pros::Task::delay(200);
+fast->setTarget("Goal Align Pt 2", 1);
+
 }

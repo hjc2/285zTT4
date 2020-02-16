@@ -3,11 +3,9 @@
 #include "285Z_Subsystems/tray.hpp"
 #include "285Z_Subsystems/lift.hpp"
 #include "285Z_Subsystems/pid.hpp"
+#include "../include/285z/initSensors.hpp"
 #include "../include/285Z_Aux/gui.hpp"
 #include "../include/pros/llemu.hpp"
-
-PID pid;
-
 //
  /** Runs initialization code. This occurs as soon as the program is started.
  *
@@ -48,14 +46,13 @@ PID pid;
  auto slowauto =
    AsyncMotionProfileControllerBuilder()
      .withLimits({
-       0.2,  //max velocity
+       0.325,  //max velocity
        2.0,  //max acceleration
        10.0  //max jerk
      })
      .withOutput(motion)
      .buildMotionProfileController();
 void initialize() {
-  pid.calibrate();
   //FOR NOW, WILL NOT DO THIS UNTIL SURE IT WORKS REGULARLY
   // slowauto->generatePath({
   //   {0_ft,0_ft,0_deg},
@@ -77,6 +74,8 @@ void initialize() {
   //   {1.5_ft,0_ft,0_deg}},
   //   "C"
   // );
+  imuSensor.reset();
+
 }
 
 /**
@@ -86,35 +85,20 @@ void initialize() {
 
  */
 void disabled() {}
-//yes
 
 void competition_initialize() {
+  calibrate(); //Calibrate IMU Sensor
   while(true) {
-  initScreen();
-  pros::delay(10);
+    initScreen();
+    pros::delay(10);
   }
 }
 
 void autonomous() {
-  //pid.turnClockwise(5);
-  /*
-  intake.moveVelocity(-100);
-  pros::delay(2500);
-  intake.moveVelocity(0);
-  driveL.moveVelocity(-50);
-  driveR.moveVelocity(-50);
-  pros::delay(1500);
-  driveL.moveVelocity(100);
-  driveR.moveVelocity(100);
-  pros::delay(750);
-  driveL.moveVelocity(0);
-  driveR.moveVelocity(0);
-  //oneCubeSad();
-
-
-*/
-//  selectAuton(chassisauto, fastauto, slowauto);
-  deployOne();
+  //TEST CASE
+  // selectAuton(chassisauto, slowauto, fastauto);
+  robotDeploy();
+  redFiveCube(chassisauto, slowauto, fastauto);
 }
 
 
@@ -133,7 +117,6 @@ void opcontrol() {
                     TASK_STACK_DEPTH_DEFAULT, "Lift Task");
   liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
   while(true){
-
     displayAuton();
     // TANK DRIVE CODE //
     model->tank(controller.getAnalog(okapi::ControllerAnalog::leftY),

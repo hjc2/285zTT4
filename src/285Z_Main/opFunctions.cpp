@@ -139,24 +139,6 @@ void liftToggle(){
 
 }
 
-/*
-//Preset liftup
-void liftUp(){
-  if(liftUpButton.changedToPressed()){
-    lift.moveToUp();
-    angler.moveToLift();
-  }
-}
-
-//Preset liftdown
-void liftDown(){
-  if(liftDownButton.changedToPressed()){
-    lift.moveToDown();
-    angler.moveToDown(true);
-  }
-}
-*/
-
 
 //MANUAL DUAL CONTROL
 void liftControl() {
@@ -214,23 +196,23 @@ void liftTask(void* param) {
 
 void stackDeploy()
 {
-  if(deployButton.changedToPressed())
-  {
-    //ratio is 0.860776764973 intake:drive
-    angler.moveToDown(true);
-    anglerUpBool = false;
+    if(deployButton.changedToPressed())
+    {
+      //ratio is 0.860776764973 intake:drive
+      angler.moveToDown(true);
+      anglerUpBool = false;
 
-    intake.moveVelocity(-100);
+      intake.moveVelocity(-100);
 
-    pros::Task::delay(200);
+      pros::Task::delay(200);
 
-    driveL.moveVelocity(-outtakeSpeed);
-    driveR.moveVelocity(-outtakeSpeed);
+      driveL.moveVelocity(-outtakeSpeed);
+      driveR.moveVelocity(-outtakeSpeed);
 
-    pros::Task::delay(800);
-    intake.moveVelocity(0);
+      pros::Task::delay(800);
+      intake.moveVelocity(0);
 
-    driveL.moveVelocity(0);
-    driveR.moveVelocity(0);
+      driveL.moveVelocity(0);
+      driveR.moveVelocity(0);
   }
 }
