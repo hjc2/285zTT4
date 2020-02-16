@@ -31,11 +31,7 @@ void arcadeDrive(){
 
 //******************* INTAKE ********************//
 
-//Toggles intake
-//checks if the intake button is pressed
-//if pressed, it will toggle the state of the intake
-//using the intake intakeToggleBool between 600RPM and 0RPM
-
+//TOGGLE INTAKE
 void toggleIntake(){
 //  if (anglerController->!isDisabled()){
     if (intakeButton.changedToPressed())
@@ -55,22 +51,9 @@ void toggleIntake(){
       }
 
     }
-/*  } else {
-    if (intakeButton.changedToPressed())
-    {
-      intakeToggleBool = !intakeToggleBool;
-    }
-    else if(intakeToggleBool)
-    {
-      intake.setBrakeMode(AbstractMotor::brakeMode::hold);
-      intake.moveVelocity(0);
-    }
-  }
-  */
 }
-//is a push button approach to using the intake
-//unable to use this and toggle at the same time
-//Reverse intake
+
+//REVERSE INTAKE WHEN BUTTON HELD
 void intakeRev(){
   if (outtakeButton.isPressed())
   {
@@ -90,21 +73,7 @@ void intakeRev(){
 
 //****************** ANGLER ********************//
 
-void anglerManual(){
-  if(anglerUpButton.isPressed()){
-    anglerMotor.moveVelocity(100);
-    anglerMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
-  } else if(anglerDownButton.isPressed()){
-    anglerMotor.moveVelocity(-100);
-    anglerMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
-  } else if(!anglerUpButton.isPressed() && !anglerDownButton.isPressed()){
-    anglerMotor.moveVelocity(0);
-    anglerMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
-  }
-}
-
-//will only move if lift height is 0 and angler isn't disabled
-//will move to the states defined in the angler class
+//TOGGLE ANGLER
 void anglerToggle(){
   if(trayButton.changedToPressed()){
     anglerDisabled = false;
@@ -112,16 +81,15 @@ void anglerToggle(){
     intake.moveVelocity(0);
   }
 
-  if(anglerUpBool && !anglerDisabled && lift.getHeightPos() == 0){
-    // intake.moveVelocity(-10);
+  if(anglerUpBool && !anglerDisabled){
     intakeToggleHold = false;
     angler.moveToUp(true);
-  } else if(!anglerUpBool && !anglerDisabled && lift.getHeightPos() == 0){
+  } else if(!anglerUpBool && !anglerDisabled){
     angler.moveToDown(true);
   }
 }
 
-//hardstop to stop the PID if something goes wrong
+//STOP PID IF ERROR
 void stopPID(){
   if(stopPIDButton.changedToPressed()){
     anglerDisabled = true;
@@ -131,14 +99,13 @@ void stopPID(){
 
 //******************** LIFT *******************//
 
+//TOGGLE LIFT WITH PID
 void liftToggle(){
   if(angler.getHeightPos() == 0){
     anglerDisabled = true;
     lift.liftToggle(angler);
   }
-
 }
-
 
 //MANUAL DUAL CONTROL
 void liftControl() {
@@ -153,47 +120,19 @@ void liftControl() {
   }
 }
 
-
-//liftManualUp
-//will check if the liftUpButton is pressed,
-//if it's pressed it will coast and set velocity positive
-void liftManualUp(){
-  if(liftUpButton.isPressed()){
-    angler.moveToLift();
-    anglerMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
-    liftMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
-    liftMotor.moveVelocity(100);
-  }
-}
-//liftManualDown
-//will check if the liftDownButton is pressed,
-//if it's pressed it will coast and set velocity positive
-void liftManualDown(){
-  if(liftDownButton.isPressed()){
-    anglerMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
-    angler.moveToDown(true);
-    liftMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
-    liftMotor.moveVelocity(100);
-  }
-}
-
-//liftManualStop
-//will check if either lift buttons are pressed
-//if either pressed, it will make velocity 0 and brake hold
-void liftManualStop(){
-  if(!liftDownButton.isPressed() && !liftUpButton.isPressed()) {
-    liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
-    liftMotor.moveVelocity(-100);
-  }
-}
+//TASK FOR LIFT CONTROL
 void liftTask(void* param) {
   while(true) {
     liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
-    liftControl();
+    liftToggle();
     pros::Task::delay(10);
   }
 }
 
+
+//*********************MACROS*******************************//
+
+//BACK UP AFTER STACK
 void stackDeploy()
 {
     if(deployButton.changedToPressed())

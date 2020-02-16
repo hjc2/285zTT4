@@ -53,27 +53,6 @@
      .withOutput(motion)
      .buildMotionProfileController();
 void initialize() {
-  //FOR NOW, WILL NOT DO THIS UNTIL SURE IT WORKS REGULARLY
-  // slowauto->generatePath({
-  //   {0_ft,0_ft,0_deg},
-  //   {3.5_ft,0_ft,0_deg}},
-  //   "A"
-  // );
-  // fastauto->generatePath({
-  //   {0_ft,0_ft,0_deg},
-  //   {4.5_ft,0_ft,0_deg}},
-  //   "B"
-  // );
-  // fastauto->generatePath({
-  //   {0_ft,0_ft,0_deg},
-  //   {4_ft,2_ft,0_deg}},
-  //   "S"
-  // );
-  // fastauto->generatePath({
-  //   {0_ft,0_ft,0_deg},
-  //   {1.5_ft,0_ft,0_deg}},
-  //   "C"
-  // );
   imuSensor.reset();
 
 }
