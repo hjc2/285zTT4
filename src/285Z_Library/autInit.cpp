@@ -52,10 +52,10 @@ auto chassis = okapi::ChassisControllerBuilder()
   void autoStackDeploy()
   {
     Tray angler;
+    intake.moveRelative(-600, 110);
+    intake.setBrakeMode(AbstractMotor::brakeMode::coast);
     angler.moveToUp(false);
-    pros::Task::delay(1500);
-    intake.moveRelative(-300, 110);//outtake
-
+    pros::Task::delay(3000);
+    intake.moveRelative(-75, 110);
     //fast->setTarget("C",bwd); //drives away
-    angler.moveToDown(false);
   }

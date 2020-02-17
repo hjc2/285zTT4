@@ -38,7 +38,7 @@
    AsyncMotionProfileControllerBuilder()
      .withLimits({
        1.1,  //max velocity
-       2.5,  //max acceleration
+       2,  //max acceleration
        10.0  //max jerk
      })
      .withOutput(motion)
@@ -52,6 +52,7 @@
      })
      .withOutput(motion)
      .buildMotionProfileController();
+
 void initialize() {
   imuSensor.reset();
 
@@ -75,8 +76,10 @@ void competition_initialize() {
 
 void autonomous() {
   //TEST CASE
-  // selectAuton(chassisauto, slowauto, fastauto);
- shortGoalFiveRed(chassisauto, slowauto, fastauto);
+  calibrate();
+  pros::delay(2000);
+  selectAuton(chassisauto, slowauto, fastauto);
+ //shortGoalFiveRed(chassisauto, slowauto, fastauto);
 }
 
 
