@@ -9,7 +9,7 @@ bool intakeToggleBool = false;
 bool intakeToggleHold = true;
 bool liftPositionBool = true;
 
-double outtakeSpeed = 30;
+double outtakeSpeed = 15;
 
 
 //***********************  INITIALIZE SUBSYSTEMS  ***************************//
@@ -141,7 +141,7 @@ void stackDeploy()
       angler.moveToDown(true);
       anglerUpBool = false;
 
-      intake.moveVelocity(-100);
+      intake.moveVelocity(-40);
 
       pros::Task::delay(200);
 
