@@ -143,12 +143,10 @@ void stackDeploy()
 
       intake.moveVelocity(-40);
 
-      pros::Task::delay(200);
-
       driveL.moveVelocity(-outtakeSpeed);
       driveR.moveVelocity(-outtakeSpeed);
 
-      pros::Task::delay(800);
+      pros::Task::delay(1500);
       intake.moveVelocity(0);
 
       driveL.moveVelocity(0);
