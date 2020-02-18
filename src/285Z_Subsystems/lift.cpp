@@ -22,7 +22,6 @@ void Lift::liftToggle(Tray angler){
 
   if (liftUpButton.changedToPressed() && heightNow < NUM_HEIGHTS - 1) {
       // If the goal height is not at maximum and the up button is pressed, increase the setpoint
-      intake.moveRelative(-180, 200);
       heightNow++;
       liftController->setTarget(heights[heightNow]);
 
