@@ -44,8 +44,8 @@ const bool bwd {true};
 void selectAuton(std::shared_ptr<okapi::OdomChassisController>, std::shared_ptr<okapi::AsyncMotionProfileController> slow,std::shared_ptr<okapi::AsyncMotionProfileController> fast);
 
 /*****************************   AUX AUTONS    **********************/
+void move(std::shared_ptr<okapi::AsyncMotionProfileController> profile);
 void skills(std::shared_ptr<okapi::OdomChassisController> chassis, std::shared_ptr<okapi::AsyncMotionProfileController> slow,std::shared_ptr<okapi::AsyncMotionProfileController> fast);
-
 void one(std::shared_ptr<okapi::OdomChassisController> chassis, std::shared_ptr<okapi::AsyncMotionProfileController> slow,std::shared_ptr<okapi::AsyncMotionProfileController> fast);
 
 /*****************************   RED: FIVE CUBES    **********************/
