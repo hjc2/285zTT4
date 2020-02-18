@@ -22,7 +22,7 @@ void selectAuton(std::shared_ptr<okapi::OdomChassisController> chassis, std::sha
     lgBlue(chassis, slow, fast);
   }
   if(autonPot.get() >= 3277 && autonPot.get() <= 4096){
-    one();
+    one(chassis, slow, fast);
   }
 
 }
