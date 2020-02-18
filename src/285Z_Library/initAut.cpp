@@ -22,7 +22,7 @@ void selectAuton(std::shared_ptr<okapi::OdomChassisController> chassis, std::sha
     lgBlue(chassis, slow, fast);
   }
   if(autonPot.get() >= 3277 && autonPot.get() <= 4096){
-    one(chassis, slow, fast);
+    skills(chassis, slow, fast);
   }
 
 }
@@ -43,6 +43,6 @@ void displayAuton(){
     lv_aut_display("BLUE LONG GOAL");
   }
   if(potVal >= 3277 && potVal <= 4096){
-    lv_aut_display("ONE CUBE");
+    lv_aut_display("SKILLS");
   }
 }
