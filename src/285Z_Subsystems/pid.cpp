@@ -77,7 +77,7 @@ void turn(double degrees){
     driveR.moveVelocity(-sum);
 
     oldError = error;
-    double errorThreshold = 1;
+    double errorThreshold = 2.5;
     double velocityThreshold = 2.5;
 
     TURN_NOT_FINISH = !((abs(error) < errorThreshold) && (abs(changeInError) < velocityThreshold));

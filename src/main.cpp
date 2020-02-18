@@ -77,8 +77,9 @@ void competition_initialize() {
 void autonomous() {
   //TEST CASE
   calibrate();
-  pros::delay(2000);
-  selectAuton(chassisauto, slowauto, fastauto);
+  sgSixBlue(chassisauto, slowauto, fastauto);
+  //selectAuton(chassisauto, slowauto, fastauto);
+  //one(chassisauto, slowauto, fastauto);
  //shortGoalFiveRed(chassisauto, slowauto, fastauto);
 }
 

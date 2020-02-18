@@ -19,11 +19,11 @@ void move(std::shared_ptr<okapi::AsyncMotionProfileController> profile, okapi::Q
 
 void autoStackDeploy() {
   Tray angler;
-  intake.moveRelative(-600, 110);
+  intake.moveRelative(-680, 110);
   intake.setBrakeMode(AbstractMotor::brakeMode::coast);
   angler.moveToUp(false);
-  pros::Task::delay(3000);
-  intake.moveRelative(-75, 110);
+  pros::Task::delay(2000);
+  //intake.moveRelative(-75, 110);
   //fast->setTarget("C",bwd); //drives away
 }
 

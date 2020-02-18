@@ -15,62 +15,21 @@ void sgSixBlue(std::shared_ptr<okapi::OdomChassisController> chassis, std::share
 
   intake.moveVelocity(200);
   //************** INIT PATHS *******************//
-  slow->generatePath({
-    {0_ft,0_ft,0_deg},
-    {3.25_ft,0_ft,0_deg}},
-    "F1"
-  );
+  move(slow, 3.25_ft, fwd);
+  turn(22);
 
-  fast->generatePath({
-    {0_ft,0_ft,0_deg},
-    {0.85_ft,0_ft,0_deg}},
-    "F2"
-  );
-
-  fast->generatePath({
-    {0_ft,0_ft,0_deg},
-    {1.5_ft,0_ft,0_deg}},
-    "F3"
-  );
-
-  fast->generatePath({
-    {0_ft,0_ft,0_deg},
-    {2_ft,0_ft,0_deg}},
-    "B1"
-  );
-
-  fast->generatePath({
-    {0_ft,0_ft,0_deg},
-    {0.25_ft,0_ft,0_deg}},
-    "B2"
-  );
-
-  slow->generatePath({
-    {0_ft,0_ft,0_deg},
-    {1.75_ft,0_ft,0_deg}},
-    "G"
-  );
-
-  slow->setTarget("F1", fwd);
-  slow->waitUntilSettled();//goes forward to get 4 cubes
-  slow->removePath("F1");
-  turn(20);
-
-  fast->setTarget("F2", fwd);
-  fast->waitUntilSettled();
-
-  fast->setTarget("B1", bwd);
-  fast->waitUntilSettled();
+  move(fast, 0.85_ft, fwd);
+  move(fast, 2_ft, bwd);
   intake.moveVelocity(0);
-  turn(225);
+  turn(230);
 
-  slow->setTarget("G", fwd);//drives to goal zone
-  slow->waitUntilSettled();
+  move(slow, 1.5_ft, fwd);
 
   autoStackDeploy();
 
-  fast->setTarget("B2", bwd);
-  fast->waitUntilSettled();
+  intake.moveVelocity(-120);
+  move(fast, 1_ft, bwd);
+  angler.moveToDown(false);
 }
 //************************   BLUE: SHORT GOAL, NINE CUBES   ****************************//
 void sgNineBlue(std::shared_ptr<okapi::OdomChassisController> chassis, std::shared_ptr<okapi::AsyncMotionProfileController> slow,std::shared_ptr<okapi::AsyncMotionProfileController> fast){

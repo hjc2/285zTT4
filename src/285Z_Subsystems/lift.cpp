@@ -36,25 +36,14 @@ void Lift::deploy(){
   intake.moveVelocity(-100);
   liftController -> setTarget(1600);
   liftController-> waitUntilSettled();
-  pros::delay(600);
-
-  // intake.moveVelocity(-100);
-  // pros::delay(200);
-
-  intake.moveVelocity(-30);
-  liftController -> setTarget(100);
-  intake.moveVelocity(-10);
   pros::delay(200);
-  //
-  // intake.moveVelocity(-30);
-  // liftController -> setTarget(800);
-  // pros::delay(400);
-  //
-  // intake.moveVelocity(-100);
-  // pros::delay(50);
-  //
-  // liftController -> setTarget(100);
-  // liftController -> waitUntilSettled();
+
+  intake.moveVelocity(-200);
+  // pros::delay(200);
+  liftController -> setTarget(20);
+  liftController-> waitUntilSettled();
+  pros::delay(300);
+
 }
 
 void Lift::move(int vel){
