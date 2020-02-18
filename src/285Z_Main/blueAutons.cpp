@@ -63,12 +63,12 @@ void sgSixBlue(std::shared_ptr<okapi::OdomChassisController> chassis, std::share
   intake.moveVelocity(0);
   turn(225);
 
-  slow->setTarget("G");//drives to goal zone
+  slow->setTarget("G", fwd);//drives to goal zone
   slow->waitUntilSettled();
 
   autoStackDeploy();
 
-  fast->setTarget("B2");
+  fast->setTarget("B2", bwd);
   fast->waitUntilSettled();
 }
 //************************   BLUE: SHORT GOAL, NINE CUBES   ****************************//
@@ -173,11 +173,11 @@ void lgBlue(std::shared_ptr<okapi::OdomChassisController> chassis, std::shared_p
   slow->waitUntilSettled();
   turn(120);
 
-  fast->setTarget("G");
+  fast->setTarget("G", fwd);
   fast->waitUntilSettled();
   turn(90);
 
-  fast->setTarget("G");//drives to goal zone
+  fast->setTarget("G", bwd);//drives to goal zone
   fast->waitUntilSettled();
 
   autoStackDeploy();

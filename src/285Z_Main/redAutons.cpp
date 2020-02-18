@@ -61,12 +61,12 @@ void sgSixRed(std::shared_ptr<okapi::OdomChassisController> chassis, std::shared
   intake.moveVelocity(0);
   turn(135);
 
-  slow->setTarget("G");//drives to goal zone
+  slow->setTarget("G", fwd);//drives to goal zone
   slow->waitUntilSettled();
 
   autoStackDeploy();
 
-  fast->setTarget("B2");
+  fast->setTarget("B2", bwd);
   fast->waitUntilSettled();
 }
 
@@ -191,18 +191,18 @@ void lgRed(std::shared_ptr<okapi::OdomChassisController> chassis, std::shared_pt
   fast->waitUntilSettled();
   turn(95);
 
-  fast->setTarget("F3", bwd);
+  fast->setTarget("F3", fwd);
   fast->waitUntilSettled();
 
   fast->setTarget("B2", bwd);
   fast->waitUntilSettled();
   turn(220);
 
-  slow->setTarget("G");//drives to goal zone
+  slow->setTarget("G", fwd);//drives to goal zone
   slow->waitUntilSettled();
 
   autoStackDeploy();
 
-  fast->setTarget("B3");
+  fast->setTarget("B3", bwd);
   fast->waitUntilSettled();
 }
