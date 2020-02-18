@@ -53,6 +53,7 @@ void sgSixBlue(std::shared_ptr<okapi::OdomChassisController> chassis, std::share
 
   slow->setTarget("F1", fwd);
   slow->waitUntilSettled();//goes forward to get 4 cubes
+  slow->removePath("F1");
   turn(20);
 
   fast->setTarget("F2", fwd);
