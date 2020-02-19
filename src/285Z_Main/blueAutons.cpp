@@ -8,7 +8,7 @@
 //*************BLUE AUTONOMOUS PROGRAMS********************//
 
 //************************   BLUE: FIVE CUBES   ****************************//
-void sgSixBlue(std::shared_ptr<okapi::OdomChassisController> chassis, std::shared_ptr<okapi::AsyncMotionProfileController> slow,std::shared_ptr<okapi::AsyncMotionProfileController> fast){
+void sgSixBlue(std::shared_ptr<okapi::AsyncMotionProfileController> slow, std::shared_ptr<okapi::AsyncMotionProfileController> medium, std::shared_ptr<okapi::AsyncMotionProfileController> fast){
   Tray angler;
   Lift lift;
   lift.deploy();
@@ -20,19 +20,18 @@ void sgSixBlue(std::shared_ptr<okapi::OdomChassisController> chassis, std::share
 
   move(fast, 0.85_ft, fwd);
   move(fast, 2_ft, bwd);
-  intake.moveVelocity(0);
   turn(230);
 
   move(slow, 1.5_ft, fwd);
 
+  intake.moveVelocity(0);
+
   autoStackDeploy();
 
-  intake.moveVelocity(-120);
-  move(fast, 1_ft, bwd);
-  angler.moveToDown(false);
+  move(medium, 1_ft, bwd);
 }
 //************************   BLUE: SHORT GOAL, NINE CUBES   ****************************//
-void sgNineBlue(std::shared_ptr<okapi::OdomChassisController> chassis, std::shared_ptr<okapi::AsyncMotionProfileController> slow,std::shared_ptr<okapi::AsyncMotionProfileController> fast){
+void sgNineBlue(std::shared_ptr<okapi::AsyncMotionProfileController> slow, std::shared_ptr<okapi::AsyncMotionProfileController> medium, std::shared_ptr<okapi::AsyncMotionProfileController> fast){
   Tray angler;
   Lift lift;
 
@@ -56,61 +55,32 @@ void sgNineBlue(std::shared_ptr<okapi::OdomChassisController> chassis, std::shar
 
   autoStackDeploy();
 
-  intake.moveVelocity(-120);
-  move(fast, 1_ft, bwd);
-  angler.moveToDown(false);
+  move(medium, 1_ft, bwd);
 }
 
 
 //************************   BLUE: LONG GOAL   ****************************//
-void lgBlue(std::shared_ptr<okapi::OdomChassisController> chassis, std::shared_ptr<okapi::AsyncMotionProfileController> slow,std::shared_ptr<okapi::AsyncMotionProfileController> fast){
+void lgBlue(std::shared_ptr<okapi::AsyncMotionProfileController> slow, std::shared_ptr<okapi::AsyncMotionProfileController> medium, std::shared_ptr<okapi::AsyncMotionProfileController> fast){
   Tray angler;
+  Lift lift;
+  lift.deploy();
 
-  //************** INIT PATHS *******************//
-  slow->generatePath({
-    {0_ft,0_ft,0_deg},
-    {4_ft,0_ft,0_deg}},
-    "F1"
-  );
+  intake.moveVelocity(200);
+  move(fast, 1_ft, fwd);
+  turn(30);
 
-  fast->generatePath({
-    {0_ft,0_ft,0_deg},
-    {2_ft,0_ft,0_deg}},
-    "F2"
-  );
+  move(fast, 2_ft, fwd);
+  move(fast, 1.7_ft, bwd);
+  turn(95);
 
-  fast->generatePath({
-    {0_ft,0_ft,0_deg},
-    {5_ft,0_ft,0_deg}},
-    "B1"
-  );
+  move(fast, 1.75_ft, fwd);
+  move(fast, 2_ft, bwd);
+  turn(220);
 
-  fast->generatePath({
-    {0_ft,0_ft,0_deg},
-    {0.5_ft,0_ft,0_deg}},
-    "G"
-  );
-  //************** RUN AUTON *******************//
-
-  slow->setTarget("F1", fwd);
-  slow->waitUntilSettled();
-  turn(45);
-
-  fast->setTarget("F2", fwd);
-  fast->waitUntilSettled();
-  turn(330);
-
-  slow->setTarget("B1", fwd);
-  slow->waitUntilSettled();
-  turn(120);
-
-  fast->setTarget("G", fwd);
-  fast->waitUntilSettled();
-  turn(90);
-
-  fast->setTarget("G", bwd);//drives to goal zone
-  fast->waitUntilSettled();
+  move(slow, 0.5_ft, fwd);
 
   autoStackDeploy();
+
+  move(fast, 0.5_ft, bwd);
 
 }

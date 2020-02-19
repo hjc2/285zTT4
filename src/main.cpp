@@ -46,12 +46,23 @@
  auto slowauto =
    AsyncMotionProfileControllerBuilder()
      .withLimits({
-       0.325,  //max velocity
+       0.4,  //max velocity
        2.0,  //max acceleration
        10.0  //max jerk
      })
      .withOutput(motion)
      .buildMotionProfileController();
+
+ auto mediumauto =
+   AsyncMotionProfileControllerBuilder()
+     .withLimits({
+       0.6,  //max velocity
+       2.0,  //max acceleration
+       10.0  //max jerk
+     })
+     .withOutput(motion)
+     .buildMotionProfileController();
+
 
 void initialize() {
   imuSensor.reset();
@@ -76,8 +87,15 @@ void competition_initialize() {
 
 void autonomous() {
   //TEST CASE
+  Tray angler;
+  Lift lift;
   calibrate();
-  sgSixBlue(chassisauto, slowauto, fastauto);
+  move(fastauto, 0.3_ft, fwd);
+  move(fastauto, 0.3_ft, bwd);
+  lift.deploy();
+  intake.moveVelocity(200);
+
+  sgSixRed(slowauto, mediumauto, fastauto);
   //selectAuton(chassisauto, slowauto, fastauto);
   //one(chassisauto, slowauto, fastauto);
  //shortGoalFiveRed(chassisauto, slowauto, fastauto);

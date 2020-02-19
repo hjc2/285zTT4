@@ -22,7 +22,12 @@ void autoStackDeploy() {
   intake.moveRelative(-680, 110);
   intake.setBrakeMode(AbstractMotor::brakeMode::coast);
   angler.moveToUp(false);
-  pros::Task::delay(2000);
+
+  pros::Task::delay(1400);
+
+  intake.moveVelocity(-120);
+  angler.moveToDown(false);
+
   //intake.moveRelative(-75, 110);
   //fast->setTarget("C",bwd); //drives away
 }

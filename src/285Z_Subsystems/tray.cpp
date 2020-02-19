@@ -45,6 +45,9 @@ void Tray::moveToDown(bool op){
   }
 }
 
+void Tray::moveToDeploy(){
+  anglerController -> setTarget(300);
+}
 
 int Tray::getHeightPos(){
   return trayHeightPos;

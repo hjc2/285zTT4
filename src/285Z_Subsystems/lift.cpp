@@ -33,17 +33,12 @@ void Lift::liftToggle(Tray angler){
 }
 
 void Lift::deploy(){
-  intake.moveVelocity(-100);
-  liftController -> setTarget(1600);
-  liftController-> waitUntilSettled();
-  pros::delay(200);
-
+  Tray angler;
   intake.moveVelocity(-200);
-  // pros::delay(200);
-  liftController -> setTarget(20);
-  liftController-> waitUntilSettled();
-  pros::delay(300);
 
+  liftController -> setTarget(1550);
+  pros::delay(500);
+  liftController -> setTarget(30);
 }
 
 void Lift::move(int vel){

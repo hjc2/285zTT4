@@ -3,7 +3,7 @@
 #include "../include/285Z_Subsystems/pid.hpp"
 
 const double GLOBAL_kP = 0.95;
-const double GLOBAL_kI = 0;
+const double GLOBAL_kI = 0.0001;
 const double GLOBAL_kD = 0.2;
 
 void calibrate(){
@@ -77,8 +77,8 @@ void turn(double degrees){
     driveR.moveVelocity(-sum);
 
     oldError = error;
-    double errorThreshold = 2.5;
-    double velocityThreshold = 2.5;
+    double errorThreshold = 3.5;
+    double velocityThreshold = 5;
 
     TURN_NOT_FINISH = !((abs(error) < errorThreshold) && (abs(changeInError) < velocityThreshold));
   }
