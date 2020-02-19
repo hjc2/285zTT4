@@ -25,7 +25,7 @@ void sgSixRed(std::shared_ptr<okapi::AsyncMotionProfileController> slow, std::sh
 
   intake.moveVelocity(0);
 
-  autoStackDeploy();
+  autoStackDeploy(1400);
 
   intake.moveVelocity(-120);
   move(fast, 1_ft, bwd);
@@ -56,7 +56,7 @@ void sgNineRed(std::shared_ptr<okapi::AsyncMotionProfileController> slow, std::s
 
   move(slow, 1.3_ft, fwd);
 
-  autoStackDeploy();
+  autoStackDeploy(1400);
 
   intake.moveVelocity(-120);
   move(fast, 1_ft, bwd);
@@ -76,7 +76,7 @@ void lgRed(std::shared_ptr<okapi::AsyncMotionProfileController> slow, std::share
   turn(240);
 
   move(slow, 1.05_ft, fwd);
-  autoStackDeploy();
+  autoStackDeploy(1400);
 
   move(fast, 1.3_ft, bwd);
   angler.moveToDown(false);

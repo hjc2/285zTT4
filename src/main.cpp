@@ -93,6 +93,7 @@ void autonomous() {
   move(fastauto, 0.3_ft, fwd);
   move(fastauto, 0.3_ft, bwd);
   lift.deploy();
+  turn(0);
   intake.moveVelocity(200);
 
   skills(slowauto, mediumauto, fastauto);
