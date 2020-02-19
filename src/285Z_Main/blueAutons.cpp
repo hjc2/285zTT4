@@ -63,24 +63,18 @@ void sgNineBlue(std::shared_ptr<okapi::AsyncMotionProfileController> slow, std::
 void lgBlue(std::shared_ptr<okapi::AsyncMotionProfileController> slow, std::shared_ptr<okapi::AsyncMotionProfileController> medium, std::shared_ptr<okapi::AsyncMotionProfileController> fast){
   Tray angler;
   Lift lift;
-  lift.deploy();
 
-  intake.moveVelocity(200);
-  move(fast, 1_ft, fwd);
-  turn(30);
+  move(fast, 1.9_ft, fwd);
+  turn(258);
 
-  move(fast, 2_ft, fwd);
-  move(fast, 1.7_ft, bwd);
-  turn(95);
+  move(medium, 2.7_ft, fwd);
+  move(fast, 2.4_ft, bwd);
+  turn(160);
 
-  move(fast, 1.75_ft, fwd);
-  move(fast, 2_ft, bwd);
-  turn(220);
-
-  move(slow, 0.5_ft, fwd);
-
+  move(slow, 1.05_ft, fwd);
   autoStackDeploy();
 
-  move(medium, 0.5_ft, bwd);
+  move(fast, 1.3_ft, bwd);
+  angler.moveToDown(false);
 
 }

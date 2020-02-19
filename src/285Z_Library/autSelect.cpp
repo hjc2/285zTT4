@@ -5,24 +5,24 @@
 #include "../include/285Z_Aux/gui.hpp"
 
 
-void selectAuton(std::shared_ptr<okapi::OdomChassisController> chassis, std::shared_ptr<okapi::AsyncMotionProfileController> slow,std::shared_ptr<okapi::AsyncMotionProfileController> fast){
+void selectAuton(std::shared_ptr<okapi::AsyncMotionProfileController> slow, std::shared_ptr<okapi::AsyncMotionProfileController> medium, std::shared_ptr<okapi::AsyncMotionProfileController> fast){
 
   liftMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
   if(autonPot.get() >= 0 && autonPot.get() <= 819){
     //shortGoalSixRed(chassis, slow, fast);
-    sgSixRed(chassis, slow, fast);
+    sgSixRed(slow, medium, fast);
   }
   if(autonPot.get() >= 820 && autonPot.get() <= 1638){
-    sgSixBlue(chassis, slow, fast);
+    sgSixBlue(slow, medium, fast);
   }
   if(autonPot.get() >= 1639 && autonPot.get() <= 2457){
-    lgRed(chassis, slow, fast);
+    lgRed(slow, medium, fast);
   }
   if(autonPot.get() >= 2458 && autonPot.get() <= 3276){
-    lgBlue(chassis, slow, fast);
+    lgBlue(slow, medium, fast);
   }
   if(autonPot.get() >= 3277 && autonPot.get() <= 4096){
-    skills(chassis, slow, fast);
+    skills(slow, medium, fast);
   }
 
 }
