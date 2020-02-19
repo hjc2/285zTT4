@@ -10,7 +10,7 @@ const int LIFTUP = 2;
 
 int trayHeightPos = 0;
 
-double traykP = 0.00042; //tray P coefficient
+double traykP = 0.00039; //tray P coefficient
 double traykI = 0.00001; //tray K coefficient
 double traykD = 0.00001; //tray D coefficient
 
