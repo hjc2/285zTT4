@@ -81,6 +81,6 @@ void lgBlue(std::shared_ptr<okapi::AsyncMotionProfileController> slow, std::shar
 
   autoStackDeploy();
 
-  move(fast, 0.5_ft, bwd);
+  move(medium, 0.5_ft, bwd);
 
 }
