@@ -9,7 +9,6 @@ void selectAuton(std::shared_ptr<okapi::AsyncMotionProfileController> slow, std:
 
   liftMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
   if(autonPot.get() >= 0 && autonPot.get() <= 819){
-    //shortGoalSixRed(chassis, slow, fast);
     sgSixRed(slow, medium, fast);
   }
   if(autonPot.get() >= 820 && autonPot.get() <= 1638){

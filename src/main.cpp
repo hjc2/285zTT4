@@ -80,7 +80,7 @@ void disabled() {}
 void competition_initialize() {
   calibrate(); //Calibrate IMU Sensor
   while(true) {
-    initScreen();
+    displayAuton();
     pros::delay(10);
   }
 }
@@ -95,8 +95,8 @@ void autonomous() {
   lift.deploy();
   intake.moveVelocity(200);
 
-  sgSixRed(slowauto, mediumauto, fastauto);
-  //selectAuton(chassisauto, slowauto, fastauto);
+  //sgSixRed(slowauto, mediumauto, fastauto);
+  selectAuton(slowauto, mediumauto, fastauto);
   //one(chassisauto, slowauto, fastauto);
  //shortGoalFiveRed(chassisauto, slowauto, fastauto);
 }
