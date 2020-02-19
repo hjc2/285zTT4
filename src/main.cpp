@@ -95,8 +95,9 @@ void autonomous() {
   lift.deploy();
   intake.moveVelocity(200);
 
+  skills(slowauto, mediumauto, fastauto);
   //sgSixRed(slowauto, mediumauto, fastauto);
-  selectAuton(slowauto, mediumauto, fastauto);
+  //selectAuton(slowauto, mediumauto, fastauto);
   //one(chassisauto, slowauto, fastauto);
  //shortGoalFiveRed(chassisauto, slowauto, fastauto);
 }
