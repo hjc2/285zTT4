@@ -37,6 +37,16 @@ void autoStackDeploy(double stackDelay) {
 
 }
 
+void tenCubeDeploy(double stackDelay) {
+  Tray angler;
+  intake.setBrakeMode(AbstractMotor::brakeMode::coast);
+  angler.moveToUp(true);
+
+  pros::Task::delay(stackDelay); //time to wait before backing up
+
+  intake.moveVelocity(-100); //time to wait before backing up
+}
+
 //****************** SKILLS ***********************************//
 void skills(std::shared_ptr<okapi::AsyncMotionProfileController> slow, std::shared_ptr<okapi::AsyncMotionProfileController> medium, std::shared_ptr<okapi::AsyncMotionProfileController> fast){
   Tray angler;
@@ -64,24 +74,22 @@ void skills(std::shared_ptr<okapi::AsyncMotionProfileController> slow, std::shar
 
   slow->generatePath({
     {0_ft,0_ft,0_deg},
-    {4.45_ft,0_ft,-3_deg}},
+    {4.60_ft,0_ft,-3_deg}},
     "F2"
   );
   slow->setTarget("F2", fwd);
   slow->waitUntilSettled();//goes forward to get 4 cubes
   slow->removePath("F2");
-
-  turn(43);
   intake.moveVelocity(0);
-
+  turn(43);
 
   //PART 2: MOVE TO GOAL, DEPLOY, BACK UP, TURN TO TOWER CUBE
   move(medium, 1.45_ft, fwd);
-  autoStackDeploy(2300);
-  move(medium, 1.5_ft, bwd);
-  intake.moveVelocity(200);
+  tenCubeDeploy(2300);
+  move(medium, 1.7_ft, bwd);
   angler.moveToDown(false);
-  turn(180);
+  intake.moveVelocity(200);
+  turn(250);
   move(medium, 1.3_ft, bwd);
   move(slow, 0.3_ft, bwd);
 
