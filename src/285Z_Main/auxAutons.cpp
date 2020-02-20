@@ -46,8 +46,7 @@ void tenCubeDeploy(double stackDelay) {
   while(cubeSensor.get_value() < threshold){
     intake.moveVelocity(-110);
   }
-
-  intake.moveRelative(-100, 110); //outtakes stack
+  // intake.moveRelative(-40, 110); //outtakes stack
   angler.moveToUp(true);
 
   pros::Task::delay(stackDelay); //time to wait before backing up
