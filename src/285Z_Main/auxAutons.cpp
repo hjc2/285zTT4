@@ -67,13 +67,9 @@ void towerMacro(std::shared_ptr<okapi::AsyncMotionProfileController> slow){
 void skills(std::shared_ptr<okapi::AsyncMotionProfileController> slow, std::shared_ptr<okapi::AsyncMotionProfileController> medium, std::shared_ptr<okapi::AsyncMotionProfileController> fast){
   Tray angler;
   Lift lift;
-  //lift.deploy();
-  // angler.moveToDeploy(false);
-  // angler.moveToDown(false);
+
   intake.moveVelocity(200);
 
-  // move(slow, 4_ft, fwd);
-  // turn(20);
   slow->generatePath({
     {0_ft,0_ft,0_deg},
     {4.75_ft,-0.345_ft,0_deg}},
