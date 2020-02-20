@@ -4,7 +4,7 @@
 
 const int NUM_HEIGHTS = 3;
 const int height0 = 5;
-const int height1 = 1800;
+const int height1 = 1600; //for dunking, old is 1800
 const int height2 = 2300;
 
 const int heights[NUM_HEIGHTS] = {height0, height1, height2};
@@ -22,7 +22,8 @@ void Lift::liftToggle(Tray angler){
 
   if (liftUpButton.changedToPressed() && heightNow < NUM_HEIGHTS - 1) {
       // If the goal height is not at maximum and the up button is pressed, increase the setpoint
-      heightNow++;
+      // heightNow++;
+      heightNow = 2;
       liftController->setTarget(heights[heightNow]);
 
     } else if (liftDownButton.changedToPressed() && heightNow > 0) {
