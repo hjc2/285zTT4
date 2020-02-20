@@ -29,13 +29,7 @@ void antiDeploy()
 void autoStackDeploy(double stackDelay) {
   Tray angler;
 
-  int threshold = 1000; //light threshold
-  while(cubeSensor.get_value() < threshold){
-    intake.moveVelocity(-110);
-  }
-
-  intake.moveRelative(-100, 110); //outtakes stack
-  //intake.moveRelative(-720, 110); //outtakes stack
+  intake.moveRelative(-720, 110); //outtakes stack
   intake.setBrakeMode(AbstractMotor::brakeMode::coast);
   angler.moveToUp(true);
 
@@ -48,6 +42,12 @@ void autoStackDeploy(double stackDelay) {
 void tenCubeDeploy(double stackDelay) {
   Tray angler;
   intake.setBrakeMode(AbstractMotor::brakeMode::coast);
+  int threshold = 1000; //light threshold
+  while(cubeSensor.get_value() < threshold){
+    intake.moveVelocity(-110);
+  }
+
+  intake.moveRelative(-100, 110); //outtakes stack
   angler.moveToUp(true);
 
   pros::Task::delay(stackDelay); //time to wait before backing up
