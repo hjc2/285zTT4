@@ -63,6 +63,7 @@ void sgNineBlue(std::shared_ptr<okapi::AsyncMotionProfileController> slow, std::
 //************************   BLUE: LONG GOAL   ****************************//
 void lgBlue(std::shared_ptr<okapi::AsyncMotionProfileController> slow, std::shared_ptr<okapi::AsyncMotionProfileController> medium, std::shared_ptr<okapi::AsyncMotionProfileController> fast);
 
+void antiDeploy();
 void autoStackDeploy(double stackDelay);
 
 //INITIALIZE

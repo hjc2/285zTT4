@@ -86,19 +86,23 @@ void competition_initialize() {
 }
 
 void autonomous() {
+
+
   //TEST CASE
   Tray angler;
   Lift lift;
   calibrate();
   move(fastauto, 0.3_ft, fwd);
+  angler.deploy(true);
   move(fastauto, 0.3_ft, bwd);
   lift.deploy();
+
   turn(0);
   intake.moveVelocity(200);
 
-  skills(slowauto, mediumauto, fastauto);
+  //skills(slowauto, mediumauto, fastauto);
   //sgSixRed(slowauto, mediumauto, fastauto);
-  //selectAuton(slowauto, mediumauto, fastauto);
+  selectAuton(slowauto, mediumauto, fastauto);
   //one(chassisauto, slowauto, fastauto);
  //shortGoalFiveRed(chassisauto, slowauto, fastauto);
 }
@@ -107,6 +111,7 @@ void autonomous() {
 void opcontrol() {
 
 // CHASSIS CONTROLLER
+  intake.setBrakeMode(AbstractMotor::brakeMode::hold);
   auto chassis = okapi::ChassisControllerBuilder()
       .withMotors(driveL, driveR)
       .withDimensions(AbstractMotor::gearset::green, scales)

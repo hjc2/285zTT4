@@ -45,8 +45,9 @@ void Tray::moveToDown(bool op){
   }
 }
 
-void Tray::moveToDeploy(bool op){
-  anglerController->setTarget(300);
+void Tray::deploy(bool op){
+  anglerController->setMaxVelocity(200);
+  anglerController->setTarget(500);
   if(!op){
     anglerController->waitUntilSettled();
   }

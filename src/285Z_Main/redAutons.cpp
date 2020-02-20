@@ -10,18 +10,16 @@
 void sgSixRed(std::shared_ptr<okapi::AsyncMotionProfileController> slow, std::shared_ptr<okapi::AsyncMotionProfileController> medium, std::shared_ptr<okapi::AsyncMotionProfileController> fast){
   Tray angler;
   Lift lift;
-  lift.deploy();
-
   intake.moveVelocity(200);
   //************** INIT PATHS *******************//
-  move(slow, 3.3_ft, fwd); //gets line of cubes
-  turn(350);
+  move(slow, 3.55_ft, fwd); //gets line of cubes
+  turn(356);
 
   move(medium, 0.85_ft, fwd);
   move(fast, 2.0_ft, bwd);
-  turn(168);
+  turn(175);
 
-  move(slow, 1.5_ft, fwd);
+  move(slow, 1_ft, fwd);
 
   intake.moveVelocity(0);
 

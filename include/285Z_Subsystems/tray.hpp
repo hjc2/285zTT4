@@ -20,6 +20,6 @@ class Tray {
 
   void moveToUp(bool);
   void moveToDown(bool);
-  void moveToDeploy(bool);
+  void deploy(bool);
 
 };

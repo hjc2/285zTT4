@@ -34,6 +34,7 @@ void Lift::liftToggle(Tray angler){
 
 void Lift::deploy(){
   Tray angler;
+
   intake.moveVelocity(-200);
 
   liftController -> setTarget(1550);
