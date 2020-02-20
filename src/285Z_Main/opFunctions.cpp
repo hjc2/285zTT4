@@ -137,11 +137,12 @@ void stackDeploy()
 {
     if(deployButton.changedToPressed())
     {
+
       //ratio is 0.860776764973 intake:drive
       angler.moveToDown(true);
       anglerUpBool = false;
 
-      intake.moveVelocity(-40);
+      intake.moveVelocity(-90);
 
       driveL.moveVelocity(-outtakeSpeed);
       driveR.moveVelocity(-outtakeSpeed);

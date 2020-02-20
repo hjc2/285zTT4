@@ -4,6 +4,7 @@
 #include "../include/285z/functions.hpp"
 #include "../include/285Z_Aux/gui.hpp"
 #include "../include/285Z_Subsystems/pid.hpp"
+#include "../include/285z/initSensors.hpp"
 
 void move(std::shared_ptr<okapi::AsyncMotionProfileController> profile, okapi::QLength distance, bool dir){
   profile->generatePath({
@@ -28,7 +29,13 @@ void antiDeploy()
 void autoStackDeploy(double stackDelay) {
   Tray angler;
 
-  intake.moveRelative(-720, 110); //outtakes stack
+  int threshold = 1000; //light threshold
+  while(cubeSensor.get_value() < threshold){
+    intake.moveVelocity(-110);
+  }
+
+  intake.moveRelative(-100, 110); //outtakes stack
+  //intake.moveRelative(-720, 110); //outtakes stack
   intake.setBrakeMode(AbstractMotor::brakeMode::coast);
   angler.moveToUp(true);
 
@@ -51,10 +58,10 @@ void tenCubeDeploy(double stackDelay) {
 void towerMacro(std::shared_ptr<okapi::AsyncMotionProfileController> slow){
   //Use when bot in front of tower and lift down
   Lift lift;
-  intake.moveVelocity(0)
+  intake.moveVelocity(0);
   lift.moveTo(2300);
   move(slow, 1_ft, bwd);
-  intake.moveRelative(-400, 90);
+  intake.moveRelative(-400, 200);
   lift.moveTo(5);
 }
 //****************** SKILLS ***********************************//
@@ -118,7 +125,6 @@ void skills(std::shared_ptr<okapi::AsyncMotionProfileController> slow, std::shar
   pros::delay(500);
   move(medium, 3.80_ft, fwd);
   towerMacro(slow);
-
 }
 
 //****************** ONE CUBE ***********************************//
