@@ -11,5 +11,5 @@ class Lift{
   void liftToggle(Tray);
   void deploy();
   void move(int);
-
+  void moveTo(int);
 };

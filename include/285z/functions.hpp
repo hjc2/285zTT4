@@ -65,6 +65,8 @@ void lgBlue(std::shared_ptr<okapi::AsyncMotionProfileController> slow, std::shar
 
 void antiDeploy();
 void autoStackDeploy(double stackDelay);
+void tenCubeDeploy(double stackDelay);
+void towerMacro(std::shared_ptr<okapi::AsyncMotionProfileController> slow);
 
 //INITIALIZE
 void profileControllers();

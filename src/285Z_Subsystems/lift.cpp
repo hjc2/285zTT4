@@ -42,6 +42,10 @@ void Lift::deploy(){
   liftController -> setTarget(30);
 }
 
+void Lift::moveTo(int target){
+  liftController -> setTarget(target);
+}
+
 void Lift::move(int vel){
   liftMotor.moveVelocity(-vel);
   liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);

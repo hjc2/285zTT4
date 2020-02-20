@@ -15,7 +15,7 @@ void sgSixRed(std::shared_ptr<okapi::AsyncMotionProfileController> slow, std::sh
   move(slow, 3.52_ft, fwd); //gets line of cubes
   turn(356);
 
-  move(medium, 0.85_ft, fwd);
+  move(medium, 0.80_ft, fwd);
   move(fast, 2.0_ft, bwd);
   turn(175);
 
