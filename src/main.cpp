@@ -15,7 +15,7 @@
  */
 
 //**************** INITIALIZE ALL CHASSIS FOR AUTON ********************//
- auto chassisauto = okapi::ChassisControllerBuilder()
+ std::shared_ptr<okapi::OdomChassisController> chassisauto = okapi::ChassisControllerBuilder()
      .withMotors(driveL, driveR) // left motor is 1, right motor is 2 (reversed)
      .withGains(
         {0.001, 0.001, 0.00009}, // Distance controller gains 0.005, 0, 0.001

@@ -97,7 +97,8 @@ void skills(std::shared_ptr<okapi::AsyncMotionProfileController> slow, std::shar
   slow->waitUntilSettled();//gets 4 cubes ahead of tower
   slow->removePath("F2");
 
-  turn(43); //turn to goal
+  chassisauto->turnAngle(42_deg);
+  // turn(43); //turn to goal
   intake.moveVelocity(0);
 
   move(medium, 1.575_ft, fwd);
@@ -106,10 +107,11 @@ void skills(std::shared_ptr<okapi::AsyncMotionProfileController> slow, std::shar
 
   pros::delay(300);
   intake.moveVelocity(200);
-  turn(270); //turn to align against rightmost wall
+  chassisauto->turnAngle(270_deg);
+  // turn(270); //turn to align against rightmost wall
   angler.moveToDown(false);
   move(medium, 1.385_ft, bwd); //back against wall
-
+  chassisauto->setState({0_in, 0_in, 0_deg});
   // 2: TOWER ONE
   calibrate(); //reset IMU
   pros::delay(500);
@@ -118,7 +120,8 @@ void skills(std::shared_ptr<okapi::AsyncMotionProfileController> slow, std::shar
   towerMacro(slow); //place cube in high tower
 
   move(medium, 3.15_ft, bwd); //back up to next tower
-  turn(270); //turn to tower
+  chassisauto->turnAngle(270_deg);
+  // turn(270); //turn to tower
   move(medium, 2_ft, bwd); //align against field wall
   calibrate();
   pros::delay(500);

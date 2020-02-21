@@ -63,6 +63,7 @@ extern Motor liftMotor;
 //Intake
 extern MotorGroup intake;
 
+extern std::shared_ptr<okapi::OdomChassisController> chassisauto;
 //Chassis controllers
 extern AsyncMotionProfileControllerBuilder fast;
 extern AsyncMotionProfileControllerBuilder medium;
