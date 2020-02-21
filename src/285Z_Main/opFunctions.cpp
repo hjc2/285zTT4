@@ -142,7 +142,7 @@ void stackDeploy()
       angler.moveToDown(true);
       anglerUpBool = false;
 
-      intake.moveVelocity(-90);
+      intake.moveVelocity(-110);
 
       driveL.moveVelocity(-outtakeSpeed);
       driveR.moveVelocity(-outtakeSpeed);
