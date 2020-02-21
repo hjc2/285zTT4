@@ -63,12 +63,13 @@
      .withOutput(motion)
      .buildMotionProfileController();
 
-
+double potVal;
 void initialize() {
   imuSensor.reset();
   while(imuSensor.is_calibrating()){
     pros::delay(15);
   }
+  potVal = autonPot.get();
 }
 
 /**
@@ -119,13 +120,17 @@ void opcontrol() {
       .build(); // build an odometry chassis
       std::shared_ptr<okapi::ChassisModel> model = std::dynamic_pointer_cast<okapi::ChassisModel>(chassis->getModel());
 
+  if(potVal >= 3277 && potVal <= 4096){
+    Lift lift;
+    lift.deploy();
+  }
   // LIFT TASK
   pros::Task intakeThread(liftTask, (void*)"PROS", TASK_PRIORITY_DEFAULT,
                     TASK_STACK_DEPTH_DEFAULT, "Lift Task");
   liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
 
   while(true){
-    deployRobot();
+    // deployRobot();
     displayAuton();
     // TANK DRIVE CODE //
     model->tank(controller.getAnalog(okapi::ControllerAnalog::leftY),
