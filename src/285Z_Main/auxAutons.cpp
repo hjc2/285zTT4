@@ -41,11 +41,11 @@ void autoStackDeploy(double stackDelay) {
 
 void tenCubeDeploy(double stackDelay) {
   Tray angler;
-  intake.setBrakeMode(AbstractMotor::brakeMode::coast);
-  int threshold = 1000; //light threshold
-  while(cubeSensor.get_value() < threshold){
-    intake.moveVelocity(-110);
-  }
+  intake.setBrakeMode(AbstractMotor::brakeMode::hold);
+  // int threshold = 1000; //light threshold
+  // while(cubeSensor.get_value() < threshold){
+  //   intake.moveVelocity(-110);
+  // }
   // intake.moveRelative(-40, 110); //outtakes stack
   angler.moveToUp(true);
 
@@ -92,18 +92,17 @@ void skills(std::shared_ptr<okapi::AsyncMotionProfileController> slow, std::shar
   slow->setTarget("F2", fwd);
   slow->waitUntilSettled();//gets 4 cubes ahead of tower
   slow->removePath("F2");
-
-  turn(43); //turn to goal
+  turn(41.5); //turn to goal
   intake.moveVelocity(0);
 
   move(medium, 1.575_ft, fwd);
   tenCubeDeploy(2300); //deploy
-  move(slow, 1.7_ft, bwd);
+  move(slow, 1.9_ft, bwd);
 
-  pros::delay(300);
+  pros::delay(1000);
   intake.moveVelocity(200);
   turn(270); //turn to align against rightmost wall
-  angler.moveToDown(false);
+  angler.moveToDown(true);
   move(medium, 1.385_ft, bwd); //back against wall
 
   // 2: TOWER ONE

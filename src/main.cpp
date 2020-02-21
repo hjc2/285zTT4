@@ -66,7 +66,9 @@
 
 void initialize() {
   imuSensor.reset();
-
+  while(imuSensor.is_calibrating()){
+    pros::delay(15);
+  }
 }
 
 /**
@@ -75,10 +77,11 @@ void initialize() {
  * the robot is enabled, this task will exit.
 -+
  */
-void disabled() {}
+void disabled() {
+}
 
 void competition_initialize() {
-  calibrate(); //Calibrate IMU Sensor
+   //Calibrate IMU Sensor
   while(true) {
     displayAuton();
     pros::delay(10);
@@ -87,19 +90,16 @@ void competition_initialize() {
 
 void autonomous() {
 
-
   //TEST CASE
   Tray angler;
   Lift lift;
-  calibrate();
   move(fastauto, 0.3_ft, fwd);
   angler.deploy(true);
   move(fastauto, 0.3_ft, bwd);
   lift.deploy();
-
-  turn(0);
   intake.moveVelocity(200);
 
+  // turn(70);
   //skills(slowauto, mediumauto, fastauto);
   //sgSixRed(slowauto, mediumauto, fastauto);
   selectAuton(slowauto, mediumauto, fastauto);
@@ -123,7 +123,9 @@ void opcontrol() {
   pros::Task intakeThread(liftTask, (void*)"PROS", TASK_PRIORITY_DEFAULT,
                     TASK_STACK_DEPTH_DEFAULT, "Lift Task");
   liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
+
   while(true){
+    deployRobot();
     displayAuton();
     // TANK DRIVE CODE //
     model->tank(controller.getAnalog(okapi::ControllerAnalog::leftY),
@@ -135,7 +137,6 @@ void opcontrol() {
 
     // ANGLER TOGGLE CODE
     anglerToggle();
-    stopPID();
     // MACRO CODE
     stackDeploy();
 

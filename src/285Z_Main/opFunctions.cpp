@@ -89,13 +89,13 @@ void anglerToggle(){
   }
 }
 
-//STOP PID IF ERROR
-void stopPID(){
-  if(stopPIDButton.changedToPressed()){
-    anglerDisabled = true;
-    angler.stopPID();
-  }
-}
+// //STOP PID IF ERROR
+// void stopPID(){
+//   if(stopPIDButton.changedToPressed()){
+//     anglerDisabled = true;
+//     angler.stopPID();
+//   }
+// }
 
 //******************** LIFT *******************//
 
@@ -132,6 +132,13 @@ void liftTask(void* param) {
 
 //*********************MACROS*******************************//
 
+void deployRobot(){
+  Lift lift;
+  if(startDeployButton.changedToPressed()){
+    lift.deploy();
+  }
+}
+
 //BACK UP AFTER STACK
 void stackDeploy()
 {
@@ -139,15 +146,16 @@ void stackDeploy()
     {
 
       //ratio is 0.860776764973 intake:drive
+      intake.moveRelative(240, -110);
       angler.moveToDown(true);
       anglerUpBool = false;
 
-      intake.moveVelocity(-90);
+      intake.moveVelocity(-110);
 
       driveL.moveVelocity(-outtakeSpeed);
       driveR.moveVelocity(-outtakeSpeed);
 
-      pros::Task::delay(1250);
+      pros::Task::delay(1350);
       intake.moveVelocity(0);
 
       driveL.moveVelocity(0);

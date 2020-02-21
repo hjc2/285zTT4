@@ -23,6 +23,7 @@ extern ControllerButton anglerUpButton;
 extern ControllerButton anglerDownButton;
 
 extern ControllerButton deployButton;
+extern ControllerButton startDeployButton;
 
 //  SENSORS  //
 extern Potentiometer autonPot;

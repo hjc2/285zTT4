@@ -16,11 +16,11 @@ void sgSixBlue(std::shared_ptr<okapi::AsyncMotionProfileController> slow, std::s
   intake.moveVelocity(200);
   //************** INIT PATHS *******************//
   move(slow, 3.25_ft, fwd);
-  turn(16);
+  turn(7.5);
 
   move(fast, 0.85_ft, fwd);
   move(fast, 2_ft, bwd);
-  turn(230);
+  turn(233);
 
   move(slow, 1.5_ft, fwd);
 
@@ -28,7 +28,8 @@ void sgSixBlue(std::shared_ptr<okapi::AsyncMotionProfileController> slow, std::s
 
   autoStackDeploy(1400);
 
-  move(medium, 1_ft, bwd);
+  move(slow, 1_ft, bwd);
+  angler.moveToDown(false);
 }
 //************************   BLUE: SHORT GOAL, NINE CUBES   ****************************//
 void sgNineBlue(std::shared_ptr<okapi::AsyncMotionProfileController> slow, std::shared_ptr<okapi::AsyncMotionProfileController> medium, std::shared_ptr<okapi::AsyncMotionProfileController> fast){
@@ -65,14 +66,14 @@ void lgBlue(std::shared_ptr<okapi::AsyncMotionProfileController> slow, std::shar
   Lift lift;
 
   move(medium, 2_ft, fwd);
-  turn(283);
+  turn(276);
 
   move(medium, 2.7_ft, fwd);
   move(fast, 2.5_ft, bwd);
   intake.moveVelocity(0);
-  turn(167);
+  turn(157);
 
-  move(slow, 1.2_ft, fwd);
+  move(slow, 1.285_ft, fwd);
   autoStackDeploy(1300);
 
   move(fast, 1.3_ft, bwd);

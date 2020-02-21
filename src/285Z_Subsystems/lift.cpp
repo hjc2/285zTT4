@@ -5,7 +5,7 @@
 const int NUM_HEIGHTS = 3;
 const int height0 = 5;
 const int height1 = 1600; //for dunking, old is 1800
-const int height2 = 2300;
+const int height2 = 2400;
 
 const int heights[NUM_HEIGHTS] = {height0, height1, height2};
 double liftkP = 0.004;
@@ -19,7 +19,6 @@ auto liftController = AsyncPosControllerBuilder().withMotor(liftPort)
                         .build();
 
 void Lift::liftToggle(Tray angler){
-
   if (liftUpButton.changedToPressed() && heightNow < NUM_HEIGHTS - 1) {
       // If the goal height is not at maximum and the up button is pressed, increase the setpoint
       // heightNow++;
@@ -29,6 +28,11 @@ void Lift::liftToggle(Tray angler){
     } else if (liftDownButton.changedToPressed() && heightNow > 0) {
       heightNow--;
       liftController->setTarget(heights[heightNow]);
+      if (heightNow == 0){
+        liftMotor.setBrakeMode(AbstractMotor::brakeMode::coast);
+        liftController->tarePosition();
+      }
+
     }
 
 }
@@ -39,7 +43,7 @@ void Lift::deploy(){
   intake.moveVelocity(-200);
 
   liftController -> setTarget(1550);
-  pros::delay(500);
+  pros::delay(800);
   liftController -> setTarget(30);
 }
 
