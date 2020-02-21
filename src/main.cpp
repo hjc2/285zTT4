@@ -65,6 +65,7 @@
 
 
 void initialize() {
+  chassisauto->setState({0_ft, 0_ft, 0_deg});
   imuSensor.reset();
 
 }
