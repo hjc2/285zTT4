@@ -124,7 +124,7 @@ void liftControl() {
 void liftTask(void* param) {
   while(true) {
     liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
-    liftToggle();
+    liftControl();
     pros::Task::delay(10);
   }
 }
