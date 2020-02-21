@@ -95,7 +95,6 @@ void autonomous() {
   Tray angler;
   Lift lift;
   move(fastauto, 0.3_ft, fwd);
-  angler.deploy(true);
   move(fastauto, 0.3_ft, bwd);
   lift.deploy();
   intake.moveVelocity(200);
@@ -120,10 +119,10 @@ void opcontrol() {
       .build(); // build an odometry chassis
       std::shared_ptr<okapi::ChassisModel> model = std::dynamic_pointer_cast<okapi::ChassisModel>(chassis->getModel());
 
-  if(potVal >= 3277 && potVal <= 4096){
-    Lift lift;
-    lift.deploy();
-  }
+  // if(potVal >= 3277 && potVal <= 4096){
+  //   Lift lift;
+  //   lift.deploy();
+  // }
   // LIFT TASK
   pros::Task intakeThread(liftTask, (void*)"PROS", TASK_PRIORITY_DEFAULT,
                     TASK_STACK_DEPTH_DEFAULT, "Lift Task");

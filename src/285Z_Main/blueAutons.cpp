@@ -16,6 +16,7 @@ void sgSixBlue(std::shared_ptr<okapi::AsyncMotionProfileController> slow, std::s
   intake.moveVelocity(200);
   //************** INIT PATHS *******************//
   move(slow, 3.25_ft, fwd);
+  angler.deploy(true);
   turn(7.5);
 
   move(fast, 0.85_ft, fwd);
@@ -66,6 +67,7 @@ void lgBlue(std::shared_ptr<okapi::AsyncMotionProfileController> slow, std::shar
   Lift lift;
 
   move(medium, 2_ft, fwd);
+  angler.deploy(true);
   turn(276);
 
   move(medium, 2.7_ft, fwd);

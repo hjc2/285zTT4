@@ -110,10 +110,10 @@ void liftToggle(){
 //MANUAL DUAL CONTROL
 void liftControl() {
   if(liftUpButton.isPressed()) {
-    lift.move(200);
+    lift.move(-200);
   }
   else if(liftDownButton.isPressed()) {
-    lift.move(-170);
+    lift.move(170);
   }
   else {
     lift.move(0);
