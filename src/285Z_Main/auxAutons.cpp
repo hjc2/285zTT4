@@ -29,7 +29,7 @@ void antiDeploy()
 void autoStackDeploy(double stackDelay) {
   Tray angler;
 
-  intake.moveRelative(-720, 110); //outtakes stack
+  intake.moveRelative(-760, 110); //outtakes stack
   intake.setBrakeMode(AbstractMotor::brakeMode::coast);
   angler.moveToUp(true);
 

@@ -21,7 +21,7 @@ okapi::ControllerButton startDeployButton = okapi::ControllerDigital::Y;
  int backRightPort = -1;  //reversed
 
  //intake motor ports
- int intakeLeftPort = 18;
+ int intakeLeftPort = 5;
  int intakeRightPort = -16;
 
  //LIFT MOTOR PORT

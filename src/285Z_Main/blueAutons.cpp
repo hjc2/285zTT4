@@ -7,6 +7,30 @@
 
 //*************BLUE AUTONOMOUS PROGRAMS********************//
 
+void sgFiveBlue(std::shared_ptr<okapi::AsyncMotionProfileController> slow, std::shared_ptr<okapi::AsyncMotionProfileController> medium, std::shared_ptr<okapi::AsyncMotionProfileController> fast){
+  Tray angler;
+  Lift lift;
+  lift.deploy();
+
+  intake.moveVelocity(200);
+  //************** INIT PATHS *******************//
+  move(slow, 3.35_ft, fwd);
+  angler.deploy(true);
+  // turn(7.5);
+  //
+  // move(fast, 0.85_ft, fwd);
+  move(fast, 2.10_ft, bwd);
+  // turn(233);
+  chassisaut->turnToAngle(250_deg);
+  move(fast, 1.45_ft, fwd);
+  intake.moveVelocity(0);
+
+  autoStackDeploy(1400);
+
+  move(slow, 1_ft, bwd);
+  angler.moveToDown(false);
+}
+
 //************************   BLUE: FIVE CUBES   ****************************//
 void sgSixBlue(std::shared_ptr<okapi::AsyncMotionProfileController> slow, std::shared_ptr<okapi::AsyncMotionProfileController> medium, std::shared_ptr<okapi::AsyncMotionProfileController> fast){
   Tray angler;
@@ -17,13 +41,15 @@ void sgSixBlue(std::shared_ptr<okapi::AsyncMotionProfileController> slow, std::s
   //************** INIT PATHS *******************//
   move(slow, 3.25_ft, fwd);
   angler.deploy(true);
-  turn(7.5);
+  chassisaut->turnToAngle(30_deg);
+  //turn(7.5);
 
   move(fast, 0.85_ft, fwd);
   move(fast, 2_ft, bwd);
-  turn(233);
+  //turn(233);
+  chassisaut->turnToAngle(250_deg);
 
-  move(slow, 1.5_ft, fwd);
+  move(fast, 1.63_ft, fwd);
 
   intake.moveVelocity(0);
 
@@ -75,7 +101,7 @@ void lgBlue(std::shared_ptr<okapi::AsyncMotionProfileController> slow, std::shar
   intake.moveVelocity(0);
   turn(157);
 
-  move(slow, 1.285_ft, fwd);
+  move(fast, 1.32_ft, fwd);
   autoStackDeploy(1300);
 
   move(fast, 1.3_ft, bwd);

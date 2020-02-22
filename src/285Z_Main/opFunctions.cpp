@@ -58,7 +58,7 @@ void intakeRev(){
   if (outtakeButton.isPressed())
   {
     if(heightNow == 2 || intakeButton.isPressed()){
-      intake.moveVelocity (-175);
+      intake.moveVelocity (-190);
     } else {
       intake.moveVelocity (-100);
     }
@@ -144,8 +144,8 @@ void stackDeploy()
     {
 
       //ratio is 0.860776764973 intake:drive
-      intake.moveRelative(330, -90);
-      pros::delay(500);
+      // intake.moveRelative(-330, 90);
+      // pros::delay(500);
 
       anglerUpBool = false;
 

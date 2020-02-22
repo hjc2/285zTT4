@@ -7,22 +7,49 @@
 
 
 //*****************************   RED: FIVE CUBES    **********************//
+
+void sgFiveRed(std::shared_ptr<okapi::AsyncMotionProfileController> slow, std::shared_ptr<okapi::AsyncMotionProfileController> medium, std::shared_ptr<okapi::AsyncMotionProfileController> fast){
+  Tray angler;
+  Lift lift;
+  intake.moveVelocity(200);
+  //************** INIT PATHS *******************//
+  move(slow, 3.48_ft, fwd); //gets line of cubes
+  angler.deploy(true);
+  // chassisaut->turnToAngle(-25_deg);
+  // turn(356);
+  // move(slow, 0.80_ft, fwd);
+
+  move(fast, 2.0_ft, bwd);
+  // turn(160);
+  chassisaut->turnToAngle(146_deg);
+
+  move(fast, 1.575_ft, fwd);
+
+  intake.moveVelocity(0);
+
+  autoStackDeploy(1400);
+
+  intake.moveVelocity(-120);
+  move(fast, 1.2_ft, bwd);
+  angler.moveToDown(false);
+}
+
 void sgSixRed(std::shared_ptr<okapi::AsyncMotionProfileController> slow, std::shared_ptr<okapi::AsyncMotionProfileController> medium, std::shared_ptr<okapi::AsyncMotionProfileController> fast){
   Tray angler;
   Lift lift;
   intake.moveVelocity(200);
   //************** INIT PATHS *******************//
-  move(slow, 3.43_ft, fwd); //gets line of cubes
+  move(medium, 3.43_ft, fwd); //gets line of cubes
   angler.deploy(true);
-  chassisaut->turnToAngle(-25_deg);
-  // turn(356);
+  // chassisaut->turnToAngle(-30_deg);
+  turn(356);
 
   move(slow, 0.80_ft, fwd);
-  move(fast, 2.0_ft, bwd);
+  move(fast, 1.8_ft, bwd);
   // turn(160);
   chassisaut->turnToAngle(168_deg);
 
-  move(medium, 1.34_ft, fwd);
+  move(medium, 1.60_ft, fwd);
 
   intake.moveVelocity(0);
 
@@ -69,15 +96,16 @@ void lgRed(std::shared_ptr<okapi::AsyncMotionProfileController> slow, std::share
   Tray angler;
   Lift lift;
 
-  move(fast, 1.9_ft, fwd);
+  move(fast, 2_ft, fwd);
   angler.deploy(true);
-  turn(94);
+  chassisaut->turnToAngle(100_deg);
+  //turn(96);
 
   move(medium, 2.7_ft, fwd);
   move(fast, 2.4_ft, bwd);
-  turn(240);
+  turn(210);
 
-  move(slow, 1.05_ft, fwd);
+  move(fast, 1.05_ft, fwd);
   autoStackDeploy(1400);
 
   move(fast, 1.3_ft, bwd);

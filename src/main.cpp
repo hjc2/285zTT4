@@ -16,16 +16,19 @@
 
 //**************** INITIALIZE ALL CHASSIS FOR AUTON ********************//
 
+ // okapi::DefaultOdomChassisController chassisauto = DefaultOdomChassisController();
  std::shared_ptr<okapi::OdomChassisController> chassisaut = okapi::ChassisControllerBuilder()
      .withMotors(driveL, driveR) // left motor is 1, right motor is 2 (reversed)
      .withGains(
         {0.001, 0, 0.0001}, // Distance controller gains
-        {0.005, 0.0035, 0.00045}, // Turn controller gains
+        {0.00075, 0.001, 0.00009}, // Turn controller gains //try 0.00075, 0.001, 0.00009
         {0.001, 0, 0.0001}  // Angle controller gains (helps drive straight)
     )
      .withDimensions(AbstractMotor::gearset::green, scales)
+     .withMaxVelocity(90)
+     .withOdometryTimeUtilFactory(TimeUtilFactory())
+     .withClosedLoopControllerTimeUtil(80, 10, 250_ms)
      .withOdometry() // use the same scales as the chassis (above)
-     .withMaxVelocity(100)
      .buildOdometry(); // build an odometry chassis
 
  auto motion =
@@ -57,7 +60,7 @@
  auto mediumauto =
    AsyncMotionProfileControllerBuilder()
      .withLimits({
-       0.6,  //max velocity
+       0.5,  //max velocity
        2.0,  //max acceleration
        10.0  //max jerk
      })
@@ -95,10 +98,12 @@ void autonomous() {
   //TEST CASE
   Tray angler;
   Lift lift;
-  move(fastauto, 0.3_ft, fwd);
-  move(fastauto, 0.3_ft, bwd);
+  chassisaut->setState({0_ft, 0_ft, 0_deg});
+  move(fastauto, 0.4_ft, fwd);
+  move(fastauto, 0.4_ft, bwd);
   lift.deploy();
   intake.moveVelocity(200);
+  pros::delay(500);
 
   // turn(70);
   //skills(slowauto, mediumauto, fastauto);
@@ -135,7 +140,7 @@ void opcontrol() {
   // pros::delay(2000);
 
   while(true){
-    robotDeploy();
+    //robotDeploy();
     displayAuton();
     // TANK DRIVE CODE //
     model->tank(controller.getAnalog(okapi::ControllerAnalog::leftY),

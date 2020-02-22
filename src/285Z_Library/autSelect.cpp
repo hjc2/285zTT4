@@ -11,10 +11,10 @@ void selectAuton(std::shared_ptr<okapi::AsyncMotionProfileController> slow, std:
   double potVal = autonPot.get();
   if(potVal >= 0 && potVal < 819){
     //shortGoalSixRed(chassis, slow, fast);
-    sgSixRed(slow, medium, fast);
+    sgFiveRed(slow, medium, fast);
   }
   if(potVal >= 820 && potVal <= 1638){
-    sgSixBlue(slow, medium, fast);
+    sgFiveBlue(slow, medium, fast);
   }
   if(potVal >= 1639 && potVal <= 2457){
     lgRed(slow, medium, fast);
