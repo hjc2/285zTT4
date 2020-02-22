@@ -58,7 +58,7 @@ void intakeRev(){
   if (outtakeButton.isPressed())
   {
     if(heightNow == 2 || intakeButton.isPressed()){
-      intake.moveVelocity (-200);
+      intake.moveVelocity (-175);
     } else {
       intake.moveVelocity (-100);
     }
@@ -131,7 +131,12 @@ void liftTask(void* param) {
 
 
 //*********************MACROS*******************************//
-
+void robotDeploy(){
+  if(startDeployButton.changedToPressed()){
+    lift.deploy();
+    angler.deploy(true);
+  }
+}
 //BACK UP AFTER STACK
 void stackDeploy()
 {
@@ -139,17 +144,21 @@ void stackDeploy()
     {
 
       //ratio is 0.860776764973 intake:drive
-      angler.moveToDown(true);
+      intake.moveRelative(330, -90);
+      pros::delay(500);
+
       anglerUpBool = false;
 
       intake.moveVelocity(-110);
 
-      driveL.moveVelocity(-outtakeSpeed);
-      driveR.moveVelocity(-outtakeSpeed);
-
-      pros::Task::delay(1250);
+      move(slowauto, 1.23_ft, bwd);
+      // driveL.moveVelocity(-outtakeSpeed);
+      // driveR.moveVelocity(-outtakeSpeed);
+      //
+      // pros::Task::delay(1250);
       intake.moveVelocity(0);
 
+      angler.moveToDown(true);
       driveL.moveVelocity(0);
       driveR.moveVelocity(0);
   }

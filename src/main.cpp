@@ -15,16 +15,17 @@
  */
 
 //**************** INITIALIZE ALL CHASSIS FOR AUTON ********************//
- auto chassisauto = okapi::ChassisControllerBuilder()
+
+ std::shared_ptr<okapi::OdomChassisController> chassisaut = okapi::ChassisControllerBuilder()
      .withMotors(driveL, driveR) // left motor is 1, right motor is 2 (reversed)
      .withGains(
-        {0.001, 0.001, 0.00009}, // Distance controller gains 0.005, 0, 0.001
-        {0.00075, 0.001, 0.00009}, // Turn controller gains
-        {0.001, 0.001, 0.0001}  // Angle controller gains (helps drive straight)
-      )
+        {0.001, 0, 0.0001}, // Distance controller gains
+        {0.005, 0.0035, 0.00045}, // Turn controller gains
+        {0.001, 0, 0.0001}  // Angle controller gains (helps drive straight)
+    )
      .withDimensions(AbstractMotor::gearset::green, scales)
      .withOdometry() // use the same scales as the chassis (above)
-     .withMaxVelocity(200)
+     .withMaxVelocity(100)
      .buildOdometry(); // build an odometry chassis
 
  auto motion =
@@ -43,7 +44,7 @@
      })
      .withOutput(motion)
      .buildMotionProfileController();
- auto slowauto =
+ std::shared_ptr<okapi::AsyncMotionProfileController> slowauto =
    AsyncMotionProfileControllerBuilder()
      .withLimits({
        0.4,  //max velocity
@@ -127,9 +128,14 @@ void opcontrol() {
   pros::Task intakeThread(liftTask, (void*)"PROS", TASK_PRIORITY_DEFAULT,
                     TASK_STACK_DEPTH_DEFAULT, "Lift Task");
   liftMotor.setBrakeMode(AbstractMotor::brakeMode::hold);
+  Tray angler;
+  Lift lift;
+  // lift.deploy();
+  // angler.deploy(true);
+  // pros::delay(2000);
 
   while(true){
-    // deployRobot();
+    robotDeploy();
     displayAuton();
     // TANK DRIVE CODE //
     model->tank(controller.getAnalog(okapi::ControllerAnalog::leftY),

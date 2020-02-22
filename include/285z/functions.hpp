@@ -34,7 +34,7 @@ void anglerToggle();
 void liftPositionToggleFunction();
 
 //OP MACROS
-void deployRobot();
+void robotDeploy();
 void stackDeploy();
 
 //   **AUTON FUNCTIONS**    //

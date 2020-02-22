@@ -14,13 +14,15 @@ void sgSixRed(std::shared_ptr<okapi::AsyncMotionProfileController> slow, std::sh
   //************** INIT PATHS *******************//
   move(slow, 3.43_ft, fwd); //gets line of cubes
   angler.deploy(true);
-  turn(356);
+  chassisaut->turnToAngle(-25_deg);
+  // turn(356);
 
   move(slow, 0.80_ft, fwd);
   move(fast, 2.0_ft, bwd);
-  turn(176);
+  // turn(160);
+  chassisaut->turnToAngle(168_deg);
 
-  move(slow, 1.2_ft, fwd);
+  move(medium, 1.34_ft, fwd);
 
   intake.moveVelocity(0);
 

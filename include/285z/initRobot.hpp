@@ -65,6 +65,8 @@ extern Motor liftMotor;
 extern MotorGroup intake;
 
 //Chassis controllers
+extern std::shared_ptr<okapi::OdomChassisController> chassisaut;
+extern std::shared_ptr<okapi::AsyncMotionProfileController> slowauto;
 extern AsyncMotionProfileControllerBuilder fast;
 extern AsyncMotionProfileControllerBuilder medium;
 extern AsyncMotionProfileControllerBuilder slow;

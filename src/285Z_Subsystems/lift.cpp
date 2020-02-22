@@ -43,12 +43,14 @@ void Lift::deploy(){
   intake.moveVelocity(-200);
 
   liftController -> setTarget(1550);
+  liftController -> waitUntilSettled();
   pros::delay(800);
   liftController -> setTarget(30);
 }
 
 void Lift::moveTo(int target){
   liftController -> setTarget(target);
+  liftController -> waitUntilSettled();
 }
 
 void Lift::move(int vel){

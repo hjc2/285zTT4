@@ -57,11 +57,13 @@ void tenCubeDeploy(double stackDelay) {
 void towerMacro(std::shared_ptr<okapi::AsyncMotionProfileController> slow){
   //Use when bot in front of tower and lift down
   Lift lift;
+  intake.moveRelative(400, -170);
+  move(slow, 0.5_ft, bwd);
   intake.moveVelocity(0);
   lift.moveTo(2300);
-  move(slow, 1_ft, bwd);
+  move(slow, 0.5_ft, fwd);
   intake.moveRelative(-400, 200);
-  lift.moveTo(5);
+  pros::delay(500);
 }
 //****************** SKILLS ***********************************//
 void skills(std::shared_ptr<okapi::AsyncMotionProfileController> slow, std::shared_ptr<okapi::AsyncMotionProfileController> medium, std::shared_ptr<okapi::AsyncMotionProfileController> fast){
@@ -92,33 +94,36 @@ void skills(std::shared_ptr<okapi::AsyncMotionProfileController> slow, std::shar
   slow->setTarget("F2", fwd);
   slow->waitUntilSettled();//gets 4 cubes ahead of tower
   slow->removePath("F2");
-  turn(41.5); //turn to goal
+  // turn(41.5); //turn to goal
+  chassisaut->turnToAngle(51.5_deg);
   intake.moveVelocity(0);
 
-  move(medium, 1.575_ft, fwd);
+  move(slow, 1.575_ft, fwd);
   tenCubeDeploy(2300); //deploy
   move(slow, 1.9_ft, bwd);
 
   pros::delay(1000);
-  intake.moveVelocity(200);
-  turn(270); //turn to align against rightmost wall
+
+  chassisaut-> setState({0_ft, 0_ft, 0_deg});
+  chassisaut->turnAngle(-150_deg);
   angler.moveToDown(true);
-  move(medium, 1.385_ft, bwd); //back against wall
+  chassisaut->setState({0_ft, 0_ft, 0_deg});
+  move(medium, 1.6_ft, bwd); //back against wall
 
   // 2: TOWER ONE
-  calibrate(); //reset IMU
   pros::delay(500);
   intake.moveVelocity(200);
-  move(medium, 3.85_ft, fwd); //intake tower cube
+  move(slow, 3.85_ft, fwd); //intake tower cube
   towerMacro(slow); //place cube in high tower
 
-  move(medium, 3.15_ft, bwd); //back up to next tower
-  turn(270); //turn to tower
+  move(slow, 1_ft, bwd); //back up to next tower
+  /*
+  chassisaut->turnToAngle(270_deg);
+  // turn(270); //turn to tower
   move(medium, 2_ft, bwd); //align against field wall
-  calibrate();
   pros::delay(500);
   move(medium, 3.80_ft, fwd);
-  towerMacro(slow);
+  towerMacro(slow);*/
 }
 
 //****************** ONE CUBE ***********************************//
