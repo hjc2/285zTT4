@@ -102,28 +102,57 @@ void skills(std::shared_ptr<okapi::AsyncMotionProfileController> slow, std::shar
   tenCubeDeploy(2300); //deploy
   move(slow, 1.9_ft, bwd);
 
+  //POST DEPLOY
   pros::delay(1000);
 
   chassisaut-> setState({0_ft, 0_ft, 0_deg});
-  chassisaut->turnAngle(-150_deg);
+  //ALINIG OF THE ROBOT
+  chassisaut->turnAngle(-138_deg);
   angler.moveToDown(true);
   chassisaut->setState({0_ft, 0_ft, 0_deg});
-  move(medium, 1.6_ft, bwd); //back against wall
+  move(medium, 1.6_ft, bwd); //RESETS AGAINST THE WALL
 
   // 2: TOWER ONE
   pros::delay(500);
   intake.moveVelocity(200);
   move(slow, 3.85_ft, fwd); //intake tower cube
-  towerMacro(slow); //place cube in high tower
+  pros::delay(200);
+  move(slow, 0.6_ft, bwd);
+  move(slow, 0.8_ft, fwd);
 
-  move(slow, 1_ft, bwd); //back up to next tower
-  /*
-  chassisaut->turnToAngle(270_deg);
+  towerMacro(slow);
+
+  pros::delay(500);
+  intake.moveVelocity(0);
+  chassisaut->turnToAngle(-80_deg);
   // turn(270); //turn to tower
+
+  intake.moveVelocity(0);
   move(medium, 2_ft, bwd); //align against field wall
+  chassisaut->setState({0_ft, 0_ft, 0_deg});
+
+  pros::delay(500);
+
+  //STARTING THE SECOND TOWER
+  move(medium, 4_ft, fwd);
+  chassisaut-> setState({0_ft, 0_ft, 0_deg});
+  chassisaut->turnToAngle(90_deg);
+  move(slow, 2.5_ft, fwd);
+  towerMacro(slow);
+  /*
   pros::delay(500);
   move(medium, 3.80_ft, fwd);
-  towerMacro(slow);*/
+  intake.moveVelocity(0);
+  chassisaut->turnToAngle(-40_deg);
+  towerMacro(slow);
+
+  pros::delay(4000);
+  move(fast, 2.5_ft, bwd);
+  chassisaut->turnToAngle(180_deg);
+  move(slow, 0.5_ft, bwd);
+  pros::delay(200);
+  move(fast, 9_ft,fwd);
+  */
 }
 
 //****************** ONE CUBE ***********************************//
