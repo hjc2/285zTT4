@@ -27,7 +27,7 @@ okapi::ControllerButton startDeployButton = okapi::ControllerDigital::Y;
  //LIFT MOTOR PORT
  int liftPort = 11;
  //angler motor port
- int anglerPort = 2;
+ int anglerPort = 12;
 
  Motor frontLeftMotor(frontLeftPort);
  Motor backLeftMotor(backLeftPort);
