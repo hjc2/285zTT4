@@ -128,13 +128,43 @@ void sgTenRed(std::shared_ptr<okapi::AsyncMotionProfileController> slow, std::sh
   pros::delay(200);
   lift.moveTo(0);
   pros::delay(300);
+
   //ORANGE
   intake.moveVelocity(10);
   move(fast, 0.5_ft, bwd);
 
-  //YELLOW
+  //TURN A
   turn(-45);
+
+  //YELLOW
+  intake.moveVelocity(100);
   move(fast, 1.7_ft, fwd);
 
-  
+  //GREEN
+  intake.moveVelocity(10);
+  move(fast, 5_ft, bwd);
+  move(fast, 4_ft, bwd);
+
+  //TURN B
+  turn(50);
+
+  //CYAN
+  intake.moveVelocity(100);
+  move(fast, 5_ft, fwd);
+
+  //MAGENTA
+  move(fast, 3_ft, bwd);
+
+  //TURN C
+  turn(-45);
+
+  //PINK
+  intake.moveVelocity(-3);
+  angler.moveToUp(true);
+  move(fast, 3_ft, fwd);
+
+  //PURPLE
+  intake.moveVelocity(-20);
+  move(slow, 3_ft, bwd);
+  angler.moveToDown(true);
 }
