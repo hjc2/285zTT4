@@ -116,5 +116,25 @@ void sgTenRed(std::shared_ptr<okapi::AsyncMotionProfileController> slow, std::sh
   Tray angler;
   Lift lift;
   lift.deploy();
+  //i used the color tags as the sections of planning in one note for the path
+  //PLEASE CHECK THE ONE NOTE FOR PATH
+  //Auton Sketches / 10 Cube Small Goal Red
 
+  //RED
+  intake.moveVelocity(200);
+  move(fast, 2_ft, fwd); //intaking the preload and 2 cubes
+  lift.moveTo(500); //grabbing the last 2 jn the tetris
+  move(slow, 0.5_ft, fwd);
+  pros::delay(200);
+  lift.moveTo(0);
+  pros::delay(300);
+  //ORANGE
+  intake.moveVelocity(10);
+  move(fast, 0.5_ft, bwd);
+
+  //YELLOW
+  turn(-45);
+  move(fast, 1.7_ft, fwd);
+
+  
 }
