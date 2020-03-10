@@ -111,3 +111,10 @@ void lgRed(std::shared_ptr<okapi::AsyncMotionProfileController> slow, std::share
   move(fast, 1.3_ft, bwd);
   angler.moveToDown(false);
 }
+
+void sgTenRed(std::shared_ptr<okapi::AsyncMotionProfileController> slow, std::shared_ptr<okapi::AsyncMotionProfileController> medium, std::shared_ptr<okapi::AsyncMotionProfileController> fast){
+  Tray angler;
+  Lift lift;
+  lift.deploy();
+
+}
